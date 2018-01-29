@@ -1,0 +1,22 @@
+.vscode
+.idea
+.history
+.DS_Store
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+_site
+.sass-cache
+.jekyll-metadata
+

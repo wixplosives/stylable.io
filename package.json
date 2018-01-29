@@ -1,0 +1,20 @@
+{
+  "name": "stylable.io",
+  "version": "1.0.0",
+  "description": "The Stylable website https://stylable.io/",
+  "private": true,
+  "main": "N/A",
+  "scripts": {
+    "deploy": "bundle install && bundle exec jekyll build && gh-pages -d ./_site",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wixplosives/stylable.io.git"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/wixplosives/stylable.io/issues"
+  },
+  "homepage": "https://stylable.io/"
+}
