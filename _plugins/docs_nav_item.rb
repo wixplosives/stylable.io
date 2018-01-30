@@ -1,10 +1,10 @@
 module Jekyll
     module SidebarItemFilter
         def sidebar_item(item)
-            baseurl = Jekyll.configuration({})['baseurl']
             pageID = @context.registers[:page]["id"]
+            baseurl = @context.registers[:page]["relative_root"]
             itemID = item["id"]
-            href = item["href"] || "#{baseurl}/docs/#{itemID}"
+            href = item["href"] || "#{baseurl}/stylable/site/docs/#{itemID}"
             isActive = pageID == itemID
             isActiveClassName = isActive ? "active" : ""
             categoryLink = "<a href=\"#{href}\" class=\"#{isActiveClassName} docs-nav-item\">#{item["title"]}</a>"
@@ -14,9 +14,9 @@ module Jekyll
                 for subItem in item["subitems"]
                    subItems += "<li><a href=\"##{subItem["id"]}\" class=\"docs-nav-subitem\">#{subItem["title"]}</a></li>"
                 end
-                return "<li class=\"#{isActiveClassName}\">#{categoryLink}<ul>#{subItems}</ul></li>"
+                "<li class=\"#{isActiveClassName}\">#{categoryLink}<ul>#{subItems}</ul></li>"
             else
-                return "<li class=\"#{isActiveClassName}\">#{categoryLink}</li>"
+                "<li class=\"#{isActiveClassName}\">#{categoryLink}</li>"
             end
         end
     end
