@@ -6,7 +6,7 @@
   "main": "N/A",
   "scripts": {
     "deploy": "bundle install && bundle exec jekyll build && gh-pages -d ./_site",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "bundle exec jekyll serve"
   },
   "repository": {
     "type": "git",

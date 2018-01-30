@@ -11,13 +11,6 @@ The site is build using [Jekyll](http://jekyllrb.com/). To modify the site, you 
 * Jekyll, bundler installed: `gem install jekyll bundler` 
 * gh-pages installed: `npm i -g gh-pages`
 
-### git module
-
-After cloning this repo, init and fetch [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules#_cloning_submodules):
-
- - `git submodule init`
- - `git submodule update`
-
 ## Development
 
 Run 
