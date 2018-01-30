@@ -23,6 +23,8 @@ Build
 ```
 jekyll build
 ```
+After deployment you can view the site at [Github pages URL](https://wixplosives.github.io/stylable.io/)
+
 
 ## UNLICENSED
 
