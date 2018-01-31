@@ -1,4 +1,3 @@
-# based on https://ricostacruz.com/til/relative-paths-in-jekyll
 Jekyll::Hooks.register :pages, :pre_render do |page, payload|
   depth = page.url.split('/').size - 1
   if depth <= 1

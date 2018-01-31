@@ -2,6 +2,9 @@
 .idea
 .history
 .DS_Store
+.bit
+.bitmap
+bit.json
 
 # Dependency directories
 node_modules/
