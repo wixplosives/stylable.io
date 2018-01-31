@@ -18,10 +18,15 @@ Run
 bundle exec jekyll serve
 ```
 
-Build
+Deploy
 
 ```
-jekyll build
+bundle install
+
+bundle exec jekyll build 
+
+gh-pages -d ./_site
+
 ```
 After deployment you can view the site at [Github pages URL](https://wixplosives.github.io/stylable.io/)
 
