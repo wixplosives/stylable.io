@@ -144,6 +144,6 @@ Access the BSD-licensed [**Stylable** GitHub project](https://github.com/wix/sty
     window.codePath = "/js/playground";
     window.recipeName = "playground-recepie";
     window.projectFilesPath = "/recipes/homepage.json";
-    window.openTab = "src/index.st.css";
+    window.openTab = "/src/index.st.css";
 </script>
 <script type="text/javascript" src="{{page.relative_root}}/js/playground/stylableHomepage.bundle.js"></script></body>

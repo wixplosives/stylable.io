@@ -255,6 +255,9 @@ header .logo-git {
     margin-bottom: 20px;
 }
 
+wix-playground > *:nth-child(1) {
+    height: 450px;
+}
 
 /**************/
 
