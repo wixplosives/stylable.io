@@ -5,9 +5,9 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 id: welcome
-# title: Welcome to Stylable - CSS for Components
+title: Welcome to Stylable - CSS for Components
 redirect_from: "docs/index.html"
-layout: docs
+layout: home
 ---
 
 <span class="site-logo">![Stylable Intelligence](./branding/logo/PNG/96-logo-OnlySymbol.png)</span>
@@ -144,5 +144,10 @@ Access the BSD-licensed [**Stylable** GitHub project](https://github.com/wix/sty
     window.codePath = "/js/playground";
     window.recipeName = 'playground-recepie';
     window.projectFilesPath = `/recipes/homepage.json`;
+    var my_awesome_script = document.createElement('script');
+    
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        my_awesome_script.setAttribute('src','{{page.relative_root}}/js/playground/stylableHomepage.bundle.js');
+        document.head.appendChild(my_awesome_script);
+    }
 </script>
-<script type="text/javascript" src="{{page.relative_root}}/js/playground/stylableHomepage.bundle.js"></script></body>
