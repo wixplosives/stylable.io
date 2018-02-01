@@ -85,7 +85,6 @@ layout: docs
   </div>
 </div>
 
-<Wix-playground></Wix-playground>
 
 We &hearts; CSS. Its simple, declarative syntax that is native in browsers is easily the fastest way to add styles to web pages and web apps. But when writing CSS that is scoped to individual components, developers have to maintain highly-specific selectors, using elaborate conventions to fake namespacing. Writing and maintaining CSS across large teams and large projects can be tricky.
 
@@ -99,6 +98,8 @@ We want to give CSS a _type system_ &mdash; to do for CSS what TypeScript does f
 * Provide the ability to see our **errors at build** time or even while [working in our IDE](https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence). Wave goodbye to silent run-time breakage misery!
 
 So we created **Stylable** &mdash; a CSS preprocessor that allows you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
+
+<Wix-playground></Wix-playground>
 
 ## What Does Stylable Do?
 
