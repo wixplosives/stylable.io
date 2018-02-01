@@ -142,7 +142,8 @@ Access the BSD-licensed [**Stylable** GitHub project](https://github.com/wix/sty
 <script>
     window.monacoPath = "https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs";
     window.codePath = "/js/playground";
-    window.recipeName = 'playground-recepie';
-    window.projectFilesPath = `/recipes/homepage.json`;
+    window.recipeName = "playground-recepie";
+    window.projectFilesPath = "/recipes/homepage.json";
+    window.openTab = "src/index.st.css";
 </script>
 <script type="text/javascript" src="{{page.relative_root}}/js/playground/stylableHomepage.bundle.js"></script></body>
