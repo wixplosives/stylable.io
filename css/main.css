@@ -751,3 +751,20 @@ li.active > .docs-nav-item {
         width: 100%;
     }
 }
+
+@media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+    wix-playground > *:nth-child(1) {
+        width: 100%;
+    }
+}
+
+@media 
+(-webkit-min-device-pixel-ratio: 2) and
+(min-resolution: 192dpi) and
+(min-width: 1300px) { 
+    wix-playground > *:nth-child(1) {
+        width: 120%;
+    }
+}
