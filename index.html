@@ -276,10 +276,14 @@
     window.codePath = "/js/playground";
     window.recipeName = 'playground-recepie';
     window.projectFilesPath = `/recipes/homepage.json`;
+    var my_awesome_script = document.createElement('script');
+    
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        my_awesome_script.setAttribute('src','./js/playground/stylableHomepage.bundle.js');
+        document.head.appendChild(my_awesome_script);
+    }
 </script>
 
-<script type="text/javascript" src="./js/playground/stylableHomepage.bundle.js"></script>
-<p>&lt;/body&gt;</p>
 
 </section>
 
