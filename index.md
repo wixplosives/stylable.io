@@ -85,6 +85,7 @@ layout: docs
   </div>
 </div>
 
+
 We &hearts; CSS. Its simple, declarative syntax that is native in browsers is easily the fastest way to add styles to web pages and web apps. But when writing CSS that is scoped to individual components, developers have to maintain highly-specific selectors, using elaborate conventions to fake namespacing. Writing and maintaining CSS across large teams and large projects can be tricky.
 
 We also &hearts; TypeScript. TypeScript helps us manage these large projects, exposing at build-time what we could once only see at run-time. 
@@ -97,6 +98,8 @@ We want to give CSS a _type system_ &mdash; to do for CSS what TypeScript does f
 * Provide the ability to see our **errors at build** time or even while [working in our IDE](https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence). Wave goodbye to silent run-time breakage misery!
 
 So we created **Stylable** &mdash; a CSS preprocessor that allows you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
+
+<Wix-playground></Wix-playground>
 
 ## What Does Stylable Do?
 
@@ -135,3 +138,11 @@ Access the BSD-licensed [**Stylable** GitHub project](https://github.com/wix/sty
 <p>New ideas will come along, but they will extend CSS rather than replace it. I believe that the CSS code we write today will be readable by computers 500 years from now.</p>
 <small>&mdash; <a href="https://dev.opera.com/articles/css-twenty-years-hakon/">Håkon Wium Lie</a>, co-creator of CSS.</small>
 </blockquote>
+
+<script>
+    window.monacoPath = "https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs";
+    window.codePath = "/js/playground";
+    window.recipeName = 'playground-recepie';
+    window.projectFilesPath = `/recipes/homepage.json`;
+</script>
+<script type="text/javascript" src="{{page.relative_root}}/js/playground/stylableHomepage.bundle.js"></script></body>
