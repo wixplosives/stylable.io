@@ -7,7 +7,7 @@
 id: welcome
 title: Welcome to Stylable - CSS for Components
 redirect_from: "docs/index.html"
-layout: docs
+layout: home
 ---
 
 <span class="site-logo">![Stylable Intelligence](./branding/logo/PNG/96-logo-OnlySymbol.png)</span>
