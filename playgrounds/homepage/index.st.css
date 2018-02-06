@@ -7,7 +7,6 @@
 }
 .root {
     padding: 2rem;
-
 }
 
 Button {
@@ -15,6 +14,7 @@ Button {
     margin: 0 auto;
     margin-bottom:2em;
 }
+
 Button::label {
     text-align: center;
     font-family: "Arial";
@@ -35,13 +35,14 @@ Button::label {
     box-shadow: .5rem .5rem .5rem rgba(0,0,0,.5), -.5rem -.5rem rgba(255,0,0,.5);
     transition: all 75ms ease-in;
 }
+
 .triple-layer::label {
     text-transform: uppercase;
 }
+
 .triple-layer:hover {
     box-shadow: 1rem 1rem 1rem rgba(0,0,0,.5), -1rem -1rem rgba(255,0,0,.5);
-}
-   
+} 
 
 .notes-button {
     -st-extends: Button;
@@ -52,6 +53,7 @@ Button::label {
     top: -10px;
     left: -10px;
 }
+
 .notes-button::label {
     transition: all 125ms ease-in-out;
     position: relative;
@@ -63,12 +65,14 @@ Button::label {
     width: 100%;
     display: block;
 }
+
 .notes-button:hover {
     border: 4px double rgba(0,0,0,.5);
     box-shadow: 0 0 1rem rgba(0,0,0,.5);
     background-color: rgba(54,243,32,.5);
     transform: rotate(-2deg);
 }
+
 .notes-button:hover::label {
     border: 4px double rgba(0,0,0,.2);
     box-shadow: 0 0 1rem rgba(0,0,0,.5);

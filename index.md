@@ -99,7 +99,14 @@ We want to give CSS a _type system_ &mdash; to do for CSS what TypeScript does f
 
 So we created **Stylable** &mdash; a CSS preprocessor that allows you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
 
-<Wix-playground></Wix-playground>
+<Wix-playground
+  data-monaco-path="https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs"
+  data-code-path="/js/playground"
+  data-recipe-name="playground-recepie"
+  data-project-files="/generated-playgrounds/homepage.json"
+  data-open-tab="src/index.st.css"
+  data-start-path="src/index.tsx" >
+</Wix-playground>
 
 ## What Does Stylable Do?
 
@@ -140,15 +147,10 @@ Access the BSD-licensed [**Stylable** GitHub project](https://github.com/wix/sty
 </blockquote>
 
 <script>
-    window.monacoPath = "https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs";
-    window.codePath = "/js/playground";
-    window.recipeName = "playground-recepie";
-    window.projectFilesPath = "/recipes/homepage.json";
-    window.openTab = "/src/index.st.css";
     var my_awesome_script = document.createElement('script');
 
     if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        my_awesome_script.setAttribute('src','{{page.relative_root}}/js/playground/stylableHomepage.bundle.js');
+        my_awesome_script.setAttribute('src','{{page.relative_root}}/js/playground/playground.bundle.js');
         document.head.appendChild(my_awesome_script);
     }
 </script>

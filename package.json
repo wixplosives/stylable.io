@@ -5,9 +5,12 @@
   "private": true,
   "main": "N/A",
   "scripts": {
-    "build": "ts-node build-assets.ts",
-    "deploy": "bundle install && bundle exec jekyll build && gh-pages -d ./_site",
-    "dev": "bundle exec jekyll serve"
+    "copy-assets": "ts-node build-assets.ts",
+    "build:examples": "node node_modules/rabbit-playground/bin/src/cli/cli.js --srcDir playgrounds --outDir generated-playgrounds",
+    "build:watch-examples": "npm run build:examples -- --w",
+    "deploy": "npm run copy-assets && npm run build:examples && bundle install && bundle exec jekyll build && gh-pages -d ./_site",
+    "dev": "npm run copy-assets && run-p build:watch-examples jekyll:watch",
+    "jekyll:watch": "bundle exec jekyll serve"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,7 @@
   "devDependencies": {
     "@types/node": "^9.4.0",
     "kissfs": "^0.5.3",
+    "npm-run-all": "^4.1.2",
     "prismjs": "^1.11.0",
     "rabbit-playground": "0.5.1",
     "stylable-playground-recepies": "^0.25.0",
