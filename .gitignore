@@ -5,6 +5,8 @@
 .bit
 .bitmap
 bit.json
+js
+bin
 
 # Dependency directories
 node_modules/

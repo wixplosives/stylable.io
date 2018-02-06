@@ -1,0 +1,99 @@
+:import {
+    -st-from: "./button.st.css";
+    -st-default: Button;
+}
+:global(*){
+    box-sizing: border-box;
+}
+.root {
+    padding: 2rem;
+
+}
+
+Button {
+    max-width:300px;
+    margin: 0 auto;
+    margin-bottom:2em;
+}
+Button::label {
+    text-align: center;
+    font-family: "Arial";
+    font-weight: 100;
+    font-size: 1rem;
+    line-height: 4rem;
+    display: block;
+    border: none;
+    color: white;
+    text-decoration: none;
+}
+
+.triple-layer {
+    -st-extends: Button;
+    background: white;
+    background: linear-gradient(to right, #3F5EFB, #FC466B);
+    border-radius: 100px;
+    box-shadow: .5rem .5rem .5rem rgba(0,0,0,.5), -.5rem -.5rem rgba(255,0,0,.5);
+    transition: all 75ms ease-in;
+}
+.triple-layer::label {
+    text-transform: uppercase;
+}
+.triple-layer:hover {
+    box-shadow: 1rem 1rem 1rem rgba(0,0,0,.5), -1rem -1rem rgba(255,0,0,.5);
+}
+   
+
+.notes-button {
+    -st-extends: Button;
+    border: 2px solid #000;
+    background: #fff;
+    transition: all 125ms ease-in-out;
+    position: relative;
+    top: -10px;
+    left: -10px;
+}
+.notes-button::label {
+    transition: all 125ms ease-in-out;
+    position: relative;
+    border: 2px solid black;
+    color: black;
+    background: white;
+    top: 10px;
+    left: 10px;
+    width: 100%;
+    display: block;
+}
+.notes-button:hover {
+    border: 4px double rgba(0,0,0,.5);
+    box-shadow: 0 0 1rem rgba(0,0,0,.5);
+    background-color: rgba(54,243,32,.5);
+    transform: rotate(-2deg);
+}
+.notes-button:hover::label {
+    border: 4px double rgba(0,0,0,.2);
+    box-shadow: 0 0 1rem rgba(0,0,0,.5);
+    transform: rotate(4deg);
+}
+
+.gradient-animation {
+    -st-extends: Button;
+    border-radius: 100px;
+    color: white;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    animation: Gradient 5s ease infinite;
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+

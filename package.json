@@ -5,6 +5,7 @@
   "private": true,
   "main": "N/A",
   "scripts": {
+    "build": "ts-node build-assets.ts",
     "deploy": "bundle install && bundle exec jekyll build && gh-pages -d ./_site",
     "dev": "bundle exec jekyll serve"
   },
@@ -16,5 +17,15 @@
   "bugs": {
     "url": "https://github.com/wixplosives/stylable.io/issues"
   },
-  "homepage": "https://stylable.io/"
+  "homepage": "https://stylable.io/",
+  "devDependencies": {
+    "@types/node": "^9.4.0",
+    "kissfs": "^0.5.3",
+    "prismjs": "^1.11.0",
+    "rabbit-playground": "0.5.1",
+    "stylable-playground-recepies": "^0.25.0",
+    "tippy.js": "^2.1.1",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.7.1"
+  }
 }
