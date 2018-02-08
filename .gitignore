@@ -5,6 +5,8 @@
 .bit
 .bitmap
 bit.json
+js
+bin
 
 # Dependency directories
 node_modules/
@@ -24,3 +26,4 @@ _site
 .jekyll-metadata
 
 stylable
+generated-playgrounds

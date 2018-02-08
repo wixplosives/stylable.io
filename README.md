@@ -7,8 +7,8 @@ This is the source of the [Stylable site](https://stylable.io/) and is not inten
 The site is build using [Jekyll](http://jekyllrb.com/). To modify the site, you have to have the following:
 
 * [Ruby](https://www.ruby-lang.org/en/downloads/)
-* [RubyGems](https://rubygems.org/pages/download) 
-* Jekyll, bundler installed: `gem install jekyll bundler` 
+* [RubyGems](https://rubygems.org/pages/download)
+* Jekyll, bundler installed: `gem install jekyll bundler`
 * gh-pages installed: `npm i -g gh-pages`
 
 ## Development
