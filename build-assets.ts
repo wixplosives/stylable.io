@@ -19,6 +19,7 @@ async function copyFile(from:string,to:string){
 }
 shallowCopyDir('node_modules/rabbit-playground/dist','js/playground');
 copyFile('node_modules/rabbit-playground/LICENSE','js/playground/LICENSE');
+copyFile('node_modules/rabbit-playground/dist/playground-recipe.json','recipes/playground-recipe.json');
 
 copyFile('node_modules/tippy.js/dist/tippy.all.min.js','js/vendor/tippy/tippy.all.min.js');
 copyFile('node_modules/tippy.js/LICENSE','js/vendor/tippy/LICENSE');

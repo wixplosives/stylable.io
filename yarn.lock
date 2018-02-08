@@ -2322,9 +2322,9 @@ qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
-rabbit-playground@0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/rabbit-playground/-/rabbit-playground-0.5.1.tgz#8d1284fb76817c2053b082df9fe74f214d9f6e30"
+rabbit-playground@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/rabbit-playground/-/rabbit-playground-0.6.0.tgz#dd5ab607071417fa951ec641988fd2e57f9a3edd"
   dependencies:
     "@types/yargs" "^10.0.1"
     body-parser "^1.17.2"
@@ -2340,7 +2340,7 @@ rabbit-playground@0.5.1:
     react "16"
     react-dom "16"
     serve-index "^1.9.0"
-    stylable "^5.1.1"
+    stylable "^5.1.3"
     stylable-intelligence-service "0.0.64"
     tiny-emitter "2.0.2"
     yargs "^11.0.0"
@@ -2878,7 +2878,7 @@ stylable-playground-recepies@^0.25.0:
   dependencies:
     test-drive-react "^0.8.1"
 
-stylable@^5.1.1:
+stylable@^5.1.3:
   version "5.1.3"
   resolved "https://registry.yarnpkg.com/stylable/-/stylable-5.1.3.tgz#0a3dc9baf56933000fd0d0a90670684c29889970"
   dependencies:

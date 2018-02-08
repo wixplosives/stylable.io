@@ -102,7 +102,7 @@ So we created **Stylable** &mdash; a CSS preprocessor that allows you to write s
 <Wix-playground
   data-monaco-path="https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs"
   data-code-path="/js/playground"
-  data-recipe-name="playground-recepie"
+  data-recipe-path="/recipes/playground-recipe.json"
   data-project-files="/generated-playgrounds/homepage.json"
   data-open-tab="src/index.st.css"
   data-start-path="src/index.tsx" >
