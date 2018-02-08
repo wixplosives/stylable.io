@@ -327,18 +327,24 @@ wix-playground {
 
     wix-playground {
         width: 110%;
+        position: relative;
+        left: -5%;
     }
 }
 
 @media (min-width: 1200px) {
     wix-playground {
         width: 120%;
+        position: relative;
+        left: -10%;
     }
 }
 
 @media (min-width: 1400px) {
     wix-playground {
         width: 140%;
+        position: relative;
+        left: -20%;
     }
 }
 
@@ -767,5 +773,7 @@ li.active > .docs-nav-item {
 (min-width: 1300px) { 
     wix-playground {
         width: 120%;
+        position: relative;
+        left: -10%;
     }
 }
