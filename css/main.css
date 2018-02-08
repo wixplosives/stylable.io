@@ -157,7 +157,7 @@ code.highlighter-rouge {
 
 header {
     position: fixed;
-    ;
+    pointer-events: none;
     height: 88px;
     width: 100%;
     top: 0;
@@ -182,6 +182,7 @@ header .logo {
     text-decoration: none;
     opacity: 0.9;
     transition: all 0.3s ease-in;
+    pointer-events: auto;
 }
 
 header .logo a {
@@ -220,6 +221,7 @@ header .main-nav a {
     padding: 0 10px;
     height: 65px;
     line-height: 65px;
+    pointer-events: auto;
 }
 
 header .logo-git {
@@ -327,18 +329,24 @@ wix-playground {
 
     wix-playground {
         width: 110%;
+        position: relative;
+        left: -5%;
     }
 }
 
 @media (min-width: 1200px) {
     wix-playground {
         width: 120%;
+        position: relative;
+        left: -10%;
     }
 }
 
 @media (min-width: 1400px) {
     wix-playground {
         width: 140%;
+        position: relative;
+        left: -20%;
     }
 }
 
@@ -712,7 +720,8 @@ li.active > .docs-nav-item {
     }
     header > .header-content {
         display: flex;
-        align-items: baseline
+        align-items: baseline;
+        pointer-events: none;
     }
     header .logo::before {
         background-image: url(../images/96-logo-OnlySymbol.svg);
@@ -736,6 +745,7 @@ li.active > .docs-nav-item {
         background-size: contain;
         background-repeat: no-repeat;
         cursor: pointer;
+        pointer-events: auto;
     }
     .hidden-control_menu:checked ~ .main-content .docs-nav {
         display: block;
@@ -767,5 +777,7 @@ li.active > .docs-nav-item {
 (min-width: 1300px) { 
     wix-playground {
         width: 120%;
+        position: relative;
+        left: -10%;
     }
 }
