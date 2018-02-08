@@ -228,7 +228,8 @@
 
 <p>So we created <strong>Stylable</strong> — a CSS preprocessor that allows you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.</p>
 
-<Wix-playground></Wix-playground>
+<Wix-playground data-monaco-path="https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs" data-code-path="/js/playground" data-recipe-path="/recipes/playground-recipe.json" data-project-files="/generated-playgrounds/homepage.json" data-open-tab="src/index.st.css" data-start-path="src/index.tsx">
+</Wix-playground>
 
 <h2 id="what-does-stylable-do">What Does Stylable Do?</h2>
 
@@ -271,15 +272,10 @@
 </blockquote>
 
 <script>
-    window.monacoPath = "https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs";
-    window.codePath = "/js/playground";
-    window.recipeName = "playground-recepie";
-    window.projectFilesPath = "/recipes/homepage.json";
-    window.openTab = "/src/index.st.css";
     var my_awesome_script = document.createElement('script');
 
     if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        my_awesome_script.setAttribute('src','./js/playground/stylableHomepage.bundle.js');
+        my_awesome_script.setAttribute('src','./js/playground/playground.bundle.js');
         document.head.appendChild(my_awesome_script);
     }
 </script>

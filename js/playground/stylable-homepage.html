@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>playground-stylable</title>
+
+    <!-— facebook open graph tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stylable.io/">
+    <meta property="og:title" content="Stylable - scoped CSS for components">
+    <meta property="og:description"
+          content="Stylable is an open-source CSS preprocessor that extends and scopes CSS for components, resolving to flat, vanilla, cross-browser CSS at build time.">
+    <meta property="og:image" content="https://stylable.io/images/96-logo-horizontal.png">
+
+    <!-— twitter card tags additive with the og: tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stylable.io">
+    <meta name="twitter:title" content="Stylable - scoped CSS for components">
+    <meta name="twitter:description"
+          content="Stylable is an open-source CSS preprocessor that extends and scopes CSS for components, resolving to flat, vanilla, cross-browser CSS at build time.">
+    <meta name="twitter:image" content="https://stylable.io/images/96-logo-horizontal.png">
+    <meta name="twitter:url" content="https://stylable.io/">
+
+    <link rel="stylesheet" href="https://stylable.io/css/normalize.css">
+    <link rel="stylesheet" href="https://stylable.io/css/main.css">
+    <link rel="stylesheet" href="https://stylable.io/css/highlight.css">
+    <link rel="icon" type="image/x-icon" href="https://stylable.io/images/favicon-1.png">
+    <link type="text/css" rel="stylesheet"
+          href="//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <label class="menu-icon" for="menu">
+        </label>
+        <a href="/"><span class="logo"></span></a>
+
+        <ul class="main-nav">
+            <li><a href="https://github.com/wix/stylable" target="_blank">
+                <div class="logo-git"></div>
+            </a></li>
+        </ul>
+    </div>
+</header>
+
+<input id="menu" type="checkbox" class="hidden-control hidden-control_menu">
+<div class="main-content">
+    <nav class="docs-nav">
+
+        <div class="docs-nav-section">
+            <div class="docs-nav-section-header"></div>
+            <ul>
+
+            </ul>
+        </div>
+
+        <div class="docs-nav-section">
+            <div class="docs-nav-section-header">Discover</div>
+            <ul>
+
+                <li class=""><a href="/docs/get-started" class=" docs-nav-item">Getting Started</a></li>
+
+                <li class=""><a href="/docs/getting-started/install-configure" class=" docs-nav-item">Installation</a>
+                </li>
+
+                <li class=""><a href="/docs/getting-started/react-integration" class=" docs-nav-item">React
+                    Integration</a></li>
+
+                <li class=""><a href="/docs/getting-started/stylable-intelligence" class=" docs-nav-item">Stylable
+                    Intelligence</a></li>
+
+            </ul>
+        </div>
+
+        <div class="docs-nav-section">
+            <div class="docs-nav-section-header">Guides</div>
+            <ul>
+
+                <li class=""><a href="/docs/guides/components-basics" class=" docs-nav-item">Component Basics</a></li>
+
+                <li class=""><a href="/docs/guides/stylable-component-best-practices" class=" docs-nav-item">Component
+                    Best Practices</a></li>
+
+                <li class=""><a href="/docs/guides/runtime" class=" docs-nav-item">Runtime</a></li>
+
+                <li class=""><a href="/docs/guides/stylable-application" class=" docs-nav-item">Stylable Application</a>
+                </li>
+
+                <li class=""><a href="/docs/guides/stylable-component-library" class=" docs-nav-item">Stylable Component
+                    Library</a></li>
+
+                <li class=""><a href="/docs/guides/project-commons" class=" docs-nav-item">Project Commons</a></li>
+
+                <li class=""><a href="/docs/guides/shared-classes" class=" docs-nav-item">Shared Classes</a></li>
+
+                <li class=""><a href="/docs/guides/component-variants" class=" docs-nav-item">Component Variants</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="docs-nav-section">
+            <div class="docs-nav-section-header">Specification Reference</div>
+            <ul>
+
+                <li class=""><a href="/docs/getting-started/cheatsheet" class=" docs-nav-item">Specification
+                    Overview</a></li>
+
+                <li class=""><a href="/docs/references/imports" class=" docs-nav-item">Imports</a></li>
+
+                <li class=""><a href="/docs/references/root" class=" docs-nav-item">Root</a></li>
+
+                <li class=""><a href="/docs/references/class-selectors" class=" docs-nav-item">Class Selectors</a></li>
+
+                <li class=""><a href="/docs/references/tag-selectors" class=" docs-nav-item">Tag/Component Selectors</a>
+                </li>
+
+                <li class=""><a href="/docs/references/extend-stylesheet" class=" docs-nav-item">Extend Stylesheet</a>
+                </li>
+
+                <li class=""><a href="/docs/references/pseudo-classes" class=" docs-nav-item">Pseudo-Classes</a></li>
+
+                <li class=""><a href="/docs/references/pseudo-elements" class=" docs-nav-item">Pseudo-Elements</a></li>
+
+                <li class=""><a href="/docs/references/global-selectors" class=" docs-nav-item">Global Selectors</a>
+                </li>
+
+                <li class=""><a href="/docs/references/compose-css-class" class=" docs-nav-item">Compose CSS Class</a>
+                </li>
+
+                <li class=""><a href="/docs/references/custom-selectors" class=" docs-nav-item">Custom Selectors</a>
+                </li>
+
+                <li class=""><a href="/docs/references/mixins" class=" docs-nav-item">Mixins</a></li>
+
+                <li class=""><a href="/docs/references/formatters" class=" docs-nav-item">Formatters</a></li>
+
+                <li class=""><a href="/docs/references/variables" class=" docs-nav-item">Variables</a></li>
+
+                <li class=""><a href="/docs/references/theme" class=" docs-nav-item">Theme</a></li>
+
+                <li class=""><a href="/docs/references/namespace" class=" docs-nav-item">Namespace</a></li>
+
+            </ul>
+        </div>
+
+    </nav>
+
+    <section class="docs-content">
+        <h1></h1>
+        <p><span class="site-logo"><img src="./branding/logo/PNG/96-logo-OnlySymbol.png"
+                                        alt="Stylable Intelligence"/></span></p>
+        <h1 class="site-title">Stylable</h1>
+        <p><span class="site-description">is CSS for components</span></p>
+
+        <div class="hello-world">
+            <div class="code">
+
+    <span class="inner">
+      <span class="class">
+        <span class="comment"><b>/*</b>Some Component Stylesheet<b>*/</b></span>
+        <span class="class-name"><b>.</b><span
+                title="For Stylable, `.root` is the top layer of the component.">root</span></span><span
+              class="open-bracket">{</span>
+        <span class="break"></span>
+        <span class="rule">
+          <span class="prop prop-border"><span
+                  title="We can target logical states of the component by declaring them on the component's stylesheet.">-st-states</span><b>:</b></span>
+          <span class="value" title="`loading` is just a state we're declaring. Just like that.">loading</span><span
+                class="endrule">;</span>
+        </span>
+        <span class="rule">
+          <span class="prop prop-border">border<b>:</b></span>
+          <span class="value px">1px</span>
+          <span class="value border-type">solid</span>
+          <span class="value color border-color color-preview color-pink">pink</span><span class="endrule">;</span>
+        </span>
+        <span class="break"></span><span class="close-bracket">}</span>
+      </span>
+      <span class="class">
+        <span class="class-name"><b>.</b>item</span><span class="open-bracket">{</span>
+        <span class="break"></span>
+        <span class="rule">
+          <span class="prop prop-color">color<b>:</b></span>
+          <span class="value color-preview color-gold">gold</span><span class="endrule">;</span>
+        </span>
+        <span class="break"></span><span class="close-bracket">}</span>
+      </span>
+    </span>
+                <span class="caption">some-component.st.css</span>
+            </div>
+
+            <div class="code">
+    <span class="inner">
+      <span class="class">
+        <span class="comment"><b>/*</b>Application Stylesheet<b>*/</b></span>
+        <span class="class-name st-modifier"><b>:</b><span
+                title="Stylable allows you to import component interfaces and match their inner parts, states and shared definitions like classes, variables, JS/CSS mixins and JS formatters.">import</span></span><span
+              class="open-bracket">{</span>
+        <span class="break"></span>
+        <span class="rule">
+          <span class="prop prop-border">-st-from<b>:</b></span>
+          <span class="value file-path type-string"><b>"</b>./some-component.st.css<b>"</b></span><span class="endrule">;</span>
+        </span>
+        <span class="rule">
+          <span class="prop prop-border">-st-default<b>:</b></span>
+          <span class="value" title="Import `someComponent` to be used locally as a style type with a declared API.">SomeComponent</span><span
+                class="endrule">;</span>
+        </span>
+        <span class="break"></span><span class="close-bracket">}</span><span class="endrule"></span>
+      </span>
+      <span class="class">
+        <span class="class-name"><span
+                title="Stylable exposes a clean, safe style API with code completions and validations."><span
+                class="parent">SomeComponent</span><span class="child"><b>::</b>item</span></span></span><span
+              class="open-bracket">{</span>
+        <span class="break"></span>
+        <span class="rule">
+          <span class="prop prop-color">color<b>:</b></span>
+          <span class="value color-preview color-blue">blue</span><span class="endrule">;</span>
+          <span class="break"></span><span class="close-bracket">}</span>
+        </span>
+      </span>
+      <span class="class">
+        <span class="class-name"><span
+                title="Stylable allows chaining selectors, so you can access the `::before` of the `::item` element, while the parent component is loading."><span
+                class="parent">SomeComponent</span><span class="st-state"><b>:</b>loading</span><span class="child"><b>::</b>item</span><span
+                class="pseudo"><b>::</b>before</span></span></span><span class="open-bracket">{</span>
+        <span class="break"></span>
+        <span class="rule">
+          <span class="prop prop-content">content<b>:</b></span>
+          <span class="value type-string"><b>"</b>*<b>"</b></span><span class="endrule">;</span>
+          <span class="break"></span><span class="close-bracket">}</span><span class="endrule"></span>
+        </span>
+      </span>
+    </span>
+                <span class="caption">app.st.css</span>
+            </div>
+        </div>
+        
+        <Wix-playground data-code-path="/dist" data-recipe-path="playground-recipe.json"
+                        data-project-files="/example-bundles/case9.json"
+                        style="display:block;height:600px;"></Wix-playground>
+
+        <p>We ♥ CSS. Its simple, declarative syntax that is native in browsers is easily the fastest way to add styles
+            to web pages and web apps. But when writing CSS that is scoped to individual components, developers have to
+            maintain highly-specific selectors, using elaborate conventions to fake namespacing. Writing and maintaining
+            CSS across large teams and large projects can be tricky.</p>
+
+        <p>We also ♥ TypeScript. TypeScript helps us manage these large projects, exposing at build-time what we could
+            once only see at run-time.</p>
+
+        <p>We want to give CSS a <em>type system</em> — to do for CSS what TypeScript does for JavaScript. We would like
+            to be able to:</p>
+
+        <ul>
+            <li><strong>Extend CSS</strong> so that it is easier to use in a component ecosystem, but without losing any
+                of the declarative, familiar, static and fast aspects of CSS.
+            </li>
+            <li>Create <strong>CSS Macros</strong> with JavaScript and use them at build time.</li>
+            <li>Use language services like <strong>Code Completion</strong> and <strong>Validation</strong>. Each
+                component exposes a Style API that maps its internal parts and states so you can reuse components across
+                teams without sacrificing stylability or scalability.
+            </li>
+            <li>Provide the ability to see our <strong>errors at build</strong> time or even while <a
+                    href="https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence">working in our
+                IDE</a>. Wave goodbye to silent run-time breakage misery!
+            </li>
+        </ul>
+
+        <p>So we created <strong>Stylable</strong> — a CSS preprocessor that allows you to write style rules in CSS
+            syntax, with some extensions that we believe adhere to the spirit of CSS.</p>
+
+        <h2 id="what-does-stylable-do">What Does Stylable Do?</h2>
+
+        <ul>
+            <li><strong>Stylable</strong> scopes styles to components so they don’t “leak” and clash with other styles.
+            </li>
+            <li><strong>Stylable</strong> enables custom pseudo-classes and pseudo-elements that abstract the internal
+                state and structure of a component. These can then be styled externally. For example, you can style the
+                label inside a button, or style the play button of a video player from outside these components.
+            </li>
+            <li><strong>Stylable</strong> sets themes so you can apply a different look and feel across your web
+                application, for example, the same component can use a Wix theme or a Bootstrap theme depending on the
+                page.
+            </li>
+            <li>At build time, the preprocessor converts the <strong>Stylable</strong> CSS into flat, static, valid,
+                vanilla CSS that works cross-browser.
+            </li>
+        </ul>
+
+        <h2 id="tooling">Tooling</h2>
+
+        <p><img src="./images/intelligence.gif" alt="Stylable Intelligence"/></p>
+
+        <p>Treating CSS as a type system opens up a whole new world of tooling. We can get code completion that hints at
+            the internal structure of components, we can get types for our parameters, and more. Our aim is to use
+            Stylable to enhance the styling development process.</p>
+
+        <p>To get the full Stylable experience, please install our <a
+                href="https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence">VSCode Code
+            Completion Plugin</a> which suggests Stylable syntax, types and more.</p>
+
+        <h2 id="shut-up-and-take-my-money">Shut up and take my money!</h2>
+
+        <p>No need! <strong>Stylable</strong> is BSD-licensed. Take it, use it, make your development easier and your
+            apps faster.</p>
+
+        <p>Viva CSS, and welcome <strong>Stylable</strong>. We hope you like it.</p>
+
+        <h2 id="videos">Videos</h2>
+
+        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Cx-JyJ9eXks?rel=0" frameborder="0"
+                allowfullscreen=""></iframe>
+
+        <h2 id="documentation">Documentation</h2>
+
+        <p><a href="./docs/get-started">Learn more about <strong>Stylable</strong></a> and get started with step by step
+            instructions and code examples.</p>
+
+        <h2 id="project">Project</h2>
+
+        <p>Access the BSD-licensed <a href="https://github.com/wix/stylable"><strong>Stylable</strong> GitHub
+            project</a>.</p>
+
+        <blockquote class="quote">
+            <p>New ideas will come along, but they will extend CSS rather than replace it. I believe that the CSS code
+                we write today will be readable by computers 500 years from now.</p>
+            <small>&mdash; <a href="https://dev.opera.com/articles/css-twenty-years-hakon/">Håkon Wium Lie</a>,
+                co-creator of CSS.
+            </small>
+        </blockquote>
+
+    </section>
+
+
+</div>
+
+<footer></footer>
+<!--<script src="/js/prism.js"></script>-->
+<!--<script src="/js/tippy.all.min.js"></script>-->
+<!--<script>-->
+<!--tippy('.code [title]', {-->
+<!--duration: 0-->
+<!--});-->
+<!--</script>-->
+
+<script type="text/javascript" src="../dist/playground.bundle.js"></script></body>
+</html>
