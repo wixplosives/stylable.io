@@ -717,11 +717,11 @@ li.active > .docs-nav-item {
         height: 54px;
         background: #FFFFFF;
         box-shadow: 0 1px 2px 0 rgba(22, 45, 61, 0.24);
+        pointer-events: auto;
     }
     header > .header-content {
         display: flex;
         align-items: baseline;
-        pointer-events: none;
     }
     header .logo::before {
         background-image: url(../images/96-logo-OnlySymbol.svg);
