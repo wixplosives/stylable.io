@@ -164,10 +164,12 @@ Access the BSD-licensed [**Stylable** GitHub project](https://github.com/wix/sty
 </blockquote>
 
 <script>
-    var my_awesome_script = document.createElement('script');
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var my_awesome_script = document.createElement('script');
 
-    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        my_awesome_script.setAttribute('src','{{page.relative_root}}/js/playground/playground.bundle.js');
-        document.head.appendChild(my_awesome_script);
-    }
+      if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          my_awesome_script.setAttribute('src','{{page.relative_root}}/js/playground/playground.bundle.js');
+          document.head.appendChild(my_awesome_script);
+      }
+    });
 </script>
