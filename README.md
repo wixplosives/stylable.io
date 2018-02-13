@@ -9,25 +9,20 @@ The site is build using [Jekyll](http://jekyllrb.com/). To modify the site, you 
 * [Ruby](https://www.ruby-lang.org/en/downloads/)
 * [RubyGems](https://rubygems.org/pages/download)
 * Jekyll, bundler installed: `gem install jekyll bundler`
-* gh-pages installed: `npm i -g gh-pages`
 
 ## Development
 
 Run 
 ```
-bundle exec jekyll serve
+yarn dev
 ```
 
 Deploy
 
 ```
-bundle install
-
-bundle exec jekyll build 
-
-gh-pages -d ./_site
-
+yarn deploy
 ```
+
 After deployment you can view the site at [Github pages URL](https://wixplosives.github.io/stylable.io/)
 
 
