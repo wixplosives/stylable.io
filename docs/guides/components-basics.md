@@ -25,7 +25,7 @@ Let's say you have a `Button` component with a render function per this example.
 render () {
     return (
         <button>
-            <div className="icon"/>
+            <span className="icon"/>
             <span className="label">Submit</span>
         </button>
     );
@@ -45,6 +45,7 @@ element by Stylable React integration
     background: #b0e0e6;
 }
 .icon {
+    /* set image height and display: block */ 
     background-image: url('./assets/btnIcon.svg');
 }
 .label {
