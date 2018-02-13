@@ -100,12 +100,29 @@ We want to give CSS a _type system_ &mdash; to do for CSS what TypeScript does f
 So we created **Stylable** &mdash; a CSS preprocessor that allows you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
 
 <Wix-playground
-  data-monaco-path="https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs"
   data-code-path="/js/playground"
   data-recipe-path="/recipes/playground-recipe.json"
   data-project-files="/generated-playgrounds/homepage.json"
-  data-open-tab="src/index.st.css"
-  data-start-path="src/index.tsx" >
+  data-layout='{
+      "type":"row",
+      "content":[
+        {
+          "type":"stack",
+          "content":[
+            {
+              "isClosable":false,
+              "component":"code-editor",
+              "targetPath":"src/index.st.css, src/index.tsx, src/button.st.css, src/button.tsx"
+            }
+          ]
+        },
+        {
+          "component":"preview",
+          "isClosable":false,
+          "targetPath":"src/index.tsx"
+        }
+      ]
+    }' >
 </Wix-playground>
 
 ## What Does Stylable Do?
