@@ -228,7 +228,26 @@
 
 <p>So we created <strong>Stylable</strong> — a CSS preprocessor that allows you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.</p>
 
-<Wix-playground data-monaco-path="https://static.parastorage.com/unpkg/monaco-editor-core@0.10.1/min/vs" data-code-path="/js/playground" data-recipe-path="/recipes/playground-recipe.json" data-project-files="/generated-playgrounds/homepage.json" data-open-tab="src/index.st.css" data-start-path="src/index.tsx">
+<Wix-playground data-code-path="/js/playground" data-recipe-path="/recipes/playground-recipe.json" data-project-files="/generated-playgrounds/homepage.json" data-layout="{
+      &quot;type&quot;:&quot;row&quot;,
+      &quot;content&quot;:[
+        {
+          &quot;type&quot;:&quot;stack&quot;,
+          &quot;content&quot;:[
+            {
+              &quot;isClosable&quot;:false,
+              &quot;component&quot;:&quot;code-editor&quot;,
+              &quot;targetPath&quot;:&quot;src/index.st.css, src/index.tsx, src/button.st.css, src/button.tsx&quot;
+            }
+          ]
+        },
+        {
+          &quot;component&quot;:&quot;preview&quot;,
+          &quot;isClosable&quot;:false,
+          &quot;targetPath&quot;:&quot;src/index.tsx&quot;
+        }
+      ]
+    }">
 </Wix-playground>
 
 <h2 id="what-does-stylable-do">What Does Stylable Do?</h2>
@@ -294,5 +313,9 @@
 		duration: 0
 	});
 </script>
+
+<script src="https://static.parastorage.com/unpkg/react@16.2.0//umd/react.production.min.js"></script>
+<script src="https://static.parastorage.com/unpkg/react-dom@16.2.0//umd/react-dom.production.min.js"></script>
+<script src="https://static.parastorage.com/unpkg/jquery@3.3.1"></script>
 </body>
 </html>

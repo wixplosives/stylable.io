@@ -28,6 +28,13 @@
     <link type="text/css" rel="stylesheet"
           href="//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://static.parastorage.com/unpkg/react@16.2.0//umd/react.production.min.js"></script>
+
+    <script src="https://static.parastorage.com/unpkg/react-dom@16.2.0//umd/react-dom.production.min.js"></script>
+
+    <script src="https://static.parastorage.com/unpkg/jquery@3.3.1"></script>
+
 </head>
 <body>
 <header>
@@ -239,9 +246,30 @@
             </div>
         </div>
         
-        <Wix-playground data-code-path="/dist" data-recipe-path="playground-recipe.json"
+        <Wix-playground data-code-path="/dist" 
+                        data-recipe-path="playground-recipe.json"
                         data-project-files="/example-bundles/case9.json"
-                        style="display:block;height:600px;"></Wix-playground>
+                        style="display:block;height:600px;"
+                        data-sort-tabs="stylableFirst"
+                        data-layout='{
+                            "type":"row",
+                            "content":[
+                                {
+                                    "type":"stack",
+                                    "content":[
+                                        {
+                                            "component":"code-editor",
+                                            "targetPath":"src/index.tsx, src/index.st.css, src/button.tsx, src/button.st.css"
+                                        }
+                                        
+                                    ]
+                                },{
+                                    "component":"preview",
+                                    "targetPath":"src/index.tsx"   
+                                }
+                            ]
+                        }'
+                        data-start-path="src/index.tsx"></Wix-playground>
 
         <p>We ♥ CSS. Its simple, declarative syntax that is native in browsers is easily the fastest way to add styles
             to web pages and web apps. But when writing CSS that is scoped to individual components, developers have to
