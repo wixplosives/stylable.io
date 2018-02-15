@@ -160,7 +160,7 @@ This guide shows the JSX side of our <a href="https://github.com/wixplosives/sty
 render () {
     return (
         &lt;button&gt;
-            &lt;div className="icon"/&gt;
+            &lt;span className="icon"/&gt;
             &lt;span className="label"&gt;Submit&lt;/span&gt;
         &lt;/button&gt;
     );
@@ -179,6 +179,7 @@ element by Stylable React integration
     <span class="nl">background</span><span class="p">:</span> <span class="m">#b0e0e6</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nc">.icon</span> <span class="p">{</span>
+    <span class="c">/* set image height and display: block */</span> 
     <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url('./assets/btnIcon.svg')</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nc">.label</span> <span class="p">{</span>
