@@ -73,12 +73,12 @@
 /******/ 	    return ;
 /******/ 	}())
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 532);
+/******/ 	return __webpack_require__(__webpack_require__.s = 539);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 133:
+/***/ 136:
 /*!*************************************!*\
   !*** ./lib/rabbit/module-system.ts ***!
   \*************************************/
@@ -89,14 +89,15 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const eventemitter3_1 = __webpack_require__(/*! eventemitter3 */ 49);
+const eventemitter3_1 = __webpack_require__(/*! eventemitter3 */ 36);
 exports.ModuleSystemEvents = {
     RELOAD: 'reload'
 };
 class ModuleSystem {
-    constructor(rabbit, targetScope = 'window') {
+    constructor(rabbit, targetScope = 'window', wrapModules = {}) {
         this.rabbit = rabbit;
         this.targetScope = targetScope;
+        this.wrapModules = wrapModules;
         this.loadedModules = {};
         this.events = new eventemitter3_1.EventEmitter();
         this.reload = async (changedFiles) => {
@@ -195,7 +196,12 @@ class ModuleSystem {
                     const win = this.targetScope === 'window' ? ', window' : '';
                     // we use eval instead of function constructor because function constructor offsets the line numbers, invalidating source maps
                     eval(`(function(exports, require, module, __filename, __dirname, process, global){${moduleCode}\n})(moduleCtx.exports, require, moduleCtx, moduleCtx.filename, '', process ${win});`);
-                    this.loadedModules[fileName] = moduleCtx.exports;
+                    if (this.wrapModules[fileName]) {
+                        this.loadedModules[fileName] = this.wrapModules[fileName](moduleCtx.exports);
+                    }
+                    else {
+                        this.loadedModules[fileName] = moduleCtx.exports;
+                    }
                 }
                 catch (e) {
                     console.error(e);
@@ -207,7 +213,11 @@ class ModuleSystem {
     }
     fetchModuleWithDeps(fileName, importsMap, fetchMap = {}) {
         if (!fetchMap[fileName]) {
-            fetchMap[fileName] = this.rabbit.generateCompiledCode(fileName);
+            const request = this.rabbit.generateCompiledCode(fileName);
+            fetchMap[fileName] = request;
+            request.catch((err) => {
+                debugger;
+            });
             const moduleImports = this.getModuleImports(fileName, importsMap);
             if (moduleImports !== null) {
                 for (let importFileName of Object.values(moduleImports)) {
@@ -235,7 +245,7 @@ exports.ModuleSystem = ModuleSystem;
 
 /***/ }),
 
-/***/ 156:
+/***/ 158:
 /*!**********************************!*\
   !*** ./src/core/rabbit-proxy.ts ***!
   \**********************************/
@@ -252,7 +262,7 @@ async function consumeRabbit(config) {
         render: () => Promise.resolve()
     };
     const methods = await simple_link_1.connect(config, eventTarget);
-    return Object.assign({}, methods, { init: (render) => {
+    return Object.assign({}, methods, { setRender: (render) => {
             eventTarget.render = render;
         } });
 }
@@ -263,346 +273,14 @@ async function exposeRabbit(rabbit, config) {
         generateResolutionMap: rabbit.generateResolutionMap.bind(rabbit)
     };
     const remoteRabbitConsumer = await simple_link_1.connect(config, methods);
-    rabbit.init(remoteRabbitConsumer.render);
+    rabbit.setRender(remoteRabbitConsumer.render);
 }
 exports.exposeRabbit = exposeRabbit;
 
 
 /***/ }),
 
-/***/ 47:
-/*!**********************************!*\
-  !*** ./lib/simple-link/index.ts ***!
-  \**********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function isMessageType(t, m) {
-    return m.type === t;
-}
-function isMessagePort(endpoint) {
-    return endpoint.constructor.name === 'MessagePort';
-}
-function activateEndpoint(endpoint) {
-    if (isMessagePort(endpoint))
-        endpoint.start();
-}
-function shallowClone(target) {
-    const res = {};
-    Object.keys(target).forEach((key) => {
-        res[key] = target[key];
-    });
-    return res;
-}
-function fillProxy(proxy, inner) {
-    Object.keys(inner).forEach((key) => {
-        if (!proxy[key]) {
-            proxy[key] = (...args) => inner[key].apply(inner, args);
-        }
-    });
-    return proxy;
-}
-;
-const connections = [];
-async function connect(config, offeredAPI) {
-    activateEndpoint(config.target);
-    const offeredCapabilites = getCapablities(offeredAPI);
-    let otherTargets = [];
-    await new Promise((resolveConnection) => {
-        config.target.addEventListener('message', (event) => {
-            const payload = extractMessage(event);
-            if (payload.senderId !== config.otherSideId) {
-                return;
-            }
-            if (isMessageType('handshake', payload)) {
-                post(config, {
-                    type: 'handshake-confirm',
-                    targets: offeredCapabilites,
-                    senderId: config.thisSideId
-                });
-                otherTargets = payload.targets;
-                resolveConnection();
-            }
-            else if (isMessageType('handshake-confirm', payload)) {
-                otherTargets = payload.targets;
-                resolveConnection();
-            }
-        });
-        post(config, {
-            type: 'handshake',
-            targets: offeredCapabilites,
-            senderId: config.thisSideId
-        });
-    });
-    const wrappedOfferedApi = { api: offeredAPI };
-    const remoteApi = buildProxy(config, otherTargets, wrappedOfferedApi);
-    connections.push({
-        config,
-        localApi: wrappedOfferedApi,
-        remoteApi
-    });
-    return remoteApi.proxy;
-}
-exports.connect = connect;
-function post(config, message) {
-    try {
-        config.target.postMessage(message);
-        // if(message.type === "handshake-confirm" || message.type === "apply")
-        //     console.log(config.thisSideId + '->' + config.otherSideId + ':', JSON.stringify(message, null, 4))
-    }
-    catch (err) {
-        console.log(config.thisSideId + '->' + config.otherSideId + ':failed to execute PostMessage \n target:', config.target, 'message:', message);
-    }
-}
-function getCapablities(api) {
-    return Object.keys(api);
-}
-let counter = 0;
-function nextId() {
-    return counter++;
-}
-function extractMessage(event) {
-    let payload = event.data;
-    if (isMessageType('wrapped', payload)) {
-        payload = payload.inner;
-    }
-    return payload;
-}
-function buildProxy(config, targets, offeredAPI) {
-    const proxy = {};
-    const inner = {};
-    const pendingCallbacks = [];
-    const dispose = (fromOtherSide = false) => {
-        config.target.removeEventListener('message', messageListener);
-        const notifyDisposed = (event) => {
-            const payload = extractMessage(event);
-            if (payload.senderId === config.otherSideId) {
-                post(config, { type: 'dispose', senderId: config.thisSideId });
-                config.target.removeEventListener('message', notifyDisposed);
-            }
-        };
-        config.target.addEventListener('message', notifyDisposed);
-        Object.keys(proxy).forEach((key) => {
-            proxy[key] = () => {
-                throw new Error(fromOtherSide ? 'Connection has been disposed from the other side' : 'Connection has been disposed');
-            };
-        });
-    };
-    const res = {
-        proxy,
-        dispose,
-        innerRemoteApi: inner
-    };
-    targets.forEach((target) => {
-        inner[target] = function (...args) {
-            const id = nextId();
-            const promise = new Promise((resolve, reject) => {
-                pendingCallbacks.push({
-                    id, reject, resolve,
-                    toString() {
-                        return `${target}(${args.map(a => JSON.stringify(a, null, 4)).join()})`;
-                    }
-                });
-            });
-            const message = {
-                type: 'apply',
-                target: target,
-                id,
-                arguments: args,
-                senderId: config.thisSideId
-            };
-            post(config, message);
-            return promise;
-        };
-        proxy[target] = function (...args) {
-            return res.innerRemoteApi[target].apply(res.innerRemoteApi, args);
-        };
-    });
-    const messageListener = async (event) => {
-        const payload = extractMessage(event);
-        if (payload.senderId !== config.otherSideId) {
-            return;
-        }
-        if (isMessageType('dispose', payload)) {
-            pendingCallbacks.forEach(pending => {
-                pending.reject('Connection has been disposed from the other side');
-            });
-            dispose(true);
-        }
-        if (isMessageType('apply', payload)) {
-            let method = offeredAPI.api[payload.target];
-            if (method) {
-                let message;
-                try {
-                    const res = await method.apply(offeredAPI.api, payload.arguments);
-                    message = {
-                        type: 'resolve',
-                        description: payload.target,
-                        id: payload.id,
-                        res,
-                        senderId: config.thisSideId
-                    };
-                }
-                catch (err) {
-                    let reason = 'unknown-error';
-                    let stack = undefined;
-                    if (typeof err === 'string') {
-                        reason = err;
-                    }
-                    else if (err instanceof Error) {
-                        reason = err.message;
-                        stack = err.stack;
-                    }
-                    message = {
-                        type: 'reject',
-                        description: payload.target,
-                        id: payload.id,
-                        reason,
-                        stack,
-                        senderId: config.thisSideId
-                    };
-                }
-                post(config, message);
-            }
-            else {
-                throw new Error(`has no target ${payload.target}`);
-            }
-        }
-        else if (isMessageType('resolve', payload)) {
-            const pendingIndex = pendingCallbacks.findIndex((pending) => pending.id === payload.id);
-            if (pendingIndex === -1) {
-                throw (new Error('simple-link unexpected callback ' + payload.description));
-            }
-            const cb = pendingCallbacks.splice(pendingIndex, 1)[0];
-            cb.resolve(payload.res);
-        }
-        else if (isMessageType('reject', payload)) {
-            const pendingIndex = pendingCallbacks.findIndex((pending) => pending.id === payload.id);
-            if (pendingIndex === -1) {
-                throw (new Error('simple-link unexpected callback rejection ' + payload.description));
-            }
-            const cb = pendingCallbacks.splice(pendingIndex, 1)[0];
-            cb.reject(new RejectionError(cb.toString(), payload.senderId, payload.reason, payload.stack));
-        }
-    };
-    config.target.addEventListener('message', messageListener);
-    return res;
-}
-class RejectionError extends Error {
-    constructor(action, originName, message, stack) {
-        super(message);
-        this.name = `Rejection of ${action} by '${originName}'`;
-        this.message = message;
-        Object.defineProperty(this, 'stack', { value: stack ? this.stack + '\n---\nRemote stack:\n' + stack : this.stack });
-    }
-}
-/**
- * wrap an endpoint so it never receives its own messages
- * for communication over pub-sub
- */
-class NoFeedbackEndpoint {
-    constructor(ep) {
-        this.ep = ep;
-        this.id = nextId() + '';
-        this.listeners = [];
-    }
-    postMessage(inner) {
-        this.ep.postMessage({ type: 'wrapped', senderId: this.id, inner });
-    }
-    addEventListener(type, handler) {
-        const wrappedListener = (event) => {
-            if (!isMessageType('wrapped', event.data) || event.data.senderId !== this.id) {
-                handler(event);
-            }
-        };
-        this.ep.addEventListener(type, wrappedListener);
-        this.listeners.push({
-            orig: handler,
-            wrapped: wrappedListener
-        });
-    }
-    removeEventListener(type, listener, options) {
-        const idx = this.listeners.findIndex((listenerObj) => listenerObj.orig === listener);
-        if (idx === -1) {
-            throw new Error('connect remove unexisting listener');
-        }
-        const listenerObj = this.listeners.splice(idx, 1)[0];
-        this.ep.removeEventListener(type, listenerObj.wrapped);
-    }
-}
-exports.NoFeedbackEndpoint = NoFeedbackEndpoint;
-function windowEndpoint(targetWindow, sourceWindow = self) {
-    const listeners = [];
-    return {
-        sourceWindow, targetWindow,
-        addEventListener(type, handler) {
-            const wrappedListener = (event) => {
-                if (targetWindow === event.source) {
-                    handler(event);
-                }
-            };
-            sourceWindow.addEventListener(type, wrappedListener);
-            listeners.push({
-                orig: handler,
-                wrapped: wrappedListener
-            });
-        },
-        removeEventListener(type, listener, options) {
-            const idx = listeners.findIndex((listenerObj) => listenerObj.orig === listener);
-            if (idx === -1) {
-                throw new Error('connect remove unexisting listener');
-            }
-            const listenerObj = listeners.splice(idx, 1)[0];
-            sourceWindow.removeEventListener(type, listenerObj.wrapped);
-        },
-        postMessage: (message) => targetWindow.postMessage(message, '*'),
-    };
-}
-exports.windowEndpoint = windowEndpoint;
-function disposeConnection(proxy) {
-    const connectionDataIndex = connections.findIndex((connection) => connection.remoteApi.proxy === proxy);
-    if (connectionDataIndex === -1) {
-        throw new Error('cannot clear unknown connection');
-    }
-    const connectionData = connections.splice(connectionDataIndex, 1)[0];
-    connectionData.remoteApi.dispose();
-}
-exports.disposeConnection = disposeConnection;
-function disposeAllConnections() {
-    while (connections.length) {
-        disposeConnection(connections[0].remoteApi.proxy);
-    }
-}
-exports.disposeAllConnections = disposeAllConnections;
-function replaceRemoteApi(fromLink, toLink, proxy) {
-    const connectionData = connections.find((connection) => {
-        return (connection.config.thisSideId === fromLink && connection.config.otherSideId === toLink);
-    });
-    if (!connectionData) {
-        throw new Error('replaceRemoteApi failed ' + fromLink + '->' + toLink);
-    }
-    connectionData.remoteApi.innerRemoteApi = fillProxy(proxy(connectionData.remoteApi.innerRemoteApi), connectionData.remoteApi.innerRemoteApi);
-}
-exports.replaceRemoteApi = replaceRemoteApi;
-function replaceLocalApi(fromLink, toLink, proxy) {
-    const connectionData = connections.find((connection) => {
-        return (connection.config.otherSideId === fromLink && connection.config.thisSideId === toLink);
-    });
-    if (!connectionData) {
-        throw new Error('replaceLocalApi failed ' + fromLink + '->' + toLink);
-    }
-    connectionData.localApi.api = fillProxy(proxy(connectionData.localApi.api), connectionData.localApi.api);
-}
-exports.replaceLocalApi = replaceLocalApi;
-
-
-/***/ }),
-
-/***/ 49:
+/***/ 36:
 /*!*********************************************!*\
   !*** ./node_modules/eventemitter3/index.js ***!
   \*********************************************/
@@ -926,7 +604,339 @@ if (true) {
 
 /***/ }),
 
-/***/ 532:
+/***/ 47:
+/*!**********************************!*\
+  !*** ./lib/simple-link/index.ts ***!
+  \**********************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function isMessageType(t, m) {
+    return m.type === t;
+}
+function isMessagePort(endpoint) {
+    return endpoint.constructor.name === 'MessagePort';
+}
+function activateEndpoint(endpoint) {
+    if (isMessagePort(endpoint))
+        endpoint.start();
+}
+function shallowClone(target) {
+    const res = {};
+    Object.keys(target).forEach((key) => {
+        res[key] = target[key];
+    });
+    return res;
+}
+function fillProxy(proxy, inner) {
+    Object.keys(inner).forEach((key) => {
+        if (!proxy[key]) {
+            proxy[key] = (...args) => inner[key].apply(inner, args);
+        }
+    });
+    return proxy;
+}
+;
+const connections = [];
+async function connect(config, offeredAPI) {
+    activateEndpoint(config.target);
+    const offeredCapabilites = getCapablities(offeredAPI);
+    let otherTargets = [];
+    await new Promise((resolveConnection) => {
+        config.target.addEventListener('message', (event) => {
+            const payload = extractMessage(event);
+            if (payload.senderId !== config.otherSideId) {
+                return;
+            }
+            if (isMessageType('handshake', payload)) {
+                post(config, {
+                    type: 'handshake-confirm',
+                    targets: offeredCapabilites,
+                    senderId: config.thisSideId
+                });
+                otherTargets = payload.targets;
+                resolveConnection();
+            }
+            else if (isMessageType('handshake-confirm', payload)) {
+                otherTargets = payload.targets;
+                resolveConnection();
+            }
+        });
+        post(config, {
+            type: 'handshake',
+            targets: offeredCapabilites,
+            senderId: config.thisSideId
+        });
+    });
+    const wrappedOfferedApi = { api: offeredAPI };
+    const remoteApi = buildProxy(config, otherTargets, wrappedOfferedApi);
+    connections.push({
+        config,
+        localApi: wrappedOfferedApi,
+        remoteApi
+    });
+    return remoteApi.proxy;
+}
+exports.connect = connect;
+function post(config, message) {
+    try {
+        config.target.postMessage(message);
+        // if(message.type === "handshake-confirm" || message.type === "apply")
+        // console.log(config.thisSideId + '->' + config.otherSideId + ':', JSON.stringify(message, null, 4))
+    }
+    catch (err) {
+        console.log(config.thisSideId + '->' + config.otherSideId + ':failed to execute PostMessage \n target:', config.target, 'message:', message);
+    }
+}
+function getCapablities(api) {
+    return Object.keys(api);
+}
+let counter = 0;
+function nextId() {
+    return counter++;
+}
+function extractMessage(event) {
+    let payload = event.data;
+    if (isMessageType('wrapped', payload)) {
+        payload = payload.inner;
+    }
+    return payload;
+}
+function buildProxy(config, targets, offeredAPI) {
+    const proxy = {};
+    const inner = {};
+    const pendingCallbacks = [];
+    const dispose = (fromOtherSide = false) => {
+        config.target.removeEventListener('message', messageListener);
+        const notifyDisposed = (event) => {
+            const payload = extractMessage(event);
+            if (payload.senderId === config.otherSideId) {
+                post(config, { type: 'dispose', senderId: config.thisSideId });
+                config.target.removeEventListener('message', notifyDisposed);
+            }
+        };
+        config.target.addEventListener('message', notifyDisposed);
+        Object.keys(proxy).forEach((key) => {
+            proxy[key] = () => {
+                throw new Error(fromOtherSide ? 'Connection has been disposed from the other side' : 'Connection has been disposed');
+            };
+        });
+    };
+    const res = {
+        proxy,
+        dispose,
+        innerRemoteApi: inner
+    };
+    targets.forEach((target) => {
+        inner[target] = function (...args) {
+            const id = nextId();
+            const promise = new Promise((resolve, reject) => {
+                pendingCallbacks.push({
+                    id, reject, resolve,
+                    toString() {
+                        return `${target}(${args.map(a => JSON.stringify(a, null, 4)).join()})`;
+                    }
+                });
+            });
+            const message = {
+                type: 'apply',
+                target: target,
+                id,
+                arguments: args,
+                senderId: config.thisSideId
+            };
+            post(config, message);
+            return promise;
+        };
+        proxy[target] = function (...args) {
+            return res.innerRemoteApi[target].apply(res.innerRemoteApi, args);
+        };
+    });
+    const messageListener = async (event) => {
+        const payload = extractMessage(event);
+        if (payload.senderId !== config.otherSideId) {
+            return;
+        }
+        if (isMessageType('dispose', payload)) {
+            pendingCallbacks.forEach(pending => {
+                pending.reject('Connection has been disposed from the other side');
+            });
+            dispose(true);
+        }
+        if (isMessageType('apply', payload)) {
+            let method = offeredAPI.api[payload.target];
+            if (method) {
+                let message;
+                try {
+                    const res = await method.apply(offeredAPI.api, payload.arguments);
+                    message = {
+                        type: 'resolve',
+                        description: payload.target,
+                        id: payload.id,
+                        res,
+                        senderId: config.thisSideId
+                    };
+                }
+                catch (err) {
+                    let reason = 'unknown-error';
+                    let stack = undefined;
+                    if (typeof err === 'string') {
+                        reason = err;
+                    }
+                    else if (err instanceof Error) {
+                        reason = err.message;
+                        stack = err.stack;
+                    }
+                    message = {
+                        type: 'reject',
+                        description: payload.target,
+                        id: payload.id,
+                        reason,
+                        stack,
+                        senderId: config.thisSideId
+                    };
+                }
+                post(config, message);
+            }
+            else {
+                throw new Error(`has no target ${payload.target}`);
+            }
+        }
+        else if (isMessageType('resolve', payload)) {
+            const pendingIndex = pendingCallbacks.findIndex((pending) => pending.id === payload.id);
+            if (pendingIndex === -1) {
+                throw (new Error('simple-link unexpected callback ' + payload.description));
+            }
+            const cb = pendingCallbacks.splice(pendingIndex, 1)[0];
+            cb.resolve(payload.res);
+        }
+        else if (isMessageType('reject', payload)) {
+            const pendingIndex = pendingCallbacks.findIndex((pending) => pending.id === payload.id);
+            if (pendingIndex === -1) {
+                throw (new Error('simple-link unexpected callback rejection ' + payload.description));
+            }
+            const cb = pendingCallbacks.splice(pendingIndex, 1)[0];
+            cb.reject(new RejectionError(cb.toString(), payload.senderId, payload.reason, payload.stack));
+        }
+    };
+    config.target.addEventListener('message', messageListener);
+    return res;
+}
+class RejectionError extends Error {
+    constructor(action, originName, message, stack) {
+        super(message);
+        this.name = `Rejection of ${action} by '${originName}'`;
+        this.message = message;
+        Object.defineProperty(this, 'stack', { value: stack ? this.stack + '\n---\nRemote stack:\n' + stack : this.stack });
+    }
+}
+/**
+ * wrap an endpoint so it never receives its own messages
+ * for communication over pub-sub
+ */
+class NoFeedbackEndpoint {
+    constructor(ep) {
+        this.ep = ep;
+        this.id = nextId() + '';
+        this.listeners = [];
+    }
+    postMessage(inner) {
+        this.ep.postMessage({ type: 'wrapped', senderId: this.id, inner });
+    }
+    addEventListener(type, handler) {
+        const wrappedListener = (event) => {
+            if (!isMessageType('wrapped', event.data) || event.data.senderId !== this.id) {
+                handler(event);
+            }
+        };
+        this.ep.addEventListener(type, wrappedListener);
+        this.listeners.push({
+            orig: handler,
+            wrapped: wrappedListener
+        });
+    }
+    removeEventListener(type, listener, options) {
+        const idx = this.listeners.findIndex((listenerObj) => listenerObj.orig === listener);
+        if (idx === -1) {
+            throw new Error('connect remove unexisting listener');
+        }
+        const listenerObj = this.listeners.splice(idx, 1)[0];
+        this.ep.removeEventListener(type, listenerObj.wrapped);
+    }
+}
+exports.NoFeedbackEndpoint = NoFeedbackEndpoint;
+function windowEndpoint(targetWindow, sourceWindow = self) {
+    const listeners = [];
+    return {
+        sourceWindow, targetWindow,
+        addEventListener(type, handler) {
+            const wrappedListener = (event) => {
+                if (targetWindow === event.source) {
+                    handler(event);
+                }
+            };
+            sourceWindow.addEventListener(type, wrappedListener);
+            listeners.push({
+                orig: handler,
+                wrapped: wrappedListener
+            });
+        },
+        removeEventListener(type, listener, options) {
+            const idx = listeners.findIndex((listenerObj) => listenerObj.orig === listener);
+            if (idx === -1) {
+                throw new Error('connect remove unexisting listener');
+            }
+            const listenerObj = listeners.splice(idx, 1)[0];
+            sourceWindow.removeEventListener(type, listenerObj.wrapped);
+        },
+        postMessage: (message) => targetWindow.postMessage(message, '*'),
+    };
+}
+exports.windowEndpoint = windowEndpoint;
+function disposeConnection(proxy) {
+    const connectionDataIndex = connections.findIndex((connection) => connection.remoteApi.proxy === proxy);
+    if (connectionDataIndex === -1) {
+        throw new Error('cannot clear unknown connection');
+    }
+    const connectionData = connections.splice(connectionDataIndex, 1)[0];
+    connectionData.remoteApi.dispose();
+}
+exports.disposeConnection = disposeConnection;
+function disposeAllConnections() {
+    while (connections.length) {
+        disposeConnection(connections[0].remoteApi.proxy);
+    }
+}
+exports.disposeAllConnections = disposeAllConnections;
+function replaceRemoteApi(fromLink, toLink, proxy) {
+    const connectionData = connections.find((connection) => {
+        return (connection.config.thisSideId === fromLink && connection.config.otherSideId === toLink);
+    });
+    if (!connectionData) {
+        throw new Error('replaceRemoteApi failed ' + fromLink + '->' + toLink);
+    }
+    connectionData.remoteApi.innerRemoteApi = fillProxy(proxy(connectionData.remoteApi.innerRemoteApi), connectionData.remoteApi.innerRemoteApi);
+}
+exports.replaceRemoteApi = replaceRemoteApi;
+function replaceLocalApi(fromLink, toLink, proxy) {
+    const connectionData = connections.find((connection) => {
+        return (connection.config.otherSideId === fromLink && connection.config.thisSideId === toLink);
+    });
+    if (!connectionData) {
+        throw new Error('replaceLocalApi failed ' + fromLink + '->' + toLink);
+    }
+    connectionData.localApi.api = fillProxy(proxy(connectionData.localApi.api), connectionData.localApi.api);
+}
+exports.replaceLocalApi = replaceLocalApi;
+
+
+/***/ }),
+
+/***/ 539:
 /*!***************************************************!*\
   !*** multi ./src/playground/playground-stage.tsx ***!
   \***************************************************/
@@ -934,12 +944,12 @@ if (true) {
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ./src/playground/playground-stage.tsx */533);
+module.exports = __webpack_require__(/*! ./src/playground/playground-stage.tsx */540);
 
 
 /***/ }),
 
-/***/ 533:
+/***/ 540:
 /*!*********************************************!*\
   !*** ./src/playground/playground-stage.tsx ***!
   \*********************************************/
@@ -950,18 +960,72 @@ module.exports = __webpack_require__(/*! ./src/playground/playground-stage.tsx *
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const module_system_1 = __webpack_require__(/*! ../../lib/rabbit/module-system */ 133);
-const rabbit_proxy_1 = __webpack_require__(/*! ../core/rabbit-proxy */ 156);
+const module_system_1 = __webpack_require__(/*! ../../lib/rabbit/module-system */ 136);
+const rabbit_proxy_1 = __webpack_require__(/*! ../core/rabbit-proxy */ 158);
 const simple_link_1 = __webpack_require__(/*! ../../lib/simple-link */ 47);
+const patch_react_1 = __webpack_require__(/*! ./stage/patch-react */ 541);
 window.initPlayground = async (targetWindow, relativePath) => {
     let rabbit = await rabbit_proxy_1.consumeRabbit({
         thisSideId: 'preview',
         otherSideId: 'main',
         target: simple_link_1.windowEndpoint(targetWindow)
     });
-    const moduleSystem = new module_system_1.ModuleSystem(rabbit);
-    rabbit.init(moduleSystem.reload);
+    const moduleSystem = new module_system_1.ModuleSystem(rabbit, 'window', Object.assign({}, patch_react_1.patchReact));
+    rabbit.setRender(moduleSystem.reload);
     moduleSystem.require(relativePath);
+};
+
+
+/***/ }),
+
+/***/ 541:
+/*!*********************************************!*\
+  !*** ./src/playground/stage/patch-react.ts ***!
+  \*********************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const isPatched = 'isPatched' + Math.random();
+exports.patchReact = {
+    "/node_modules/react/cjs/react.development.js": (module) => {
+        function fixRenderRes(props, root) {
+            const nodeIds = [];
+            const nodeId = root.props['data-src-pointer'];
+            if (nodeId) {
+                nodeIds.push(nodeId);
+            }
+            if (props['data-src-pointer']) {
+                nodeIds.push(props['data-src-pointer']);
+            }
+            return module.cloneElement(root, {
+                'data-src-pointer': nodeIds.join(' ')
+            });
+        }
+        return Object.assign({}, module, { createElement(type, props, ...children) {
+                if (!type[isPatched]) {
+                    if (type.prototype && type.prototype.render) {
+                        const originalRender = type.prototype.render;
+                        type.prototype.render = function () {
+                            const res = originalRender.apply(this);
+                            return fixRenderRes(this.props, res);
+                        };
+                        type[isPatched] = true;
+                    }
+                    else if (typeof type === 'function') {
+                        const originalStateless = type;
+                        type = (props) => {
+                            const res = originalStateless(props);
+                            return fixRenderRes(props, res);
+                        };
+                    }
+                }
+                return module.createElement(type, props, ...children);
+            } });
+    }
 };
 
 

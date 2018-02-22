@@ -2385,9 +2385,9 @@ qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
-rabbit-playground@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/rabbit-playground/-/rabbit-playground-0.7.0.tgz#77058afad495565ce515829666dee08f8ba63958"
+rabbit-playground@0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/rabbit-playground/-/rabbit-playground-0.8.0.tgz#00764f41931e5db5260a814b4be814c545e89dd9"
   dependencies:
     "@types/yargs" "^10.0.1"
     body-parser "^1.17.2"

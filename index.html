@@ -229,25 +229,36 @@
 <p>So we created <strong>Stylable</strong> — a CSS preprocessor that allows you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.</p>
 
 <Wix-playground data-code-path="/js/playground" data-recipe-path="/recipes/playground-recipe.json" data-project-files="/generated-playgrounds/homepage.json" data-layout="{
-      &quot;type&quot;:&quot;row&quot;,
-      &quot;content&quot;:[
-        {
-          &quot;type&quot;:&quot;stack&quot;,
-          &quot;content&quot;:[
-            {
-              &quot;isClosable&quot;:false,
-              &quot;component&quot;:&quot;code-editor&quot;,
-              &quot;targetPath&quot;:&quot;src/index.st.css, src/index.tsx, src/button.st.css, src/button.tsx&quot;
-            }
-          ]
-        },
-        {
-          &quot;component&quot;:&quot;preview&quot;,
-          &quot;isClosable&quot;:false,
-          &quot;targetPath&quot;:&quot;src/index.tsx&quot;
+    &quot;type&quot;:&quot;row&quot;,
+    &quot;content&quot;:[
+      {
+        &quot;component&quot;: &quot;file-panel&quot;,
+        &quot;targetPath&quot;: &quot;&quot;,
+        &quot;isClosable&quot;: false,
+        &quot;title&quot;: &quot;Files&quot;,
+        &quot;width&quot;: 18,
+        &quot;props&quot;:{
+            &quot;currentPath&quot;:&quot;src/index.st.css&quot;,
+            &quot;previewPath&quot;:&quot;src/index.tsx&quot;
         }
-      ]
-    }">
+      },
+      {
+        &quot;type&quot;:&quot;stack&quot;,
+        &quot;content&quot;:[
+          {
+            &quot;isClosable&quot;:true,
+            &quot;component&quot;:&quot;code-editor&quot;,
+            &quot;targetPath&quot;:&quot;src/index.st.css, src/index.tsx, src/button.st.css, src/button.tsx&quot;
+          }
+        ]
+      },
+      {
+        &quot;component&quot;:&quot;preview&quot;,
+        &quot;isClosable&quot;:false,
+        &quot;targetPath&quot;:&quot;src/index.tsx&quot;
+      }
+    ]
+  }">
 </Wix-playground>
 
 <h2 id="what-does-stylable-do">What Does Stylable Do?</h2>
