@@ -104,25 +104,36 @@ So we created **Stylable** &mdash; a CSS preprocessor that allows you to write s
   data-recipe-path="/recipes/playground-recipe.json"
   data-project-files="/generated-playgrounds/homepage.json"
   data-layout='{
-      "type":"row",
-      "content":[
-        {
-          "type":"stack",
-          "content":[
-            {
-              "isClosable":false,
-              "component":"code-editor",
-              "targetPath":"src/index.st.css, src/index.tsx, src/button.st.css, src/button.tsx"
-            }
-          ]
-        },
-        {
-          "component":"preview",
-          "isClosable":false,
-          "targetPath":"src/index.tsx"
+    "type":"row",
+    "content":[
+      {
+        "component": "file-panel",
+        "targetPath": "",
+        "isClosable": false,
+        "title": "Files",
+        "width": 18,
+        "props":{
+            "currentPath":"src/index.st.css",
+            "previewPath":"src/index.tsx"
         }
-      ]
-    }' >
+      },
+      {
+        "type":"stack",
+        "content":[
+          {
+            "isClosable":true,
+            "component":"code-editor",
+            "targetPath":"src/index.st.css, src/index.tsx, src/button.st.css, src/button.tsx"
+          }
+        ]
+      },
+      {
+        "component":"preview",
+        "isClosable":false,
+        "targetPath":"src/index.tsx"
+      }
+    ]
+  }' >
 </Wix-playground>
 
 ## What Does Stylable Do?
