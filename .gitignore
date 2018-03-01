@@ -20,6 +20,7 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
+.yarn-error.log
 
 _site
 .sass-cache
