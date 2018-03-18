@@ -86,7 +86,7 @@ layout: home
 </div>
 
 
-We &hearts; CSS. Its simple, declarative syntax that is native in browsers is easily the fastest way to add styles to web pages and web apps. But when writing CSS that is scoped to individual components, developers have to maintain highly-specific selectors, using elaborate conventions to fake namespacing. Writing and maintaining CSS across large teams and large projects can be tricky.
+We at [Wix](https://www.wix.engineering/) &hearts; CSS. Its simple, declarative syntax that is native in browsers is easily the fastest way to add styles to web pages and web apps. But when writing CSS that is scoped to individual components, developers have to maintain highly-specific selectors, using elaborate conventions to fake namespacing. Writing and maintaining CSS across large teams and large projects can be tricky.
 
 We also &hearts; TypeScript. TypeScript helps us manage these large projects, exposing at build-time what we could once only see at run-time. 
 
@@ -97,7 +97,7 @@ We want to give CSS a _type system_ &mdash; to do for CSS what TypeScript does f
 * Use language services like **Code Completion** and **Validation**. Each component exposes a Style API that maps its internal parts and states so you can reuse components across teams without sacrificing stylability or scalability.
 * Provide the ability to see our **errors at build** time or even while [working in our IDE](https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence). Wave goodbye to silent run-time breakage misery!
 
-So we created **Stylable** &mdash; a CSS preprocessor that allows you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
+So we created **Stylable** &mdash; a CSS preprocessor that enables you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
 
 <Wix-playground
   data-code-path="/js/playground"
@@ -147,9 +147,14 @@ So we created **Stylable** &mdash; a CSS preprocessor that allows you to write s
 
 ![Stylable Intelligence](./images/intelligence.gif)
 
-Treating CSS as a type system opens up a whole new world of tooling. We can get code completion that hints at the internal structure of components, we can get types for our parameters, and more. Our aim is to use Stylable to enhance the styling development process.
+Treating CSS as a type system opens up a whole new world of tooling. You can: 
+* Get code completion that hints at the internal structure of components. 
+* Get types for your parameters.
+And so much more. 
 
-To get the full Stylable experience, please install our [VSCode Code Completion Plugin](https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence) which suggests Stylable syntax, types and more.
+**Stylable** enhances the styling development process.
+
+To get the full Stylable experience, install our [VSCode Code Completion Plugin](https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence). It supports code completions, diagnostics, go to definition, syntax highlighting and more.
 
 ## Shut up and take my money!
 
