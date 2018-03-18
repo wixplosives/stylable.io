@@ -154,7 +154,7 @@ And so much more.
 
 **Stylable** enhances the styling development process.
 
-To get the full Stylable experience, install our [VSCode Code Completion Plugin](https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence). It supports code completions, diagnostics, go to definition, syntax highlighting and more.
+To get the full **Stylable** experience, install our [VSCode Code Completion Plugin](https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence). It supports code completions, diagnostics, go to definitions, syntax highlighting and more.
 
 ## Shut up and take my money!
 
