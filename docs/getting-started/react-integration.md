@@ -6,8 +6,6 @@ layout: docs
 
 You can manually integrate **Stylable** with a React component as described below. You can also build your own helpers.
 
-## Manual Integration 
-
 Before you begin, read the [Runtime guide](../guides/runtime.md) to understand the **Stylable** runtime API.
 
 To manualy integrate **Stylable** to a React component, you **must** first mark the root element of the component:
