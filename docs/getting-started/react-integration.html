@@ -66,7 +66,7 @@
             
                 <li class=""><a href="../../docs/getting-started/install-configure" class=" docs-nav-item">Installation</a></li>
             
-                <li class="active"><a href="../../docs/getting-started/react-integration" class="active docs-nav-item">React Integration</a><ul><li><a href="#manual-integration" class="docs-nav-subitem">Manual Integration</a></li><li><a href="#automatic-integration-with-wix-react-tools" class="docs-nav-subitem">Automatic Integration</a></li></ul></li>
+                <li class="active"><a href="../../docs/getting-started/react-integration" class="active docs-nav-item">React Integration</a></li>
             
                 <li class=""><a href="../../docs/getting-started/stylable-intelligence" class=" docs-nav-item">Stylable Intelligence</a></li>
             
@@ -139,11 +139,7 @@
 
 <section class="docs-content">
     <h1>React Integration</h1>
-    <p><strong>Stylable</strong> integrates with React components using our <a href="#automatic-integration-with-wix-react-tools">custom React integration</a>. The integration adds TypeScript and runtime support helpers so you can define your own stylable-react-components.</p>
-
-<p>If you don’t use the custom integration, you can manually integrate <strong>Stylable</strong> with a React component as described below. You can also build your own helpers.</p>
-
-<h2 id="manual-integration">Manual Integration</h2>
+    <p>You can manually integrate <strong>Stylable</strong> with a React component as described below. You can also build your own helpers.</p>
 
 <p>Before you begin, read the <a href="../guides/runtime">Runtime guide</a> to understand the <strong>Stylable</strong> runtime API.</p>
 
@@ -188,69 +184,6 @@ class Comp extends React.Component {
 }
 </code></pre>
 
-<h2 id="automatic-integration-with-wix-react-tools">Automatic integration with Wix React Tools</h2>
-
-<p>Use <strong>Stylable</strong> React integration from <a href="https://github.com/wix/wix-react-tools">wix-react-tools</a> to set a <strong>Stylable</strong> stylesheet for a React component or stateless functional component (SFC).</p>
-
-<p>Install <strong>wix-react-tools</strong> as a dependency in your local project.</p>
-
-<p>Using npm:</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install wix-react-tools --save
-</code></pre>
-</div>
-
-<p>Using yarn:</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yarn add wix-react-tools
-</code></pre>
-</div>
-
-<h3 id="use">Use</h3>
-
-<p>When applying <strong>Stylable</strong> to a React component, any <code class="highlighter-rouge">className</code> or <code class="highlighter-rouge">data-*</code> properties are copied to the resulting root element of the component. Further, the <a href="../references/root">root class</a> of the stylesheet is added to the root element automatically.</p>
-
-<pre><code class="language-jsx">import {stylable} from 'wix-react-tools';
-import stylesheet from './style.st.css'
-
-// Decorate class
-@stylable(stylesheet)
-class Comp extends React.Component {...}
-
-// Class without decorator
-stylable(stylesheet)(class Comp extends React.Component {...});
-
-// SFC
-stylable(stylesheet)(props =&gt; {...});
-</code></pre>
-
-<h4 id="css-classes">CSS classes</h4>
-
-<p>All <a href="../references/class-selectors">CSS class selectors</a> that are in the stylesheet can be applied to any element <strong>in the render</strong> through the <code class="highlighter-rouge">className</code> property.</p>
-
-<pre><code class="language-jsx">@stylable(stylesheet)
-class Comp extends React.Component {
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;div className="item" /&gt;
-            &lt;/div&gt;
-        );
-    }
-}
-</code></pre>
-
-<h4 id="custom-states">Custom states</h4>
-
-<p><strong>Stylable</strong> offers <a href="../references/pseudo-classes">custom states</a> that can be defined on any CSS class selectors. Add a <code class="highlighter-rouge">style-state</code> property to any element to control whether to enable a custom state or not.</p>
-
-<pre><code class="language-jsx">@stylable(stylesheet)
-class Comp extends React.Component {
-    render() {
-        return &lt;div style-state={ {"a": true, "b": false} } &gt;
-            &lt;div style-state={ {"x": true, "y": false} } /&gt;
-        &lt;/div&gt;;
-    }
-}
-</code></pre>
 
 </section>
 
