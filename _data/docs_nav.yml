@@ -7,11 +7,6 @@
     title: Installation
   - id: getting-started/react-integration
     title: React Integration
-    subitems:
-    - id: manual-integration 
-      title: Manual Integration 
-    - id: automatic-integration-with-wix-react-tools
-      title: Automatic Integration
   - id: getting-started/stylable-intelligence
     title: Stylable Intelligence
 - title: Guides
