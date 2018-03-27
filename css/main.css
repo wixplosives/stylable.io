@@ -224,15 +224,11 @@ header .main-nav a {
     pointer-events: auto;
 }
 
-header .logo-git {
-    content: " ";
-    background-image: url(../images/logo-git.svg);
+header .main-nav img {
     margin: 0px 8px 0px 24px;
     width: 24px;
     height: 24px;
     display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 .menu-icon {
