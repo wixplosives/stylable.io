@@ -148,7 +148,7 @@ You can also declare your parameters using JS docs.
 Here is a the same formatter and mixin from above, written in js with JS docs.
 
 
-```jsx
+```js
 
 /**
  * Lighten - lightens a color by a percentage.

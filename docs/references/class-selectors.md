@@ -25,7 +25,7 @@ You should use camelCase to name class selectors. Avoid using hyphens (-) and ca
 .Page__root .Page__gallery:hover .Page__thumbnail { background:red; }
 ```
 
-```jsx
+```js
 /* React - inside a stylable render */
 <div className="gallery">
     <img className="thumbnail" />

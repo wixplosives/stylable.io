@@ -123,13 +123,18 @@ Custom pseudo-classes are implemented using `data-*` attributes and need additio
 
 {% raw %}
 
-```jsx
-/* render of stylable component */
-render() {
-    return <div style-state={{ /* used in stylable-react-integration to implement pseudo-classes */
-        toggled:true,
-        selected:false
-    }} ></div>
+```js
+/* sample of a stylable component */
+import style from './stylesheet.st.css';
+
+class MyComponent {
+    render() {
+        return <div { ...style('root', { 
+                toggled: true,
+                selected: false
+            }, this.props) }>
+        </div>
+    }
 }
 ```
 

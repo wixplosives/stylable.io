@@ -33,7 +33,7 @@ In this example, the stylesheet is extending the `toggle-button.css` stylesheet.
 .Page__root .Page__checkBtn.ToggleButton__root[data-ToggleButton-toggled] .ToggleButton__label { color: red; }
 ```
 
-```jsx
+```js
 /* React - Page component uses toggleButton component */
 import ToggleButton from './toggle-button';
 /* inside a stylable render */

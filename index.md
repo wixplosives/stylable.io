@@ -23,7 +23,7 @@ layout: home
         <span class="break"></span>
         <span class="rule">
           <span class="prop prop-border"><span title="We can target logical states of the component by declaring them on the component's stylesheet.">-st-states</span><b>:</b></span>
-          <span class="value" title="`loading` is just a state we're declaring. Just like that.">loading</span><span class="endrule">;</span>
+          <span class="value" title="`loading` is a state we're declaring. Just like that.">loading</span><span class="endrule">;</span>
         </span>
         <span class="rule">
           <span class="prop prop-border">border<b>:</b></span>

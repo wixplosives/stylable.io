@@ -20,7 +20,7 @@ Whether creating your own components or using components you imported from a 3rd
 
 Let's say you have a `Button` component with a render function per this example. You can style its JSX using the `className` property.
 
-```jsx
+```js
 /* button.ts */
 render () {
     return (
@@ -74,7 +74,7 @@ You can now style your `Button` in the scope of the `Panel` so that it fits its 
 
 Let's take the `Button` component and import it into the JSX file, and also add it to the render:
 
-```jsx
+```js
 /* panel.jsx */
 import * as React from 'react';
 import {properties, stylable} from 'wix-react-tools';
@@ -114,7 +114,7 @@ You can also create custom states for the component that are available as [pseud
 
 A custom pseudo-class can be used to reflect any logical state of your component. For example, your `Button` has a property called `on`. In this example, it is toggled when the button is clicked.
 
-```jsx
+```js
 /* button.jsx */
 render () {
     return (

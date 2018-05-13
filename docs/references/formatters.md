@@ -15,7 +15,7 @@ For example a `calc-font-size` formatter can return a different value for the fo
 > If you need to return multiple declaration values, we recommend using **Stylable** [mixins](./mixins.md). 
 
 
-```jsx
+```js
 /* ./calc-font-size.js */
 module.exports = function(baseSize, modifier) {
     switch (modifier) {
@@ -109,7 +109,7 @@ You can also nest formatters to provide functions that are modular, composable a
 
 In this example the formatter `sin` is nested in the `abs` formatter. Both are imported into the CSS file and the output value is calculated from both. The formatters expose to the CSS mathematical calculations that are used in the JavaScript functions.
 
-```jsx
+```js
 /* ./math.js */
 module.export = {
     divBy2: function(num) {
