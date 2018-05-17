@@ -23,7 +23,7 @@ layout: home
         <span class="break"></span>
         <span class="rule">
           <span class="prop prop-border"><span title="We can target logical states of the component by declaring them on the component's stylesheet.">-st-states</span><b>:</b></span>
-          <span class="value" title="`loading` is just a state we're declaring. Just like that.">loading</span><span class="endrule">;</span>
+          <span class="value" title="`loading` is a state we're declaring. Just like that.">loading</span><span class="endrule">;</span>
         </span>
         <span class="rule">
           <span class="prop prop-border">border<b>:</b></span>
@@ -172,6 +172,12 @@ Viva CSS, and welcome **Stylable**. We hope you like it.
 ## Documentation
 
 [Learn more about **Stylable**](./docs/get-started.md) and get started with step by step instructions and code examples.
+
+## Demo Project
+
+You can download our [Mr. Potato Bruce project](https://github.com/wix/potato-bruce) from GitHub. It's a demo application showcasing the features and typed style API. You can see the working site [here](https://potatobruce.io/). 
+
+Play with it and let us know what you think!
 
 ## Project
 

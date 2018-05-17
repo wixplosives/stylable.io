@@ -21,11 +21,11 @@ There are currently two options for installing and working with **Stylable**:
 
 * To begin writing your own project, you can [create a **Stylable** app](./getting-started/install-configure.md) from our boilerplate. 
 
-* To work with an existing project, you can install [stylable](https://github.com/wix/stylable) and the [stylable-integration](https://github.com/wix/stylable-integration) packages from GitHub. 
+* To work with an existing project, you can install [stylable](https://github.com/wix/stylable) and the [stylable-webpack-plugin](https://github.com/wix/stylable-webpack-plugin) packages from GitHub. 
 
  While **Stylable** can work with any component framework, we offer a [React component integration](./getting-started/react-integration.md) that works with both installation options. 
 
-Optionally, you can install [**Stylable Intelligence**](./getting-started/stylable-intelligence.md), an extension providing IDE support for code completion and diagnostics. Currently supported for only Visual Studio Code (version 1.16 and later).
+Optionally, you can install [**Stylable Intelligence**](./getting-started/stylable-intelligence.md), an extension providing IDE support for code completion and diagnostics. Currently supported for only Visual Studio Code (version 1.18 and later).
 
 ## What can I do
 

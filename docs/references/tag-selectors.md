@@ -31,13 +31,13 @@ form { background: green; }
 > **Note**    
 > The value `form` is not namespaced.
 
-```jsx
+```js
 /* React - inside a Stylable component render */
 <div className="gallery">
     <div className="sideBar">
-        <form></form> /* green background and red while hovering parent */
+        <form /> /* green background and red while hovering parent */
     </div>
-    <form></form> /* green background */
+    <form /> /* green background */
 </div>
 ```
 
@@ -63,14 +63,14 @@ ToggleButton { background: green; }
 ```
 
 
-```jsx
+```js
 /* React implementation - button component implements toggle-button.css */
 import ToggleButton from './toggle-button';
 /* inside a stylable render */
 <div className="gallery">
     <div className="sideBar">
-        <ToggleButton></ToggleButton> /* green background and red while hovering parent */
+        <ToggleButton /> /* green background and red while hovering parent */
     </div>
-    <ToggleButton></ToggleButton> /* green background */
+    <ToggleButton /> /* green background */
 </div>
 ```

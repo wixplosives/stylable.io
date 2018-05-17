@@ -10,7 +10,7 @@ Before you begin, read the [Runtime guide](../guides/runtime.md) to understand t
 
 To manualy integrate **Stylable** to a React component, you **must** first mark the root element of the component:
 
-```jsx
+```js
 import style from "style.st.css";
 
 class Comp extends React.Component {
@@ -33,7 +33,7 @@ The result of the above generates and adds the props needed to define the root e
 
 All nodes, other than `root`, can be marked directly with the class mapping and the [$cssStates](../guides/runtime#custom-state-mapping) function:
 
-```jsx
+```js
 import style from "style.st.css";
 
 class Comp extends React.Component {

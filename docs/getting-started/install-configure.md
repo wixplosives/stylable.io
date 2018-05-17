@@ -23,17 +23,17 @@ The project includes several basic components and **Stylable** stylesheets which
 
 ## Install Stylable to work with an existing project
 
-To work with an existing project, you can install **stylable** and the **stylable-integration** packages from our GitHub [repository](https://github.com/wix/stylable). 
+To work with an existing project, you can install [Stylable](https://github.com/wix/stylable) and the [stylable-webpack-plugin](https://github.com/wix/stylable-webpack-plugin) packages from our GitHub repositories. 
 
-Install **stylable** and **stylable-integration** as a dependency in your local project.
+Install **Stylable** and the **stylable-webpack-plugin** as a dependency in your local project.
 
 Using npm:
 ```bash
-npm install stylable stylable-integration --save-dev
+npm install stylable stylable-webpack-plugin --save-dev
 ```
 Using Yarn:
 ```bash
-yarn add stylable stylable-integration
+yarn add stylable stylable-webpack-plugin --dev
 ```
 
 ## Write in Stylable
@@ -48,33 +48,30 @@ Currently we support Webpack as our build system. To author a component library,
 
 Add **Stylable** to your Webpack configuration as follows: 
 
-```
-const StylablePlugin = require('stylable-integration/webpack-plugin');
+```js
+const StylableWebpackPlugin = require('stylable-webpack-plugin');
 ...
 {
     module: {
         rules: [
-            StylablePlugin.rule(),
-            // to load CSS assets from bundle we need the url loader configured.
-            // example configuration
+        {
+            test: /\.(png|jpg|gif)$/,
+            use: [
             {
-                test: /\.(png|jpg|gif|svg)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192
-                        }
-                    }
-                ]
+                loader: "url-loader",
+                options: {
+                    limit: 8192
+                }
             }
+            ]
+        }
         ]
-    },
+    }
     plugins: [
-        new StylablePlugin({ injectBundleCss: true  /* dev mode */ })
+        new StylableWebpackPlugin()
     ]
 }
 ```
 
-For a production build, you should not use the `injectBundleCss` option. The project creates a bundle CSS asset in your output directory. Just load this into your html. You can set the file name. For details, see [**stylable-integration**](https://github.com/wix/stylable-integration).
+For more information on configuring the stylable-webpack-plugin, see the   [readme file](https://github.com/wix/stylable-webpack-plugin).
 
