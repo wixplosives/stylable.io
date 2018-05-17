@@ -275,16 +275,17 @@ Multiple variables can be comma separated or written on multiple lines:
 
 <p>Here is an example of a mixin receiving multiple arguments and returning multiple declarations into the target ruleset.</p>
 
-<pre><code class="language-jsx">/* file my-mixin.js */
-module.exports = function colorAndBg([color, bgColor]){ 
-    /* arguments: array of string types */
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* file my-mixin.js */</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">colorAndBg</span><span class="p">([</span><span class="nx">color</span><span class="p">,</span> <span class="nx">bgColor</span><span class="p">]){</span> 
+    <span class="cm">/* arguments: array of string types */</span>
 
-    return {
-        color: color,
-        background: bgColor
-    }
-};
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="na">color</span><span class="p">:</span> <span class="nx">color</span><span class="p">,</span>
+        <span class="na">background</span><span class="p">:</span> <span class="nx">bgColor</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre>
+</div>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/* file example.st.css */</span>
 <span class="nd">:import</span> <span class="p">{</span>
@@ -315,22 +316,23 @@ module.exports = function colorAndBg([color, bgColor]){
   <li><code class="highlighter-rouge">&amp;selector</code> - resulting ruleset references the parent selector into which it was mixed in (in below example <code class="highlighter-rouge">&amp;:hover</code>, the parent selector is <code class="highlighter-rouge">.codeMixedIn</code>)</li>
 </ul>
 
-<pre><code class="language-jsx">/* file my-mixin.js */
-module.exports = function complexMixin([color, bgColor]){ 
-    /* arguments: array of string types */
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* file my-mixin.js */</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">complexMixin</span><span class="p">([</span><span class="nx">color</span><span class="p">,</span> <span class="nx">bgColor</span><span class="p">]){</span> 
+    <span class="cm">/* arguments: array of string types */</span>
 
-    return {
-        color: color,
-        background: bgColor,
-        "&amp;:hover": {
-            color: "gold"
-        },
-        ".otherClass": {
-            color: "purple"
-        }
-    }
-};
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="na">color</span><span class="p">:</span> <span class="nx">color</span><span class="p">,</span>
+        <span class="na">background</span><span class="p">:</span> <span class="nx">bgColor</span><span class="p">,</span>
+        <span class="s2">"&amp;:hover"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">color</span><span class="p">:</span> <span class="s2">"gold"</span>
+        <span class="p">},</span>
+        <span class="s2">".otherClass"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">color</span><span class="p">:</span> <span class="s2">"purple"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre>
+</div>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/* file example.st.css */</span>
 <span class="nd">:import</span> <span class="p">{</span>

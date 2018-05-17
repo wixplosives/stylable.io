@@ -261,14 +261,20 @@ You can override the behavior of native pseudo-classes. This can enable you to w
 
 <p><strong>Stylable</strong> offers <a href="../getting-started/react-integration">React CSS state integration</a> to help components manage custom pseudo-classes easily.</p>
 
-<pre><code class="language-jsx">/* render of stylable component */
-render() {
-    return &lt;div style-state={{ /* used in stylable-react-integration to implement pseudo-classes */
-        toggled:true,
-        selected:false
-    }} &gt;&lt;/div&gt;
-}
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* sample of a stylable component */</span>
+<span class="kr">import</span> <span class="nx">style</span> <span class="nx">from</span> <span class="s1">'./stylesheet.st.css'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">MyComponent</span> <span class="p">{</span>
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{</span> <span class="p">...</span><span class="nx">style</span><span class="p">(</span><span class="s1">'root'</span><span class="p">,</span> <span class="p">{</span> 
+                <span class="na">toggled</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="na">selected</span><span class="p">:</span> <span class="kc">false</span>
+            <span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">)</span> <span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
+</div>
 
 
 </section>

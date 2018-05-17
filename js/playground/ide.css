@@ -1,0 +1,242 @@
+.playground1951724333--root {
+    -st-states: fullscreen;
+    /* display: flex;
+    width: 100%;
+    height: 400px; */
+    position:relative;
+    font-family: HelveticaNeueW01-45Ligh, HelveticaNeueW02-45Ligh, HelveticaNeueW10-45Ligh, Helvetica Neue, Helvetica, Arial, メイリオ, meiryo, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, sans-serif;
+}
+
+.playground1951724333--root[data-playground1951724333-fullscreen] .playground1951724333--golden{
+    position: fixed;
+    top:0px;
+    left:0px;
+    z-index: 20;
+}
+
+.playground1951724333--root .playground1951724333--golden {
+    width:100%;
+    height:calc(100% - 26px);
+}
+
+.playground1951724333--root .playground1951724333--toolbar {
+    height:26px;
+    background: black;
+}
+
+.playground1951724333--root[data-playground1951724333-fullscreen] .playground1951724333--toolbar{
+    position: fixed;
+    bottom:0px;
+    left:0px;
+    width:100%;
+    z-index: 100;
+}
+
+.playground1951724333--root .playground1951724333--toggle-fullscreen{
+    background:transparent;
+    border: none;
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;
+    width:16px;
+    height:16px;
+    outline:none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="lightBlue" strokeWidth="4"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" /></svg>');
+}
+.playground1951724333--root .playground1951724333--toggle-fullscreen:hover{
+    margin-right:2px;
+    margin-top:2px;
+    width:24px;
+    height:24px;
+}
+.playground1951724333--root[data-playground1951724333-fullscreen] .playground1951724333--toggle-fullscreen{
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="lightBlue" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>');
+}
+.previewpanel3502187295--root {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #191A28;
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--title {
+    padding: 9px;
+    background-color: #F0F4F7;
+    font-size: 12px;
+    font-weight: bold;
+    color: #596A9E;
+    line-height: 17px;
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--frame {
+    flex: 1;
+    width: 100%;
+    border: none;
+}
+.previewpanel3502187295--root .previewpanel3502187295--floating-controls-wrapper{
+    height:0px;
+    position: relative;
+    width: 100%;
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--status-bar {
+    padding: 3px 11px 4px;
+    color: white;
+    font-size: 14px;
+    background-color: #2A2B41;
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--highlightCodeHover{
+    position: absolute;
+    box-shadow:  0 0 0 1px white ;
+    outline:1px dashed black;
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--highlightCodeSelection{
+    position: absolute;
+    box-shadow:  0 0 0 1px white ;
+    outline:1px dashed black;
+    background-color: rgba(89, 106, 158, 0.56);
+}
+
+
+
+.previewpanel3502187295--root .previewpanel3502187295--exports-wrapper{
+    position: absolute;
+    top:0px;
+    left:0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--exports{
+
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--sim-selector{
+    
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--export-box{
+    box-sizing: border-box;
+    height:250px;
+    width:200px;
+    border:1px solid white;
+    margin: 10px;
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--export-header{
+    padding: 10px;
+    background: white;
+    height:30px;
+}
+
+
+.previewpanel3502187295--root .previewpanel3502187295--exports-header{
+    color:white
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--export{
+    background: white;
+}
+
+.previewpanel3502187295--root .previewpanel3502187295--back-btn{
+    
+}
+.monaco-editor-background {
+    background-color: #2A2B41 !important;
+}
+
+.monaco-editor .margin {
+    background-color: #2A2B41 !important;
+}
+
+.monaco-editor .line-numbers {
+    color: #6679B3 !important;
+}
+
+
+.codepanel2998173777--root {
+    height: 100%;
+    padding: 10px 0;
+}
+
+.codepanel2998173777--root .codepanel2998173777--monacoContainer {
+    height: 100%;
+}
+
+
+.filepanel2830433321--root {
+    height: 100%;
+    width: 100%;
+    padding: 10px 0; 
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #191A28;
+    font-size: 12px;
+    overflow-y: auto;
+}
+
+.filepanel2830433321--root .filepanel2830433321--tree {
+    -st-states: expanded, dir;
+}
+
+.filepanel2830433321--root .filepanel2830433321--expandArrow {
+    margin-right: 8px;
+    padding: 0;
+    transform: rotate(-90deg);
+    border: none;
+    background-color: transparent;
+    color: #6679B3;
+    font-size: 10px;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.filepanel2830433321--root .filepanel2830433321--tree[data-filepanel2830433321-expanded] > .filepanel2830433321--file > .filepanel2830433321--expandArrow {
+    transform: none;
+}
+
+.filepanel2830433321--root .filepanel2830433321--file {
+    display: inline-block;
+    width: 100%;
+    color: white;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.filepanel2830433321--root .filepanel2830433321--tree[data-filepanel2830433321-dir] > .filepanel2830433321--file {
+    color: white;
+}
+
+.filepanel2830433321--root .filepanel2830433321--file:hover,.filepanel2830433321--root .filepanel2830433321--tree[data-filepanel2830433321-dir] > .filepanel2830433321--file:hover {
+    background-color: #368FDA;
+    color: white;
+}
+
+.filepanel2830433321--root .filepanel2830433321--icon {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    background-size: 12px;
+}
+
+.filepanel2830433321--root .filepanel2830433321--previewIcon {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    width: 12px;
+    height: 12px;
+    padding-right: 3px;
+    background-repeat: no-repeat;
+    background-size: 12px;
+}

@@ -1,0 +1,32 @@
+{
+    "prodUrl": "https://static.parastorage.com/unpkg/",
+    "modules": [
+        {
+            "scopes": [
+                "main"
+            ],
+            "name": "react",
+            "alias": "React",
+            "path": "/umd/react.production.min.js",
+            "fullPath": "https://static.parastorage.com/unpkg/react@16.2.0//umd/react.production.min.js"
+        },
+        {
+            "scopes": [
+                "main"
+            ],
+            "name": "react-dom",
+            "alias": "ReactDOM",
+            "path": "/umd/react-dom.production.min.js",
+            "fullPath": "https://static.parastorage.com/unpkg/react-dom@16.2.0//umd/react-dom.production.min.js"
+        },
+        {
+            "scopes": [
+                "main"
+            ],
+            "name": "jquery",
+            "alias": "$",
+            "path": "",
+            "fullPath": "https://static.parastorage.com/unpkg/jquery@3.3.1"
+        }
+    ]
+}

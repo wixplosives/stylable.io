@@ -62,10 +62,10 @@
 /******/
 /******/ 	(function(){
 /******/ 	    if (typeof document !== 'undefined') {
-/******/ 	        var style = document.getElementById("stage.css");
+/******/ 	        var style = document.getElementById("dist/stage.css");
 /******/ 	        if(!style){
 /******/ 	            style = document.createElement('style');
-/******/ 	            style.id = "stage.css";
+/******/ 	            style.id = "dist/stage.css";
 /******/ 	            document.head.appendChild(style);
 /******/ 	        }
 /******/ 	        style.textContent = "";
@@ -73,12 +73,12 @@
 /******/ 	    return ;
 /******/ 	}())
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 539);
+/******/ 	return __webpack_require__(__webpack_require__.s = 519);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 136:
+/***/ 132:
 /*!*************************************!*\
   !*** ./lib/rabbit/module-system.ts ***!
   \*************************************/
@@ -102,6 +102,7 @@ class ModuleSystem {
         this.events = new eventemitter3_1.EventEmitter();
         this.reload = async (changedFiles) => {
             let needsReload = new Set();
+            // console.log('started eval changed '+Date.now())
             Object.keys(changedFiles).forEach(path => {
                 if (this.loadedModules[path]) {
                     needsReload.add(path);
@@ -126,13 +127,16 @@ class ModuleSystem {
                     fetchMap[path] = this.rabbit.generateCompiledCode(path);
                 });
                 await this.evalModule(this.renderedModule, this.resolutionMap, fetchMap);
-                // console.log('re-rendered');
                 this.events.emit(exports.ModuleSystemEvents.RELOAD, {
                     rootReloaded: true,
                     reloadedModules: needsReload
                 });
             }
+            // console.log('evaled '+Date.now())
         };
+        this.renderedModule = '';
+        this.resolutionMap = {};
+        this.reversedResolutionMap = {};
     }
     async require(modulePath) {
         this.renderedModule = modulePath;
@@ -245,10 +249,10 @@ exports.ModuleSystem = ModuleSystem;
 
 /***/ }),
 
-/***/ 158:
-/*!**********************************!*\
-  !*** ./src/core/rabbit-proxy.ts ***!
-  \**********************************/
+/***/ 262:
+/*!*************************************!*\
+  !*** ./src/core/stage/stage-api.ts ***!
+  \*************************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -256,26 +260,19 @@ exports.ModuleSystem = ModuleSystem;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const simple_link_1 = __webpack_require__(/*! ../../lib/simple-link */ 47);
-async function consumeRabbit(config) {
-    const eventTarget = {
-        render: () => Promise.resolve()
-    };
-    const methods = await simple_link_1.connect(config, eventTarget);
-    return Object.assign({}, methods, { setRender: (render) => {
-            eventTarget.render = render;
-        } });
+const index_1 = __webpack_require__(/*! ../../../lib/simple-link/index */ 52);
+async function exposeStage(config, stage) {
+    return await index_1.connect(config, stage);
 }
-exports.consumeRabbit = consumeRabbit;
-async function exposeRabbit(rabbit, config) {
+exports.exposeStage = exposeStage;
+async function exposeServices(rabbit, config) {
     const methods = {
         generateCompiledCode: rabbit.generateCompiledCode.bind(rabbit),
         generateResolutionMap: rabbit.generateResolutionMap.bind(rabbit)
     };
-    const remoteRabbitConsumer = await simple_link_1.connect(config, methods);
-    rabbit.setRender(remoteRabbitConsumer.render);
+    return await index_1.connect(config, methods);
 }
-exports.exposeRabbit = exposeRabbit;
+exports.exposeServices = exposeServices;
 
 
 /***/ }),
@@ -604,7 +601,20 @@ if (true) {
 
 /***/ }),
 
-/***/ 47:
+/***/ 519:
+/*!****************************************!*\
+  !*** multi ./src/core/stage/stage.tsx ***!
+  \****************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./src/core/stage/stage.tsx */520);
+
+
+/***/ }),
+
+/***/ 52:
 /*!**********************************!*\
   !*** ./lib/simple-link/index.ts ***!
   \**********************************/
@@ -646,7 +656,10 @@ async function connect(config, offeredAPI) {
     activateEndpoint(config.target);
     const offeredCapabilites = getCapablities(offeredAPI);
     let otherTargets = [];
-    await new Promise((resolveConnection) => {
+    const wrappedOfferedApi = { api: offeredAPI };
+    let proxyCreated = false;
+    let remoteApi;
+    remoteApi = await new Promise((resolveConnection) => {
         config.target.addEventListener('message', (event) => {
             const payload = extractMessage(event);
             if (payload.senderId !== config.otherSideId) {
@@ -659,11 +672,14 @@ async function connect(config, offeredAPI) {
                     senderId: config.thisSideId
                 });
                 otherTargets = payload.targets;
-                resolveConnection();
+                proxyCreated = true;
+                resolveConnection(buildProxy(config, otherTargets, wrappedOfferedApi));
             }
             else if (isMessageType('handshake-confirm', payload)) {
                 otherTargets = payload.targets;
-                resolveConnection();
+                if (!proxyCreated) {
+                    resolveConnection(buildProxy(config, otherTargets, wrappedOfferedApi));
+                }
             }
         });
         post(config, {
@@ -672,8 +688,6 @@ async function connect(config, offeredAPI) {
             senderId: config.thisSideId
         });
     });
-    const wrappedOfferedApi = { api: offeredAPI };
-    const remoteApi = buildProxy(config, otherTargets, wrappedOfferedApi);
     connections.push({
         config,
         localApi: wrappedOfferedApi,
@@ -685,8 +699,8 @@ exports.connect = connect;
 function post(config, message) {
     try {
         config.target.postMessage(message);
-        // if(message.type === "handshake-confirm" || message.type === "apply")
-        // console.log(config.thisSideId + '->' + config.otherSideId + ':', JSON.stringify(message, null, 4))
+        //  console.log(config.thisSideId + '->' + config.otherSideId + ':', message.type, (message as any).target || (message as any).description || '')//JSON.stringify(message, null, 4))
+        //  console.log(config.thisSideId + '->' + config.otherSideId + ':', message.type, JSON.stringify(message, null, 4))
     }
     catch (err) {
         console.log(config.thisSideId + '->' + config.otherSideId + ':failed to execute PostMessage \n target:', config.target, 'message:', message);
@@ -758,6 +772,8 @@ function buildProxy(config, targets, offeredAPI) {
     });
     const messageListener = async (event) => {
         const payload = extractMessage(event);
+        // console.log('got:'+ (payload as any).id + config.thisSideId + '->' + config.otherSideId + ':', payload.type, (payload as any).target || (payload as any).description || '')//JSON.stringify(message, null, 4))
+        // console.log(config.otherSideId + '->' + config.thisSideId + ':', payload.type, JSON.stringify(payload, null, 4))
         if (payload.senderId !== config.otherSideId) {
             return;
         }
@@ -809,6 +825,7 @@ function buildProxy(config, targets, offeredAPI) {
         else if (isMessageType('resolve', payload)) {
             const pendingIndex = pendingCallbacks.findIndex((pending) => pending.id === payload.id);
             if (pendingIndex === -1) {
+                console.error('simple-link unexpected callback:' + payload.id + config.thisSideId + '->' + config.otherSideId + ':', payload.type, payload.target || payload.description || '' + JSON.stringify(event, null, 4));
                 throw (new Error('simple-link unexpected callback ' + payload.description));
             }
             const cb = pendingCallbacks.splice(pendingIndex, 1)[0];
@@ -817,6 +834,7 @@ function buildProxy(config, targets, offeredAPI) {
         else if (isMessageType('reject', payload)) {
             const pendingIndex = pendingCallbacks.findIndex((pending) => pending.id === payload.id);
             if (pendingIndex === -1) {
+                console.error('simple-link unexpected callback rejection:' + payload.id + config.thisSideId + '->' + config.otherSideId + ':', payload.type, payload.target || payload.description || '' + JSON.stringify(event, null, 4));
                 throw (new Error('simple-link unexpected callback rejection ' + payload.description));
             }
             const cb = pendingCallbacks.splice(pendingIndex, 1)[0];
@@ -936,23 +954,10 @@ exports.replaceLocalApi = replaceLocalApi;
 
 /***/ }),
 
-/***/ 539:
-/*!***************************************************!*\
-  !*** multi ./src/playground/playground-stage.tsx ***!
-  \***************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./src/playground/playground-stage.tsx */540);
-
-
-/***/ }),
-
-/***/ 540:
-/*!*********************************************!*\
-  !*** ./src/playground/playground-stage.tsx ***!
-  \*********************************************/
+/***/ 520:
+/*!**********************************!*\
+  !*** ./src/core/stage/stage.tsx ***!
+  \**********************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -960,28 +965,108 @@ module.exports = __webpack_require__(/*! ./src/playground/playground-stage.tsx *
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const module_system_1 = __webpack_require__(/*! ../../lib/rabbit/module-system */ 136);
-const rabbit_proxy_1 = __webpack_require__(/*! ../core/rabbit-proxy */ 158);
-const simple_link_1 = __webpack_require__(/*! ../../lib/simple-link */ 47);
-const patch_react_1 = __webpack_require__(/*! ./stage/patch-react */ 541);
-window.initPlayground = async (targetWindow, relativePath) => {
-    let rabbit = await rabbit_proxy_1.consumeRabbit({
+const module_system_1 = __webpack_require__(/*! ../../../lib/rabbit/module-system */ 132);
+const stage_api_1 = __webpack_require__(/*! ./stage-api */ 262);
+const simple_link_1 = __webpack_require__(/*! ../../../lib/simple-link */ 52);
+const patch_react_1 = __webpack_require__(/*! ./patch-react */ 521);
+window.initPlayground = async (targetWindow) => {
+    const renderers = {};
+    const simulations = {};
+    let currentPreviewPath;
+    const stageElement = document.body.appendChild(document.createElement('div'));
+    stageElement.setAttribute('style', ` position: absolute;
+                                top:0px;
+                                left:0px;
+                                display: flex;
+                                flex-direction: row;
+                                flex-wrap: wrap;
+                                align-items: center;`);
+    const stage = {
+        render: async (renderPath, changedFiles, previewables, simulationPath) => {
+            const neededRenderers = new Set();
+            if (simulationPath && (!simulations[renderPath] || changedFiles[simulationPath] !== undefined)) {
+                simulations[renderPath] = (await moduleSystem.require(simulationPath));
+            }
+            previewables.forEach(p => {
+                if (!!p.renderer && !renderers[p.renderer]) {
+                    neededRenderers.add(p.renderer);
+                }
+            });
+            const neededRenderersArr = Array.from(neededRenderers);
+            for (let rendererPath of neededRenderersArr) {
+                const renderer = (await moduleSystem.require(rendererPath)).default;
+                renderers[rendererPath] = renderer;
+            }
+            await moduleSystem.reload(changedFiles);
+            const evaledModule = await moduleSystem.require(renderPath);
+            const usedContainers = [];
+            previewables.forEach(p => {
+                usedContainers.push(p.exportName);
+            });
+            let currentIndex = 0;
+            Array.from(document.body.querySelectorAll(`[data-stage-container]`)).forEach((element) => {
+                const id = element.getAttribute('data-stage-container');
+                if (usedContainers[currentIndex] === id) {
+                    currentIndex++;
+                }
+                else {
+                    element.remove();
+                }
+            });
+            for (var i = currentIndex; i < previewables.length; i++) {
+                const p = previewables[i];
+                let container = document.body.querySelector(`[data-stage-container="${p.exportName}"]`);
+                if (!container) {
+                    container = stageElement.appendChild(document.createElement('div'));
+                    container.setAttribute('data-stage-container', p.exportName);
+                }
+            }
+            for (let p of previewables) {
+                let container = document.body.querySelector(`[data-stage-container="${p.exportName}"]`);
+                if (previewables.length > 1) {
+                    container.setAttribute('style', `
+                                box-sizing: border-box;
+                                height:250px;
+                                width:200px;
+                                padding-top:50px;
+                                overflow:hidden;
+                                display:flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin: 10px;`);
+                }
+                else {
+                    container.setAttribute('style', `
+                                padding-top:50px;
+                                margin: 10px;`);
+                }
+                if (renderers[p.renderer]) {
+                    if (p.simulation && simulations[renderPath] && simulations[renderPath][p.exportName] && simulations[renderPath][p.exportName][p.simulation]) {
+                        const sim = await simulations[renderPath][p.exportName][p.simulation]();
+                        renderers[p.renderer](evaledModule[p.exportName], container, sim);
+                    }
+                    else {
+                        renderers[p.renderer](evaledModule[p.exportName], container, null);
+                    }
+                }
+            }
+        }
+    };
+    let rabbit = await stage_api_1.exposeStage({
         thisSideId: 'preview',
         otherSideId: 'main',
         target: simple_link_1.windowEndpoint(targetWindow)
-    });
+    }, stage);
     const moduleSystem = new module_system_1.ModuleSystem(rabbit, 'window', Object.assign({}, patch_react_1.patchReact));
-    rabbit.setRender(moduleSystem.reload);
-    moduleSystem.require(relativePath);
 };
 
 
 /***/ }),
 
-/***/ 541:
-/*!*********************************************!*\
-  !*** ./src/playground/stage/patch-react.ts ***!
-  \*********************************************/
+/***/ 521:
+/*!***************************************!*\
+  !*** ./src/core/stage/patch-react.ts ***!
+  \***************************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {

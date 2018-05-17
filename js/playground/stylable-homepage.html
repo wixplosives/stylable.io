@@ -247,7 +247,7 @@
         </div>
         
         <Wix-playground data-code-path="/dist" 
-                        data-recipe-path="playground-recipe.json"
+                        data-recipe-path="http://localhost:8080/dist/playground-recipe.json"
                         data-project-files="/example-bundles/case9.json"
                         style="display:block;height:600px;"
                         data-layout='{
@@ -257,7 +257,7 @@
                                     "component": "file-panel",
                                     "targetPath": "",
                                     "isClosable": true, 
-                                    "title": "Files",
+                                    "title": "Browse",
                                     "width": 18,
                                     "props":{
                                         "currentPath":"src/index/tsx",
@@ -277,7 +277,11 @@
                                     "component":"preview",
                                     "targetPath":"src/index.tsx"   
                                 }
-                            ]
+                                ], 
+                                "extra": {
+                                    "filePanelPath": ""
+                                }, 
+                                "startPath": "src/index.tsx"
                         }'></Wix-playground>
 
         <p>We ♥ CSS. Its simple, declarative syntax that is native in browsers is easily the fastest way to add styles

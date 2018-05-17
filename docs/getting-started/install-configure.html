@@ -158,16 +158,16 @@ create-react-app my-app-name --scripts-version stylable-scripts
 
 <h2 id="install-stylable-to-work-with-an-existing-project">Install Stylable to work with an existing project</h2>
 
-<p>To work with an existing project, you can install <strong>stylable</strong> and the <strong>stylable-integration</strong> packages from our GitHub <a href="https://github.com/wix/stylable">repository</a>.</p>
+<p>To work with an existing project, you can install <a href="https://github.com/wix/stylable">Stylable</a> and the <a href="https://github.com/wix/stylable-webpack-plugin">stylable-webpack-plugin</a> packages from our GitHub repositories.</p>
 
-<p>Install <strong>stylable</strong> and <strong>stylable-integration</strong> as a dependency in your local project.</p>
+<p>Install <strong>Stylable</strong> and the <strong>stylable-webpack-plugin</strong> as a dependency in your local project.</p>
 
 <p>Using npm:</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install stylable stylable-integration --save-dev
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install stylable stylable-webpack-plugin --save-dev
 </code></pre>
 </div>
 <p>Using Yarn:</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yarn add stylable stylable-integration
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yarn add stylable stylable-webpack-plugin --dev
 </code></pre>
 </div>
 
@@ -183,35 +183,32 @@ create-react-app my-app-name --scripts-version stylable-scripts
 
 <p>Add <strong>Stylable</strong> to your Webpack configuration as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>const StylablePlugin = require('stylable-integration/webpack-plugin');
-...
-{
-    module: {
-        rules: [
-            StylablePlugin.rule(),
-            // to load CSS assets from bundle we need the url loader configured.
-            // example configuration
-            {
-                test: /\.(png|jpg|gif|svg)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-    plugins: [
-        new StylablePlugin({ injectBundleCss: true  /* dev mode */ })
-    ]
-}
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">StylableWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'stylable-webpack-plugin'</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="p">{</span>
+    <span class="nl">module</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">rules</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.(</span><span class="sr">png|jpg|gif</span><span class="se">)</span><span class="sr">$/</span><span class="p">,</span>
+            <span class="na">use</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="na">loader</span><span class="p">:</span> <span class="s2">"url-loader"</span><span class="p">,</span>
+                <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">limit</span><span class="p">:</span> <span class="mi">8192</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="nl">plugins</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">new</span> <span class="nx">StylableWebpackPlugin</span><span class="p">()</span>
+    <span class="p">]</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
-<p>For a production build, you should not use the <code class="highlighter-rouge">injectBundleCss</code> option. The project creates a bundle CSS asset in your output directory. Just load this into your html. You can set the file name. For details, see <a href="https://github.com/wix/stylable-integration"><strong>stylable-integration</strong></a>.</p>
+<p>For more information on configuring the stylable-webpack-plugin, see the   <a href="https://github.com/wix/stylable-webpack-plugin">readme file</a>.</p>
 
 
 </section>

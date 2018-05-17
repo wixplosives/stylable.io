@@ -1,0 +1,23 @@
+.root {
+  position: relative;
+  width: 50%;
+  margin-top: 20px;
+}
+
+.lip {
+  background: #000;
+  height: 2px;
+  transition: 225ms ease-in;
+}
+
+.upperLip {
+  -st-extends: lip;
+}
+
+.tongue {
+
+}
+
+.lowerLip {
+  -st-extends: lip;  
+}

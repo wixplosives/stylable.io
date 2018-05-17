@@ -171,14 +171,15 @@ As part of the <strong>Stylable</strong> roadmap, we may add scoped tag selector
 The value <code class="highlighter-rouge">form</code> is not namespaced.</p>
 </blockquote>
 
-<pre><code class="language-jsx">/* React - inside a Stylable component render */
-&lt;div className="gallery"&gt;
-    &lt;div className="sideBar"&gt;
-        &lt;form&gt;&lt;/form&gt; /* green background and red while hovering parent */
-    &lt;/div&gt;
-    &lt;form&gt;&lt;/form&gt; /* green background */
-&lt;/div&gt;
-</code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* React - inside a Stylable component render */</span>
+<span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"gallery"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"sideBar"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">form</span> <span class="o">/&gt;</span> <span class="cm">/* green background and red while hovering parent */</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">form</span> <span class="o">/&gt;</span> <span class="cm">/* green background */</span>
+<span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span></code></pre>
+</div>
 
 <h2 id="component-element">Component element</h2>
 
@@ -201,16 +202,17 @@ The value <code class="highlighter-rouge">form</code> is not namespaced.</p>
 </code></pre>
 </div>
 
-<pre><code class="language-jsx">/* React implementation - button component implements toggle-button.css */
-import ToggleButton from './toggle-button';
-/* inside a stylable render */
-&lt;div className="gallery"&gt;
-    &lt;div className="sideBar"&gt;
-        &lt;ToggleButton&gt;&lt;/ToggleButton&gt; /* green background and red while hovering parent */
-    &lt;/div&gt;
-    &lt;ToggleButton&gt;&lt;/ToggleButton&gt; /* green background */
-&lt;/div&gt;
-</code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* React implementation - button component implements toggle-button.css */</span>
+<span class="kr">import</span> <span class="nx">ToggleButton</span> <span class="nx">from</span> <span class="s1">'./toggle-button'</span><span class="p">;</span>
+<span class="cm">/* inside a stylable render */</span>
+<span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"gallery"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"sideBar"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">ToggleButton</span> <span class="o">/&gt;</span> <span class="cm">/* green background and red while hovering parent */</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">ToggleButton</span> <span class="o">/&gt;</span> <span class="cm">/* green background */</span>
+<span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span></code></pre>
+</div>
 
 </section>
 

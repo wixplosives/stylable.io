@@ -349,37 +349,38 @@ Here’s an example creating and using an expandOnHover mixin:</p>
 <p>You can also declare your parameters using JS docs.
 Here is a the same formatter and mixin from above, written in js with JS docs.</p>
 
-<pre><code class="language-jsx">
-/**
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>
+<span class="cm">/**
  * Lighten - lightens a color by a percentage.
-*/
-/**
+*/</span>
+<span class="cm">/**
  * Lightens a color by an amount.
  * @constructor
  * @param {string} amount - Amount to lighten
  * @param {string} color - Color to be lightened
-*/
-export function lighten(amount, color) {
-    return polishedLighten(amount, color);
-}
+*/</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">lighten</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">polishedLighten</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">color</span><span class="p">);</span>
+<span class="p">}</span>
 
-/**
+<span class="cm">/**
 * Expand
 * @param {stNumber&lt;0,1000&gt;} [durationMS=200] - total animation time MS
 * @param {stPercentage} [increaseBy=1.5] - how much to increase size;
 * @param {stCurves} [animationCurve=cubicEaseIn] - animation change over time curve
 * @returns {stCssFragment}
-*/
-export function expandOnHover(durationMS,increaseBy,animationCurve){
-    return {
-        transition:"all "+duration+"ms "+animationCurve;,
-        ":hover":{
-            transform:scale(increaseBy)
-        }
-    }
-}
+*/</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">expandOnHover</span><span class="p">(</span><span class="nx">durationMS</span><span class="p">,</span><span class="nx">increaseBy</span><span class="p">,</span><span class="nx">animationCurve</span><span class="p">){</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="na">transition</span><span class="p">:</span><span class="s2">"all "</span><span class="o">+</span><span class="nx">duration</span><span class="o">+</span><span class="s2">"ms "</span><span class="o">+</span><span class="nx">animationCurve</span><span class="p">;,</span>
+        <span class="s2">":hover"</span><span class="p">:{</span>
+            <span class="na">transform</span><span class="p">:</span><span class="nx">scale</span><span class="p">(</span><span class="nx">increaseBy</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
 </code></pre>
+</div>
 
 
 </section>
