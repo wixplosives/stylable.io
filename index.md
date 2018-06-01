@@ -175,7 +175,9 @@ Viva CSS, and welcome **Stylable**. We hope you like it.
 
 ## Demo Project
 
-You can download our [Mr. Potato Bruce project](https://github.com/wix/potato-bruce) from GitHub. It's a demo application showcasing the features and typed style API. You can see the working site [here](https://potatobruce.io/). 
+You can download our [Mr. Potato Bruce project](https://github.com/wix/potato-bruce) from GitHub. It's a [demo application](https://potatobruce.io/) showcasing the features and typed style API. Bruce explains it in his React Europe 2018 talk:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YRhJZZsTEvQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Play with it and let us know what you think!
 
