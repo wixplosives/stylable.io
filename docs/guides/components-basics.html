@@ -146,7 +146,7 @@
 
 <blockquote>
   <p><strong>Note</strong>:<br />
-This guide shows the JSX side of our <a href="https://github.com/wixplosives/stylable-integration">stylable-integration</a> with React.</p>
+This guide shows the <code class="highlighter-rouge">JSX</code> side of our <a href="https://github.com/wix/stylable/tree/master/packages/stylable-webpack-plugin" target="_blank">stylable-webpack-plugin</a> integration to React.</p>
 </blockquote>
 
 <p><strong>Stylable</strong> styles are similar to a type-system. Once you have declared that a CSS class is of the type <code class="highlighter-rouge">Button</code> for example, <strong>Stylable</strong> knows its internal structure and can match its internal parts and states.</p>
@@ -155,16 +155,25 @@ This guide shows the JSX side of our <a href="https://github.com/wixplosives/sty
 
 <h2 id="1-style-a-component">1. Style a component</h2>
 
-<p>Let’s say you have a <code class="highlighter-rouge">Button</code> component with a render function per this example. You can style its JSX using the <code class="highlighter-rouge">className</code> property.</p>
+<p>Let’s say you have a <code class="highlighter-rouge">Button</code> component with a render function per this example. You can style its JSX using the <code class="highlighter-rouge">className</code> property straight from the style object, or by executing and then <a href="https://reactjs.org/docs/jsx-in-depth.html#spread-attributes" target="_blank">spreading</a> the style <a href="./runtime">runtime function</a> (see the <code class="highlighter-rouge">root</code> node as an example).</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* button.ts */</span>
-<span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"icon"</span><span class="o">/&gt;</span>
-            <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"label"</span><span class="o">&gt;</span><span class="nx">Submit</span><span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
-</span>        <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>    <span class="p">);</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* button.jsx */</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">style</span> <span class="nx">from</span> <span class="s1">'./button.st.css'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Button</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">button</span> <span class="p">{</span> <span class="p">...</span><span class="nx">style</span><span class="p">(</span><span class="s1">'root'</span><span class="p">,</span> <span class="p">{},</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">)</span> <span class="p">}</span> <span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">icon</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span> <span class="o">&gt;</span><span class="nx">Submit</span><span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>        <span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -174,16 +183,18 @@ This guide shows the JSX side of our <a href="https://github.com/wixplosives/sty
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/* button.st.css */</span>
 
 <span class="c">/* 
-note that the root class is automatically placed on the root HTML 
-element by Stylable React integration 
+note that all of these classes are placed manually on the DOM using the Stylable integration
+in the component logic, in this case, button.tsx
 */</span>
 <span class="nc">.root</span> <span class="p">{</span> 
     <span class="nl">background</span><span class="p">:</span> <span class="m">#b0e0e6</span><span class="p">;</span>
 <span class="p">}</span>
+
 <span class="nc">.icon</span> <span class="p">{</span>
     <span class="c">/* set image height and display: block */</span> 
     <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url('./assets/btnIcon.svg')</span><span class="p">;</span>
 <span class="p">}</span>
+
 <span class="nc">.label</span> <span class="p">{</span>
     <span class="nl">font-size</span><span class="p">:</span> <span class="m">1.2em</span><span class="p">;</span>
     <span class="nl">color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">81</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">68</span><span class="p">,</span> <span class="m">1.0</span><span class="p">)</span>
@@ -218,15 +229,14 @@ element by Stylable React integration
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* panel.jsx */</span>
 <span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span><span class="nx">properties</span><span class="p">,</span> <span class="nx">stylable</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">'wix-react-tools'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span><span class="nx">Button</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">'../button'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Button</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'../button'</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">style</span> <span class="nx">from</span> <span class="s1">'./panel.st.css'</span><span class="p">;</span>
 
-<span class="kr">export</span> <span class="kr">const</span> <span class="nx">Panel</span><span class="err">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">SFC</span> <span class="o">=</span> <span class="nx">stylable</span><span class="p">(</span><span class="nx">style</span><span class="p">)(</span><span class="nx">properties</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">Button</span> <span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span><span class="p">)));</span>
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">Panel</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{</span> <span class="p">...</span><span class="nx">style</span><span class="p">(</span><span class="s1">'root'</span><span class="p">,</span> <span class="p">{},</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">)</span> <span class="p">}</span> <span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">cancelBtn</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span><span class="p">);</span>
 </code></pre>
 </div>
 
@@ -237,11 +247,14 @@ element by Stylable React integration
     <span class="py">-st-from</span><span class="p">:</span> <span class="s2">'./button.st.css'</span><span class="p">;</span>
     <span class="py">-st-default</span><span class="p">:</span> <span class="n">Button</span><span class="p">;</span>
 <span class="p">}</span>
+<span class="nc">.root</span> <span class="p">{}</span>
+
 <span class="c">/* cancelBtn is of type Button */</span>
 <span class="nc">.cancelBtn</span> <span class="p">{</span> 
     <span class="py">-st-extends</span><span class="p">:</span> <span class="n">Button</span><span class="p">;</span>
     <span class="nl">background</span><span class="p">:</span> <span class="no">cornflowerblue</span><span class="p">;</span>
 <span class="p">}</span>
+
 <span class="c">/* targets the label of &lt;Button className="cancelBtn" /&gt; */</span>
 <span class="nc">.cancelBtn</span><span class="nd">::label</span> <span class="p">{</span> 
     <span class="nl">color</span><span class="p">:</span> <span class="no">honeydew</span><span class="p">;</span>
@@ -254,19 +267,29 @@ element by Stylable React integration
 
 <p>You can also create custom states for the component that are available as <a href="../references/pseudo-classes">pseudo-classes</a> to anyone using your component.</p>
 
-<p>A custom pseudo-class can be used to reflect any logical state of your component. For example, your <code class="highlighter-rouge">Button</code> has a property called <code class="highlighter-rouge">on</code>. In this example, it is toggled when the button is clicked.</p>
+<p>A custom pseudo-class can be used to reflect any logical state of your component. For example, your <code class="highlighter-rouge">Button</code> has a state called <code class="highlighter-rouge">on</code>. In this example, it is toggled when the button is clicked.</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* button.jsx */</span>
-<span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">button</span> 
-            <span class="nx">style</span><span class="o">-</span><span class="nx">state</span><span class="o">=</span><span class="p">{</span> <span class="p">{</span><span class="na">on</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">on</span><span class="p">}</span> <span class="p">}</span>
-            <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span><span class="o">=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">on</span><span class="p">:</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">on</span><span class="p">})}</span>
-        <span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"icon"</span><span class="o">/&gt;</span>
-            <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"label"</span><span class="o">&gt;</span><span class="nx">Click</span> <span class="nx">Here</span><span class="o">!&lt;</span><span class="sr">/span</span><span class="err">&gt;
-</span>        <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>    <span class="p">);</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">style</span> <span class="nx">from</span> <span class="s1">'./button.st.css'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Button</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="na">on</span><span class="p">:</span> <span class="kc">false</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">button</span> <span class="p">{</span> <span class="p">...</span><span class="nx">style</span><span class="p">(</span><span class="s1">'root'</span><span class="p">,</span> <span class="p">{</span> <span class="na">on</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">on</span> <span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">)</span> <span class="p">}</span> 
+                    <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">on</span><span class="p">:</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">on</span> <span class="p">})}</span> <span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">icon</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span> <span class="o">&gt;</span><span class="nx">Submit</span><span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>        <span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -276,6 +299,10 @@ element by Stylable React integration
     <span class="py">-st-states</span><span class="p">:</span> <span class="n">on</span><span class="p">;</span>
     <span class="nl">background</span><span class="p">:</span> <span class="m">#b0e0e6</span><span class="p">;</span>
 <span class="p">}</span>
+<span class="c">/* targets the state on the root of the component */</span>
+<span class="nc">.root</span><span class="nd">:on</span> <span class="p">{</span> 
+    <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">2px</span> <span class="m">2px</span> <span class="m">2px</span> <span class="m">1px</span> <span class="no">darkslateblue</span><span class="p">;</span>
+<span class="p">}</span>
 <span class="nc">.icon</span> <span class="p">{</span>
     <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url(./assets/btnIcon.svg)</span><span class="p">;</span>
 <span class="p">}</span>
@@ -283,14 +310,10 @@ element by Stylable React integration
     <span class="nl">font-size</span><span class="p">:</span> <span class="m">1.2em</span><span class="p">;</span>
     <span class="nl">color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">81</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">68</span><span class="p">,</span> <span class="m">1.0</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="c">/* targets the state on the root of the component */</span>
-<span class="nc">.root</span><span class="nd">:on</span> <span class="p">{</span> 
-    <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">2px</span> <span class="m">2px</span> <span class="m">2px</span> <span class="m">1px</span> <span class="no">darkslateblue</span><span class="p">;</span>
-<span class="p">}</span>
 </code></pre>
 </div>
 
-<p>You can then target <code class="highlighter-rouge">Button</code>’s <code class="highlighter-rouge">on</code> state in your <code class="highlighter-rouge">panel</code> as follows:</p>
+<p>You can then target <code class="highlighter-rouge">Button</code>’s <code class="highlighter-rouge">on</code> state in your <code class="highlighter-rouge">panel</code> component as follows:</p>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/* panel.st.css */</span>
 <span class="nc">.cancelBtn</span> <span class="p">{</span>
