@@ -44,8 +44,8 @@ class Comp {
 
     render () {
         return (
-            <div className="{style.root}">
-                <div className="{style.sideBar}">
+            <div className={style.root}>
+                <div className={style.sideBar}>
                     <form /> /* green background and red while hovering parent */
                 </div>
                 <form /> /* green background */
@@ -93,8 +93,8 @@ class Comp {
 
     render () {
         return (
-            <div className="{style.root}">
-                <div className="{style.sideBar}">
+            <div className={style.root}>
+                <div className={style.sideBar}>
                     <ToggleButton /> /* green background and red while hovering parent */
                 </div>
                 <ToggleButton /> /* green background */

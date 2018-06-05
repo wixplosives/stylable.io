@@ -9,7 +9,7 @@ Use the `-st-extends` directive rule to extend a CSS class with another styleshe
 > **Note**  
 >`-st-extends` can be applied only to [class selectors](./class-selectors.md) and [root](./root.md).
 
-In this example, the stylesheet is extending the `toggle-button.css` stylesheet. The `checkBtn` class has a `label`, which is a custom pseudo-element, and has a custom pseudo-class, `toggled`. 
+In this example, the stylesheet is extending the `toggle-button.st.css` stylesheet. The `checkBtn` class has a `label`, which is a custom pseudo-element, and has a custom pseudo-class, `toggled`. 
 
 ```css
 /* page.st.css */
@@ -34,10 +34,23 @@ In this example, the stylesheet is extending the `toggle-button.css` stylesheet.
 ```
 
 ```js
-/* React - Page component uses toggleButton component */
+/* page.jsx */
+import * as React from 'react';
+import style from './comp.st.css';
+
 import ToggleButton from './toggle-button';
-/* inside a stylable render */
-<div>
-    <ToggleButton className="checkBtn" />
-</div>
+
+class Page {
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
+        return (
+            <div { ...style('root', {}, this.props) }>
+                <ToggleButton className={style.checkBtn} />
+            </div>
+        );
+    }
+}
 ```
