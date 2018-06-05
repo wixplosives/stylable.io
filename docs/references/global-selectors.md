@@ -18,7 +18,7 @@ In this example `.classB` and `.classC` are not scoped to `Comp` but are part of
 
 ```css
 /* CSS output*/
-.Comp__root .Comp__classA .classB > .classC .Comp__classD:hover {
+.Comp__classA .classB > .classC .Comp__classD:hover {
     color: red;
 }
 ```

@@ -20,9 +20,9 @@ You should use camelCase to name class selectors. Avoid using hyphens (-) and ca
 
 ```css
 /* CSS output*/
-.Page__root .Page__thumbnail { background:green;}
-.Page__root .Page__thumbnail:hover { background:blue; }
-.Page__root .Page__gallery:hover .Page__thumbnail { background:red; }
+.Page__thumbnail { background:green;}
+.Page__thumbnail:hover { background:blue; }
+.Page__gallery:hover .Page__thumbnail { background:red; }
 ```
 
 ```js
@@ -51,6 +51,8 @@ Any class defined in a **Stylable** stylesheet is exported as a named export and
 .label { font-size: 20px; } 
 ```
 
+// TODO: PROBLEMATIC EXAMPLE BELOW - Avoid showcasing internal parts being used all weird like that.
+
 ```css
 /* form.st.css */
 @namespace "Form";
@@ -59,19 +61,19 @@ Any class defined in a **Stylable** stylesheet is exported as a named export and
     -st-named: icon, label; 
 }
 /* 
-    @selector .Form__root .Form__myIcon.Button__icon 
+    @selector .Form__myIcon.Button__icon 
     @export Form__myIcon Button__icon
 */
 .myIcon { 
     -st-extends: icon; 
 }
 /* 
-    @selector .Form__root .Button__icon 
+    @selector .Button__icon 
     @export Button__icon
 */
 .icon {}
 /* 
-    @selector .Form__root .Form__label.Button__label 
+    @selector .Form__label.Button__label 
     @export Form__label Button__label
 */
 .label {

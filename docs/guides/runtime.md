@@ -79,7 +79,7 @@ The second argument represents the [custom state](#custom-state-mapping), and re
 ```javascript
 /* { className:'style__root', 'data-style-selected':true } */
 style('root', { selected:true })
-/* { className:'style__root', 'data-style-searched':true } */
+/* { className:'style__label', 'data-style-searched':true } */
 style('label', { searched:true })
 ```
 

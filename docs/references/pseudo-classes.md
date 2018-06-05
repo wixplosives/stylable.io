@@ -106,10 +106,10 @@ You can extend another imported stylesheet and inherit its custom pseudo-classes
 /* CSS output*/
 .Example1__root[data-Example1-toggled] { color: red; }
 .Example1__root[data-Example1-loading] { color: green; }
-.Example2__root .Example2__mediaButton:hover { border: 0.2em solid black; } /* native hover - not declared */
-.Example2__root .Example2__mediaButton[data-Example1-loading] { color: silver; } /* loading scoped to Example1 - only one to declare */
-.Example2__root .Example2__mediaButton[data-Example2-selected] { color: salmon; } /* selected scoped to Example2 - only one to declare */
-.Example2__root .Example2__mediaButton[data-Example2-toggled] { color: gold;} /* toggled scoped to Example2 - last to declare */
+.Example2__mediaButton:hover { border: 0.2em solid black; } /* native hover - not declared */
+.Example2__mediaButton[data-Example1-loading] { color: silver; } /* loading scoped to Example1 - only one to declare */
+.Example2__mediaButton[data-Example2-selected] { color: salmon; } /* selected scoped to Example2 - only one to declare */
+.Example2__mediaButton[data-Example2-toggled] { color: gold;} /* toggled scoped to Example2 - last to declare */
 ```
 
 > **Note**    

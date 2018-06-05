@@ -22,15 +22,15 @@ In this example, the stylesheet is extending the `toggle-button.css` stylesheet.
     -st-extends: ToggleButton;
     background: white;
 }
-.checkBtn::label { color:green; } /* style pseudo element label */
-.checkBtn:toggled::label { color:red; } /* style pseudo element label when check-box is toggled */
+.checkBtn::label { color: green; } /* style pseudo element label */
+.checkBtn:toggled::label { color: red; } /* style pseudo element label when check-box is toggled */
 ```
 
 ```css
 /* CSS output*/
-.Page__root .Page__checkBtn.ToggleButton__root { background: white; }
-.Page__root .Page__checkBtn.ToggleButton__root .ToggleButton__label { color: green; }
-.Page__root .Page__checkBtn.ToggleButton__root[data-ToggleButton-toggled] .ToggleButton__label { color: red; }
+.Page__checkBtn.ToggleButton__root { background: white; }
+.Page__checkBtn.ToggleButton__root .ToggleButton__label { color: green; }
+.Page__checkBtn.ToggleButton__root[data-ToggleButton-toggled] .ToggleButton__label { color: red; }
 ```
 
 ```js

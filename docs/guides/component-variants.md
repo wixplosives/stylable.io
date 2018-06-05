@@ -40,12 +40,14 @@ A component **Stylable** stylesheet can use and extend component variants:
 selector: .comp__root .project__cancelButton.button__root
 js value: "project__cancelButton"
 */
-.cancelButton { }
+.root .cancelButton { }
 /*
-selector: .comp__root .comp__cancel.project__cancelButton.button__root
+selector: .comp__cancel.project__cancelButton.button__root
 js value: "comp__cancel project__cancelButton"
 */
 .cancel {
     -st-extends: cancelButton;
 }
 ```
+
+> Notice that in the case of the `.cancelButton` selector, we manually added the .root class to avoid overriding cancelButton outside of this scope
