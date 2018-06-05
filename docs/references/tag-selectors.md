@@ -6,41 +6,54 @@ layout: docs
 
 Like CSS [type selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors), **Stylable** `tag selectors` can match the names of elements in the DOM.
 
-Tag selectors are **not** scoped themselves. Other selectors used with a tag selector can be scoped. For example if a [class selector](./class-selectors.md) is used with a tag selector, the class is scoped and the tag selector is not.  [Root](./root.md) is always added and is always scoped. The matching qualified name of a tag selector can therefore target any element in the subtree of the component. 
-
-> **Note**  
->As part of the **Stylable** roadmap, we may add scoped tag selectors which will require **Stylable** to include additional [DOM integration](../getting-started/react-integration.md). 
+Tag selectors are **not** scoped themselves. Other selectors used with a tag selector can be scoped. For example if a [class selector](./class-selectors.md) is used with a tag selector, the class is scoped and the tag selector is not. The matching qualified name of a tag selector can therefore target any element in the subtree of the component. 
 
 ## Native element
 
 Targeting a native element matches any element with the same tag name that is found in a prefix selector. The prefix selector could be a class selector or the root.
 
-// TODO: ADD REFERENCE FOR GLOBALS
+To target **all** elements of a certain type in your document, use a [`Global Selector`](./global-selectors.md).
 
 ```css
 /* CSS */
 @namespace "Page";
 .root form { background: green; }
 .sideBar:hover form { background: red; }
+:global(span) { background: blue; }
 ```
 
 ```css
 /* CSS output - form is not namespaced - affects any nested form */
 .Page__root form { background: green; } 
 .sideBar:hover form { background: red; }
+span { background: blue; }
 ```
 
 > **Note**    
-> The value `form` is not namespaced.
+> The value `form` itself is not namespaced.
 
 ```js
-/* React - inside a Stylable component render */
-<div className="gallery">
-    <div className="sideBar">
-        <form /> /* green background and red while hovering parent */
-    </div>
-    <form /> /* green background */
-</div>
+/* comp.jsx */
+import * as React from 'react';
+import style from './comp.st.css';
+
+class Comp {
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
+        return (
+            <div className="{style.root}">
+                <div className="{style.sideBar}">
+                    <form /> /* green background and red while hovering parent */
+                </div>
+                <form /> /* green background */
+                <span /> /* blue background */
+            </div>
+        );
+    }
+}
 ```
 
 ## Component element
@@ -66,13 +79,27 @@ When the value of a stylesheet is [imported](./imports.md) with a **capital firs
 
 
 ```js
+/* comp.jsx */
+import * as React from 'react';
+import style from './comp.st.css';
+
 /* React implementation - button component implements toggle-button.css */
 import ToggleButton from './toggle-button';
-/* inside a stylable render */
-<div className="gallery">
-    <div className="sideBar">
-        <ToggleButton /> /* green background and red while hovering parent */
-    </div>
-    <ToggleButton /> /* green background */
-</div>
+
+class Comp {
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
+        return (
+            <div className="{style.root}">
+                <div className="{style.sideBar}">
+                    <ToggleButton /> /* green background and red while hovering parent */
+                </div>
+                <ToggleButton /> /* green background */
+            </div>
+        );
+    }
+}
 ```
