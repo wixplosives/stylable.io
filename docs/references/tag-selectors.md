@@ -15,17 +15,19 @@ Tag selectors are **not** scoped themselves. Other selectors used with a tag sel
 
 Targeting a native element matches any element with the same tag name that is found in a prefix selector. The prefix selector could be a class selector or the root.
 
+// TODO: ADD REFERENCE FOR GLOBALS
+
 ```css
 /* CSS */
 @namespace "Page";
-form { background: green; }
+.root form { background: green; }
 .sideBar:hover form { background: red; }
 ```
 
 ```css
 /* CSS output - form is not namespaced - affects any nested form */
 .Page__root form { background: green; } 
-.Page__root.sideBar:hover form { background: red; }
+.sideBar:hover form { background: red; }
 ```
 
 > **Note**    
@@ -52,14 +54,14 @@ When the value of a stylesheet is [imported](./imports.md) with a **capital firs
     -st-from: "./toggle-button.st.css";
     -st-default: ToggleButton;
 }
-ToggleButton { background: green; }
+.root ToggleButton { background: green; }
 .sideBar:hover ToggleButton { background: red; }
 ```
 
 ```css
 /* CSS output - ToggleButton is not namespaced - affects any nested toggle button */
 .Page__root .ToggleButton__root { background: green; }
-.Page__root .Page__root.sideBar:hover .ToggleButton__root { background: red; }
+.sideBar:hover .ToggleButton__root { background: red; }
 ```
 
 

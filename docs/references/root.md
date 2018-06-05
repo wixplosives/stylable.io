@@ -12,6 +12,8 @@ You can apply default styling and behavior to the component on the root class it
 
 The `root` class is added automatically to root in [React integration](../getting-started/react-integration.md). No need to write `className="root"`.
 
+// TODO: FIX THIS DOC
+
 ```css
 /* CSS */
 @namespace "Comp";

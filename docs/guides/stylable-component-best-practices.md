@@ -4,7 +4,7 @@ title: Stylable Component - Best Practices
 layout: docs
 ---
 
-**Stylable** components should be easily stylable and themable from the outside. This means that the stylesheet describing the component CSS should be as **simple** and **generic** as possible, and should expose a clear and concise API for its internal parts. 
+**Stylable** components should be easily stylable and themable from the outside. This means that the stylesheet describing the component CSS should be as **simple** and **generic** as possible, and should expose a clear and concise API for its internal parts.
 
 When building your components, we recommend following the guidelines below. We've accumulated these through our work with **Stylable**:
 
@@ -45,7 +45,7 @@ While internal structure does demand some CSS to work correctly, you should stri
 
 The component stylesheet should describe the bare minimum coloring to make its parts visible. Colors should be used sparingly, and just to achieve visibility. 
 
-The best practice is to use 2 colors across the project for contrasting text and background.
+The best practice is to make sure every color used for a text across the project has sufficiently contrasting background.
 
 ```css
 .options { 
@@ -53,15 +53,6 @@ The best practice is to use 2 colors across the project for contrasting text and
     color: value(color2); 
 }
 ```
-
-> **Note**:
-> In the future, we may implement **Stylable** formatters to help minimize the amount of colors needed in a color scheme:  
-> ```css
-> .options { 
->    background: darker(value(color1), 0.5); 
->    color: lighter(value(color2), 0.3); 
->}
-> ```
 
 ## Keep browser defaults intact
 
@@ -87,7 +78,7 @@ Styling pseudo-elements in a component creates a selector that takes more specif
 @namespace "comp";
 /* 
 > directly style navBtn - a type of button
-selector: .comp__root .comp__gallery.gallery__root .gallery__navBtn
+selector: .comp__gallery .gallery__navBtn
 specificity: 0,0,4,0 
 */
 .gallery::navBtn {} 
@@ -99,8 +90,10 @@ specificity: 0,0,4,0
 selector: .page__root button
 specificity: 0,0,1,1
 */
-button {} 
+.root button {} 
 ```
+
+> Notice that in the case of the `button` selector, we manually added the .root class to avoid overriding `button` outside of this scope
 
 ## Justify your CSS declarations in comments
 

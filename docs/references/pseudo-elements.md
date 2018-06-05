@@ -47,7 +47,7 @@ In this example, you [import](./imports.md) a `VideoPlayer` component into your 
 
 ```css
 /* CSS output*/
-.Page__root .Page__mainVideo.VideoPlayer__root .VideoPlayer__playButton {
+.Page__mainVideo.VideoPlayer__root .VideoPlayer__playButton {
     background: green;
     color: purple;
 }
@@ -98,7 +98,7 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 ```css
 /* CSS output*/
 .SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton { color: gold; }
-.Page__root .Page__mainPlayer.SuperVideoPlayer__root .VideoPlayer__playButton { color: silver; }
+.Page__mainPlayer.SuperVideoPlayer__root .VideoPlayer__playButton { color: silver; }
 ```
 
 
@@ -109,13 +109,15 @@ You can use CSS classes to override extended pseudo-elements.
 > **Note**    
 > You can also override native pseudo-elements using **Stylable's** custom pseudo-elements but this is not recommended as it can lead to code that's confusing and hard to maintain.
 
+// TODO: FIX MEEE VALIDATE
+
 In this example, `root` extends `VideoPlayer` and so any class placed on the `root` overrides the pseudo-element.
 
 ```css
 /* CSS */
 @namespace "SuperVideoPlayer";
 :import {
-    -st-from: './video-player.css';
+    -st-from: './video-player.st.css';
     -st-default: VideoPlayer;
 }
 .root {
@@ -124,11 +126,15 @@ In this example, `root` extends `VideoPlayer` and so any class placed on the `ro
 .playButton { /* override VideoPlayer playButton */
     color: gold;
 }
+.root::playButton {
+    color: grey;
+}
 ```
 
 ```css
 /* CSS output*/
-.SuperVideoPlayer__root.VideoPlayer__root .SuperVideoPlayer__playButton { color: gold; }
+.SuperVideoPlayer__playButton { color: gold; }
+.VideoPlayer__root .SuperVideoPlayer__playButton { color: gold; }
 ```
 
 > **Note**    
