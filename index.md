@@ -173,6 +173,12 @@ Viva CSS, and welcome **Stylable**. We hope you like it.
 
 [Learn more about **Stylable**](./docs/get-started.md) and get started with step by step instructions and code examples.
 
+## Demo Project
+
+You can download our [Mr. Potato Bruce project](https://github.com/wix/potato-bruce) from GitHub. It's a demo application showcasing the features and typed style API. You can see the working site [here](https://potatobruce.io/). 
+
+Play with it and let us know what you think!
+
 ## Project
 
 Access the BSD-licensed [**Stylable** GitHub project](https://github.com/wix/stylable).

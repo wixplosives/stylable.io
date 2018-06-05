@@ -23,9 +23,9 @@ The project includes several basic components and **Stylable** stylesheets which
 
 ## Install Stylable to work with an existing project
 
-To work with an existing project, you can install **stylable** and the **stylable-webpack-plugin** packages from our GitHub repositories: [Stylable](https://github.com/wix/stylable), [Stylable-webpack-plugin(https://github.com/wix/stylable-webpack-plugin). 
+To work with an existing project, you can install [Stylable](https://github.com/wix/stylable) and the [stylable-webpack-plugin](https://github.com/wix/stylable-webpack-plugin) packages from our GitHub repositories. 
 
-Install **stylable** and **stylable-webpack-plugin** as a dependency in your local project.
+Install **Stylable** and the **stylable-webpack-plugin** as a dependency in your local project.
 
 Using npm:
 ```bash
@@ -73,5 +73,5 @@ const StylableWebpackPlugin = require('stylable-webpack-plugin');
 }
 ```
 
-For further information on configuring the webpack plugin, see: [**stylable-webpack-plugin**](https://github.com/wix/stylable-webpack-plugin).
+For more information on configuring the stylable-webpack-plugin, see the   [readme file](https://github.com/wix/stylable-webpack-plugin).
 
