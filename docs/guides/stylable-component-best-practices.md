@@ -123,6 +123,11 @@ Import theme variables from the [project commons stylesheet](../guides/project-c
     background: value(color1);
 }
 ```
+## Do not use reserved CSS words for naming vars 
+
+When using our [Stylable-Intelligence](https://github.com/wix/stylable-intelligence) VSCode plugin, do not use CSS reserved words as var names, states names, or class names. What we've found is that this can cause weird behavior in the editor. for example, if you call some off-white color "white", then you'll have 2 color boxes next to the text, one for your value and one for white. Or parst of the same selector could be painted differently if you use the word "red" as the name of a state.
+
+We are considering different approaches to solving this, discussed in this [issue](https://github.com/wix/stylable/issues/264).
 
 ## Keep SVG and images overridable
 
