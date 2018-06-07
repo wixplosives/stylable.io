@@ -26,7 +26,7 @@ To target **all** elements of a certain type in your document, use a [`Global Se
 /* CSS output - form is not namespaced - affects any nested form */
 .Page__root form { background: green; } 
 .sideBar:hover form { background: red; }
-span { background: blue; }
+span { background: blue; } /* this will affect *ALL* spans in your application */
 ```
 
 > **Note**    
