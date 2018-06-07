@@ -32,12 +32,14 @@ A component's **Stylable** stylesheet can use and extend shared classes:
 selector: .comp__root .project__emphasisBox
 js value: "project__emphasisBox"
 */
-.emphasisBox { }
+.root .emphasisBox { }
 /*
-selector: .comp__root .comp__messageBox.project__emphasisBox
+selector: .comp__messageBox.project__emphasisBox
 js value: "comp__messageBox project__emphasisBox"
 */
 .messageBox {
     -st-extends: emphasisBox;
 }
 ```
+
+> Notice that in the case of the `.emphasisBox` selector, we manually added the .root class to avoid overriding `emphasisBox` outside of this scope

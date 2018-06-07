@@ -114,7 +114,7 @@ Let's also import `Button`'s stylesheet into the `Panel` stylesheet. You can the
     background: cornflowerblue;
 }
 
-/* targets the label of <Button className="cancelBtn" /> */
+/* targets the label of <Button className={style.cancelBtn} /> */
 .cancelBtn::label { 
     color: honeydew;
     font-weight: bold;

@@ -10,8 +10,6 @@ You can apply default styling and behavior to the component on the root class it
 
 ## Examples
 
-The `root` class is added automatically to root in [React integration](../getting-started/react-integration.md). No need to write `className="root"`.
-
 ```css
 /* CSS */
 @namespace "Comp";
@@ -21,6 +19,26 @@ The `root` class is added automatically to root in [React integration](../gettin
 ```css
 /* CSS output*/
 .Comp__root { background: red; }
+```
+
+The `root` class name can be applied to a component node by using our [React integration](../getting-started/react-integration.md).
+
+```js
+/* comp.jsx */
+import * as React from 'react';
+import style from './comp.st.css';
+
+class Comp {
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
+        return (
+            <div { ...style("root", {}, this.props) } />
+        );
+    }
+}
 ```
 
 > **Note**    

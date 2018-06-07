@@ -13,24 +13,36 @@ You should use camelCase to name class selectors. Avoid using hyphens (-) and ca
 ```css
 /* CSS */
 @namespace "Page";
+.root:hover .thumbnail { background:red; }
 .thumbnail { background:green; }
 .thumbnail:hover { background:blue; }
-.gallery:hover .thumbnail { background:red; }
 ```
 
 ```css
 /* CSS output*/
-.Page__root .Page__thumbnail { background:green;}
-.Page__root .Page__thumbnail:hover { background:blue; }
-.Page__root .Page__gallery:hover .Page__thumbnail { background:red; }
+.Page__root:hover .Page__thumbnail { background:red; }
+.Page__thumbnail { background:green;}
+.Page__thumbnail:hover { background:blue; }
 ```
 
 ```js
-/* React - inside a stylable render */
-<div className="gallery">
-    <img className="thumbnail" />
-    ...
-</div>
+/* comp.jsx */
+import * as React from 'react';
+import style from './comp.st.css';
+
+class Comp {
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
+        return (
+            <div { ...style('root', {}, this.props) }>
+                <img className={style.thumbnail} />
+            </div>
+        )
+    };
+}
 ```
 
 > **Note:**  
@@ -39,7 +51,10 @@ You should use camelCase to name class selectors. Avoid using hyphens (-) and ca
 
 ## Class selector export
 
-Any class defined in a **Stylable** stylesheet is exported as a named export and can be imported by other stylesheets using the directive `-st-named`.
+Any class defined in a **Stylable** stylesheet is exported as a named export and can be imported by other stylesheets using the directive `-st-named`. These classes are also imported using the [react-integration](../getting-started/react-integration.md) and applied to the DOM as needed.
+
+> **Note**:
+> Classes imported in such a way and used without scoping to your local stylesheet (adding `.root` or a local class as a prefix to the selector) might cause unexpected effects throughout your project. Adding the scoping causes the selector to only affect the rendering subtree from this point onwards.
 
 ### Example
 
@@ -58,25 +73,31 @@ Any class defined in a **Stylable** stylesheet is exported as a named export and
     -st-from: './button.st.css';
     -st-named: icon, label; 
 }
-/* 
-    @selector .Form__root .Form__myIcon.Button__icon 
-    @export Form__myIcon Button__icon
-*/
+
+/* @selector .Form__myIcon.Button__icon */
 .myIcon { 
     -st-extends: icon; 
 }
-/* 
-    @selector .Form__root .Button__icon 
-    @export Button__icon
-*/
-.icon {}
-/* 
-    @selector .Form__root .Form__label.Button__label 
-    @export Form__label Button__label
-*/
+
+/* @selector .Form__root .Button__icon */
+.root .icon {}
+
+/* @selector .Form__label.Button__label */
 .label {
     -st-extends: label;
 }
+```
+
+```css
+/* 
+    JavaScript runtime exports:
+    {
+        root: "Form__root",
+        myIcon: "Form__myIcon Button__icon",
+        icon: "Button__icon",
+        label: "Form__label Button__label"
+    }
+*/
 ```
 
 ## Usage

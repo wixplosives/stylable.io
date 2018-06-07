@@ -47,7 +47,8 @@ In this example, you [import](./imports.md) a `VideoPlayer` component into your 
 
 ```css
 /* CSS output*/
-.Page__root .Page__mainVideo.VideoPlayer__root .VideoPlayer__playButton {
+.Page__mainVideo.VideoPlayer__root {}
+.Page__mainVideo.VideoPlayer__root .VideoPlayer__playButton {
     background: green;
     color: purple;
 }
@@ -81,6 +82,14 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 ```
 
 ```css
+/* CSS output*/
+.SuperVideoPlayer__root.VideoPlayer__root {}
+.SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton {
+    color: gold; 
+}
+```
+
+```css
 /* page.st.css */
 @namespace "Page";
 :import {
@@ -97,8 +106,10 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 
 ```css
 /* CSS output*/
-.SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton { color: gold; }
-.Page__root .Page__mainPlayer.SuperVideoPlayer__root .VideoPlayer__playButton { color: silver; }
+.Page__mainPlayer.SuperVideoPlayer__root {}
+.Page__mainPlayer.SuperVideoPlayer__root .VideoPlayer__playButton {
+    color: silver;
+}
 ```
 
 
@@ -115,7 +126,7 @@ In this example, `root` extends `VideoPlayer` and so any class placed on the `ro
 /* CSS */
 @namespace "SuperVideoPlayer";
 :import {
-    -st-from: './video-player.css';
+    -st-from: './video-player.st.css';
     -st-default: VideoPlayer;
 }
 .root {
@@ -124,11 +135,16 @@ In this example, `root` extends `VideoPlayer` and so any class placed on the `ro
 .playButton { /* override VideoPlayer playButton */
     color: gold;
 }
+.root::playButton {
+    color: grey;
+}
 ```
 
 ```css
 /* CSS output*/
-.SuperVideoPlayer__root.VideoPlayer__root .SuperVideoPlayer__playButton { color: gold; }
+.SuperVideoPlayer__root.VideoPlayer__root {}
+.SuperVideoPlayer__playButton { color: gold; }
+.SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton { color: grey; }
 ```
 
 > **Note**    
