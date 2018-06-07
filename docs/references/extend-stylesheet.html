@@ -147,7 +147,7 @@
 <code class="highlighter-rouge">-st-extends</code> can be applied only to <a href="./class-selectors">class selectors</a> and <a href="./root">root</a>.</p>
 </blockquote>
 
-<p>In this example, the stylesheet is extending the <code class="highlighter-rouge">toggle-button.st.css</code> stylesheet. The <code class="highlighter-rouge">checkBtn</code> class has a <code class="highlighter-rouge">label</code>, which is a custom pseudo-element, and has a custom pseudo-class, <code class="highlighter-rouge">toggled</code>.</p>
+<p>In this example, the stylesheet is extending the <code class="highlighter-rouge">toggle-button.css</code> stylesheet. The <code class="highlighter-rouge">checkBtn</code> class has a <code class="highlighter-rouge">label</code>, which is a custom pseudo-element, and has a custom pseudo-class, <code class="highlighter-rouge">toggled</code>.</p>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/* page.st.css */</span>
 <span class="k">@namespace</span> <span class="s1">"Page"</span><span class="p">;</span>
@@ -159,38 +159,25 @@
     <span class="py">-st-extends</span><span class="p">:</span> <span class="n">ToggleButton</span><span class="p">;</span>
     <span class="nl">background</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nc">.checkBtn</span><span class="nd">::label</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span> <span class="c">/* style pseudo element label */</span>
-<span class="nc">.checkBtn</span><span class="nd">:toggled::label</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> <span class="p">}</span> <span class="c">/* style pseudo element label when check-box is toggled */</span>
+<span class="nc">.checkBtn</span><span class="nd">::label</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span><span class="no">green</span><span class="p">;</span> <span class="p">}</span> <span class="c">/* style pseudo element label */</span>
+<span class="nc">.checkBtn</span><span class="nd">:toggled::label</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span><span class="no">red</span><span class="p">;</span> <span class="p">}</span> <span class="c">/* style pseudo element label when check-box is toggled */</span>
 </code></pre>
 </div>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/* CSS output*/</span>
-<span class="nc">.Page__checkBtn.ToggleButton__root</span> <span class="p">{</span> <span class="nl">background</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.Page__checkBtn.ToggleButton__root</span> <span class="nc">.ToggleButton__label</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.Page__checkBtn.ToggleButton__root</span><span class="o">[</span><span class="nt">data-ToggleButton-toggled</span><span class="o">]</span> <span class="nc">.ToggleButton__label</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.Page__root</span> <span class="nc">.Page__checkBtn.ToggleButton__root</span> <span class="p">{</span> <span class="nl">background</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.Page__root</span> <span class="nc">.Page__checkBtn.ToggleButton__root</span> <span class="nc">.ToggleButton__label</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.Page__root</span> <span class="nc">.Page__checkBtn.ToggleButton__root</span><span class="o">[</span><span class="nt">data-ToggleButton-toggled</span><span class="o">]</span> <span class="nc">.ToggleButton__label</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> <span class="p">}</span>
 </code></pre>
 </div>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* page.jsx */</span>
-<span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">style</span> <span class="nx">from</span> <span class="s1">'./comp.st.css'</span><span class="p">;</span>
-
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="cm">/* React - Page component uses toggleButton component */</span>
 <span class="kr">import</span> <span class="nx">ToggleButton</span> <span class="nx">from</span> <span class="s1">'./toggle-button'</span><span class="p">;</span>
-
-<span class="kr">class</span> <span class="nx">Page</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{</span> <span class="p">...</span><span class="nx">style</span><span class="p">(</span><span class="s1">'root'</span><span class="p">,</span> <span class="p">{},</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">)</span> <span class="p">}</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="nx">ToggleButton</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">checkBtn</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
-</span>            <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>        <span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
+<span class="cm">/* inside a stylable render */</span>
+<span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">ToggleButton</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"checkBtn"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span></code></pre>
 </div>
 
 </section>
