@@ -75,3 +75,6 @@ const StylableWebpackPlugin = require('stylable-webpack-plugin');
 
 For more information on configuring the stylable-webpack-plugin, see the   [readme file](https://github.com/wix/stylable-webpack-plugin).
 
+## Types
+
+Typescript needs to be made aware of Stylable in order to provide typing and module resolution. To do this, simply copy the `globals.d.ts` file found [here](https://github.com/wix/stylable/blob/master/packages/stylable-scripts/template/src/globals.d.ts) to the `src` folder of your Typescript + Stylable project.
