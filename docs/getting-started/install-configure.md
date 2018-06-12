@@ -77,4 +77,4 @@ For more information on configuring the stylable-webpack-plugin, see the   [read
 
 ## Types
 
-Typescript needs to be made aware of Stylable in order to provide typing and module resolution. To do this, simply copy the `globals.d.ts` file found [here](https://github.com/wix/stylable/blob/master/packages/stylable-scripts/template/src/globals.d.ts) to the `src` folder of your Typescript + Stylable project.
+TypeScript requires to be made aware of Stylable in order to provide typings and module resolution. To do this, simply copy the `globals.d.ts` file found [here](https://github.com/wix/stylable/blob/master/packages/stylable-scripts/template/src/globals.d.ts){:target="_blank"} to the `src` folder of your Typescript + Stylable project.
