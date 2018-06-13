@@ -11,7 +11,7 @@
 
 2. What can I use **Stylable** with?
 
-    - Anything - but at the moment we have [integrations](./react-integration.md) with React and Webpack, with more to come.
+    - Anything, but at the moment we have [integrations](./react-integration.md) with React and Webpack, with more to come.
 
 3. Who uses **Stylable**?
 
@@ -20,7 +20,7 @@
 4. **Stylable** produces a static CSS file, great. But there's a piece that updates style states in runtime, right? How does that affect **Stylable** in terms of size?
 
      - Minimally. **Stylable** runtime has 2 parts: 
-        1 - Runtime mapping is the map of local to global of whatever you define in the stylesheet (`.myClass` = `.NS__myClass`).
+        1 - Runtime mapping maps the local to global of whatever you define in the stylesheet (`.myClass` = `.NS__myClass`).
         2 - The import value that you get when importing an `st.css` file and optional integration code. 
         
     Our integration is what turns `className={style.local-string}` into the correct global class name. It also offers the ability to add states and copy `data-*` and `className` attributes to root.

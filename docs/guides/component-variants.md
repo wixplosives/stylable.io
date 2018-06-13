@@ -50,4 +50,5 @@ js value: "comp__cancel project__cancelButton"
 }
 ```
 
-> Notice that in the case of the `.cancelButton` selector, we manually added the .root class to avoid overriding cancelButton outside of this scope
+> **Note**:   
+> For the `.cancelButton` selector, we manually added the `.root` class to avoid overriding `cancelButton` outside of this scope.

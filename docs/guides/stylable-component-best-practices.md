@@ -6,7 +6,7 @@ layout: docs
 
 **Stylable** components should be easily stylable and themable from the outside. This means that the stylesheet describing the component CSS should be as **simple** and **generic** as possible, and should expose a clear and concise API for its internal parts.
 
-When building your components, we recommend following the guidelines below. We've accumulated these through our work with **Stylable**:
+When building your components, we recommend following the guidelines below that we've collected through our work with **Stylable**:
 
 ## Avoid size declarations
 
@@ -45,7 +45,7 @@ While internal structure does demand some CSS to work correctly, you should stri
 
 The component stylesheet should describe the bare minimum coloring to make its parts visible. Colors should be used sparingly, and just to achieve visibility. 
 
-The best practice is to make sure every color used for a text across the project has sufficiently contrasting background.
+The best practice is to make sure every color used for a text across the project has a sufficiently contrasting background.
 
 ```css
 .options { 
@@ -93,7 +93,8 @@ specificity: 0,0,1,1
 .root button {} 
 ```
 
-> Notice that in the case of the `button` selector, we manually added the .root class to avoid overriding `button` outside of this scope
+> **Note**:
+> For the `button` selector, we manually added the `.root` class to avoid overriding `button` outside of this scope.
 
 ## Justify your CSS declarations in comments
 
