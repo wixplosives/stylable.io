@@ -11,7 +11,7 @@
 
 2. What can I use it with?
 
-    - Anything - but at the moment we have [integrations](./react-integration.md) with React and Webpack, with more to come.
+    - Anything - but at the moment we have [integrations](./react-integration.md) with React and Webpack, with more to come. Here's an example of [Vue.js and Stylable](https://github.com/wix-playground/stylable-vue-example) working together.
 
 3. Who uses it?
 

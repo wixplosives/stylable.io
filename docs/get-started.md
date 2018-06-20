@@ -23,7 +23,7 @@ There are currently two options for installing and working with **Stylable**:
 
 * To work with an existing project, you can install [stylable](https://github.com/wix/stylable) and the [stylable-webpack-plugin](https://github.com/wix/stylable-webpack-plugin) packages from GitHub. 
 
- While **Stylable** can work with any component framework, we offer a [React component integration](./getting-started/react-integration.md) that works with both installation options. 
+ While **Stylable** can work with any component framework, we offer a [React component integration](./getting-started/react-integration.md) that works with both installation options. If you're a Vue.js fan, here's an example of [Vue and Stylable](https://github.com/wix-playground/stylable-vue-example) working together.
 
 Optionally, you can install [**Stylable Intelligence**](./getting-started/stylable-intelligence.md), an extension providing IDE support for code completion and diagnostics. Currently supported for only Visual Studio Code (version 1.18 and later).
 
