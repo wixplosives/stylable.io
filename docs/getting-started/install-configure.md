@@ -13,11 +13,10 @@ To begin writing your own project, you can create a **Stylable** app from our bo
 
 Using npm:
 ```bash
-npm install -g create-react-app
-
-create-react-app my-app-name --scripts-version stylable-scripts
+npx create-react-app --scripts-version stylable-scripts [APP NAME]
 ```
-For the `my-app-name` value above, replace with the name of your project. Once you run the command, a directory with that same name is created. Go to that directory and run `yarn start` or `yarn build` to create the project in a browser.
+
+For the `[APP NAME]` placeholder above, replace with the name of your project. Once you run the command, a directory with that same name is created. Go to that directory and run `yarn start` to view the project in a browser, or `yarn build` to build your project's target code.
 
 The project includes several basic components and **Stylable** stylesheets which have the suffix `.st.css`. 
 
