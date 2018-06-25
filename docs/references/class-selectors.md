@@ -54,7 +54,7 @@ class Comp {
 Any class defined in a **Stylable** stylesheet is exported as a named export and can be imported by other stylesheets using the directive `-st-named`. These classes are also imported using the [react-integration](../getting-started/react-integration.md) and applied to the DOM as needed.
 
 > **Note**:
-> Classes imported in such a way and used without scoping to your local stylesheet (adding `.root` or a local class as a prefix to the selector) might cause unexpected effects throughout your project. Adding the scoping causes the selector to only affect the rendering subtree from this point onwards.
+> Classes imported this way should be scoped to your local stylesheet by adding `.root` or a local class as a prefix to the selector. Adding the scoping causes the selector to affect only the rendering subtree from this point onwards. If classes are imported without scoping to your local stylesheet, this may cause unexpected effects throughout your project.
 
 ### Example
 
