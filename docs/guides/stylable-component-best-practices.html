@@ -142,7 +142,7 @@
     <h1>Stylable Component - Best Practices</h1>
     <p><strong>Stylable</strong> components should be easily stylable and themable from the outside. This means that the stylesheet describing the component CSS should be as <strong>simple</strong> and <strong>generic</strong> as possible, and should expose a clear and concise API for its internal parts.</p>
 
-<p>When building your components, we recommend following the guidelines below. We’ve accumulated these through our work with <strong>Stylable</strong>:</p>
+<p>When building your components, we recommend following the guidelines below that we’ve collected through our work with <strong>Stylable</strong>:</p>
 
 <h2 id="avoid-size-declarations">Avoid size declarations</h2>
 
@@ -181,7 +181,7 @@
 
 <p>The component stylesheet should describe the bare minimum coloring to make its parts visible. Colors should be used sparingly, and just to achieve visibility.</p>
 
-<p>The best practice is to make sure every color used for a text across the project has sufficiently contrasting background.</p>
+<p>The best practice is to make sure every color used for a text across the project has a sufficiently contrasting background.</p>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.options</span> <span class="p">{</span> 
     <span class="nl">background</span><span class="p">:</span> <span class="n">value</span><span class="p">(</span><span class="n">color1</span><span class="p">);</span> 
@@ -230,7 +230,8 @@ specificity: 0,0,1,1
 </div>
 
 <blockquote>
-  <p>Notice that in the case of the <code class="highlighter-rouge">button</code> selector, we manually added the .root class to avoid overriding <code class="highlighter-rouge">button</code> outside of this scope</p>
+  <p><strong>Note</strong>:
+For the <code class="highlighter-rouge">button</code> selector, we manually added the <code class="highlighter-rouge">.root</code> class to avoid overriding <code class="highlighter-rouge">button</code> outside of this scope.</p>
 </blockquote>
 
 <h2 id="justify-your-css-declarations-in-comments">Justify your CSS declarations in comments</h2>

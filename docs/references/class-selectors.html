@@ -193,7 +193,7 @@ CSS class can also define <a href="./pseudo-classes">states</a> and <a href="./e
 
 <blockquote>
   <p><strong>Note</strong>:
-Classes imported in such a way and used without scoping to your local stylesheet (adding <code class="highlighter-rouge">.root</code> or a local class as a prefix to the selector) might cause unexpected effects throughout your project. Adding the scoping causes the selector to only affect the rendering subtree from this point onwards.</p>
+Classes imported this way should be scoped to your local stylesheet by adding <code class="highlighter-rouge">.root</code> or a local class as a prefix to the selector. Adding the scoping causes the selector to affect only the rendering subtree from this point onwards. If classes are imported without scoping to your local stylesheet, this may cause unexpected effects throughout your project.</p>
 </blockquote>
 
 <h3 id="example">Example</h3>
