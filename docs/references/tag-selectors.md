@@ -12,7 +12,7 @@ Tag selectors are **not** scoped themselves. Other selectors used with a tag sel
 
 Targeting a native element matches any element with the same tag name that is found in a prefix selector. The prefix selector could be a class selector or the root.
 
-To target **all** elements of a certain type in your document, use a [`Global Selector`](./global-selectors.md).
+To target **all** elements of a certain type in your project, use a [`global selector`](./global-selectors.md).
 
 ```css
 /* CSS */
