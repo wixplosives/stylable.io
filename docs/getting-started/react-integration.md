@@ -4,7 +4,7 @@ title: React Integration
 layout: docs
 ---
 
-You can manually integrate **Stylable** with a React component as described below. You can also build your own helpers.
+You can manually integrate **Stylable** with a React component as described below. You can also build your own helpers. (If you’re a Vue.js fan, here’s an example of [Vue and Stylable working together](https://github.com/wix-playground/stylable-vue-example).)
 
 Before you begin, read the [Runtime guide](../guides/runtime.md) to understand the **Stylable** runtime API.
 
