@@ -46,9 +46,9 @@ As a first step, create a [project commons stylesheet](./project-commons.md) nam
 > **Note**:
 > It is recommended to leave the project's CSS rulesets empty with no declarations. These should be defined in a theme file. 
 
-## Themable components
+## Customizable components
 
-Your components should be as easy to style and theme as possible. We recommend following these guidelines when planning: 
+Your components should be as easy to style as possible. We recommend following these guidelines when planning: 
 
 * Expose a good style API and its [custom states](../references/pseudo-classes.md). 
 * The component API should contain the minimum styling required for the component to function. For example some components may require layout. 

@@ -102,5 +102,5 @@ Any class defined in a **Stylable** stylesheet is exported as a named export and
 
 ## Usage
 
-* [Compose CSS class](./compose-css-class.md)
 * [Style pseudo-elements](./pseudo-elements.md)
+* [Use CSS mixins](./mixins.md)

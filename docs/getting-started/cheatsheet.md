@@ -21,7 +21,6 @@ Syntax unique to Stylable - Click each to access code examples and descriptions
 
  * **Directive rules** `-st-*` Instructions for the **Stylable** pre-processor, removed during transpilation
     * [**`-st-extends`**](../references/extend-stylesheet.md) Simple selector base class
-    * [**`-st-compose`**](../references/compose-css-class.md) Append class selector
     * [**`-st-states`**](../references/pseudo-classes.md) Define custom pseudo-classes
     * [**`-st-mixin`**](../references/mixins.md) Apply mixins to CSS ruleset
 * **Selectors**
@@ -35,7 +34,6 @@ Syntax unique to Stylable - Click each to access code examples and descriptions
     * [**`-st-from`**](../references/imports.md) Location of file to import
     * [**`-st-default`**](../references/imports.md) Import the file's default export value
     * [**`-st-named`**](../references/imports.md) Import the file's named export value or values
-    * [**`-st-theme`**](../references/theme.md) Use stylesheet import as theme of stylesheet
 * [**`@namespace "readable name";`**](../references/namespace.md) Development display name for debugging
 * [**`:vars{}`**](../references/variables.md) Define common values to be used across the stylesheet or project
 * [**formatters**](../references/formatters.md) Custom TypeScript/JavaScript functions for generating declaration values

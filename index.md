@@ -140,7 +140,6 @@ So we created **Stylable** &mdash; a CSS preprocessor that enables you to write 
 
 * **Stylable** scopes styles to components so they don’t "leak" and clash with other styles.
 * **Stylable** enables custom pseudo-classes and pseudo-elements that abstract the internal state and structure of a component. These can then be styled externally. For example, you can style the label inside a button, or style the play button of a video player from outside these components.
-* **Stylable** sets themes so you can apply a different look and feel across your web application, for example, the same component can use a Wix theme or a Bootstrap theme depending on the page.
 * At build time, the preprocessor converts the **Stylable** CSS into flat, static, valid, vanilla CSS that works cross-browser.
 
 ## Tooling
