@@ -6,8 +6,8 @@
   "main": "N/A",
   "scripts": {
     "copy-assets": "ts-node build-assets.ts",
-    "deploy": "bundle install && bundle exec jekyll build && gh-pages -d ./_site",
-    "dev": "bundle exec jekyll serve"
+    "deploy": "yarn copy-assets && bundle install && bundle exec jekyll build && gh-pages -d ./_site",
+    "dev": "yarn copy-assets && bundle exec jekyll serve"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,8 @@
     "gh-pages": "^1.1.0",
     "kissfs": "^0.5.3",
     "prismjs": "^1.11.0",
-    "tippy.js": "^2.1.1"
+    "tippy.js": "^2.1.1",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.7.1"
   }
 }
