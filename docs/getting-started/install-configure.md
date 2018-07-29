@@ -16,7 +16,7 @@ Using npm:
 npx create-react-app --scripts-version stylable-scripts [APP NAME]
 ```
 
-For the `[APP NAME]` placeholder above, replace with the name of your project. Once you run the command, a directory with that same name is created. Go to that directory and run `yarn start` to view the project in a browser, or `yarn build` to build your project's target code.
+For the `[APP NAME]` placeholder above, replace with the name of your project. Once you run the command, a directory with that same name is created. Go to that directory and run `yarn`, followed by `yarn start` to view the project in a browser, or `yarn build` to build your project's target code.
 
 The project includes several basic components and **Stylable** stylesheets which have the suffix `.st.css`. 
 
@@ -76,4 +76,50 @@ For more information on configuring the stylable-webpack-plugin, see the   [read
 
 ## Types
 
-TypeScript requires to be made aware of Stylable in order to provide typings and module resolution. To do this, simply copy the `globals.d.ts` file found [here](https://github.com/wix/stylable/blob/master/packages/stylable-scripts/template/src/globals.d.ts){:target="_blank"} to the `src` folder of your Typescript + Stylable project.
+TypeScript requires to be made aware of Stylable in order to provide typings and module resolution for `*.st.css` files. To do this, create a `globals.d.ts` file in your `./src` directory and add the following declaration.
+
+```js
+declare module '*.st.css' {
+    const stylesheet: import('stylable-runtime').RuntimeStylesheet;
+    export default stylesheet;
+}
+```
+
+If your project TypeScript version is below `2.9` and does not support [import type](https://blogs.msdn.microsoft.com/typescript/2018/05/31/announcing-typescript-2-9/#import-types), copy the following snippet into your `globals.d.ts` file.
+
+```js
+type StateValue = boolean | number | string;
+
+interface StateMap {
+    [stateName: string]: StateValue;
+}
+
+interface AttributeMap {
+    className?: string;
+    [attributeName: string]: StateValue | undefined;
+}
+
+interface InheritedAttributes {
+    className?: string;
+    [props: string]: any;
+}
+
+type RuntimeStylesheet = {
+    (className: string, states?: StateMap, inheritedAttributes?: InheritedAttributes): AttributeMap
+    $root: string,
+    $namespace: string,
+    $depth: number,
+    $id: string | number,
+    $css?: string,
+
+    $get(localName: string): string | undefined;
+    $cssStates(stateMapping?: StateMap | null): StateMap;
+} & { [localName: string]: string };
+
+declare module '*.st.css' {
+    const stylesheet: RuntimeStylesheet;
+    export default stylesheet;
+}
+```
+
+> Note: you must define `stylable-runtime` as a dependency.
