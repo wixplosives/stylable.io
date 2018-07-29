@@ -7,7 +7,7 @@ layout: docs
 
 There are currently two options for installing and working with **Stylable** as described in the following sections.
 
-## Write your own project based on a Stylable boilerplate
+## Create a new Stylable project from a boilerplate
 
 To begin writing your own project, you can create a **Stylable** app from our boilerplate. It is based on [create-react-app](https://github.com/facebookincubator/create-react-app). To create the project, follow these instructions: 
 
@@ -22,7 +22,7 @@ The project includes several basic components and **Stylable** stylesheets which
 
 ## Install Stylable to work with an existing project
 
-To work with an existing project, you can install [Stylable](https://github.com/wix/stylable) and the [stylable-webpack-plugin](https://github.com/wix/stylable-webpack-plugin) packages from our GitHub repositories. 
+To work with an existing `webpack` based project, you can install [Stylable](https://github.com/wix/stylable) and the [stylable-webpack-plugin](https://github.com/wix/stylable-webpack-plugin) packages from our GitHub repositories. 
 
 Install **Stylable** and the **stylable-webpack-plugin** as a dependency in your local project.
 
@@ -39,7 +39,7 @@ yarn add stylable stylable-webpack-plugin --dev
 
 Once you've installed either the boilerplate or the packages into your own project, you can begin writing in **Stylable**. Look through the [Specifications Reference](./cheatsheet.md) for specs and code examples. 
 
-To take advantage of code completion and diagnostics, install [**Stylable Intelligence**](./stylable-intelligence.md) currently supported for only Visual Studio Code (version 1.16 and later).
+To take advantage of code completion and diagnostics, install [**Stylable Intelligence**](./stylable-intelligence.md) currently supported for only Visual Studio Code.
 
 ## Build configuration
 
