@@ -25,6 +25,3 @@ yarn-error.log
 _site
 .sass-cache
 .jekyll-metadata
-
-stylable
-generated-playgrounds

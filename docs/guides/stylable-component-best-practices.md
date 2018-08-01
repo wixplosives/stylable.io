@@ -111,9 +111,9 @@ A good way to validate minimal CSS is to add comments. There should be a few wor
 
 This helps with maintenance and development since we don't test CSS as thoroughly as other code.
 
-## Use consistent variables from a theme
+## Use consistent variables from a central location
 
-Import theme variables from the [project commons stylesheet](../guides/project-commons.md).
+Import variables from the [project commons stylesheet](../guides/project-commons.md).
 
 ```css
 :import {

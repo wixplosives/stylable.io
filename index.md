@@ -99,48 +99,10 @@ We want to give CSS a _type system_ &mdash; to do for CSS what TypeScript does f
 
 So we created **Stylable** &mdash; a CSS preprocessor that enables you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
 
-<Wix-playground
-  data-code-path="/js/playground"
-  data-recipe-path="/recipes/playground-recipe.json"
-  data-project-files="/generated-playgrounds/homepage.json"
-  data-layout='{
-    "type":"row",
-    "content":[
-      {
-        "component": "file-panel",
-        "targetPath": "",
-        "isClosable": false,
-        "title": "Files",
-        "width": 18,
-        "props":{
-            "currentPath":"src/index.st.css",
-            "previewPath":"src/index.tsx"
-        }
-      },
-      {
-        "type":"stack",
-        "content":[
-          {
-            "isClosable":true,
-            "component":"code-editor",
-            "targetPath":"src/index.st.css, src/index.tsx, src/button.st.css, src/button.tsx"
-          }
-        ]
-      },
-      {
-        "component":"preview",
-        "isClosable":false,
-        "targetPath":"src/index.tsx"
-      }
-    ]
-  }' >
-</Wix-playground>
-
 ## What Does Stylable Do?
 
 * **Stylable** scopes styles to components so they don’t "leak" and clash with other styles.
 * **Stylable** enables custom pseudo-classes and pseudo-elements that abstract the internal state and structure of a component. These can then be styled externally. For example, you can style the label inside a button, or style the play button of a video player from outside these components.
-* **Stylable** sets themes so you can apply a different look and feel across your web application, for example, the same component can use a Wix theme or a Bootstrap theme depending on the page.
 * At build time, the preprocessor converts the **Stylable** CSS into flat, static, valid, vanilla CSS that works cross-browser.
 
 ## Tooling
@@ -189,14 +151,3 @@ Access the BSD-licensed [**Stylable** GitHub project](https://github.com/wix/sty
 <p>New ideas will come along, but they will extend CSS rather than replace it. I believe that the CSS code we write today will be readable by computers 500 years from now.</p>
 <small>&mdash; <a href="https://dev.opera.com/articles/css-twenty-years-hakon/">Håkon Wium Lie</a>, co-creator of CSS.</small>
 </blockquote>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-      var my_awesome_script = document.createElement('script');
-
-      if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          my_awesome_script.setAttribute('src','{{page.relative_root}}/js/playground/playground.bundle.js?cacheKill=0');
-          document.head.appendChild(my_awesome_script);
-      }
-    });
-</script>
