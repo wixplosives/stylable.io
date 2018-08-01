@@ -119,8 +119,6 @@
             
             <li class=""><a href="./docs/references/global-selectors" class=" docs-nav-item">Global Selectors</a></li>
             
-            <li class=""><a href="./docs/references/compose-css-class" class=" docs-nav-item">Compose CSS Class</a></li>
-            
             <li class=""><a href="./docs/references/custom-selectors" class=" docs-nav-item">Custom Selectors</a></li>
             
             <li class=""><a href="./docs/references/mixins" class=" docs-nav-item">Mixins</a></li>
@@ -128,8 +126,6 @@
             <li class=""><a href="./docs/references/formatters" class=" docs-nav-item">Formatters</a></li>
             
             <li class=""><a href="./docs/references/variables" class=" docs-nav-item">Variables</a></li>
-            
-            <li class=""><a href="./docs/references/theme" class=" docs-nav-item">Theme</a></li>
             
             <li class=""><a href="./docs/references/namespace" class=" docs-nav-item">Namespace</a></li>
             
@@ -229,45 +225,11 @@
 
 <p>So we created <strong>Stylable</strong> — a CSS preprocessor that enables you to write style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.</p>
 
-<Wix-playground data-code-path="/js/playground" data-recipe-path="/recipes/playground-recipe.json" data-project-files="/generated-playgrounds/homepage.json" data-layout="{
-    &quot;type&quot;:&quot;row&quot;,
-    &quot;content&quot;:[
-      {
-        &quot;component&quot;: &quot;file-panel&quot;,
-        &quot;targetPath&quot;: &quot;&quot;,
-        &quot;isClosable&quot;: false,
-        &quot;title&quot;: &quot;Files&quot;,
-        &quot;width&quot;: 18,
-        &quot;props&quot;:{
-            &quot;currentPath&quot;:&quot;src/index.st.css&quot;,
-            &quot;previewPath&quot;:&quot;src/index.tsx&quot;
-        }
-      },
-      {
-        &quot;type&quot;:&quot;stack&quot;,
-        &quot;content&quot;:[
-          {
-            &quot;isClosable&quot;:true,
-            &quot;component&quot;:&quot;code-editor&quot;,
-            &quot;targetPath&quot;:&quot;src/index.st.css, src/index.tsx, src/button.st.css, src/button.tsx&quot;
-          }
-        ]
-      },
-      {
-        &quot;component&quot;:&quot;preview&quot;,
-        &quot;isClosable&quot;:false,
-        &quot;targetPath&quot;:&quot;src/index.tsx&quot;
-      }
-    ]
-  }">
-</Wix-playground>
-
 <h2 id="what-does-stylable-do">What Does Stylable Do?</h2>
 
 <ul>
   <li><strong>Stylable</strong> scopes styles to components so they don’t “leak” and clash with other styles.</li>
   <li><strong>Stylable</strong> enables custom pseudo-classes and pseudo-elements that abstract the internal state and structure of a component. These can then be styled externally. For example, you can style the label inside a button, or style the play button of a video player from outside these components.</li>
-  <li><strong>Stylable</strong> sets themes so you can apply a different look and feel across your web application, for example, the same component can use a Wix theme or a Bootstrap theme depending on the page.</li>
   <li>At build time, the preprocessor converts the <strong>Stylable</strong> CSS into flat, static, valid, vanilla CSS that works cross-browser.</li>
 </ul>
 
@@ -318,18 +280,6 @@ And so much more.</li>
 <p>New ideas will come along, but they will extend CSS rather than replace it. I believe that the CSS code we write today will be readable by computers 500 years from now.</p>
 <small>&mdash; <a href="https://dev.opera.com/articles/css-twenty-years-hakon/">Håkon Wium Lie</a>, co-creator of CSS.</small>
 </blockquote>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-      var my_awesome_script = document.createElement('script');
-
-      if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          my_awesome_script.setAttribute('src','./js/playground/playground.bundle.js?cacheKill=0');
-          document.head.appendChild(my_awesome_script);
-      }
-    });
-</script>
-
 
 </section>
 

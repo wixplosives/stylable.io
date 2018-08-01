@@ -119,8 +119,6 @@
             
                 <li class=""><a href="../../docs/references/global-selectors" class=" docs-nav-item">Global Selectors</a></li>
             
-                <li class=""><a href="../../docs/references/compose-css-class" class=" docs-nav-item">Compose CSS Class</a></li>
-            
                 <li class=""><a href="../../docs/references/custom-selectors" class=" docs-nav-item">Custom Selectors</a></li>
             
                 <li class=""><a href="../../docs/references/mixins" class=" docs-nav-item">Mixins</a></li>
@@ -128,8 +126,6 @@
                 <li class=""><a href="../../docs/references/formatters" class=" docs-nav-item">Formatters</a></li>
             
                 <li class=""><a href="../../docs/references/variables" class=" docs-nav-item">Variables</a></li>
-            
-                <li class=""><a href="../../docs/references/theme" class=" docs-nav-item">Theme</a></li>
             
                 <li class=""><a href="../../docs/references/namespace" class=" docs-nav-item">Namespace</a></li>
             
@@ -249,9 +245,9 @@ For the <code class="highlighter-rouge">button</code> selector, we manually adde
 
 <p>This helps with maintenance and development since we don’t test CSS as thoroughly as other code.</p>
 
-<h2 id="use-consistent-variables-from-a-theme">Use consistent variables from a theme</h2>
+<h2 id="use-consistent-variables-from-a-central-location">Use consistent variables from a central location</h2>
 
-<p>Import theme variables from the <a href="../guides/project-commons">project commons stylesheet</a>.</p>
+<p>Import variables from the <a href="../guides/project-commons">project commons stylesheet</a>.</p>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nd">:import</span> <span class="p">{</span>
     <span class="py">-st-from</span><span class="p">:</span> <span class="s1">"./project.st.css"</span><span class="p">;</span>

@@ -119,8 +119,6 @@
             
                 <li class=""><a href="../../docs/references/global-selectors" class=" docs-nav-item">Global Selectors</a></li>
             
-                <li class=""><a href="../../docs/references/compose-css-class" class=" docs-nav-item">Compose CSS Class</a></li>
-            
                 <li class=""><a href="../../docs/references/custom-selectors" class=" docs-nav-item">Custom Selectors</a></li>
             
                 <li class=""><a href="../../docs/references/mixins" class=" docs-nav-item">Mixins</a></li>
@@ -128,8 +126,6 @@
                 <li class=""><a href="../../docs/references/formatters" class=" docs-nav-item">Formatters</a></li>
             
                 <li class=""><a href="../../docs/references/variables" class=" docs-nav-item">Variables</a></li>
-            
-                <li class=""><a href="../../docs/references/theme" class=" docs-nav-item">Theme</a></li>
             
                 <li class=""><a href="../../docs/references/namespace" class=" docs-nav-item">Namespace</a></li>
             
@@ -142,7 +138,7 @@
     <h1>Installation</h1>
     <p>There are currently two options for installing and working with <strong>Stylable</strong> as described in the following sections.</p>
 
-<h2 id="write-your-own-project-based-on-a-stylable-boilerplate">Write your own project based on a Stylable boilerplate</h2>
+<h2 id="create-a-new-stylable-project-from-a-boilerplate">Create a new Stylable project from a boilerplate</h2>
 
 <p>To begin writing your own project, you can create a <strong>Stylable</strong> app from our boilerplate. It is based on <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a>. To create the project, follow these instructions:</p>
 
@@ -151,13 +147,13 @@
 </code></pre>
 </div>
 
-<p>For the <code class="highlighter-rouge">[APP NAME]</code> placeholder above, replace with the name of your project. Once you run the command, a directory with that same name is created. Go to that directory and run <code class="highlighter-rouge">yarn start</code> to view the project in a browser, or <code class="highlighter-rouge">yarn build</code> to build your project’s target code.</p>
+<p>For the <code class="highlighter-rouge">[APP NAME]</code> placeholder above, replace with the name of your project. Once you run the command, a directory with that same name is created. Go to that directory and run <code class="highlighter-rouge">yarn</code>, followed by <code class="highlighter-rouge">yarn start</code> to view the project in a browser, or <code class="highlighter-rouge">yarn build</code> to build your project’s target code.</p>
 
 <p>The project includes several basic components and <strong>Stylable</strong> stylesheets which have the suffix <code class="highlighter-rouge">.st.css</code>.</p>
 
 <h2 id="install-stylable-to-work-with-an-existing-project">Install Stylable to work with an existing project</h2>
 
-<p>To work with an existing project, you can install <a href="https://github.com/wix/stylable">Stylable</a> and the <a href="https://github.com/wix/stylable-webpack-plugin">stylable-webpack-plugin</a> packages from our GitHub repositories.</p>
+<p>To work with an existing <code class="highlighter-rouge">webpack</code> based project, you can install <a href="https://github.com/wix/stylable">Stylable</a> and the <a href="https://github.com/wix/stylable-webpack-plugin">stylable-webpack-plugin</a> packages from our GitHub repositories.</p>
 
 <p>Install <strong>Stylable</strong> and the <strong>stylable-webpack-plugin</strong> as a dependency in your local project.</p>
 
@@ -174,7 +170,7 @@
 
 <p>Once you’ve installed either the boilerplate or the packages into your own project, you can begin writing in <strong>Stylable</strong>. Look through the <a href="./cheatsheet">Specifications Reference</a> for specs and code examples.</p>
 
-<p>To take advantage of code completion and diagnostics, install <a href="./stylable-intelligence"><strong>Stylable Intelligence</strong></a> currently supported for only Visual Studio Code (version 1.16 and later).</p>
+<p>To take advantage of code completion and diagnostics, install <a href="./stylable-intelligence"><strong>Stylable Intelligence</strong></a> currently supported for only Visual Studio Code.</p>
 
 <h2 id="build-configuration">Build configuration</h2>
 
@@ -211,7 +207,55 @@
 
 <h2 id="types">Types</h2>
 
-<p>TypeScript requires to be made aware of Stylable in order to provide typings and module resolution. To do this, simply copy the <code class="highlighter-rouge">globals.d.ts</code> file found <a href="https://github.com/wix/stylable/blob/master/packages/stylable-scripts/template/src/globals.d.ts" target="_blank">here</a> to the <code class="highlighter-rouge">src</code> folder of your Typescript + Stylable project.</p>
+<p>TypeScript requires to be made aware of Stylable in order to provide typings and module resolution for <code class="highlighter-rouge">*.st.css</code> files. To do this, create a <code class="highlighter-rouge">globals.d.ts</code> file in your <code class="highlighter-rouge">./src</code> directory and add the following declaration.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">declare</span> <span class="nx">module</span> <span class="s1">'*.st.css'</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">stylesheet</span><span class="err">:</span> <span class="kr">import</span><span class="p">(</span><span class="s1">'stylable-runtime'</span><span class="p">).</span><span class="nx">RuntimeStylesheet</span><span class="p">;</span>
+    <span class="kr">export</span> <span class="k">default</span> <span class="nx">stylesheet</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>If your project TypeScript version is below <code class="highlighter-rouge">2.9</code> and does not support <a href="https://blogs.msdn.microsoft.com/typescript/2018/05/31/announcing-typescript-2-9/#import-types">import type</a>, copy the following snippet into your <code class="highlighter-rouge">globals.d.ts</code> file.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">StateValue</span> <span class="o">=</span> <span class="kr">boolean</span> <span class="o">|</span> <span class="nx">number</span> <span class="o">|</span> <span class="nx">string</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">StateMap</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">stateName</span><span class="err">:</span> <span class="nx">string</span><span class="p">]</span><span class="err">:</span> <span class="nx">StateValue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">AttributeMap</span> <span class="p">{</span>
+    <span class="nx">className</span><span class="p">?:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="p">[</span><span class="nx">attributeName</span><span class="err">:</span> <span class="nx">string</span><span class="p">]</span><span class="err">:</span> <span class="nx">StateValue</span> <span class="o">|</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">InheritedAttributes</span> <span class="p">{</span>
+    <span class="nx">className</span><span class="p">?:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="p">[</span><span class="nx">props</span><span class="err">:</span> <span class="nx">string</span><span class="p">]</span><span class="err">:</span> <span class="nx">any</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">type</span> <span class="nx">RuntimeStylesheet</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">(</span><span class="na">className</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">states</span><span class="p">?:</span> <span class="nx">StateMap</span><span class="p">,</span> <span class="nx">inheritedAttributes</span><span class="p">?:</span> <span class="nx">InheritedAttributes</span><span class="p">):</span> <span class="nx">AttributeMap</span>
+    <span class="na">$root</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+    <span class="na">$namespace</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+    <span class="na">$depth</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span>
+    <span class="na">$id</span><span class="p">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="nx">number</span><span class="p">,</span>
+    <span class="nx">$css</span><span class="p">?:</span> <span class="nx">string</span><span class="p">,</span>
+
+    <span class="nx">$get</span><span class="p">(</span><span class="na">localName</span><span class="p">:</span> <span class="nx">string</span><span class="p">):</span> <span class="nx">string</span> <span class="o">|</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="nx">$cssStates</span><span class="p">(</span><span class="nx">stateMapping</span><span class="p">?:</span> <span class="nx">StateMap</span> <span class="o">|</span> <span class="kc">null</span><span class="p">):</span> <span class="nx">StateMap</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">&amp;</span> <span class="p">{</span> <span class="p">[</span><span class="na">localName</span><span class="p">:</span> <span class="nx">string</span><span class="p">]:</span> <span class="nx">string</span> <span class="p">};</span>
+
+<span class="nx">declare</span> <span class="nx">module</span> <span class="s1">'*.st.css'</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="na">stylesheet</span><span class="p">:</span> <span class="nx">RuntimeStylesheet</span><span class="p">;</span>
+    <span class="kr">export</span> <span class="k">default</span> <span class="nx">stylesheet</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: you must define <code class="highlighter-rouge">stylable-runtime</code> as a dependency.</p>
+</blockquote>
 
 </section>
 
