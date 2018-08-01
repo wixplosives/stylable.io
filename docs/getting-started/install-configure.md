@@ -122,4 +122,3 @@ declare module '*.st.css' {
 }
 ```
 
-> Note: you must define `stylable-runtime` as a dependency.
