@@ -6,8 +6,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'wix', // Usually your GitHub org/user name.
-  projectName: 'stylable', // Usually your repo name.
+  organizationName: 'wixplosives', // Usually your GitHub org/user name.
+  projectName: 'stylable.io', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'Stylable',
@@ -72,7 +72,7 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/wix/stylable',
+              href: 'https://github.com/wixplosives/stylable.io',
             },
           ],
         },
