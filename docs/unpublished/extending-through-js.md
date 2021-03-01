@@ -11,8 +11,8 @@ This enables developers greater freedom in generating CSS from code to provide c
 
  **Stylable** supports the following types of plugins:
 * Values - string values exported from a javascript module.
-* [Formatters]('./formatters.md) - functions for manipulating single CSS declaration values.
-* [Mixins]('./mixins.md) - functions for generating a CSS fragment that can include single or multiple rulesets and declarations. 
+* [Formatters](../references/formatters.md) - functions for manipulating single CSS declaration values.
+* [Mixins](../references/mixins.md) - functions for generating a CSS fragment that can include single or multiple rulesets and declarations. 
 
 The types described below are the provided arguments **Stylable** provides for the plugins. For example: 
 

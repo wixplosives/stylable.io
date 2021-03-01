@@ -38,12 +38,12 @@ module.exports = {
           items: [
             {
               label: 'Style Guide',
-              to: 'docs/',
+              to: 'docs/style-guide',
             },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
-            },
+            // {
+            //   label: 'Second Doc',
+            //   to: 'docs/doc2/',
+            // },
           ],
         },
         {
@@ -87,13 +87,13 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/wix/stylable/edit/master/packages/stylable.io2/docs',
+            'https://github.com/wixplosives/stylable.io/edit/master/docs',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/wix/stylable/edit/master/packages/stylable.io2/blog',
+            'https://github.com/wixplosives/stylable.io/edit/master/blog',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
