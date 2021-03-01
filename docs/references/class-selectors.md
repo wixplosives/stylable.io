@@ -24,7 +24,7 @@ You should use camelCase to name class selectors. Avoid using hyphens (-) and ca
 .Page__thumbnail:hover { background:blue; }
 ```
 
-```js
+```jsx
 /* comp.jsx */
 import React from 'react';
 import { style, classes } from './comp.st.css';

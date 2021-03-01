@@ -34,7 +34,7 @@ The value `form` itself is not namespaced.
 
 :::
 
-```js
+```jsx
 /* comp.jsx */
 import React from 'react';
 import { style, classes } from './comp.st.css';
@@ -74,7 +74,7 @@ When the value of a stylesheet is [imported](./imports.md) with a **capital firs
 .Page__sideBar:hover .ToggleButton__root { background: red; }
 ```
 
-```js
+```jsx
 /* comp.jsx */
 import React from 'react';
 import { style, classes } from './comp.st.css';

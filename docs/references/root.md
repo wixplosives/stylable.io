@@ -26,7 +26,7 @@ If the root class exists and is being used, all other classes defined in the sty
 
 The `root` class name can be applied to a component node by using our [React integration](../getting-started/react-integration.md).
 
-```js
+```jsx
 /* comp.jsx */
 import React from 'react';
 import { style, classes } from './comp.st.css';
@@ -34,7 +34,7 @@ import { style, classes } from './comp.st.css';
 class Comp extends React.Component {
     render () {
         return (
-            <div className={style(classes.root, {}, this.props.className)} />
+            <div className={style(classes.root, {}, this.props.className)} ></div>
         );
     }
 }

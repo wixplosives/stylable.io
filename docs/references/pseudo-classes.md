@@ -127,7 +127,7 @@ Custom pseudo-classes are implemented using `className` attributes and need addi
 **Stylable** offers [React CSS state integration](../getting-started/react-integration.md) to help components manage custom pseudo-classes easily.
 
 
-```js
+```jsx
 /* sample of a stylable component */
 import { style, classes } from './stylesheet.st.css';
 

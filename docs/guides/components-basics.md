@@ -22,7 +22,7 @@ Whether creating your own components or using components you imported from a 3rd
 
 Let's say you have a `Button` component with a render function per this example. You can style its JSX using the `className` property straight from the style object, or by executing the style [runtime function](./runtime.md) (see the `root` node as an example).
 
-```js
+```jsx
 /* button.jsx */
 import * as React from 'react';
 import { style, classes } from './button.st.css';
@@ -49,7 +49,9 @@ Now in the component's **Stylable** CSS file called `button.st.css`, you can dec
 /* button.st.css */
 
 /* 
-note that all of these classes are placed manually on the DOM using the Stylable integration in the component logic, in this case, button.tsx
+ * note that all of these classes are placed manually on the DOM 
+ * using the Stylable integration in the component logic,
+ * in this case, button.tsx
 */
 .root { 
     background: #b0e0e6;
@@ -86,7 +88,7 @@ You can now style your `Button` in the scope of the `Panel` so that it fits its 
 
 Let's take the `Button` component and import it into the JSX file, and also add it to the render:
 
-```js
+```jsx
 /* panel.jsx */
 import * as React from 'react';
 import { Button } from '../button';
@@ -128,7 +130,7 @@ You can also create custom states for the component that are available as [pseud
 
 A custom pseudo-class can be used to reflect any logical state of your component. For example, your `Button` has a state called `on`. In this example, it is toggled when the button is clicked.
 
-```js
+```jsx
 /* button.jsx */
 import * as React from 'react';
 import { style, classes } from './button.st.css';

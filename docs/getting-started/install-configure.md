@@ -86,7 +86,7 @@ For more information on configuring the @stylable/webpack-plugin, see the [readm
 
 TypeScript requires to be made aware of Stylable in order to provide typings and module resolution for `*.st.css` files. To do this, create a `globals.d.ts` file in your `./src` directory and add the following declaration.
 
-```js
+```ts
 // globals.d.ts
 declare module '*.st.css' {
     const stylesheet: import('@stylable/runtime').RuntimeStylesheet;
@@ -96,7 +96,7 @@ declare module '*.st.css' {
 
 If your project TypeScript version is below `2.9` and does not support [import type](https://blogs.msdn.microsoft.com/typescript/2018/05/31/announcing-typescript-2-9/#import-types), copy the following snippet into your `globals.d.ts` file.
 
-```js
+```ts
 export type StateValue = boolean | number | string;
 
 export interface StateMap {

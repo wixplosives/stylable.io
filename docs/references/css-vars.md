@@ -76,7 +76,7 @@ Due to the fact Stylable provides scoping to CSS variables, it also provides the
 
 Override any variable by redefining its value using an inline style attribute. 
 
-```js
+```jsx
 import { classes, vars } from './entry.st.css';
 
 <div className={classes.root}
@@ -87,9 +87,10 @@ import { classes, vars } from './entry.st.css';
 ```
 
 Output:
-```js
+```jsx
 <div className="entry__root" 
-    style="--entry-color: green; --entry-border-size: 5px; background: gold;" />
+     style="--entry-color: green; --entry-border-size: 5px; background: gold;" >
+</div>
 ```
 
 ## Using global CSS variables
@@ -107,14 +108,14 @@ This is mostly useful when working with 3rd-party libraries, where you only atte
 }
 ```
 
-```js
+```jsx
 import { classes } from './entry.st.css';
 
 <div className={classes.root}
      style={{ 
          '--color': 'red', 
-         '--bg': 'yellow' }}
-/>
+         '--bg': 'yellow' }} >
+</div>>
 ```
 
 :::note

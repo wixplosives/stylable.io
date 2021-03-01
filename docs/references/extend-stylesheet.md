@@ -35,7 +35,7 @@ In this example, the stylesheet is extending the `toggle-button.st.css` styleshe
 .Page__checkBtn.ToggleButton--toggled .ToggleButton__label { color: red; }
 ```
 
-```js
+```jsx
 /* page.jsx */
 import React from 'react';
 import { style, classes } from './comp.st.css';

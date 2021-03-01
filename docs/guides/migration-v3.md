@@ -127,7 +127,7 @@ There are subtle but very important nuances in this change.
 
      Stylable v2 and v3 usage is like so:
 
-     ```
+     ```js
      className={st(classes.root, states, this.props.className)}
      ```
 
