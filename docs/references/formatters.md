@@ -1,7 +1,6 @@
 ---
-id: references/formatters
+id: formatters
 title: Formatters
-layout: docs
 ---
 
 Formatters are functions that return a single CSS declaration value. They can receive arguments, process them and return the value. 
@@ -55,7 +54,7 @@ module.exports = function(baseSize, modifier) {
     }
 ```
 ```css
-/* CSS output*/
+/* CSS output */
 .header {
     font-size: 32px;
 }
@@ -73,7 +72,7 @@ module.exports = function(baseSize, modifier) {
 
 When the formatter is imported into the CSS, it can also be used with a [variable](./variables.md). 
 
-In this example the CSS imports the same formatter as the previous example, `cal-font-size`, but the variable `baseFontSize` is added to the calculation.  
+In this example the CSS imports the same formatter as the previous example, `calc-font-size`, but the variable `baseFontSize` is added to the calculation.  
 
 ```css
 :import {
@@ -95,7 +94,7 @@ In this example the CSS imports the same formatter as the previous example, `cal
 ```
 
 ```css
-/* CSS output*/
+/* CSS output */
 .header {
     font-size: 24px;
 }
@@ -107,7 +106,7 @@ In this example the CSS imports the same formatter as the previous example, `cal
 ## Nested formatters
 You can also nest formatters to provide functions that are modular, composable and reusable. 
 
-In this example the formatter `sin` is nested in the `abs` formatter. Both are imported into the CSS file and the output value is calculated from both. The formatters expose to the CSS mathematical calculations that are used in the JavaScript functions.
+In this example the formatter `divBy2` is nested in the `round` formatter. Both are imported into the CSS file and the output value is calculated from both. The formatters expose to the CSS mathematical calculations that are used in the JavaScript functions.
 
 ```js
 /* ./math.js */
@@ -137,7 +136,7 @@ module.export = {
 ```
 
 ```css
-/* CSS output*/
+/* CSS output */
 .header {
     font-size: 9px;
 }

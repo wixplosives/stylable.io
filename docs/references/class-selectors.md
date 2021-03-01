@@ -1,7 +1,7 @@
 ---
-id: references/class-selectors
+id: class-selectors
 title: CSS Class Selectors
-layout: docs
+sidebar_label: Class Selectors
 ---
 
 You use [CSS classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) to define the local name of internal component parts. For example, you can define a `.button` in a menu component.
@@ -11,7 +11,6 @@ In **Stylable**, class selectors are scoped to the [namespace](./namespace.md) o
 You should use camelCase to name class selectors. Avoid using hyphens (-) and capital first letters.
 
 ```css
-/* CSS */
 @namespace "Page";
 .root:hover .thumbnail { background:red; }
 .thumbnail { background:green; }
@@ -19,7 +18,7 @@ You should use camelCase to name class selectors. Avoid using hyphens (-) and ca
 ```
 
 ```css
-/* CSS output*/
+/* CSS output */
 .Page__root:hover .Page__thumbnail { background:red; }
 .Page__thumbnail { background:green;}
 .Page__thumbnail:hover { background:blue; }
@@ -27,17 +26,13 @@ You should use camelCase to name class selectors. Avoid using hyphens (-) and ca
 
 ```js
 /* comp.jsx */
-import * as React from 'react';
-import style from './comp.st.css';
+import React from 'react';
+import { style, classes } from './comp.st.css';
 
-class Comp {
-    constructor(props) {
-        super(props);
-    }
-
+class Comp extends React.Component {
     render () {
         return (
-            <div { ...style('root', {}, this.props) }>
+            <div className={style(classes.root, {}, this.props)}>
                 <img className={style.thumbnail} />
             </div>
         )

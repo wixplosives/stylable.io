@@ -1,15 +1,14 @@
 ---
-id: guides/components-basics
+id: components-basics
 title: Component Basics
-layout: docs
 ---
 
 This guide walks you through the basics of how to style and work with components using **Stylable**. 
 
-You use **Stylable** with a component file (for example using React), along with a **Stylable** CSS file that has the extention `.st.css`.
+You use **Stylable** with a component file (for example using React), along with a **Stylable** CSS file that has the extension `.st.css`.
 
 > **Note**:  
-> This guide shows the `JSX` side of our [stylable-webpack-plugin](https://github.com/wix/stylable/tree/master/packages/stylable-webpack-plugin){:target="_blank"} integration with React. 
+> This guide shows the `JSX` side of our [@stylable/webpack-plugin](https://github.com/wix/stylable/tree/master/packages/webpack-plugin){:target="_blank"} integration with React. 
 
 **Stylable** styles are similar to a type-system. Once you have declared that a CSS class is of the type `Button` for example, **Stylable** knows its internal structure and can match its internal parts and states.
 
@@ -18,12 +17,12 @@ Whether creating your own components or using components you imported from a 3rd
 
 ## 1. Style a component 
 
-Let's say you have a `Button` component with a render function per this example. You can style its JSX using the `className` property straight from the style object, or by executing and then [spreading](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes){:target="_blank"} the style [runtime function](./runtime.md) (see the `root` node as an example).
+Let's say you have a `Button` component with a render function per this example. You can style its JSX using the `className` property straight from the style object, or by executing the style [runtime function](./runtime.md) (see the `root` node as an example).
 
 ```js
 /* button.jsx */
 import * as React from 'react';
-import style from './button.st.css';
+import { style, classes } from './button.st.css';
 
 class Button {
     constructor(props) {
@@ -32,9 +31,9 @@ class Button {
 
     render () {
         return (
-            <button { ...style('root', {}, this.props) } >
-                <span className={style.icon} />
-                <span className={style.label} >Submit</span>
+            <button className={style(classes.root, this.props.className) } >
+                <span className={classes.icon} />
+                <span className={classes.label} >Submit</span>
             </button>
         );
     }
@@ -88,11 +87,11 @@ Let's take the `Button` component and import it into the JSX file, and also add 
 /* panel.jsx */
 import * as React from 'react';
 import { Button } from '../button';
-import style from './panel.st.css';
+import { style, classes } from './panel.st.css';
 
 export const Panel = () => (
-    <div { ...style('root', {}, this.props) } >
-        <Button className={style.cancelBtn} />
+    <div className={style(classes.root, this.props.className) } >
+        <Button className={classes.cancelBtn} />
     </div>
 );
 ```
@@ -129,7 +128,7 @@ A custom pseudo-class can be used to reflect any logical state of your component
 ```js
 /* button.jsx */
 import * as React from 'react';
-import style from './button.st.css';
+import { style, classes } from './button.st.css';
 
 class Button {
     constructor(props) {
@@ -141,10 +140,10 @@ class Button {
     }
     render () {
         return (
-            <button { ...style('root', { on: this.state.on }, this.props) } 
+            <button className={style(classes.root, { on: this.state.on }, this.props.className) } 
                     onClick={() => this.setState({ on: !this.state.on })} >
-                <span className={style.icon} />
-                <span className={style.label} >Submit</span>
+                <span className={classes.icon} />
+                <span className={classes.label} >Submit</span>
             </button>
         );
     }
@@ -186,4 +185,4 @@ You can then target `Button`'s `on` state in your `panel` component as follows:
 
 * [Building an Application](./stylable-application.md)
 * [Building a Component Library](./stylable-component-library.md)
-* [Stylable Cheatsheet](../getting-started/cheatsheet.md)
+* [Stylable Cheatsheet](../references/cheatsheet.md)

@@ -1,7 +1,6 @@
 ---
-id: guides/shared-classes
+id: shared-classes
 title: Shared Classes
-layout: docs
 ---
 
 When building a [Stylable component library](./stylable-component-library.md) or a [Stylable application](./stylable-application.md), it is useful to reuse classes that can be shared across components to achieve common CSS with lower specificity.
