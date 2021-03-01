@@ -52,9 +52,11 @@ In this example, you [import](./imports.md) a `VideoPlayer` component into your 
 }
 ```
 
-> **Note**    
-> Custom pseudo-elements are not limited to the end of a selector like native pseudo-elements, and they can be chained. For example, you can access the label of a navigation button from a gallery: `.myGallery::navBtn::label`.
+:::note
 
+Custom pseudo-elements are not limited to the end of a selector like native pseudo-elements, and they can be chained. For example, you can access the label of a navigation button from a gallery: `.myGallery::navBtn::label`.
+
+:::
 
 ## Extend stylesheet pseudo-elements
 
@@ -115,8 +117,11 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 
 You can use CSS classes to override extended pseudo-elements. 
 
-> **Note**    
-> You can also override native pseudo-elements using **Stylable's** custom pseudo-elements but this is not recommended as it can lead to code that's confusing and hard to maintain.
+:::caution
+
+You can also override native pseudo-elements using **Stylable's** custom pseudo-elements but this is not recommended as it can lead to code that's confusing and hard to maintain.
+
+:::
 
 In this example, `root` extends `VideoPlayer` and so any class placed on the `root` overrides the pseudo-element.
 
@@ -144,6 +149,8 @@ In this example, `root` extends `VideoPlayer` and so any class placed on the `ro
 .SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton { color: grey; }
 ```
 
-> **Note**    
-> Overriding pseudo-elements changes the targeting in the overriding stylesheet and not in the stylesheet being extended.
+:::note
 
+Overriding pseudo-elements changes the targeting in the overriding stylesheet and not in the stylesheet being extended.
+
+:::

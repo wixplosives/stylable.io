@@ -29,8 +29,11 @@ When defining a custom pseudo-class with a parameter:
 }
 ```
 
-> **Note**   
-> When defining a `default value`, you can use [variables](./variables.md) and [formatters](./formatters.md).
+:::tip
+
+When defining a `default value`, you can use [variables](./variables.md) and [formatters](./formatters.md).
+
+:::
 
 ## Tag
 

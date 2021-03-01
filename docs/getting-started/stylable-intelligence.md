@@ -26,7 +26,10 @@ If you are using an extension that you would like to add to this list, let us kn
 
 Because Stylable files are not recognized as CSS, we proxy the CSS Language Server through stylable-intelligence. Most basic features are already supported, but if you notice anything strange, let us know.
 
-> **Note:**  
-> Future plans include:
-> * More Language Server features. 
-> * Support for JetBrains IDEs (WebStorm, IntelliJ). Currently supported only in VSCode (version 1.16 and later).
+:::note
+
+Future plans include:
+* More Language Server features. 
+* Support for JetBrains IDEs (WebStorm, IntelliJ). Currently supported only in VSCode (version 1.16 and later).
+
+:::

@@ -1,7 +1,6 @@
 ---
 id: react-integration
 title: React Integration
-layout: docs
 ---
 
 You can manually integrate **Stylable** with a React component as described below. You can also build your own helpers.
@@ -32,8 +31,11 @@ The result of the above generates and adds the props needed to define the root e
 * Appends `className` override from component props to the root `className`
 * Custom or overridden component states are added via additional class names
 
-> **Note**  
-> To enable external styling, we recommend passing the `className` prop. To make the component more stylable, we also recommend also merging the `style` prop.
+:::important  
+
+To enable external styling, we recommend passing the `className` prop. To make the component more stylable, we also recommend also merging the `style` prop.
+
+:::
 
 All nodes, other than `root`, can be marked directly with the class mapping and the [$cssStates](../guides/runtime#custom-state-mapping) function:
 

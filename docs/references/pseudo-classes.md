@@ -77,8 +77,11 @@ In this example, `toggled` and `loading` are defined on the root class with thei
 .ExampleCustom__root[dataSpinner] { color: green; }
 ```
 
-> **Note**    
-> When writing custom mapping, ensure your custom selector targets a simple selector, and not a CSS complex selector.
+:::note
+
+When writing custom mapping, ensure your custom selector targets a simple selector, and not a CSS complex selector.
+
+:::
 
 ## State inheritance
 
@@ -111,8 +114,11 @@ You can extend another imported stylesheet and inherit its custom pseudo-classes
 .Example2__mediaButton.Example2--toggled { color: gold;} /* toggled scoped to Example2 - last to declare */
 ```
 
-> **Note**    
-> You can override the behavior of native pseudo-classes. This can enable you to write [polyfills](https://remysharp.com/2010/10/08/what-is-a-polyfill) for forthcoming CSS pseudo-classes to ensure that when you define a name for a custom pseudo-class, if there are clashes with a new CSS pseudo-class in the future, your app's behavior does not change. We don't recommend you to override an existing CSS pseudo-class unless you want to drive your teammates insane.
+:::note
+
+You can override the behavior of native pseudo-classes. This can enable you to write [polyfills](https://remysharp.com/2010/10/08/what-is-a-polyfill) for forthcoming CSS pseudo-classes to ensure that when you define a name for a custom pseudo-class, if there are clashes with a new CSS pseudo-class in the future, your app's behavior does not change. We don't recommend you to override an existing CSS pseudo-class unless you want to drive your teammates insane.
+
+:::
 
 ## Enable custom pseudo-classes
 

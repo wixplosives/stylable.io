@@ -101,15 +101,12 @@ You can use these keyframes to apply animations via inline styling.
 }
 ```
 
-{% raw %}
 ```js
 import { classes, keyframes } from './entry.st.css';
 
 <div className={classes.root}
      style={{ animationName: keyframes.slide }} />
 ```
-{% endraw %}
-
 
 ```html
 /* DOM output */

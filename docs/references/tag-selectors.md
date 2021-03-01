@@ -28,8 +28,11 @@ To target **all** elements of a certain type in your project, use a [`global sel
 span { background: blue; } /* this will affect *ALL* spans in your application */
 ```
 
-> **Note**    
-> The value `form` itself is not namespaced.
+:::note
+
+The value `form` itself is not namespaced.
+
+:::
 
 ```js
 /* comp.jsx */

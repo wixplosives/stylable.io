@@ -37,8 +37,11 @@ classes.label // "style__label"
 classes.icon  // "style__icon"
 ```
 
-> **Note**  
-> The [root class](../references/root.md) is available even when it is not defined in the stylesheet. 
+:::note
+
+The [root class](../references/root.md) is available even when it is not defined in the stylesheet. 
+
+:::
 
 ## Custom state mapping
 
@@ -76,8 +79,11 @@ style('root')
 /* 'root' */
 ```
 
-> **Note**  
-> Stylable no longer performs auto-scoping for classes, and strings are passed as-is. Use the `classes` mapping object to resolve to the scoped class name.
+:::caution
+
+Stylable no longer performs auto-scoping for classes, and strings are passed as-is. Use the `classes` mapping object to resolve to the scoped class name.
+
+:::
 
 ### Custom states
 

@@ -1,6 +1,7 @@
 ---
 id: component-best-practices
 title: Stylable Component - Best Practices
+sidebar_label: Component Best Practices
 ---
 
 **Stylable** components should be easily stylable and themable from the outside. This means that the stylesheet describing the component CSS should be as **simple** and **generic** as possible, and should expose a clear and concise API for its internal parts.
@@ -92,8 +93,11 @@ specificity: 0,0,1,1
 .root button {} 
 ```
 
-> **Note**:
-> For the `button` selector, we manually added the `.root` class to avoid overriding `button` outside of this scope.
+:::note
+
+For the `button` selector, we manually added the `.root` class to avoid overriding `button` outside of this scope.
+
+:::
 
 ## Justify your CSS declarations in comments
 

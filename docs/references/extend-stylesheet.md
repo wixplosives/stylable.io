@@ -5,8 +5,11 @@ title: Extend Stylable Stylesheet
 
 Use the `-st-extends` directive rule to extend a CSS class with another stylesheet. This enables you to style [pseudo-classes](./pseudo-classes.md) and [pseudo-elements](./pseudo-elements.md) of the extended stylesheet.
 
-> **Note**  
->`-st-extends` can be applied only to [class selectors](./class-selectors.md) and [root](./root.md).
+:::important
+
+`-st-extends` can be applied only to [class selectors](./class-selectors.md) and [root](./root.md).
+
+:::
 
 In this example, the stylesheet is extending the `toggle-button.st.css` stylesheet. The `checkBtn` class has a `label`, which is a custom pseudo-element, and has a custom pseudo-class, `toggled`. 
 

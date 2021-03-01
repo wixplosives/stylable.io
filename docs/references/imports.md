@@ -30,11 +30,14 @@ title: Imports
 
 Every example below will feature both types of import syntaxes, their end result is identical.
 
-> **Note**  
-> * `:import` is a Stylable directive and not a selector.
-> * likewise, `@st-import` is a Stylable directive and not an actual at-rule.
-> * Import statements cannot be used as a part of a complex selector or inside a CSS ruleset.
-> * Multiple imports may conflict in their used symbol names; the last one in the file wins.
+:::important
+
+* `:import` is a Stylable directive and not a selector.
+* likewise, `@st-import` is a Stylable directive and not an actual at-rule.
+* Import statements cannot be used as a part of a complex selector or inside a CSS ruleset.
+* Multiple imports may conflict in their used symbol names; the last one in the file wins.
+
+:::
 
 ## Imports - basic usage
 
@@ -46,9 +49,11 @@ Import the `button.st.css` stylesheet from a local location. Assign the name `Bu
 
 When importing another stylesheet, the default import represents the root of the stylesheet and is generally treated as a component, and named imports represent other internal stylesheet parts.
 
-> **Note**  
-> Generally when importing a **default** value from a stylable file, you should use a capital letter to signify that the value represents a component root node in this stylesheet. 
+:::important
 
+Generally when importing a **default** value from a stylable file, you should use a capital letter to signify that the value represents a component root node in this stylesheet. 
+
+:::
 
 ```css
 /* comp.st.css - atRule syntax */
@@ -100,8 +105,11 @@ import { label, icon, --bgColor } from './button.st.css';
 
 The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript module `my-mixins.js`. These named exports are now imported into this scoped stylesheet.
 
-> **Note**  
-> When importing named values, they are generally used as class or tag selectors and, therefore, you should camelCase to name them.
+:::tip
+
+When importing named values, they are generally used as class or tag selectors and, therefore, you should camelCase to name them.
+
+:::
 
 ```css
 /* comp.st.css - atRule syntax */

@@ -29,9 +29,12 @@ v3 Stylable:
 - `@stylable/node`
 - `@stylable/webpack-plugin`
 
-> Note: all Stylable packages in v3 are scoped under `@stylable` namespace. 
-> if you have dependency like `stylable` (without namespace),
-> it is a different one and should be changed to scoped version.
+:::tip
+
+all Stylable packages in v3 are scoped under the `@stylable` namespace. 
+if you have dependencies like `stylable` (without scope), it is the old one and should be changed to scoped version.
+
+:::
 
 # Update global typings
 
@@ -79,9 +82,13 @@ However, most often `{ st, classes }` is enough:
 
 `import { st, classes } from './Component.st.css';`
 
-> Note: `.st.css` files export a `style` function and an alias to it -
-> `st`. It is recommended to use `st` in order to avoid name clashing
-> with other variables (for example, some other inline style).
+:::tip
+
+`.st.css` files export a `style` function and an alias to it -
+`st`. It is recommended to use `st` in order to avoid name clashing
+with other variables (for example, some other inline style).
+
+:::
 
 ### CSS custom properties 
 
@@ -95,7 +102,7 @@ See the docs about [CSS custom properties](https://stylable.io/docs/references/c
 Once `.st.css` imports are updated, React components should be updated too:
 
 ```diff
--<div {...style('root', states, props)} /> />
+-<div {...style('root', states, props)} />
 +<div className={st(classes.root, states, props.className)} />
 ```
 

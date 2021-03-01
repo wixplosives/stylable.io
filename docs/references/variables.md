@@ -8,8 +8,11 @@ These variables are used only during build-time and have no impact on the result
 
 If you wish to use dynamic variables, and to change their values during runtime, see [css custom properties (vars)](./css-vars.md) for further details.
 
-> **Note**    
-> Variables are scoped to the specific stylesheet and do not conflict with variables from another stylesheet.
+:::important
+
+Variables are scoped to the specific stylesheet and do not conflict with variables from another stylesheet.
+
+:::
 
 ## Use in stylesheet
 
@@ -63,9 +66,11 @@ Any var defined in a stylesheet is exported as a named export and can be [import
 }
 ```
 
-> **Note**  
-> Imported variables are not exported from the stylesheet that has imported them. They can be imported only from the stylesheet in which they are declared.
+:::important
 
+Imported variables are not exported from the stylesheet that has imported them. They can be imported only from the stylesheet in which they are declared.
+
+:::
 
 ## Compose variables
 
@@ -157,4 +162,9 @@ Stylable also offers a custom variable type, `stBorder`, that must be imported f
     background-color: value(myBorder, color); /* green */
 }
 ```
-> Note: `stBorder` is just the first of future custom variable types that will be available in Stylable.
+
+:::note
+
+`stBorder` is just the first of future custom variable types that will be available in Stylable.
+
+:::

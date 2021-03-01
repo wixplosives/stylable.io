@@ -45,8 +45,11 @@ Comp::controlBtn {
 }
 ```
 
-> **Note**:    
-> If a `custom-selector` alias conflicts with a local CSS class name, the exposed `pseudo-element` targets the `custom-selector`. However, the exported CSS class is still exported to JavaScript.
+:::caution
+
+If a `custom-selector` alias conflicts with a local CSS class name, the exposed `pseudo-element` targets the `custom-selector`. However, the exported CSS class is still exported to JavaScript.
+
+:::
 
 ## Use cases
 

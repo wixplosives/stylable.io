@@ -16,5 +16,8 @@ When you develop your application in **Stylable**, you can manually namespace cl
 .my-gallery__root { color: red; }
 ```
 
-> **Note**    
-> Because `@namespace` is not unique, the scoped name may still have a suffix added to it to make it unique.
+:::note
+
+Because `@namespace` is not unique, the scoped name may still have a suffix added to it to make it unique.
+
+:::

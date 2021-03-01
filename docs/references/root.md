@@ -40,5 +40,8 @@ class Comp extends React.Component {
 }
 ```
 
-> **Note**    
-> Root can also define [states](./pseudo-classes) and [extend another component](./extend-stylesheet.md).
+:::tip
+
+Root can also define [states](./pseudo-classes) and [extend another component](./extend-stylesheet.md).
+
+:::

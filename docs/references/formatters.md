@@ -5,14 +5,19 @@ title: Formatters
 
 Formatters are functions that return a single CSS declaration value. They can receive arguments, process them and return the value. 
 
->**Note**  
->Currently, any argument passed through to a formatter is of type `string`. We are in the process of adding support for more complex types.
+:::note
+
+Currently, any argument passed through to a formatter is of type `string`. We are in the process of adding support for more complex types.
+
+:::
 
 For example a `calc-font-size` formatter can return a different value for the font size depending on the provided argument.
 
->**Note**  
-> If you need to return multiple declaration values, we recommend using **Stylable** [mixins](./mixins.md). 
+:::tip
 
+If you need to return multiple declaration values, we recommend using **Stylable** [mixins](./mixins.md). 
+
+:::
 
 ```js
 /* ./calc-font-size.js */
@@ -64,9 +69,11 @@ module.exports = function(baseSize, modifier) {
 }
 ```
 
->**Note about native URL functions**  
->Currently you cannot use formatters inside a native URL function. As a suggested workaround, you can return a URL function from a formattter.
+:::note
 
+Currently you cannot use formatters inside a native URL function. As a suggested workaround, you can return a URL function from a formattter.
+
+:::
 
 ## Formatters with variables
 

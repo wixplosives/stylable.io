@@ -9,9 +9,9 @@ sidebar_label: CSS Custom Properties
 CSS Custom Properties are defined using the `--*` property syntax, and accessed using the `var(--*)` CSS function.
 
 To learn more about this language feature, check out the following resources
-- [MDN - Custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*){:target="_blank"}
-- [MDN - Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables){:target="_blank"}
-- [Smashing Magazine - It's Time To Start Using CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/){:target="_blank"}
+- [MDN - Custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
+- [MDN - Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
+- [Smashing Magazine - It's Time To Start Using CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
 
 ## Stylable variables vs. CSS custom properties
 [Stylable variables](./variables.md) and CSS custom properties offer different capabilities, and as such serve different use-cases.
@@ -76,7 +76,6 @@ Due to the fact Stylable provides scoping to CSS variables, it also provides the
 
 Override any variable by redefining its value using an inline style attribute. 
 
-{% raw %}
 ```js
 import { classes, vars } from './entry.st.css';
 
@@ -86,7 +85,6 @@ import { classes, vars } from './entry.st.css';
         background: 'gold' }} 
 />
 ```
-{% endraw %}
 
 Output:
 ```js
@@ -109,7 +107,6 @@ This is mostly useful when working with 3rd-party libraries, where you only atte
 }
 ```
 
-{% raw %}
 ```js
 import { classes } from './entry.st.css';
 
@@ -119,7 +116,9 @@ import { classes } from './entry.st.css';
          '--bg': 'yellow' }}
 />
 ```
-{% endraw %}
 
-> Accessing any globally defined variable on the stylesheet will return its global name (un-scoped).
+:::note
 
+Accessing any globally defined variable on the stylesheet will return its global name (un-scoped).
+
+:::

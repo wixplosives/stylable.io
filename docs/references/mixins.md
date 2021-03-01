@@ -13,8 +13,11 @@ Here are some examples of when you can use mixins:
 * Effects - easily describe complex effects
 * Macros - use code to define the CSS macros you need
 
->**Note**  
-> If you need to return only a single declaration value using code, we recommend instead using [formatters](./formatters.md). 
+:::tip
+
+If you need to return only a single declaration value using code, we recommend instead using [formatters](./formatters.md). 
+
+:::
 
 ## CSS mixins
 
