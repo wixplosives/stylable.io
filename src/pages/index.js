@@ -8,32 +8,31 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Easy to Use',
+    title: 'CSS Superset',
     imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Extend CSS so that it is easier to use in a component ecosystem, 
+        but without losing any of the declarative, familiar, static and fast aspects of CSS. 
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
-  },
-  {
-    title: 'Powered by React',
+    title: 'Style API',
     imageUrl: 'img/undraw_docusaurus_react.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Each component exposes a Style API that maps its internal parts and states so you can reuse components across teams without sacrificing stylability or scalability.
+      </>
+    ),
+  },
+  {
+    title: 'So Performant, So Conformant',
+    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    description: (
+      <>
+        Provide the ability to see our errors at build time or even while working in your IDE.  
+        Wave goodbye to silent run-time breakage misery!
       </>
     ),
   },
