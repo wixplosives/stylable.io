@@ -22,12 +22,18 @@ module.exports = {
           label: 'Docs',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
+        // {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/wix/stylable',
-          label: 'GitHub',
           position: 'right',
-        },
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
+        }
+        // {
+        //   href: 'https://github.com/wix/stylable',
+        //   label: 'GitHub',
+        //   position: 'right',
+        // },
       ],
     },
     footer: {
@@ -66,12 +72,12 @@ module.exports = {
         {
           title: 'More',
           items: [
+            // {
+            //   label: 'Blog',
+            //   to: 'blog',
+            // },
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
-              label: 'GitHub',
+              label: 'Site GitHub',
               href: 'https://github.com/wixplosives/stylable.io',
             },
           ],
