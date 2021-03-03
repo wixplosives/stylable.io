@@ -1,34 +1,39 @@
 module.exports = {
-  title: 'Stylable',
-  tagline: 'is CSS for components',
-  url: 'https://wixplosives.github.io',
-  baseUrl: '/stylable.io/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'wixplosives', // Usually your GitHub org/user name.
-  projectName: 'stylable.io', // Usually your repo name.
+  title: "Stylable",
+  tagline: "is CSS for components",
+  url: "https://wixplosives.github.io",
+  baseUrl: "/stylable.io/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName: "wixplosives", // Usually your GitHub org/user name.
+  projectName: "stylable.io", // Usually your repo name.
   themeConfig: {
+    colorMode: {
+      // "light" | "dark"
+      defaultMode: "dark",
+      respectPrefersColorScheme: true,
+    },
     navbar: {
-      title: 'Stylable',
+      title: "Stylable",
       logo: {
-        alt: 'Stylable Logo',
-        src: 'img/branding/logo/SVG/96-logo-OnlySymbol.svg',
+        alt: "Stylable Logo",
+        src: "img/branding/logo/SVG/96-logo-OnlySymbol.svg",
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
+          to: "docs/",
+          activeBasePath: "docs",
+          label: "Docs",
+          position: "left",
         },
         // {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/wix/stylable',
-          position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
-        }
+          href: "https://github.com/wix/stylable",
+          position: "right",
+          className: "header-github-link",
+          "aria-label": "GitHub repository",
+        },
         // {
         //   href: 'https://github.com/wix/stylable',
         //   label: 'GitHub',
@@ -37,14 +42,14 @@ module.exports = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Docs',
+          title: "Docs",
           items: [
             {
-              label: 'Style Guide',
-              to: 'docs/style-guide',
+              label: "Style Guide",
+              to: "docs/style-guide",
             },
             // {
             //   label: 'Second Doc',
@@ -53,7 +58,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Community',
+          title: "Community",
           items: [
             // {
             //   label: 'Stack Overflow',
@@ -64,21 +69,21 @@ module.exports = {
             //   href: 'https://discordapp.com/invite/docusaurus',
             // },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/stylableio',
+              label: "Twitter",
+              href: "https://twitter.com/stylableio",
             },
           ],
         },
         {
-          title: 'More',
+          title: "More",
           items: [
             // {
             //   label: 'Blog',
             //   to: 'blog',
             // },
             {
-              label: 'Site GitHub',
-              href: 'https://github.com/wixplosives/stylable.io',
+              label: "Site GitHub",
+              href: "https://github.com/wixplosives/stylable.io",
             },
           ],
         },
@@ -88,21 +93,21 @@ module.exports = {
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
-            'https://github.com/wixplosives/stylable.io/edit/master/docs',
+            "https://github.com/wixplosives/stylable.io/edit/master/docs",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/wixplosives/stylable.io/edit/master/blog',
+            "https://github.com/wixplosives/stylable.io/edit/master/blog",
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],

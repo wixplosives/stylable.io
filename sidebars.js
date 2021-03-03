@@ -38,5 +38,6 @@ module.exports = {
             'references/using-external-assets',
             'references/keyframes',
         ],
+        Credits: ['image-credits']
     },
 };

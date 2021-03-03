@@ -9,7 +9,7 @@ import Logo from "../../static/img/branding/logo/SVG/96-logo-horizontal.svg";
 const features = [
   {
     title: "CSS Superset",
-    imageUrl: "img/web.svg",
+    imageUrl: "img/web-design.svg",
     description: (
       <>
         Extend CSS so that it is easier to use in a component ecosystem, but
