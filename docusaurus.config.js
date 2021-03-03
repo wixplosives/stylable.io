@@ -65,7 +65,7 @@ module.exports = {
             // },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/stylable.io',
+              href: 'https://twitter.com/stylableio',
             },
           ],
         },
