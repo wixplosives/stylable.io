@@ -15,10 +15,7 @@
 }
 
 .mainLogo {
-  border-radius: 12px;
-  width: 70%;
-  margin: 5% 20%;
-  box-sizing: border-box;
+  margin: 5% 0;
 }
 
 .section {
@@ -98,6 +95,10 @@
   margin-bottom: 1em;
 }
 
+.playWithIt {
+  margin: 1em 0 0 0;
+}
+
 @media screen and (max-width: 996px) {
   .feature {
     margin: 2.5em;
@@ -112,10 +113,5 @@
   .featureImage {
     float: none;
     margin: 2.25em 0;
-  }
-  .mainLogo {
-    width: 100%;
-    padding: 8% 5%;
-    margin: 0;
   }
 }

@@ -74,7 +74,7 @@ function Home() {
     >
       <header className={clsx("hero hero--primary", styles.heroBanner)}>
         <div className="container">
-          <Logo />
+          <Logo className={styles.mainLogo} />
           {/* <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p> */}
           <div className={styles.buttons}>
@@ -241,7 +241,9 @@ function Home() {
             <div>
               <ResponsiveEmbed src="https://www.youtube.com/embed/YRhJZZsTEvQ" />
             </div>
-            <p>Play with it and let us know what you think!</p>
+            <p className={styles.playWithIt}>
+              Play with it and let us know what you think!
+            </p>
           </div>
         </section>
         <section className={clsx(styles.section, styles.sectionAlt)}>
