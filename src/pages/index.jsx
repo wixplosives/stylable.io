@@ -5,7 +5,7 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
-
+import Logo from "../../static/img/branding/logo/SVG/96-logo-horizontal.svg";
 const features = [
   {
     title: "CSS Superset",
@@ -41,6 +41,14 @@ const features = [
   },
 ];
 
+function ResponsiveEmbed({ src }) {
+  return (
+    <div className={clsx(styles.responsiveEmbed)}>
+      <iframe src={src} frameborder="0" allowfullscreen></iframe>
+    </div>
+  );
+}
+
 function Feature({ imageUrl, title, description }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
@@ -66,11 +74,7 @@ function Home() {
     >
       <header className={clsx("hero hero--primary", styles.heroBanner)}>
         <div className="container">
-          <img
-            className={styles.mainLogo}
-            src="img/branding/logo/SVG/96-logo-horizontal.svg"
-            alt="Stylable Logo"
-          />
+          <Logo />
           {/* <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p> */}
           <div className={styles.buttons}>
@@ -157,20 +161,19 @@ function Home() {
             <h2>What Does Stylable Do?</h2>
             <ul>
               <li>
-                Stylable scopes styles to components so they
-                don’t "leak" and clash with other styles.
+                Stylable scopes styles to components so they don’t "leak" and
+                clash with other styles.
               </li>
               <li>
-                Stylable enables custom pseudo-classes and
-                pseudo-elements that abstract the internal state and structure
-                of a component. These can then be styled externally. For
-                example, you can style the label inside a button, or style the
-                play button of a video player from outside these components.
+                Stylable enables custom pseudo-classes and pseudo-elements that
+                abstract the internal state and structure of a component. These
+                can then be styled externally. For example, you can style the
+                label inside a button, or style the play button of a video
+                player from outside these components.
               </li>
               <li>
-                At build time, the preprocessor converts the{" "}
-                Stylable CSS into flat, static, valid, vanilla
-                CSS that works cross-browser.
+                At build time, the preprocessor converts the Stylable CSS into
+                flat, static, valid, vanilla CSS that works cross-browser.
               </li>
             </ul>
           </div>
@@ -178,12 +181,11 @@ function Home() {
         <section className={clsx(styles.section, styles.sectionAlt)}>
           <div className="container">
             <h2>Tooling</h2>
-            <div>
-              <img
-                src="img/stylable-lsp.gif"
-                alt="Stylable Intelligence Demo"
-              />
-            </div>
+            <img
+              className={styles.lspDemo}
+              src="img/stylable-lsp.gif"
+              alt="Stylable Intelligence Demo"
+            />
             Treating CSS as a type system opens up a whole new world of tooling.
             You can:
             <ul>
@@ -209,29 +211,16 @@ function Home() {
           <div className="container">
             <h2>Videos</h2>
             <h3>Introduction to Stylable</h3>
-            <iframe
-              className={clsx(styles.youtubeVideo, styles.youtubeVideoGap)}
-              src="https://www.youtube-nocookie.com/embed/Cx-JyJ9eXks?rel=0"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
+            <ResponsiveEmbed src="https://www.youtube-nocookie.com/embed/Cx-JyJ9eXks?rel=0" />
             <h3>The Official Stylable Musical!</h3>
-            <iframe
-              className={styles.youtubeVideo}
-              src="https://www.youtube.com/embed/jK88TqyXSWs?rel=0"
-              frameborder="0"
-              allow="autoplay; encrypted-media"
-              allowfullscreen
-            ></iframe>
+            <ResponsiveEmbed src="https://www.youtube.com/embed/jK88TqyXSWs?rel=0" />
           </div>
         </section>
         <section className={clsx(styles.section, styles.sectionAlt)}>
           <div className="container">
             <h2>Documentation</h2>
-            <Link to="./docs">
-              Learn more about Stylable
-            </Link>{" "}
-            and get started with step by step instructions and code examples.
+            <Link to="./docs">Learn more about Stylable</Link> and get started
+            with step by step instructions and code examples.
           </div>
         </section>
         <section className={styles.section}>
@@ -250,13 +239,7 @@ function Home() {
               his React Europe 2018 talk:
             </p>
             <div>
-              <iframe
-                className={styles.youtubeVideo}
-                src="https://www.youtube.com/embed/YRhJZZsTEvQ"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-              ></iframe>
+              <ResponsiveEmbed src="https://www.youtube.com/embed/YRhJZZsTEvQ" />
             </div>
             <p>Play with it and let us know what you think!</p>
           </div>

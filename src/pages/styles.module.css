@@ -11,17 +11,18 @@
   position: relative;
   overflow: hidden;
   background-color: var(--ifm-color-emphasis-100);
+  color: var(--ifm-font-color-base);
 }
 
 .mainLogo {
-  background-color: rgb(245, 246, 247);
   border-radius: 12px;
-  padding: 2.25em;
-  margin-bottom: 2em;
+  width: 70%;
+  margin: 5% 20%;
+  box-sizing: border-box;
 }
 
 .section {
-  padding: 36px 0;
+  padding: 3em 0;
 }
 
 .sectionAlt {
@@ -71,43 +72,50 @@
   background-repeat: no-repeat;
 }
 
-.youtubeVideo {
-  width: 800px;
-  height: 450px;
-  display: block;
-  margin: 2em auto;
+.responsiveEmbed {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
 }
 
-.youtubeVideoGap {
+.responsiveEmbed:not(:last-child) {
   margin-bottom: 2em;
 }
 
-@media screen and (max-width: 1100px) {
-  .youtubeVideo {
-    width: 560px;
-    height: 315px;
+.responsiveEmbed iframe,
+.responsiveEmbed object,
+.responsiveEmbed embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lspDemo {
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 996px) {
+  .feature {
+    margin: 2.5em;
+  }
+  .featureImage {
+    float: left;
+    margin: 0 3em 0 0;
   }
 }
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
+@media screen and (max-width: 600px) {
+  .featureImage {
+    float: none;
+    margin: 2.25em 0;
   }
-
-  .youtubeVideo {
-    width: 350;
-    height: 196;
-  }
-}
-
-@media screen and (max-width: 590px) {
   .mainLogo {
-    padding: 1.25em;
-    margin-bottom: 2em;
-  }
-
-  .youtubeVideo {
     width: 100%;
-    height: 250px;
+    padding: 8% 5%;
+    margin: 0;
   }
 }
