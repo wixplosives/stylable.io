@@ -6,40 +6,6 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import Logo from "../../static/img/branding/logo/SVG/96-logo-horizontal.svg";
-const features = [
-  {
-    title: "CSS Superset",
-    imageUrl: "img/web-design.svg",
-    description: (
-      <>
-        Extend CSS so that it is easier to use in a component ecosystem, but
-        without losing any of the declarative, familiar, static and fast aspects
-        of CSS.
-      </>
-    ),
-  },
-  {
-    title: "Style API",
-    imageUrl: "img/api.svg",
-    description: (
-      <>
-        Each component exposes a Style API that maps its internal parts and
-        states so you can reuse components across teams without sacrificing
-        stylability or scalability.
-      </>
-    ),
-  },
-  {
-    title: "So Performant, So Conformant",
-    imageUrl: "img/checklist.svg",
-    description: (
-      <>
-        Provide the ability to see our errors at build time or even while
-        working in your IDE. Wave goodbye to silent run-time breakage misery!
-      </>
-    ),
-  },
-];
 
 function ResponsiveEmbed({ src }) {
   return (
@@ -49,7 +15,7 @@ function ResponsiveEmbed({ src }) {
   );
 }
 
-function Feature({ imageUrl, title, description }) {
+function Feature({ imageUrl, title, children }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
     <div className={clsx("col col--4", styles.feature)}>
@@ -59,8 +25,29 @@ function Feature({ imageUrl, title, description }) {
         </div>
       )}
       <h3>{title}</h3>
-      <p>{description}</p>
+      <p>{children}</p>
     </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className={clsx("hero hero--primary", styles.heroBanner)}>
+      <div className="container">
+        <Logo />
+        <div className={styles.buttons}>
+          <Link
+            className={clsx(
+              "button button--outline button--secondary button--lg",
+              styles.getStarted
+            )}
+            to={useBaseUrl("docs/")}
+          >
+            Get Started
+          </Link>
+        </div>
+      </div>
+    </header>
   );
 }
 
@@ -72,36 +59,32 @@ function Home() {
       title={siteConfig.title}
       description="A modern CSS pre-processor built for components"
     >
-      <header className={clsx("hero hero--primary", styles.heroBanner)}>
-        <div className="container">
-          <Logo className={styles.mainLogo} />
-          {/* <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p> */}
-          <div className={styles.buttons}>
-            <Link
-              className={clsx(
-                "button button--outline button--secondary button--lg",
-                styles.getStarted
-              )}
-              to={useBaseUrl("docs/")}
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main>
-        {features && features.length > 0 && (
-          <section className={styles.features}>
-            <div className="container">
-              <div className="row">
-                {features.map((props, idx) => (
-                  <Feature key={idx} {...props} />
-                ))}
-              </div>
+        <section className={styles.features}>
+          <div className="container">
+            <div className="row">
+              <Feature title="CSS Superset" imageUrl="img/web-design.svg">
+                Extend CSS so that it is easier to use in a component ecosystem,
+                but without losing any of the declarative, familiar, static and
+                fast aspects of CSS.
+              </Feature>
+              <Feature title="Style API" imageUrl="img/api.svg">
+                Each component exposes a Style API that maps its internal parts
+                and states so you can reuse components across teams without
+                sacrificing stylability or scalability.
+              </Feature>
+              <Feature
+                title="Performance and Safety"
+                imageUrl="img/checklist.svg"
+              >
+                Provide the ability to see our errors at build time or even
+                while working in your IDE. Wave goodbye to silent run-time
+                breakage misery!
+              </Feature>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
         <section className={clsx(styles.section, styles.sectionAlt)}>
           <div className="container">
             <h2>What is Stylable?</h2>
