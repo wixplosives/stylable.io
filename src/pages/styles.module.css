@@ -110,6 +110,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  .mainLogo {
+    width: 100%;
+  }
+
   .featureImage {
     float: none;
     margin: 2.25em 0;
