@@ -210,16 +210,14 @@ function Home() {
             <h2>Videos</h2>
             <h3>Introduction to Stylable</h3>
             <iframe
-              width="560"
-              height="315"
+              className={clsx(styles.youtubeVideo, styles.youtubeVideoGap)}
               src="https://www.youtube-nocookie.com/embed/Cx-JyJ9eXks?rel=0"
               frameborder="0"
               allowfullscreen
             ></iframe>
             <h3>The Official Stylable Musical!</h3>
             <iframe
-              width="560"
-              height="315"
+              className={styles.youtubeVideo}
               src="https://www.youtube.com/embed/jK88TqyXSWs?rel=0"
               frameborder="0"
               allow="autoplay; encrypted-media"
@@ -253,8 +251,7 @@ function Home() {
             </p>
             <div>
               <iframe
-                width="560"
-                height="315"
+                className={styles.youtubeVideo}
                 src="https://www.youtube.com/embed/YRhJZZsTEvQ"
                 frameborder="0"
                 allow="autoplay; encrypted-media"
