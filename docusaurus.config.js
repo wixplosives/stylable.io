@@ -13,7 +13,7 @@ module.exports = {
       title: 'Stylable',
       logo: {
         alt: 'Stylable Logo',
-        src: 'img/96-logo-OnlySymbol.svg',
+        src: 'img/branding/logo/SVG/96-logo-OnlySymbol.svg',
       },
       items: [
         {

@@ -12,10 +12,20 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+
+.mainLogo {
+  background-color: rgba(240, 248, 255);
+  border-radius: 12px;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
+.section {
+  padding: 36px 300px;
+}
+
+.sectionAlt {
+  background-color: var(--ifm-color-emphasis-100);
 }
 
 .buttons {
@@ -34,4 +44,47 @@
 .featureImage {
   height: 200px;
   width: 200px;
+  margin-bottom: 12px;
 }
+
+.quote {
+  font-family: 'Zilla Slab', serif;
+  font-size: 19px;
+  color: #32536a;
+  padding: 30px;
+  padding: 42px;
+  background: #f0f4f7;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 3px;
+}
+
+.quote::before {
+  position: absolute;
+  margin: -12px 0px 0px 0px;
+  content: ' ';
+  background-image: url(/stylable.io/img/quote.svg);
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 1100px) {
+  .section {
+    padding: 27px 108px;
+  }
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+
+  .section {
+    padding: 72px;
+  }
+}
+
+
