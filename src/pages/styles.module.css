@@ -40,21 +40,19 @@
 }
 
 .featureImage {
-  height: 150px;
-  width: 150px;
+  height: 125px;
+  width: 125px;
   margin: 2.25em 0;
 }
 
 .quote {
-  font-family: "Zilla Slab", serif;
+  font-family: serif;
   font-size: 19px;
-  color: #32536a;
-  padding: 30px;
   padding: 42px;
-  background: rgb(245, 246, 247);
   margin-top: 30px;
   margin-bottom: 30px;
-  border-radius: 3px;
+  border-left-color: var(--ifm-link-color);
+  color: var(--ifm-font-color-base);
 }
 
 .quote::before {

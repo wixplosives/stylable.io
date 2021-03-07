@@ -34,7 +34,7 @@ function Header() {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <Logo />
+        <Logo className={styles.mainLogo}/>
         <div className={styles.buttons}>
           <Link
             className={clsx(
