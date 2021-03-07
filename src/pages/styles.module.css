@@ -45,6 +45,10 @@
   margin: 2.25em 0;
 }
 
+.heart {
+  color: rgb(204, 27, 27);
+}
+
 .quote {
   font-family: serif;
   font-size: 19px;

@@ -89,7 +89,7 @@ function Home() {
           <div className="container">
             <h2>What is Stylable?</h2>
             <p>
-              At <Link to="https://www.wix.engineering/">Wix</Link>, we &hearts;
+              At <Link to="https://www.wix.engineering/">Wix</Link>, we <span className={styles.heart}>&hearts; </span>
               CSS. Its simple, declarative syntax that is native in browsers is
               easily the fastest way to add styles to web pages and web apps.
               But when writing CSS that is scoped to individual components,
@@ -98,7 +98,7 @@ function Home() {
               CSS across large teams and large projects can be tricky.
             </p>
             <p>
-              We also &hearts; TypeScript. TypeScript helps us manage these
+              We also <span className={styles.heart}>&hearts;</span> TypeScript. TypeScript helps us manage these
               large projects, exposing at build-time what we could once only see
               at run-time.
             </p>
