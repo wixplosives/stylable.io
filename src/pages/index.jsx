@@ -202,7 +202,7 @@ function Home() {
         <section className={clsx(styles.section, styles.sectionAlt)}>
           <div className="container">
             <h2>Documentation</h2>
-            <Link to="./docs">Learn more about Stylable</Link> and get started
+            <Link to="./docs/getting-started/intro">Learn more about Stylable</Link> and get started
             with step by step instructions and code examples.
           </div>
         </section>
