@@ -1,7 +1,6 @@
 ---
-id: getting-started
-title: Getting Started
-slug: /
+id: intro
+title: Intro
 ---
 
 ## What is Stylable

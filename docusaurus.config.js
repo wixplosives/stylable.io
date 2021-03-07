@@ -15,6 +15,7 @@ module.exports = {
       respectPrefersColorScheme: true,
     },
     navbar: {
+      hideOnScroll: true,
       title: "Stylable",
       logo: {
         alt: "Stylable Logo",
@@ -22,9 +23,21 @@ module.exports = {
       },
       items: [
         {
-          to: "docs/",
-          activeBasePath: "docs",
-          label: "Docs",
+          to: "docs/getting-started/intro",
+          activeBasePath: "docs/getting-started",
+          label: "Getting Started",
+          position: "left",
+        },
+        {
+          to: "docs/guides/components-basics",
+          activeBasePath: "docs/guides",
+          label: "Guides",
+          position: "left",
+        },
+        {
+          to: "docs/references/cheatsheet",
+          activeBasePath: "docs/references",
+          label: "API",
           position: "left",
         },
         // {to: 'blog', label: 'Blog', position: 'left'},
@@ -34,11 +47,6 @@ module.exports = {
           className: "header-github-link",
           "aria-label": "GitHub repository",
         },
-        // {
-        //   href: 'https://github.com/wix/stylable',
-        //   label: 'GitHub',
-        //   position: 'right',
-        // },
       ],
     },
     footer: {
@@ -48,26 +56,26 @@ module.exports = {
           title: "Docs",
           items: [
             {
-              label: "Style Guide",
-              to: "docs/style-guide",
+              label: "Getting Started",
+              to: "docs/getting-started/intro",
             },
-            // {
-            //   label: 'Second Doc',
-            //   to: 'docs/doc2/',
-            // },
+            {
+              label: "Guides",
+              to: "docs/guides/components-basics",
+            },
+            {
+              label: "API",
+              to: "docs/references/cheatsheet",
+            },
           ],
         },
         {
           title: "Community",
           items: [
-            // {
-            //   label: 'Stack Overflow',
-            //   href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            // },
-            // {
-            //   label: 'Discord',
-            //   href: 'https://discordapp.com/invite/docusaurus',
-            // },
+            {
+              label: "Issues",
+              href: "https://github.com/wix/stylable/issues",
+            },
             {
               label: "Twitter",
               href: "https://twitter.com/stylableio",
@@ -77,13 +85,17 @@ module.exports = {
         {
           title: "More",
           items: [
-            // {
-            //   label: 'Blog',
-            //   to: 'blog',
-            // },
             {
               label: "Site GitHub",
               href: "https://github.com/wixplosives/stylable.io",
+            },
+            {
+              label: "Style Guide",
+              to: "docs/style-guide",
+            },
+            {
+              label: "Credits",
+              to: "docs/credits",
             },
           ],
         },

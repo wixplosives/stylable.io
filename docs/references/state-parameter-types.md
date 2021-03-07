@@ -1,5 +1,6 @@
 ---
 id: state-parameter-types
+sidebar_label: Pseudo-Classes Parameters
 title: Parameter Types to Use with Pseudo-Classes 
 layout: docs
 ---
