@@ -1,8 +1,8 @@
 module.exports = {
   title: "Stylable",
   tagline: "is CSS for components",
-  url: "https://wixplosives.github.io",
-  baseUrl: "/stylable.io/",
+  url: "https://stylable.io",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
