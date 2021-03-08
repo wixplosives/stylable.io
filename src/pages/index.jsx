@@ -65,7 +65,7 @@ function Home() {
           <div className="container">
             <div className="row">
               <Feature title="CSS Superset" imageUrl="img/component.svg">
-                Extend your CSS so that it is easier to use in a component
+                Extending CSS so that it is easier to use in a component
                 ecosystem, but without losing any of the declarative, familiar,
                 static and fast aspects of CSS.
               </Feature>
