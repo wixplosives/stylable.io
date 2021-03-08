@@ -93,6 +93,18 @@ Output:
 </div>
 ```
 
+## CSS runtime register
+
+Stylable supports the [@property](https://developer.mozilla.org/en-US/docs/Web/CSS/@property) at-rule, it scope the CSS variable and provide extra configuration at runtime:
+
+```css
+@property --myVar {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #c3e88d;
+}
+```
+
 ## Using global CSS variables
 
 In cases where you have no control over the name of the CSS variable used, use the `@st-global-custom-property` directive to define CSS variables that will not be scoped, and will maintain their exact given name.
