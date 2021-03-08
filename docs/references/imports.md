@@ -12,7 +12,7 @@ title: Imports
     * Inside the square brackets, import any inner parts belonging to said stylesheet
 
 ```css
-@st-import <DEFAULT_NAME>, [<NAMED_PART1, NAMED_PART2, ...>] from './stylesheet.st.css';
+@st-import DefaultComp, [somePart, someVar] from './stylesheet.st.css';
 ```
 
 - `:import` ruleset directive - The original more verbose way of importing symbols, uses the **Stylable** syntax beginning with `-st-` inside the `:import` ruleset:
