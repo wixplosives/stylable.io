@@ -34,7 +34,7 @@ function Header() {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <Logo className={styles.mainLogo}/>
+        <Logo className={styles.mainLogo} />
         <div className={styles.buttons}>
           <Link
             className={clsx(
@@ -89,7 +89,8 @@ function Home() {
           <div className="container">
             <h2>What is Stylable?</h2>
             <p>
-              At <Link to="https://www.wix.engineering/">Wix</Link>, we <span className={styles.heart}>&hearts; </span>
+              At <Link to="https://www.wix.engineering/">Wix</Link>, we{" "}
+              <span className={styles.heart}>&hearts; </span>
               CSS. Its simple, declarative syntax that is native in browsers is
               easily the fastest way to add styles to web pages and web apps.
               But when writing CSS that is scoped to individual components,
@@ -98,9 +99,9 @@ function Home() {
               CSS across large teams and large projects can be tricky.
             </p>
             <p>
-              We also <span className={styles.heart}>&hearts;</span> TypeScript. TypeScript helps us manage these
-              large projects, exposing at build-time what we could once only see
-              at run-time.
+              We also <span className={styles.heart}>&hearts;</span> TypeScript.
+              TypeScript helps us manage these large projects, exposing at
+              build-time what we could once only see at run-time.
             </p>
             <div>
               We want to give CSS a <em>type system</em> &mdash; to do for CSS
@@ -184,10 +185,7 @@ function Home() {
               VSCode Intellisense Extension
             </Link>
             . It supports code completions, diagnostics, go to definitions,
-            syntax highlighting and more. ## Shut up and take my money! No need!{" "}
-            <strong>Stylable</strong> is BSD-licensed. Take it, use it, make
-            your development easier and your apps faster. Viva CSS, and welcome
-            <strong>Stylable</strong>. We hope you like it.
+            syntax highlighting and more.
           </div>
         </section>
         <section className={styles.section}>
@@ -202,8 +200,10 @@ function Home() {
         <section className={clsx(styles.section, styles.sectionAlt)}>
           <div className="container">
             <h2>Documentation</h2>
-            <Link to="./docs/getting-started/intro">Learn more about Stylable</Link> and get started
-            with step by step instructions and code examples.
+            <Link to="./docs/getting-started/intro">
+              Learn more about Stylable
+            </Link>{" "}
+            and get started with step by step instructions and code examples.
           </div>
         </section>
         <section className={styles.section}>
@@ -232,12 +232,19 @@ function Home() {
         <section className={clsx(styles.section, styles.sectionAlt)}>
           <div className="container">
             <div>
-              <h2>Project</h2>
-              Access the BSD-licensed{" "}
-              <Link to="https://github.com/wix/stylable">
-                Stylable GitHub project
-              </Link>
-              .
+              <h2>Shut up and take my money!</h2>
+              <p>
+                No need! <strong>Stylable</strong> is open-source. Take it, use
+                it, make your development easier and your apps faster. Viva CSS,
+                and welcome <strong>Stylable</strong>. We hope you like it.
+              </p>
+              <p>
+                Click here to access the BSD-licensed{" "}
+                <Link to="https://github.com/wix/stylable">
+                  Stylable GitHub project
+                </Link>
+                .
+              </p>
               <blockquote className={styles.quote}>
                 <p>
                   New ideas will come along, but they will extend CSS rather
