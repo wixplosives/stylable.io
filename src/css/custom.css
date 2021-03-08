@@ -59,3 +59,7 @@ html[data-theme="dark"] .header-github-link:before {
 strong {
   font-family: WixMadeForTextBold;
 }
+
+.react-toggle-track-check span, .react-toggle-track-x span {
+  height: 15px;
+}
