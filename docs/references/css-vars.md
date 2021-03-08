@@ -4,7 +4,7 @@ title: CSS Custom Properties (CSS vars)
 sidebar_label: CSS Custom Properties
 ---
 
-`CSS Custom Properties` is a new feature introduced to the CSS language, providing the ability to define and re-use variables across stylesheets.
+`CSS Custom Properties` provides the ability to define and re-use variables that participate in the runtime cascade.
 
 CSS Custom Properties are defined using the `--*` property syntax, and accessed using the `var(--*)` CSS function.
 
@@ -16,7 +16,7 @@ To learn more about this language feature, check out the following resources
 ## Stylable variables vs. CSS custom properties
 [Stylable variables](./variables.md) and CSS custom properties offer different capabilities, and as such serve different use-cases.
 
-Stylable variables exist only in your source code, and get replaced during transpilation to the final target code. They serve well for reducing code repetition, increasing readability and can benefit any static theme or styling without incurring any runtime performance cost. 
+Stylable variables exist only in your source code, and get replaced during transpilation to the final target code. They serve well for calculations that are not supported by native CSS, reducing code repetition, increasing readability and can benefit any static theme or styling without incurring any runtime performance cost. 
 
 CSS custom properties on the other hand do incur a small runtime cost, but offer the ability to override their values during runtime, allowing dynamic styling through Stylable.
 
@@ -91,6 +91,18 @@ Output:
 <div className="entry__root" 
      style="--entry-color: green; --entry-border-size: 5px; background: gold;" >
 </div>
+```
+
+## CSS runtime register
+
+Stylable supports the [@property](https://developer.mozilla.org/en-US/docs/Web/CSS/@property) at-rule, it scope the CSS variable and provide extra configuration at runtime:
+
+```css
+@property --myVar {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #c3e88d;
+}
 ```
 
 ## Using global CSS variables
