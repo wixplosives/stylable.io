@@ -4,7 +4,7 @@ title: CSS Custom Properties (CSS vars)
 sidebar_label: CSS Custom Properties
 ---
 
-`CSS Custom Properties` provides the ability to define and re-use variables that participates in the runtime cascade.
+`CSS Custom Properties` provides the ability to define and re-use variables that participate in the runtime cascade.
 
 CSS Custom Properties are defined using the `--*` property syntax, and accessed using the `var(--*)` CSS function.
 
