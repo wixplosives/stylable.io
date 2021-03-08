@@ -17,6 +17,7 @@
 
   --ifm-code-font-size: 95%;
   --ifm-container-width: 1024px;
+  --ifm-font-family-base: WixMadeForText;
 }
 
 .docusaurus-highlight-code-line {
@@ -52,10 +53,7 @@ html[data-theme="dark"] .header-github-link:before {
 @font-face {
   font-family: WixMadeForTextBold;
   src: url(/fonts/WixMadeforText_Bd.ttf);
-}
-
-* {
-  font-family: WixMadeForText;
+  font-weight: bold;
 }
 
 strong {
