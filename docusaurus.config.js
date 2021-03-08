@@ -94,8 +94,8 @@ module.exports = {
               to: "docs/style-guide",
             },
             {
-              label: "Credits",
-              to: "docs/credits",
+              label: "Attributions",
+              to: "docs/attributions",
             },
           ],
         },

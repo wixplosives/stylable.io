@@ -64,23 +64,37 @@ function Home() {
         <section className={styles.features}>
           <div className="container">
             <div className="row">
-              <Feature title="CSS Superset" imageUrl="img/web-design.svg">
-                Extend CSS so that it is easier to use in a component ecosystem,
-                but without losing any of the declarative, familiar, static and
-                fast aspects of CSS.
+              <Feature title="CSS Superset" imageUrl="img/component.svg">
+                Extend your CSS so that it is easier to use in a component
+                ecosystem, but without losing any of the declarative, familiar,
+                static and fast aspects of CSS.
               </Feature>
               <Feature title="Style API" imageUrl="img/api.svg">
                 Each component exposes a Style API that maps its internal parts
                 and states so you can reuse components across teams without
                 sacrificing stylability or scalability.
               </Feature>
+              <Feature title="Type Safety" imageUrl="img/stethoscope.svg">
+                Provide the ability to see errors at build time or even while
+                working in your IDE. Wave goodbye to silent run-time breakage
+                misery!
+              </Feature>
+              <Feature title="Performant" imageUrl="img/checklist.svg">
+                Perform build-time transpilation and require only a minimal
+                runtime. Use custom states and properties for dynamic
+                interactions.
+              </Feature>
               <Feature
-                title="Performance and Safety"
-                imageUrl="img/checklist.svg"
+                title="Mixins &amp; Formatters"
+                imageUrl="img/prototype.svg"
               >
-                Provide the ability to see our errors at build time or even
-                while working in your IDE. Wave goodbye to silent run-time
-                breakage misery!
+                Easily create complex designs using CSS or JavaScript and reuse
+                them across projects.
+              </Feature>
+              <Feature title="Developer Tooling" imageUrl="img/tool.svg">
+                Use our language-intelligence IDE extension for a better
+                development experience including completions, defintions,
+                hinting, diagnostics and more.
               </Feature>
             </div>
           </div>
@@ -105,34 +119,34 @@ function Home() {
             </p>
             <div>
               We want to give CSS a <em>type system</em> &mdash; to do for CSS
-              what TypeScript does for JavaScript. We would like to be able to:
+              what TypeScript does for JavaScript.
               <ul>
-                <li>
+                {/* <li>
                   <strong>Extend CSS</strong> so that it is easier to use in a
                   component ecosystem, but without losing any of the
                   declarative, familiar, static and fast aspects of CSS.
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   Create <strong>CSS Macros</strong> with JavaScript and use
                   them at build time.
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   Use language services like <strong>Code Completion</strong>{" "}
                   and <strong>Validation</strong>.
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   Each component exposes a Style API that maps its internal
                   parts and states so you can reuse components across teams
                   without sacrificing stylability or scalability.
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   Provide the ability to see our{" "}
                   <strong>errors at build</strong> time or even while{" "}
                   <Link to="https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence">
                     working in your IDE
                   </Link>
                   . Wave goodbye to silent run-time breakage misery!
-                </li>
+                </li> */}
               </ul>
             </div>
             So we created <strong>Stylable</strong> &mdash; a CSS preprocessor
