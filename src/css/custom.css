@@ -17,7 +17,7 @@
 
   --ifm-code-font-size: 95%;
   --ifm-container-width: 1024px;
-  --ifm-font-family-base: WixMadeForText;
+  /* --ifm-font-family-base: WixMadeForText; */
 }
 
 .docusaurus-highlight-code-line {
@@ -45,7 +45,7 @@ html[data-theme="dark"] .header-github-link:before {
     no-repeat;
 }
 
-@font-face {
+/* @font-face {
   font-family: WixMadeForText;
   src: url(/fonts/WixMadeforText_Rg.ttf);
 }
@@ -58,8 +58,4 @@ html[data-theme="dark"] .header-github-link:before {
 
 strong {
   font-family: WixMadeForTextBold;
-}
-
-.react-toggle-track-check span, .react-toggle-track-x span {
-  height: 15px;
-}
+} */

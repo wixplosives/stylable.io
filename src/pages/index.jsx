@@ -184,8 +184,10 @@ function Home() {
               src="img/stylable-lsp.gif"
               alt="Stylable Intelligence Demo"
             />
-            Treating CSS as a type system opens up a whole new world of tooling.
-            You can:
+            <p>
+              Treating CSS as a type system opens up a whole new world of
+              tooling. You can:
+            </p>
             <ul>
               <li>
                 Get code completion that hints at the internal structure of
