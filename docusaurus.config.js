@@ -108,7 +108,7 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: require.resolve("./src/sidebars"),
           editUrl:
             "https://github.com/wixplosives/stylable.io/edit/master/docs",
         },

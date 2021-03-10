@@ -181,7 +181,7 @@ function Home() {
             <h2>Tooling</h2>
             <img
               className={styles.lspDemo}
-              src="img/stylable-lsp.gif"
+              src="img/stylable-lsp-opt.gif"
               alt="Stylable Intelligence Demo"
             />
             <p>
