@@ -11,24 +11,24 @@ This snippet basically does two things:
 2. Adds `StylableWebpackPlugin` to the webpack configuration
 
 ```js
-    const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
+const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
 
-    module.exports = {
-        stories: ...,
-        addons: ...,
-        webpackFinal: (config) => {
-            /* find all css loaders and add exclude .st.css files from them */
-            for (const rule of config.module.rules) {
-                if (rule.test && rule.test.toString() === `/\\.css$/`) {
-                    rule.exclude = /\.st\.css$/;
-                }
+module.exports = {
+    stories: ...,
+    addons: ...,
+    webpackFinal: (config) => {
+        /* find all css loaders and add exclude .st.css files from them */
+        for (const rule of config.module.rules) {
+            if (rule.test && rule.test.toString() === `/\\.css$/`) {
+                rule.exclude = /\.st\.css$/;
             }
-
-            /* inject StylableWebpackPlugin */
-            config.plugins.push(new StylableWebpackPlugin());
-            return config;
         }
+
+        /* inject StylableWebpackPlugin */
+        config.plugins.push(new StylableWebpackPlugin());
+        return config;
     }
+}
 ```
 
 :::important 
