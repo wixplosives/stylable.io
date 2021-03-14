@@ -31,7 +31,7 @@ module.exports = {
 }
 ```
 
-:::important 
+:::warning 
 
 This snippet should work for the default Storybook configuration while having assumptions about the structure of the webpack configuration file, and so this might break in future releases.
 
