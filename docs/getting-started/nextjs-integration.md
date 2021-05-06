@@ -26,6 +26,9 @@ module.exports = {
         /* Add Stylable plugin to the webpack configuration */
         config.plugins.push(
             new StylableWebpackPlugin({
+                /* Let NextJS handle assets */
+                filterAssets: () => false,
+                /* Put the output in known location */
                 filename: 'static/css/stylable.[contenthash].css',
             })
         );
