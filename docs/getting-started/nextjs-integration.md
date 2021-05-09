@@ -42,5 +42,5 @@ module.exports = {
 ```
 
 :::important
-The `applyWebpackConfigStylableExcludes` export is available in `@stylable/webpack-plugin` version `4.2.2` and onwards.
+The `applyWebpackConfigStylableExcludes` export and `filterAssets` flag are available in `@stylable/webpack-plugin` version `4.2.2` and onwards.
 :::
