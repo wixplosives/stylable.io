@@ -13,6 +13,7 @@ There are few steps you need to follow to integrate Stylable in your NextJS proj
 ### Example Configuration:
 
 ```js
+// next.config.js
 const {
   StylableWebpackPlugin,
   applyWebpackConfigStylableExcludes,
