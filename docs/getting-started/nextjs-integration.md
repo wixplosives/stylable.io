@@ -3,7 +3,7 @@ id: nextjs-integration
 title: NextJS Integration
 ---
 
-There are few steps you need to follow in order to integrate Stylable to your NextJS project.
+There are few steps you need to follow to integrate Stylable in your NextJS project.
 
 1. Create a `next.config.js`
 2. Use NextJS webpack 5 future
