@@ -40,13 +40,13 @@ Install **Stylable** and the **@stylable/webpack-plugin** as a dependency in you
 Using npm:
 
 ```bash
-npm install stylable @stylable/webpack-plugin --save-dev
+npm install @stylable/core @stylable/webpack-plugin --save-dev
 ```
 
 Using Yarn:
 
 ```bash
-yarn add stylable @stylable/webpack-plugin --dev
+yarn add @stylable/core @stylable/webpack-plugin --dev
 ```
 
 ## Write in Stylable
