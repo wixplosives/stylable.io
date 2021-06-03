@@ -11,18 +11,17 @@ This snippet basically does two things:
 2. Adds `StylableWebpackPlugin` to the webpack configuration
 
 ```js
-const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
+const {
+    StylableWebpackPlugin,
+    applyWebpackConfigStylableExcludes
+} = require('@stylable/webpack-plugin');
 
 module.exports = {
     stories: ...,
     addons: ...,
     webpackFinal: (config) => {
         /* find all css loaders and add exclude .st.css files from them */
-        for (const rule of config.module.rules) {
-            if (rule.test && rule.test.toString() === `/\\.css$/`) {
-                rule.exclude = /\.st\.css$/;
-            }
-        }
+        applyWebpackConfigStylableExcludes(config)
 
         /* inject StylableWebpackPlugin */
         config.plugins.push(new StylableWebpackPlugin());
@@ -31,7 +30,7 @@ module.exports = {
 }
 ```
 
-:::warning 
+:::caution
 
 This snippet should work for the default Storybook configuration while having assumptions about the structure of the webpack configuration file, and so this might break in future releases.
 
