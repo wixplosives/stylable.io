@@ -21,7 +21,7 @@ module.exports = {
     addons: ...,
     webpackFinal: (config) => {
         /* find all css loaders and add exclude .st.css files from them */
-        applyWebpackConfigStylableExcludes(config)
+        applyWebpackConfigStylableExcludes(config);
 
         /* inject StylableWebpackPlugin */
         config.plugins.push(new StylableWebpackPlugin());
