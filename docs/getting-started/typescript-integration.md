@@ -1,0 +1,87 @@
+---
+id: typescript-integration
+title: TypeScript Integration
+---
+
+Using Stylable requires you to import `*.st.css` stylesheets into your `*.jsx/*.tsx` files to apply any class name, state, variable or keyframe to your components.
+
+By default, TypeScript has no way of knowing what the content of any `*.st.css` file holds, and so you must define a type for it.
+
+Below we describe two complementing ways of doing so.
+
+## Declaring global stylesheet typings
+
+<!-- TypeScript requires to be made aware of Stylable in order to provide typings and module resolution for `*.st.css` files.  -->
+
+The first type definition you should include in your project, is a general purpose `*.st.css` global definition which would remove any TypeScript errors and allow Stylable stylesheets to be used without any special validations or completions.
+
+To do this, create a `globals.d.ts` file in your `./src` directory and add the following declaration.
+
+```ts
+// globals.d.ts
+declare module "*.st.css" {
+  export * from "@stylable/runtime/stylesheet";
+
+  const defaultExport: unknown;
+  export default defaultExport;
+}
+```
+
+## Generating stylesheet definition files
+
+The ability to generate specific `.d.ts` files for any Stylable stylesheet was added in version `4.3.0` of Stylable.
+
+By generating these definitions, you are creating static typings for each export that the stylesheet provides:
+
+- `class/var/stVar/keyframe` - validate uses to see that they exist within the stylesheet
+- `st/style/cssStates functions` - validate states existence and type match
+
+You can use our `@stylable/cli` to generate these files:
+
+```sh
+stc --dts
+```
+
+:::note
+If you are consuming stylesheets that do not have `.d.ts` files, the global type definition will serve as a fallback type.
+:::
+
+### Generating source-maps
+
+In addition to generating `.d.ts` files, you can also generate source maps (`.d.ts.map`).
+
+These source-maps will map the content of the `.d.ts` file back to the source stylesheet (`.st.css`) so that you can jump to definitions in your stylesheets straight from your component `.jsx/.tsx`.
+
+### Development mode
+
+To have a good experience when working locally in dev mode, we recommend generating both the definition files and their source-maps using our `watch` service.
+
+This ensures that as you are working your code validations, completions and other language-service capabilities will remain correct.
+
+```sh
+stc --dts --dtsSourceMap -w
+```
+
+<!-- open issue about TS experience and link to it -->
+
+:::tip
+Generating both definition and source-map files for every stylesheet in your project can make the project seem more cluttered.
+
+To help ease this, we recommend adding the generated `*.st.css.d.ts` and `*.st.css.d.ts.map` files to your `.gitignore` file and only including them in your published packages.
+:::
+
+### Publishing
+
+If you publish any `*.st.css` in your package, you should also publish the `.d.ts` and `.d.ts.map` files alongside them. This will result in a better experience for users consuming your project.
+
+```sh
+stc --outDir="dist" --stcss --dts --dtsSourceMap
+```
+
+### ESlint Stylable plugin vs. generated definition files
+
+There is an overlap of functionality between the Stylable ESlint plugin and the generated `.d.ts` files.
+
+Both of these solutions will validate stylesheet export usages, however the `.d.ts` requires the `watch` service to be running. Despite this requirement, this is probably the better experience between the two as ESlint is not meant for cross-file processes and can at time show stale validations.
+
+So, if you are generating definition files, you can remove the ESlint Stylable plugin and suffer no development experience degradation.

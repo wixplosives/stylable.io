@@ -88,16 +88,6 @@ const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
 
 For more information on configuring the @stylable/webpack-plugin, see the [readme file](https://github.com/wix/stylable/tree/master/packages/webpack-plugin).
 
-## Types
+## TypeScript support
 
-TypeScript requires to be made aware of Stylable in order to provide typings and module resolution for `*.st.css` files. To do this, create a `globals.d.ts` file in your `./src` directory and add the following declaration.
-
-```ts
-// globals.d.ts
-declare module "*.st.css" {
-  export * from "@stylable/runtime/stylesheet";
-
-  const defaultExport: unknown;
-  export default defaultExport;
-}
-```
+To configure Stylable to work with TypeScript, check out our [TypeScript Integration](./typescript-integration.md) guide.

@@ -3,6 +3,7 @@ module.exports = {
     "getting-started/intro",
     "getting-started/install-configure",
     "getting-started/react-integration",
+    "getting-started/typescript-integration",
     "getting-started/storybook-integration",
     "getting-started/nextjs-integration",
     "getting-started/stylable-intelligence",
