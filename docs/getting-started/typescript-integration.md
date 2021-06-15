@@ -70,7 +70,7 @@ To help ease this, we recommend adding the generated `*.st.css.d.ts` and `*.st.c
 
 ### Publishing
 
-If you publish any `*.st.css` in your package, you should also publish the `.d.ts` and `.d.ts.map` files alongside them. This will result in a better experience for users consuming your project.
+If you publish any `*.st.css` files in your package, you should also publish the `.d.ts` and `.d.ts.map` files alongside them. This practice leads to a better experience for users consuming your project.
 
 ```sh
 stc --outDir="dist" --stcss --dts --dtsSourceMap
