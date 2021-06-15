@@ -3,7 +3,7 @@ id: typescript-integration
 title: TypeScript Integration
 ---
 
-Using Stylable requires you to import `*.st.css` stylesheets into your `*.ts/*.tsx` files to apply any class name, state, variable or keyframe to your components.
+Stylable requires `*.st.css` stylesheets to be imported into your `*.ts/*.tsx` files for class names, states, variables, or keyframes to be applied to your components.
 
 By default, TypeScript has no way of knowing what the content of any `*.st.css` file holds, and so you must define a type for it.
 
