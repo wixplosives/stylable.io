@@ -63,7 +63,7 @@ stc --dts --dtsSourceMap -w --cjs false
 ```
 
 :::tip
-Generating both definition and source-map files for every stylesheet in your project can make the project seem more cluttered.
+Generating both definition and source-map files for every stylesheet in a project can clutter the project up. For this reason, we recommend adding the generated `*.st.css.d.ts` and `*.st.css.d.ts.map` files to your `.gitignore` file, and only include them in your published packages.
 
 To help ease this, we recommend adding the generated `*.st.css.d.ts` and `*.st.css.d.ts.map` files to your `.gitignore` file and only including them in your published packages.
 :::
