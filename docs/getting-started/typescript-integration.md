@@ -80,6 +80,5 @@ stc --outDir="dist" --stcss --dts --dtsSourceMap
 
 There is an overlap of functionality between the Stylable ESlint plugin and the generated `.d.ts` files - both solutions validate stylesheet export usages. The `.d.ts` file approach is superior, howevever, as it offers better validations, completions and correctness. All it requires is that the `watch` service be running.
 
-Both of these solutions will validate stylesheet export usages. However the `.d.ts` file approach is probably the better one. It offers better validations, completions and correctness. It does require the `watch` service to be running.
 
 So, if you are generating definition files, you can remove the ESlint Stylable plugin and suffer no degredation in development experience.
