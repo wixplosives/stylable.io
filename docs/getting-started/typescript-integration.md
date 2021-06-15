@@ -13,7 +13,7 @@ Below, we describe two **complementing** ways of doing so.
 
 The first type definition you should include in your project is a general purpose `*.st.css` global declaration. This provides a broad signature of a Stylable stylesheet.
 
-To do this, create a `globals.d.ts` file in your `./src` directory and add the following declaration.
+To do this, create a `globals.d.ts` file in your `./src` directory and add the following declaration:
 
 ```ts
 // globals.d.ts
