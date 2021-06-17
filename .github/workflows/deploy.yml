@@ -12,8 +12,10 @@ jobs:
         with:
           node-version: 14
           registry-url: "https://registry.npmjs.org/"
-      - run: npm ci
-      - run: npm run predeploy
+      - run: npm i -g yarn@1
+      - run: yarn config set network-timeout 300000
+      - run: yarn --frozen-lockfile
+      - run: yarn predeploy
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
