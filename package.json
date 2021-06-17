@@ -7,7 +7,8 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "yarn clear && yarn build && copyfiles CNAME ./build && gh-pages -d build",
+    "predeploy": "yarn clear && yarn build && copyfiles CNAME ./build",
+    "deploy": "gh-pages -d build",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear"
   },
