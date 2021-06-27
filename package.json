@@ -13,7 +13,7 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@algolia/client-search": "^4.9.3",
+    "@algolia/client-search": "^4.10.2",
     "@docusaurus/core": "^2.0.0-beta.1",
     "@docusaurus/preset-classic": "^2.0.0-beta.1",
     "@easyops-cn/docusaurus-search-local": "^0.18.1",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/react": "^17.0.11",
     "copyfiles": "^2.4.1",
-    "gh-pages": "^3.2.2"
+    "gh-pages": "^3.2.3"
   },
   "license": "UNLICENSED"
 }
