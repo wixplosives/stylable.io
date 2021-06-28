@@ -29,7 +29,7 @@ yarn create stylable-app <project-name>
 
 For the `<project-name>` placeholder above, replace with the name of your project. Once you run the command, a directory with that same name is created. Go to that directory and run `npm start` to view the project in a browser, or `npm run build` to build your project's target code.
 
-The project includes several basic components and **Stylable** stylesheets which have the suffix `.st.css`.
+The project includes several basic components and **Stylable** stylesheets with the suffix `.st.css`.
 
 ## Install Stylable to work with an existing project
 
@@ -53,11 +53,11 @@ yarn add @stylable/core @stylable/webpack-plugin --dev
 
 Once you've installed either the boilerplate or the packages into your own project, you can begin writing in **Stylable**. Look through the [Specifications Reference](../references/cheatsheet.md) for specs and code examples.
 
-To take advantage of code completion and diagnostics, install [**Stylable Intelligence**](./stylable-intelligence.md) currently supported for only Visual Studio Code.
+To take advantage of code completion and diagnostics, install [**Stylable Intelligence**](./stylable-intelligence.md) (currently only supported for Visual Studio Code).
 
 ## Build configuration
 
-Currently we support Webpack as our build system. To author a component library, use our CLI tool to build each CSS separately.
+We currently support Webpack as our build system. To author a component library, use our CLI tool to build each CSS separately.
 
 Add **Stylable** to your Webpack configuration as follows:
 
