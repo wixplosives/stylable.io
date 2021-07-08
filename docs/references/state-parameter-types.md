@@ -157,7 +157,7 @@ You can define a custom state with a **number value**, and then target it using 
 }
 ```
 
-Setting the state **number value** in the view `<span className={style(classes.root, {column: 5})}>` resolves to `<span className="style--column-5" />`.
+Setting the state **number value** in the view `<span className={style(classes.root, {column: 5})}>` resolves to `<span className="style---column-1-5" />`.
 
 ### Number validation [optional]
 
