@@ -4,10 +4,11 @@ title: Scoping
 ---
 
 **Stylable** scope enables you to wrap several style-rules using a single directive.
-The scoping directive receives any valid Stylable selector to use for its scoping.
+The scoping directive can receive any valid Stylable selector to use for its scoping.
 
 Stylable scoping directive is similar in its behavior to CSS nesting, but can only be applied to a single level.
 
+When used without a selector it treats the selectors as unscoped.
 ### Syntax example
 ```css
 /* entry.st.css */
@@ -123,5 +124,29 @@ In this example, we use our existing flavors from above to customize our compone
     UserForm {
         -st-mixin: userForm-flavor(background black, text white, borderColor #f4f4f4);
     }
+}
+```
+
+### Targeting unscoped elements 
+
+There would be use cases that we would like to target unscoped selectors.
+
+
+```css
+html, body {
+    margin: 0;
+    padding: 0;
+}
+```
+
+
+By default, stylable would show a warning diagnostic targeting all of the elements written above. To do this without warning, we will need to use @st-scope without a selector as a parameter.
+
+```css
+@st-scope {
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
 }
 ```
