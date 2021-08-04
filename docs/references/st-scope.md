@@ -140,7 +140,7 @@ html, body {
 ```
 
 
-By default, stylable would show a warning diagnostic targeting all of the elements written above. To do this without warning, we will need to use @st-scope without a selector as a parameter.
+By default, Stylable would show a warning diagnostic targeting all of the elements written above. To do this without warning, we will need to use `@st-scope` without a selector as a parameter.
 
 ```css
 @st-scope {
