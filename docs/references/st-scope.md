@@ -4,28 +4,23 @@ title: Scoping
 ---
 
 **Stylable** scope enables you to wrap several style-rules using a single directive.
-The scoping directive can receive any valid Stylable selector to use for its scoping.
+The scoping directive receives any valid Stylable selector to use for its scoping.
 
 Stylable scoping directive is similar in its behavior to CSS nesting, but can only be applied to a single level.
 
-When used without a parameter it treats the selectors as unscoped.
-
 ### Syntax example
-
 ```css
 /* entry.st.css */
 @st-scope .root {
-  input {
-    color: purple;
-  }
+    input { color: purple; }  
 }
 ```
 
 ```css
 /* output */
 .entry__root input {
-  color: purple;
-}
+    color: purple;
+} 
 ```
 
 ### Theming with scope
@@ -35,7 +30,6 @@ There are many possible patterns that can be used to theme a site or application
 Below are several examples for how theming can be done.
 
 #### Creating a theme
-
 In this example, we're representing a dark theme as a stylesheet. Creating your overriding rules under that Stylesheet's symbol and apply it to the relevant part of your DOM.
 
 In this theme implementation we are targeting three components and overriding their default look.
@@ -43,77 +37,69 @@ In this theme implementation we are targeting three components and overriding th
 ```css
 /* dark-theme.st.css */
 :import {
-  -st-from: './index.st.css';
-  -st-default: App;
-  -st-named: Button, DropDown;
+    -st-from: './index.st.css';
+    -st-default: App;
+    -st-named: Button, DropDown;
 }
 
 @st-scope .root {
-  App {
-    border-color: darkgrey;
-  }
-  Button {
-    background: darkgreen;
-  }
-  DropDown {
-    background: darkgrey;
-    color: beige;
-  }
+    App { border-color: darkgrey; }
+    Button { background: darkgreen; }
+    DropDown {
+        background: darkgrey;
+        color: beige;
+    }
 }
 ```
 
 #### Extending a theme
-
 In this example, we are extending our previously created dark theme, with a specific override for the Gallery component.
 
 ```css
 :import {
-  -st-from: './gallery.st.css';
-  -st-default: Gallery;
+    -st-from: './gallery.st.css';
+    -st-default: Gallery;
 }
 :import {
-  -st-from: './dark.st.css';
-  -st-default: DarkTheme;
+    -st-from: './dark.st.css';
+    -st-default: DarkTheme;
 }
 
 @st-scope DarkTheme {
-  DropDown {
-    color: yellow; /* overriding DarkTheme color, perserving background */
-  }
-  Gallery {
-    background: darkgrey;
-  }
+    DropDown {
+        color: yellow; /* overriding DarkTheme color, perserving background */
+    }
+    Gallery { background: darkgrey; }
 }
 ```
 
 #### Theming with mixins
-
 In this file, we are creating pre-designed flavors that uses Stylable variables to determine their styling.
 
 ```css
 /* flavors.st.css */
 :import {
-  -st-from: './index.st.css';
-  -st-named: Button, UserForm;
+    -st-from: './index.st.css';
+    -st-named: Button, UserForm;
 }
 
 :vars {
-  background: white;
-  text: black;
-  bordercolor: green;
+    background: white;
+    text: black;
+    borderColor: green;
 }
 
 .button-flavor {
-  -st-extends: Button;
-  background: value(background);
-  color: value(text);
+    -st-extends: Button;
+    background: value(background);
+    color: value(text);
 }
 
 .userForm-flavor {
-  -st-extends: UserForm;
-  background: value(background);
-  color: value(text);
-  border: 1px solid value(borderColor);
+    -st-extends: UserForm;
+    background: value(background);
+    color: value(text);
+    border: 1px solid value(borderColor);
 }
 ```
 
@@ -121,21 +107,21 @@ In this example, we use our existing flavors from above to customize our compone
 
 ```css
 :import {
-  -st-from: './index.st.css';
-  -st-named: UserForm, Button;
+    -st-from: './index.st.css';
+    -st-named: UserForm, Button;
 }
 :import {
-  -st-from: './flavors.st.css';
-  -st-named: button-flavor, userForm-flavor;
+    -st-from: './flavors.st.css';
+    -st-named: button-flavor, userForm-flavor;
 }
 
 @st-scope .root {
-  Button {
-    -st-mixin: button-flavor(background black, text white);
-  }
+    Button {
+        -st-mixin: button-flavor(background black, text white);
+    }
 
-  UserForm {
-    -st-mixin: userForm-flavor(background black, text white, borderColor #f4f4f4);
-  }
+    UserForm {
+        -st-mixin: userForm-flavor(background black, text white, borderColor #f4f4f4);
+    }
 }
 ```
