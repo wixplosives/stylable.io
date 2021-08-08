@@ -36,7 +36,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.15",
+    "@types/react": "^17.0.16",
     "copyfiles": "^2.4.1",
     "gh-pages": "^3.2.3"
   },
