@@ -119,7 +119,7 @@ import { classes, keyframes } from './entry.st.css';
 
 ## Global keyframes
 
-To create global (unscoped) keyframes, **Stylable** provides a function that takes the global keyframes name as a parameter.
+To create global (unscoped) keyframes, **Stylable** provides `stGlobal` function which accepts a global keyframe name as its parameter.
 
 ```css
 @keyframes stGlobal(slide) {
