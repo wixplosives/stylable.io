@@ -10,7 +10,7 @@ import Logo from "../../static/img/branding/logo/SVG/96-logo-horizontal.svg";
 function ResponsiveEmbed({ src }) {
   return (
     <div className={clsx(styles.responsiveEmbed)}>
-      <iframe src={src} frameborder="0" allowfullscreen></iframe>
+      <iframe src={src} frameBorder="0" allowFullScreen></iframe>
     </div>
   );
 }
@@ -255,7 +255,7 @@ function Home() {
                 and welcome <strong>Stylable</strong>. We hope you like it.
               </p>
               <p>
-                Click here to access the BSD-licensed{" "}
+                Click here to access the MIT-licensed{" "}
                 <Link to="https://github.com/wix/stylable">
                   Stylable GitHub project
                 </Link>
