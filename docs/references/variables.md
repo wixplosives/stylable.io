@@ -104,17 +104,17 @@ Stylable does this by utilizing a type function in the variable definition and p
 
 ### Stylable native variable types
 By default, Stylable exposes two types of variables that are available globally and do not require a special import:
-* `stMap`  
-* `stArray`
+* `st-map`  
+* `st-array`
 
-#### stMap
-Use the `stMap` function to provide an interface similar to a map. You can group variables by context and retrieve them by key.
+#### st-map
+Use the `st-map` function to provide an interface similar to a map. You can group variables by context and retrieve them by key.
 
 Its definition is comprised of key/value pairs with a space as a delimiter between them, and a comma as a separator between pairs.
 
 ```css
 :vars {
-    colors: stMap(
+    colors: st-map(
         bg green,
         text red
     );
@@ -125,14 +125,14 @@ Its definition is comprised of key/value pairs with a space as a delimiter betwe
 }
 ```
 
-#### stArray
-Use the `stArray` function to provide an interface which is similar to an array. This enables you to group variables by context and retrieve them by their index. 
+#### st-array
+Use the `st-array` function to provide an interface which is similar to an array. This enables you to group variables by context and retrieve them by their index. 
 
 Its definition is comprised of values that are zero-based and comma separated.
 
 ```css
 :vars {
-    colors: stArray(red, green);
+    colors: st-array(red, green);
 }
 
 .root {
