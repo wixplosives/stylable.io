@@ -107,12 +107,13 @@ Stylable supports the [@property](https://developer.mozilla.org/en-US/docs/Web/C
 
 ## Using global CSS variables
 
-In cases where you have no control over the name of the CSS variable used, use the `@st-global-custom-property` directive to define CSS variables that will not be scoped, and will maintain their exact given name.
+In cases where you have no control over the name of the CSS variable used, use the `@property` directive with `st-global` to define CSS variables that will not be scoped, and will maintain their exact given name.
 
 This is mostly useful when working with 3rd-party libraries, where you only attempt to affect it externally.
 
 ```css
-@st-global-custom-property --color, --bg;
+
+@property st-global(--color);
 
 .root {
     --color: green;
@@ -124,9 +125,7 @@ This is mostly useful when working with 3rd-party libraries, where you only atte
 import { classes } from './entry.st.css';
 
 <div className={classes.root}
-     style={{ 
-         '--color': 'red', 
-         '--bg': 'yellow' }} >
+     style={{ '--color': 'red' }} >
 </div>>
 ```
 
