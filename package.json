@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.10.5",
-    "@docusaurus/core": "^2.0.0-beta.4",
-    "@docusaurus/preset-classic": "^2.0.0-beta.4",
+    "@docusaurus/core": "^2.0.0-beta.6",
+    "@docusaurus/preset-classic": "^2.0.0-beta.6",
     "@easyops-cn/docusaurus-search-local": "^0.19.1",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
@@ -36,7 +36,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.20",
+    "@types/react": "^17.0.22",
     "copyfiles": "^2.4.1",
     "gh-pages": "^3.2.3"
   },
