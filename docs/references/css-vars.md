@@ -105,9 +105,15 @@ Stylable supports the [@property](https://developer.mozilla.org/en-US/docs/Web/C
 }
 ```
 
+:::info
+
+`@property` definitions without a body are used only for defining a symbol and will be removed at the build process.
+
+:::
+
 ## Using global CSS variables
 
-In cases where you have no control over the name of the CSS variable used, use the `@property` directive with `st-global` to define CSS variables that will not be scoped, and will maintain their exact given name.
+In cases where you have no control over the name of the CSS variable used, use the `@property` at-rule with `st-global` to define CSS variables that will not be scoped, and will maintain their exact given name.
 
 This is mostly useful when working with 3rd-party libraries, where you only attempt to affect it externally.
 
@@ -124,9 +130,10 @@ This is mostly useful when working with 3rd-party libraries, where you only atte
 ```jsx
 import { classes } from './entry.st.css';
 
-<div className={classes.root}
-     style={{ '--color': 'red' }} >
-</div>>
+<div 
+    className={classes.root}
+    style={{ '--color': 'red' }} 
+/>
 ```
 
 :::note
