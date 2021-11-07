@@ -28,11 +28,11 @@ Syntax unique to Stylable - Click each to access code examples and descriptions
   - [**`:X`**](../references/pseudo-classes.md) - Target states including native and custom (pseudo-classes)
   - [**`:--X`**](../references/custom-selectors.md) - Selector alias (custom selector)
   - [**`:global(X)`**](../references/global-selectors.md) - Keep selector global
-- **Import directives** - Import external assets like mixins, stylesheets, common CSS and vars
-  - [**`@st-import Comp, [x, --y] from "./x.st.css"`**](../references/imports.md)
+- **Import directives**
+  - [**`@st-import`**](../references/imports.md) - Import external assets like mixins, stylesheets, common CSS and vars
     - [**default import**](../references/imports.md#import-the-default-export-of-a-local-reference-stylesheet-for-use-in-the-scoped-stylesheet) - Import the file's default export value
     - [**named import**](../references/imports.md#import-named-parts-from-a-local-stylesheet) - Import the file's named export value or values
-    - [**`keyframes(x1, x2, x3)`**](../references/keyframes.md#imports-and-exports) - Import named keyframe definitions from a different stylesheet
+    - [**`keyframes(x1, x2)`**](../references/keyframes.md#imports-and-exports) - Import named keyframe definitions from a different stylesheet
 - [**`:vars {}`**](../references/variables.md) - Define common values to be used across the stylesheet or project
 - **Utility directives**
   - [**`@st-scope .x {}`**](../references/st-scope.md) - Scope nested rules with a given selector
