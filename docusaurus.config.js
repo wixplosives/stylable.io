@@ -109,14 +109,12 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./src/sidebars"),
-          editUrl:
-            "https://github.com/wixplosives/stylable.io/edit/master/docs",
+          editUrl: "https://github.com/wixplosives/stylable.io/edit/master",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            "https://github.com/wixplosives/stylable.io/edit/master/blog",
+          editUrl: "https://github.com/wixplosives/stylable.io/edit/master",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
