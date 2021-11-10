@@ -7,15 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 14
+      - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
           registry-url: "https://registry.npmjs.org/"
-      - run: npm i -g yarn@1
-      - run: yarn config set network-timeout 300000
-      - run: yarn --frozen-lockfile
-      - run: yarn predeploy
+      - run: npm ci
+      - run: npm run predeploy
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

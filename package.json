@@ -3,14 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "predeploy": "yarn clear && yarn build && copyfiles CNAME ./build",
+    "predeploy": "npm run clear && npm run build && copyfiles CNAME ./build",
     "deploy": "gh-pages -d build",
     "serve": "docusaurus serve",
-    "test": "yarn build",
+    "test": "npm run build",
     "clear": "docusaurus clear"
   },
   "dependencies": {
