@@ -34,7 +34,7 @@ module.exports = function(baseSize, modifier) {
 ```
 
 ```css
-@st-import calcFontSize from "./calc-font-size.st.css";
+@st-import calcFontSize from "./calc-font-size";
 
 .header {
     font-size: calcFontSize(16, header);
@@ -79,7 +79,7 @@ When the formatter is imported into the CSS, it can also be used with a [variabl
 In this example the CSS imports the same formatter as the previous example, `calc-font-size`, but the variable `baseFontSize` is added to the calculation.  
 
 ```css
-@st-import calcFontSize from "./calc-font-size.st.css";
+@st-import calcFontSize from "./calc-font-size";
 
 :vars {
     baseFontSize: 12;
@@ -122,7 +122,7 @@ module.export = {
 ```
 
 ```css
-@st-import [divBy2, round] from "./math.st.css";
+@st-import [divBy2, round] from "./math";
 
 :vars {
     baseSize: 17px;
