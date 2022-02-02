@@ -143,7 +143,7 @@ Stylable also offers a custom variable type, `stBorder`, that must be imported f
 `stBorder` accepts three arguments, `size`, `style` and `color` in that order. When using the type, you can either invoke the entire border definition (by not passing an additional argument), or specific parts of it, according to their key.
 
 ```css
-@st-import [stBorder] from "./custom.st.css";
+@st-import [stBorder] from "@stylable/custom-value";
 
 :vars {
     /* order of arguments: size style color */
