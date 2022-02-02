@@ -22,7 +22,7 @@ In the [commons stylable stylesheet](./project-commons.md) of your project (usua
 A component's **Stylable** stylesheet can use and extend shared classes:
 
 ```css
-@namespace 'comp';
+@namespace "comp";
 @st-import [emphasisBox] from "./project.st.css";
 /*
 selector: .comp__root .project__emphasisBox
