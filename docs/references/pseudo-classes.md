@@ -90,10 +90,7 @@ You can extend another imported stylesheet and inherit its custom pseudo-classes
 ```css
 /* example2.st.css */
 @namespace "Example2";
-:import {
-    -st-from: "./example1.st.css";
-    -st-default: Comp1;
-}
+@st-import Comp1 from "./example1.st.css";
 .mediaButton {
     -st-extends: Comp1;
     -st-states: toggled, selected;

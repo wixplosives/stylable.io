@@ -60,10 +60,8 @@ When the value of a stylesheet is [imported](./imports.md) with a **capital firs
 
 ```css
 @namespace "Page";
-:import{
-    -st-from: "./toggle-button.st.css";
-    -st-default: ToggleButton;
-}
+@st-import ToggleButton from "./toggle-button.st.css";
+
 .root ToggleButton { background: green; }
 .sideBar:hover ToggleButton { background: red; }
 ```

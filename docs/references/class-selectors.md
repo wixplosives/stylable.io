@@ -70,10 +70,8 @@ Classes imported this way should be scoped to your local stylesheet by adding `.
 ```css
 /* form.st.css */
 @namespace "Form";
-:import {
-    -st-from: './button.st.css';
-    -st-named: icon, label; 
-}
+
+@st-import [icon, label] from "./button.st.css";
 
 /* @selector .Form__myIcon.Button__icon */
 .myIcon { 

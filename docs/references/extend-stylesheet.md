@@ -16,10 +16,9 @@ In this example, the stylesheet is extending the `toggle-button.st.css` styleshe
 ```css
 /* page.st.css */
 @namespace "Page";
-:import {
-    -st-from: "./toggle-button.st.css";
-    -st-default: ToggleButton;
-}
+
+@st-import ToggleButton from "./toggle-button.st.css";
+
 .checkBtn {
     -st-extends: ToggleButton;
     background: white;
@@ -78,14 +77,9 @@ Any class other than `root` defined in a Stylesheet is considered an inner part.
 ```css
 /* page.st.css */
 @namespace "Page";
-:import {
-    -st-from: "./toggle-button.st.css";
-    -st-default: ToggleButton;
-}
-:import {
-    -st-from: "./toggle-button-variant.st.css";
-    -st-named: toggleVariant;
-}
+
+@st-import ToggleButton from "./toggle-button.st.css";
+@st-import [toggleVariant] from "./toggle-button-variant.st.css";
 
 .defaultCheckBtn {
     -st-extends: ToggleButton; /* extending stylesheet */

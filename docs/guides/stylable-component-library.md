@@ -67,16 +67,16 @@ Your components should be as easy to style as possible. We recommend following t
 More best practices for themable components can be found in the [**Stylable** component best practices guide](./component-best-practices.md).
 
 In the following code, you can see a component described with:
+
 * 2 colors used from project
 * 1 shared class 
 
 ```css
 /* app.st.css */
 @namespace "App";
-:import {
-    -st-from: '../project.st.css';
-    -st-named: color1, color2, emphasisBox;
-}
+
+@st-import [color1, color2, emphasisBox] from "../project.st.css";
+
 .root {
     color: value(color1);
     background: value(color2);
@@ -87,33 +87,4 @@ In the following code, you can see a component described with:
 }
 ```
 
-## Theme
-
-The **Stylable** library can include multiple theme files that render a different look and feel per theme. A theme imports the `project.st.css` file as a theme base to override variables, variants and classes from the library.
-
-In the following code, you can see a theme file customizing the library:
-* override `color1` and `color2`
-* CSS for `cancelButton` variant component
-* CSS for `emphsisBox` shared class
-
-```css
-/* backoffice-theme.st.css */
-@namespace "backofficeTheme";
-:import {
-    -st-from: '../project.st.css';
-    -st-named: color1, color2, cancelButton, emphasisBox;
-    color1: white;
-    color2: red;
-}
-.cancelButton {
-    color: value(color1);
-    background: value(color2);
-}
-.emphasisBox {
-    border: 3px solid value(color2);
-}
-```
-
 Read more about using themes in [theme an application](./stylable-application#apply-component-library-theme).
-
-

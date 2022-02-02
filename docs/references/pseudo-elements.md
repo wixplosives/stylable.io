@@ -30,10 +30,7 @@ In this example, you [import](./imports.md) a `VideoPlayer` component into your 
 
 ```css
 @namespace "Page";
-:import {
-    -st-from: './video-player.st.css';
-    -st-default: VideoPlayer;
-}
+@st-import VideoPlayer from "./video-player.st.css";
 .mainVideo {
     -st-extends: VideoPlayer; /* define mainVideo as VideoPlayer */
 }
@@ -69,10 +66,7 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 ```css
 /* super-video-player.st.css */
 @namespace "SuperVideoPlayer";
-:import {
-    -st-from: './video-player.st.css';
-    -st-default: VideoPlayer;
-}
+@st-import VideoPlayer from "./video-player.st.css";
 .root {
     -st-extends: VideoPlayer;
 }
@@ -92,10 +86,7 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 ```css
 /* page.st.css */
 @namespace "Page";
-:import {
-    -st-from: './super-video-player.st.css';
-    -st-default: SuperVideoPlayer;
-}
+@st-import SuperVideoPlayer from "./super-video-player.st.css";
 .mainPlayer {
     -st-extends: SuperVideoPlayer;
 }
@@ -127,10 +118,7 @@ In this example, `root` extends `VideoPlayer` and so any class placed on the `ro
 
 ```css
 @namespace "SuperVideoPlayer";
-:import {
-    -st-from: './video-player.st.css';
-    -st-default: VideoPlayer;
-}
+@st-import VideoPlayer from "./video-player.st.css";
 .root {
     -st-extends: VideoPlayer;
 }

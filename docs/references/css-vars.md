@@ -48,10 +48,7 @@ Due to the fact Stylable provides scoping to CSS variables, it also provides the
 
 ```css
 /* entry.st.css */
-:import {
-    -st-from: "./imported.st.css";
-    -st-named: --myVar;
-}
+@st-import [--myVar] from "./imported.st.css";
 
 .root {
     /* value determined by the nearest property assignment up the DOM tree */

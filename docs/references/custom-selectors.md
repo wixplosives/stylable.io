@@ -33,10 +33,9 @@ Custom selectors generate a [pseudo-element](./pseudo-elements.md). So, for exam
 
 ```css
 @namespace "Page";
-:import {
-    -st-from: "./comp.st.css";
-    -st-default: Comp;
-}
+
+@st-import Comp from "./comp.st.css";
+
 /*
 selector: .Comp__root .Comp__controls .Comp__btn
 */
@@ -72,10 +71,9 @@ Here you can use the icon `custom selector` from the outside just like you would
 
 ```css
 @namespace "Panel";
-:import {
-    -st-from: "./tree.st.css";
-    -st-default: Tree;
-}
+
+@st-import Tree from "./tree.st.css";
+
 /*
 selector: .Tree__root > .Tree__icon
 */
@@ -91,10 +89,8 @@ When you want to make internal parts of your component API more accessible, you 
 For example, you can expose a `pseudo-element` named `navigationBtn` that enables you to style an internal gallery component's `navBtn` element.
 
 ```css
-:import {
-    -st-from: "./gallery.st.css";
-    -st-default: Gallery;
-}
+@st-import Gallery from "./gallery.st.css";
+
 @custom-selector :--navigationBtn Gallery::navBtn;
 ```
 
@@ -111,10 +107,9 @@ For example, a `pseudo-element` named `navBtn` matches any `btn` CSS class neste
 
 ```css
 @namespace "Page";
-:import {
-    -st-from: "./comp.st.css";
-    -st-default: Comp;
-}
+
+@st-import Comp from "./comp.st.css";
+
 /*
 selector: .Comp__root .Comp__nav .Comp__btn
 */
@@ -147,10 +142,9 @@ For example, when you import the `Comp` stylesheet (the selector described in th
 
 ```css
 @namespace "Page";
-:import {
-    -st-from: "./comp.st.css";
-    -st-default: Comp;
-}
+
+@st-import Comp from "./comp.st.css";
+
 Comp::media { 
     border-color: red; 
 }

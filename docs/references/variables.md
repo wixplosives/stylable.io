@@ -44,10 +44,8 @@ Any var defined in a stylesheet is exported as a named export and can be [import
 
 ```css
 @namespace "Example2";
-:import {
-    -st-from: "./example1.css"; /* Example1 stylesheet */
-    -st-named: color1, color2; /* import color1 and color2 variables */
-}
+@st-import [color1, color2] from "./example1.st.css";
+
 .root {
     border: 10px solid value(color1);
 }
@@ -78,10 +76,8 @@ You can set the value of a variable using another variable.
 
 ```css
 @namespace "Example3";
-:import {
-    -st-from: "./example1.css"; /* Example1 stylesheet */
-    -st-named: color1, color2;
-}
+@st-import [color1, color2] from "./example1.st.css";
+
 :vars {
     border1: 10px solid value(color1); /* use color1 in a complex value */
 }
@@ -147,10 +143,7 @@ Stylable also offers a custom variable type, `stBorder`, that must be imported f
 `stBorder` accepts three arguments, `size`, `style` and `color` in that order. When using the type, you can either invoke the entire border definition (by not passing an additional argument), or specific parts of it, according to their key.
 
 ```css
-:import {
-    -st-from: "@stylable/custom-value";
-    -st-named: stBorder;
-}
+@st-import [stBorder] from "./custom.st.css";
 
 :vars {
     /* order of arguments: size style color */

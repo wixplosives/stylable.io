@@ -15,7 +15,7 @@ title: Imports
 @st-import DefaultComp, [somePart, someVar] from './stylesheet.st.css';
 ```
 
-- `:import` ruleset directive - The original more verbose way of importing symbols, uses the **Stylable** syntax beginning with `-st-` inside the `:import` ruleset:
+- `:import` ruleset directive - The legacy more verbose way of importing symbols, uses the **Stylable** syntax beginning with `-st-` inside the `:import` ruleset:
     * `-st-from:` Identifies the path to the stylesheet or JavaScript module. Can be a relative path or a 3rd party path.
     * `-st-default:` Imports the default export of the module named in `-st-from:`. Use with the name by which to identify the imported value in the scoped stylesheet.
     * `-st-named:` List of the named exports to import into the local scoped stylesheet from the file named in `-st-from:`.
@@ -34,8 +34,9 @@ Every example below will feature both types of import syntaxes, their end result
 
 * `:import` is a Stylable directive and not a selector.
 * likewise, `@st-import` is a Stylable directive and not an actual at-rule.
-* Import statements cannot be used as a part of a complex selector or inside a CSS ruleset.
+* Import statements cannot be nested or be part of a complex selector.
 * Multiple imports may conflict in their used symbol names; the last one in the file wins.
+* When an imported symbol conflicts with a local symbol the local will be used.
 
 :::
 
@@ -60,19 +61,6 @@ Generally when importing a **default** value from a stylable file, you should us
 @st-import ToggleButton from './button.st.css';
 ```
 
-```css
-/* comp.st.css - legacy syntax */
-:import {
-    -st-from: './button.st.css';
-    -st-default: ToggleButton;
-}
-```
-
-```js
-/* ES6 "equivalent" */
-import ToggleButton from './button.st.css';
-```
-
 ### Import named parts from a local stylesheet
 Named imports from a stylesheet can be used to bring symbols of different types, which you can then use inside your stylesheet.
 
@@ -86,19 +74,6 @@ In this
 ```css
 /* comp.st.css - atRule syntax */
 @st-import [label, icon, --bgColor] from './button.st.css';
-```
-
-```css
-/* comp.st.css - legacy syntax */
-:import {
-    -st-from: './button.st.css';
-    -st-named: label, icon, --bgColor;
-}
-```
-
-```js
-/* ES6 "equivalent" */
-import { label, icon, --bgColor } from './button.st.css';
 ```
 
 ### Import named exports from a local JS module
@@ -116,19 +91,6 @@ When importing named values, they are generally used as class or tag selectors a
 @st-import [gridMixin, tooltipMixin] from './my-mixins';
 ```
 
-```css
-/* comp.st.css - legacy syntax */
-:import {
-    -st-from: "./my-mixins";
-    -st-named: gridMixin, tooltipMixin;
-}
-```
-
-```js
-/* ES6 equivalent */
-import { gridMixin, tooltipMixin } from "./my-mixins";
-```
-
 ### Import named exports from a local JS module and locally refer to one of the export values as a different name
 
 The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript module `my-mixins.js`. The value `gridMixin` is used as is and `tooltipMixin` has been renamed for use in this scoped stylesheet as `tooltip`. These mixins are referred to as `gridMixin` and `tooltip` in this stylesheet.
@@ -136,19 +98,6 @@ The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript
 ```css
 /* comp.st.css - atRule syntax */
 @st-import [gridMixin, tooltipMixin as tooltip] from './my-mixins';
-```
-
-```css
-/* comp.st.css - legacy syntax */
-:import {
-    -st-from: "./my-mixins";
-    -st-named: gridMixin, tooltipMixin as tooltip;
-}
-```
-
-```js
-/* ES6 equivalent */
-import { gridMixin, tooltipMixin as tooltip } from "./my-mixins";
 ```
 
 ## Import keyframes
@@ -162,16 +111,7 @@ Due to this, when importing keyframes from another stylesheet, a special `keyfra
 @st-import [keyframes(slideX, slideY)] from './keyframes.st.css';
 ```
 
-```css
-/* comp.st.css - legacy syntax */
-:import {
-    -st-from: "./my-mixins";
-    -st-named: keyframes(slideX, slideY);
-}
-```
-
 You can read more about keyframes behavior [here](./keyframes.md).
-
 
 ## Importing specific symbols
 

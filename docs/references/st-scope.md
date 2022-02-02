@@ -36,11 +36,7 @@ In this theme implementation we are targeting three components and overriding th
 
 ```css
 /* dark-theme.st.css */
-:import {
-    -st-from: './index.st.css';
-    -st-default: App;
-    -st-named: Button, DropDown;
-}
+@st-import App, [Button, DropDown] from "./index.st.css";
 
 @st-scope .root {
     App { border-color: darkgrey; }
@@ -53,17 +49,12 @@ In this theme implementation we are targeting three components and overriding th
 ```
 
 #### Extending a theme
+
 In this example, we are extending our previously created dark theme, with a specific override for the Gallery component.
 
 ```css
-:import {
-    -st-from: './gallery.st.css';
-    -st-default: Gallery;
-}
-:import {
-    -st-from: './dark.st.css';
-    -st-default: DarkTheme;
-}
+@st-import Gallery from "./gallery.st.css";
+@st-import DarkTheme from "./dark.st.css";
 
 @st-scope DarkTheme {
     DropDown {
@@ -74,14 +65,12 @@ In this example, we are extending our previously created dark theme, with a spec
 ```
 
 #### Theming with mixins
+
 In this file, we are creating pre-designed flavors that uses Stylable variables to determine their styling.
 
 ```css
 /* flavors.st.css */
-:import {
-    -st-from: './index.st.css';
-    -st-named: Button, UserForm;
-}
+@st-import [Button, UserForm] from "./index.st.css";
 
 :vars {
     background: white;
@@ -106,14 +95,8 @@ In this file, we are creating pre-designed flavors that uses Stylable variables 
 In this example, we use our existing flavors from above to customize our components look under the dark theme.
 
 ```css
-:import {
-    -st-from: './index.st.css';
-    -st-named: UserForm, Button;
-}
-:import {
-    -st-from: './flavors.st.css';
-    -st-named: button-flavor, userForm-flavor;
-}
+@st-import [UserForm, Button] from "./index.st.css";
+@st-import [button-flavor, userForm-flavor] from "./flavors.st.css";
 
 @st-scope .root {
     Button {

@@ -56,13 +56,9 @@ Here is an example of a **Stylable** CSS file that is imported and mixed into th
 }
 ```
 
-``` css
+```css
 /* example.st.css - imports the above mixin */
-:import {
-    -st-from: './mixins.st.css';
-    -st-default: MixRoot;
-    -st-named: someClass;
-}
+@st-import MixRoot, [someClass] from "./mixins.st.css";
 
 .rootMixedIn {
     -st-mixin: MixRoot; /* stylesheet mixin */
@@ -105,7 +101,7 @@ mixin (
 )
 ```
  
- Using parameters in a mixin enables you to override specific [variables](./variables.md) inside of a mixin before they are applied.
+Using parameters in a mixin enables you to override specific [variables](./variables.md) inside of a mixin before they are applied.
 
 Here is an example of using a variable in a CSS mixin and how it can be overridden by the mixin's parameter value.
 
@@ -223,12 +219,9 @@ module.exports = function colorAndBg([color, bgColor]){
 };
 ```
 
-``` css
+```css
 /* file example.st.css */
-:import {
-    -st-from: './my-mixin';
-    -st-default: colorAndBg;
-}
+@st-import colorAndBg from "./my-mixin";
 
 .codeMixedIn {
     -st-mixin: colorAndBg(green, orange); 
@@ -269,12 +262,9 @@ module.exports = function complexMixin([color, bgColor]){
 };
 ```
 
-``` css
+```css
 /* file example.st.css */
-:import {
-    -st-from: './my-mixin';
-    -st-default: complexMixin;
-}
+@st-import complexMixin from "./my-mixin";
 
 .codeMixedIn {
     -st-mixin: complexMixin(green, orange); 
