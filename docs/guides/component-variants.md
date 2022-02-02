@@ -14,10 +14,9 @@ In your project's [Stylable stylesheet](./project-commons.md) used for the commo
 
 ```css
 @namespace "project";
-:import {
-    -st-from: "./button.st.css";
-    -st-default: Button; 
-}
+
+@st-import Button from "./button.st.css";
+
 .cancelButton {
     -st-extend: Button;
     color: red;
@@ -31,10 +30,9 @@ A component **Stylable** stylesheet can use and extend component variants:
 
 ```css
 @namespace "comp";
-:import {
-    -st-from: './project.st.css';
-    -st-named: cancelButton;
-}
+
+@st-import [cancelButton] from "./project.st.css";
+
 /*
 selector: .comp__root .project__cancelButton.button__root
 js value: "project__cancelButton"

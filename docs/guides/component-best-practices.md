@@ -118,10 +118,8 @@ This helps with maintenance and development since we don't test CSS as thoroughl
 Import CSS or Stylable variables from the [project commons stylesheet](../guides/project-commons.md).
 
 ```css
-:import {
-    -st-from: "./project.st.css";
-    -st-named: color1, --font-small;
-}
+@st-import [color1, --font-small] from "./project.st.css";
+
 .item {
     background: value(color1);
     font-size: var(--font-small);

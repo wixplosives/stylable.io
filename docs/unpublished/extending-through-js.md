@@ -55,11 +55,8 @@ Using these types enables the consumers of the plugin to receive code hinting an
 
 Values are strings exported via JavaScript modules they can be used inside a Stylable value() function.
 
-```css 
-:import {
-    -st-from: "../my-js-values.js";
-    -st-named: myValue;
-}
+```css
+@st-import [myValue] from "./my-js-values";
 
 .myClass {
     color: value(myValue);
@@ -82,12 +79,7 @@ Formatters are methods that manipulate parameters to produce a string that is re
 For example the following CSS code:
 
 ```css
-
-:import {
-    -st-from: "../my-formatter.js";
-    -st-named: lighten;
-    -st-default: frmt;
-}
+@st-import [lighten] from "./my-formatter";
 
 .myClass {
     color: lighten(30, #ff0000);
@@ -118,11 +110,7 @@ In many cases its useful to generate bigger chunks of css through js.
 Here's an example creating and using an expandOnHover mixin:
 
 ```css
-
-:import{
-    -st-from:"../my-mixins.js";
-    -st-named:expandOnHover;
-}
+@st-import [expandOnHover] from "../my-mixins.st.css";
 
 .myClass{
     -st-mixin:expandOnHover(200,2);

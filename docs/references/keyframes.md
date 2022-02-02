@@ -47,10 +47,7 @@ To import any such symbol in a different stylesheet, **Stylable** uses a utility
 ```css
 /* index.st.css */
 
-:import {
-    -st-from: "./animations.st.css";
-    -st-named: keyframes(slideX, slideY);
-}
+@st-import [keyframes(slideX, slideY)] from "./animations.st.css";
 
 .root { animation-name: slideX; }
 
@@ -76,11 +73,7 @@ To import any such symbol in a different stylesheet, **Stylable** uses a utility
 To create a local alias of a keyframe, Stylable supports the same `[NAME] as [NEW_NAME]` syntax inside the keyframe import utility, as it does for any named import.
 
 ```css
-:import {
-    -st-from: "./animations.st.css";
-    -st-named: keyframes(slide as mySlide),
-               somePart as myPart;
-}
+@st-import [keyframes(slide as mySlide)] from "./animations.st.css";
 ```
 
 Note that this keyframe will be re-exported under its new alias name, and not the original imported name.

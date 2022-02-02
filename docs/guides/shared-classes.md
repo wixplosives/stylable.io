@@ -23,10 +23,7 @@ A component's **Stylable** stylesheet can use and extend shared classes:
 
 ```css
 @namespace "comp";
-:import {
-    -st-from: './project.st.css';
-    -st-named: emphasisBox;
-}
+@st-import [emphasisBox] from "./project.st.css";
 /*
 selector: .comp__root .project__emphasisBox
 js value: "project__emphasisBox"

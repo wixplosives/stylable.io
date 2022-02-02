@@ -105,10 +105,8 @@ Let's also import `Button`'s stylesheet into the `Panel` stylesheet. You can the
 
 ```css
 /* panel.st.css */
-:import {
-    -st-from: './button.st.css';
-    -st-default: Button;
-}
+@st-import Button from "./button.st.css";
+
 .root {}
 
 /* cancelBtn is of type Button */

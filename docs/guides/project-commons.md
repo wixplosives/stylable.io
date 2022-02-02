@@ -20,10 +20,8 @@ In the following code, you can see a project with:
     fontSmall: 1rem;
     spacing: 6px;
 }
-:import {
-    -st-from: './button/button.st.css';
-    -st-default: Button;
-}
+@st-import Button from "./button/button.st.css";
+
 .cancelButton {
     -st-extends: Button;
 }

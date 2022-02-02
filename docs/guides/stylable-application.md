@@ -26,10 +26,8 @@ An application would define CSS with the final style definitions:
     fontBig: 30px;
     fontSmall: 10px;
 }
-:import {
-    -st-from: './button/button.st.css';
-    -st-default: Button;
-}
+@st-import Button from "./button/button.st.css";
+
 .cancelButton {
     -st-extends: Button;
     color: value(color1);
@@ -47,14 +45,10 @@ In the following code you can see a component that is described with:
 
 ```css
 @namespace "dialog";
-:import {
-    -st-from: './project.st.css';
-    -st-named: color1, color2, cancelButton;
-}
-:import {
-    -st-from: './button/button.st.css';
-    -st-default: Button;
-}
+
+@st-import [color1, color2, cancelButton] from "./project.st.css";
+@st-import Button from "./button/button.st.css";
+
 .root {
     color: value(color1);
     background: value(color2);
