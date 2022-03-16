@@ -13,10 +13,10 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@algolia/client-search": "^4.12.2",
+    "@algolia/client-search": "^4.13.0",
     "@docusaurus/core": "^2.0.0-beta.17",
     "@docusaurus/preset-classic": "^2.0.0-beta.15",
-    "@easyops-cn/docusaurus-search-local": "^0.22.0",
+    "@easyops-cn/docusaurus-search-local": "^0.23.0",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
     "react": "^17.0.2",
@@ -35,7 +35,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.39",
+    "@types/react": "^17.0.40",
     "copyfiles": "^2.4.1",
     "gh-pages": "^3.2.3"
   },
