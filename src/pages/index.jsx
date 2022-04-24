@@ -231,8 +231,8 @@ function Home() {
                 Learn more about <strong>Mr. Potato Bruce project</strong>
               </Link>{" "}
               from GitHub. It's a{" "}
-              <Link to="https://potatobruce.io/">
-                Learn more about <strong>demo application</strong>
+              <Link to="https://wix.github.io/potato-bruce/">
+                <strong>demo application</strong>
               </Link>{" "}
               showcasing the features and typed style API. Bruce explains it in
               his React Europe 2018 talk:
