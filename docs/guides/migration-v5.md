@@ -18,6 +18,7 @@ In the past, Stylable exposed all of its functionalities as public facing APIs. 
 The following APIs have been removed, and an alternative was provided:
 
 - custom pseudo state parameter type `tag` has been removed - can be replaced by `-st-states: stateName(string)` (see [issue](https://github.com/wix/stylable/issues/1552#issuecomment-874559161))
+- the ability to pass `Stylable vars` as value to custom pseudo-state type has bee removed
 
 ### Missing APIs?
 
