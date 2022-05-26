@@ -9,16 +9,46 @@ We have taken the opportunity of node dropping LTS support for `v12` and we have
 
 You can find the plan for this major version [here](https://github.com/wix/stylable/issues/2410).
 
-## Reducing public facing APIs
+## `@stylable/core`
+
+### Diagnostics overhaul
+
+All diagnostics in `@stylable/core` had diagnostics code added, and were reviewed for consistency. Many diagnostics have had their severity increased to `error`.
+
+We plan on starting to map out the diagnostics in this site to help users understand what they are seeing, and why it happened.
+
+### Reducing public facing APIs
 
 In the past, Stylable exposed all of its functionalities as public facing APIs. Over time, this has proven difficult to maintain and develop further, and so We have decided to limit what Stylable exposes, and to segment its APIs under a few different namespaces.
 
-### Removed APIs
+In addition, most APIs have been refactored to match our new [programmatic API model](https://github.com/wix/stylable/wiki/Programmatic-API).
 
-The following APIs have been removed, and an alternative was provided:
+#### Removed APIs
 
+The following APIs have been changed:
+
+- `StylableMeta` renamed `rawAst` to `sourceAst` and `outputAst` to `targetAst`
+
+The following APIs have been removed:
+
+- `StylableMeta` removed `ast` field
 - custom pseudo state parameter type `tag` has been removed - can be replaced by `-st-states: stateName(string)` (see [issue](https://github.com/wix/stylable/issues/1552#issuecomment-874559161))
 
-### Missing APIs?
+#### Missing APIs?
 
 If we have removed an API that you have found useful, and provided no alternative, please let us know by opening an issue over at [GitHub](https://github.com/wix/stylable/issues/new/choose).
+
+## `@stylable/cli`
+
+### Default arguments changed
+
+The `@stylable/cli` `stc` command now has no output default output defined, previously this was set to emit `.cjs` files.
+
+- If you were using the `stc` command without the `--cjs` flag, you will need to update your code to use the new default output
+- If were explictly setting the output to not emit `.cjs` files (e.g. `--no-cjs` or `--cjs=false`), you can now remove this parameter from your command
+
+### Build index file and other outputs simultaneously
+
+The `@stylable/cli` `stc` command now supports building an indexFile and other outputs (`.js`, `.css`, `.st.css`, etc.) at once.
+
+- If you were previously running separate commands to build the index file and other outputs, you can now run a single command to build them all at once
