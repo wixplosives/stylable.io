@@ -19,19 +19,22 @@ We plan on starting to map out the diagnostics in this site to help users unders
 
 ### Reducing public facing APIs
 
-In the past, Stylable exposed all of its functionalities as public facing APIs. Over time, this has proven difficult to maintain and develop further, and so We have decided to limit what Stylable exposes, and to segment its APIs under a few different namespaces.
+In the past, Stylable exposed all of its functionalities as public facing APIs. Over time, this has proven difficult to maintain and develop further, and so we have decided to limit what Stylable exposes, and to segment its APIs under a few different namespaces.
 
 In addition, most APIs have been refactored to match our new [programmatic API model](https://github.com/wix/stylable/wiki/Programmatic-API).
 
-#### Removed APIs
+#### API changes
 
 The following APIs have been changed:
 
 - `StylableMeta` renamed `rawAst` to `sourceAst` and `outputAst` to `targetAst`
+- The Stylable constructor now accepts options as an object (similar to `Stylable.create()` options)
 
 The following APIs have been removed:
 
+- The `Stylable.create()` method has been removed
 - `StylableMeta` removed `ast` field
+- `StylableTransformer` is no longer considered public API, there relevant functionality has been moved to `stylable.transform`, `stylable.transformSelector`, etc.
 - custom pseudo state parameter type `tag` has been removed - can be replaced by `-st-states: stateName(string)` (see [issue](https://github.com/wix/stylable/issues/1552#issuecomment-874559161))
 
 #### Missing APIs?
@@ -42,7 +45,7 @@ If we have removed an API that you have found useful, and provided no alternativ
 
 ### Default arguments changed
 
-The `@stylable/cli` `stc` command now has no output default output defined, previously this was set to emit `.cjs` files.
+The `@stylable/cli` `stc` command now has no default output defined, previously this was set to emit `.cjs` files.
 
 - If you were using the `stc` command without the `--cjs` flag, you will need to update your code to use the new default output
 - If were explictly setting the output to not emit `.cjs` files (e.g. `--no-cjs` or `--cjs=false`), you can now remove this parameter from your command
