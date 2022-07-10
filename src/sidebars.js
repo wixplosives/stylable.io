@@ -19,6 +19,7 @@ module.exports = {
     "guides/component-variants",
     "guides/ssr",
     "guides/migration-v3",
+    "guides/migration-v5",
   ],
   "Specification Reference": [
     "references/cheatsheet",

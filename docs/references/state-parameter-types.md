@@ -36,26 +36,6 @@ When defining a `default value`, you can use [variables](./variables.md) and [fo
 
 :::
 
-## Tag
-
-You can define a custom state with a **tags value** (seperated by whitespace), and then target it using a pseudo-class selector with a matching **tag argument**.
-
-```css
-.root {
-    /* define a custom state called "cart" */
-    -st-states: cart( tag )
-}
-
-.root:cart(shirt) {
-    /* targets an element that has a state with a value that
-    is a whitespace-separated list of tags, 
-    one of which is exactly the tag argument "shirt" */
-}
-```
-
-Setting the state **tag values** in the view `<span className={style(classes.root, {cart: "shirt"})}>` resolves to `<span className="style__root style---cart-5-shirt" />`.
-
-
 ## Enum
 
 You can define a custom state with possible **enum value** options, and then target one of the options using a pseudo-class selector with a matching **string argument**.
