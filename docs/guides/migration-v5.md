@@ -1,6 +1,6 @@
 ---
 id: migration-v5
-title: Migrating to Stylable v5
+title: Stylable v5
 ---
 
 The purpose of this document is to help migrate projects using Stylable to `v5`.

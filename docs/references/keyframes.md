@@ -7,19 +7,22 @@ In CSS, [`@keyframes`](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyfram
 
 To avoid this issue, **Stylable** performs automatic namespacing of keyframes based on the stylesheet in which they were created.
 
-
 ### Example
 
-```css 
+```css
 @namespace "Comp";
 
 @keyframes slide {
-  from { transform: translateX(0%); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
-.root { 
-    animation-name: slide; 
+.root {
+  animation-name: slide;
 }
 ```
 
@@ -27,16 +30,20 @@ To avoid this issue, **Stylable** performs automatic namespacing of keyframes ba
 /* CSS output */
 
 @keyframes Comp__slide {
-  from { transform: translateX(0%); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
-.Comp__root { 
-    animation-name: Comp__slide;
+.Comp__root {
+  animation-name: Comp__slide;
 }
 ```
 
-## Imports and Exports
+## Import and Export
 
 **Stylable** automatically exports all keyframes created within a stylesheet. **Stylable** will also re-export any imported keyframes.
 
@@ -49,22 +56,34 @@ To import any such symbol in a different stylesheet, **Stylable** uses a utility
 
 @st-import [keyframes(slideX, slideY)] from "./animations.st.css";
 
-.root { animation-name: slideX; }
+.root {
+  animation-name: slideX;
+}
 
-.part { animation-name: slideY; }
+.part {
+  animation-name: slideY;
+}
 ```
 
 ```css
 /* animations.st.css */
 
 @keyframes slideX {
-  from { transform: translateX(0%); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes slideY {
-  from { transform: translateY(0%); }
-  to { transform: translateY(100%); }
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%);
+  }
 }
 ```
 
@@ -89,25 +108,25 @@ You can use these keyframes to apply animations via inline styling.
 @namespace "Comp";
 
 @keyframes slide {
-  from { transform: translateX(0%); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 ```
 
 ```jsx
-import { classes, keyframes } from './entry.st.css';
+import { classes, keyframes } from "./entry.st.css";
 
-<div className={classes.root}
-     style={{ animationName: keyframes.slide }} >
-</div>
+<div className={classes.root} style={{ animationName: keyframes.slide }}></div>;
 ```
 
 ```html
 /* DOM output */
 
-<div className="Comp__root"
-     style="animation-name: Comp__slide;" >
-</div>
+<div className="Comp__root" style="animation-name: Comp__slide;"></div>
 ```
 
 ## Global keyframes
@@ -116,8 +135,12 @@ To create global (unscoped) keyframes, **Stylable** provides `st-global` functio
 
 ```css
 @keyframes st-global(slide) {
-  from { transform: translateX(0%); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 ```
 
@@ -125,7 +148,11 @@ To create global (unscoped) keyframes, **Stylable** provides `st-global` functio
 /* CSS output */
 
 @keyframes slide {
-  from { transform: translateX(0%); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 ```

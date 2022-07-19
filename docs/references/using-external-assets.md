@@ -1,6 +1,6 @@
 ---
 id: using-external-assets
-title: Using External Assets
+title: url()
 ---
 
 Stylable supports usage of [url functions](<https://developer.mozilla.org/en-US/docs/Web/CSS/url()>) to use assets as you normally would in CSS.

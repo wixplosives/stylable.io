@@ -1,6 +1,6 @@
 ---
 id: imports
-title: Imports
+title: Import
 ---
 
 **Stylable** enables you to import other stylesheets and modules in a way that is similar to [JS Imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). You can then use the stylesheet or module as it's been defined, or just one or more of its named values, in your own **Stylable** stylesheet.
@@ -42,11 +42,11 @@ Every example below will feature both types of import syntaxes, their end result
 
 :::
 
-## Imports - basic usage
+## Basic usage
 
 Here are some examples of how you can use imports in your **Stylable** stylesheet.
 
-### Import the default export of a local reference stylesheet for use in the scoped stylesheet
+### Stylesheet default export
 
 Import the `button.st.css` stylesheet from a local location. Assign the name `Button` to the default export of that stylesheet for use in this scoped stylesheet.
 
@@ -63,7 +63,7 @@ Generally when importing a **default** value from a stylable file, you should us
 @st-import ToggleButton from './button.st.css';
 ```
 
-### Import named parts from a local stylesheet
+### Stylesheet named exports
 
 Named imports from a stylesheet can be used to bring symbols of different types, which you can then use inside your stylesheet.
 
@@ -81,13 +81,13 @@ In this
 @st-import [label, icon, --bgColor] from './button.st.css';
 ```
 
-### Import named exports from a local JS module
+### JS named exports
 
 The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript module `my-mixins.js`. These named exports are now imported into this scoped stylesheet.
 
 :::tip
 
-When importing named values, they are generally used as class or tag selectors and, therefore, you should camelCase to name them.
+When importing named values, they are generally used as class or element type selectors and, therefore, you should camelCase to name them.
 
 :::
 
@@ -96,7 +96,7 @@ When importing named values, they are generally used as class or tag selectors a
 @st-import [gridMixin, tooltipMixin] from './my-mixins';
 ```
 
-### Import named exports from a local JS module and locally refer to one of the export values as a different name
+### Alias JS named exports
 
 The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript module `my-mixins.js`. The value `gridMixin` is used as is and `tooltipMixin` has been renamed for use in this scoped stylesheet as `tooltip`. These mixins are referred to as `gridMixin` and `tooltip` in this stylesheet.
 
@@ -105,25 +105,16 @@ The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript
 @st-import [gridMixin, tooltipMixin as tooltip] from './my-mixins';
 ```
 
-## Import keyframes
+## Keyframes and Layers
 
-In Stylable, both class names and keyframes undergo namespacing to avoid collision. However, despite the two being global, they do not share a namespace in CSS - this means that you can have both a class name and a keyframe with the same name.
+In Stylable, both class names, keyframes, and layers undergo namespacing to avoid collision. However, despite the three being global, they do not share a namespace in CSS - this means that you can have both a class name, a keyframe and a layer all with the same name.
 
-Due to this, when importing keyframes from another stylesheet, a special `keyframes()` directive needs to be used.
+Due to this, when importing keyframes or layers from another stylesheet, a special `keyframes()` or `layer()` directive is required.
 
 ```css
 /* comp.st.css - atRule syntax */
 @st-import [keyframes(slideX, slideY)] from './keyframes.st.css';
+@st-import [layer(theme)] from './layer.st.css';
 ```
 
-You can read more about keyframes behavior [here](./keyframes.md).
-
-## Importing specific symbols
-
-- [Tag selectors](./tag-selectors.md)
-- [Extend a stylesheet](./extend-stylesheet.md)
-- [Import Stylable variables](./variables.md#import-variables)
-- [Import CSS variables](./css-vars.md#importing-css-variables)
-- [Import classes](./class-selectors.md#import-classes)
-- [Mixins](./mixins.md)
-- [Component variants](../guides/component-variants.md) and [Shared classes](../guides/shared-classes.md)
+You can read more about keyframes behavior [here](./keyframes.md), or about layers [here](./layer.md).

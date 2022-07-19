@@ -1,6 +1,6 @@
 ---
 id: layer
-title: Layers
+title: Layer
 ---
 
 In CSS, `@layer` provides a way to group rules together in order to override other rules for better control of the styling order.

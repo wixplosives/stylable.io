@@ -1,6 +1,6 @@
 ---
 id: storybook-integration
-title: Storybook Integration
+title: Storybook
 ---
 
 To integrate Stylable with Storybook, configure your Storybook webpack configuration and add the following snippet.

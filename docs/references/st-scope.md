@@ -1,6 +1,6 @@
 ---
 id: st-scope
-title: Scoping
+title: Scope
 ---
 
 **Stylable** scope enables you to wrap several style-rules using a single directive.
@@ -8,19 +8,22 @@ The scoping directive receives any valid Stylable selector to use for its scopin
 
 Stylable scoping directive is similar in its behavior to CSS nesting, but can only be applied to a single level.
 
-### Syntax example
+### Syntax
+
 ```css
 /* entry.st.css */
 @st-scope .root {
-    input { color: purple; }  
+  input {
+    color: purple;
+  }
 }
 ```
 
 ```css
 /* output */
 .entry__root input {
-    color: purple;
-} 
+  color: purple;
+}
 ```
 
 ### Theming with scope
@@ -30,6 +33,7 @@ There are many possible patterns that can be used to theme a site or application
 Below are several examples for how theming can be done.
 
 #### Creating a theme
+
 In this example, we're representing a dark theme as a stylesheet. Creating your overriding rules under that Stylesheet's symbol and apply it to the relevant part of your DOM.
 
 In this theme implementation we are targeting three components and overriding their default look.
@@ -39,12 +43,16 @@ In this theme implementation we are targeting three components and overriding th
 @st-import App, [Button, DropDown] from "./index.st.css";
 
 @st-scope .root {
-    App { border-color: darkgrey; }
-    Button { background: darkgreen; }
-    DropDown {
-        background: darkgrey;
-        color: beige;
-    }
+  App {
+    border-color: darkgrey;
+  }
+  Button {
+    background: darkgreen;
+  }
+  DropDown {
+    background: darkgrey;
+    color: beige;
+  }
 }
 ```
 
@@ -57,10 +65,12 @@ In this example, we are extending our previously created dark theme, with a spec
 @st-import DarkTheme from "./dark.st.css";
 
 @st-scope DarkTheme {
-    DropDown {
-        color: yellow; /* overriding DarkTheme color, perserving background */
-    }
-    Gallery { background: darkgrey; }
+  DropDown {
+    color: yellow; /* overriding DarkTheme color, perserving background */
+  }
+  Gallery {
+    background: darkgrey;
+  }
 }
 ```
 
@@ -73,22 +83,22 @@ In this file, we are creating pre-designed flavors that uses Stylable variables 
 @st-import [Button, UserForm] from "./index.st.css";
 
 :vars {
-    background: white;
-    text: black;
-    borderColor: green;
+  background: white;
+  text: black;
+  bordercolor: green;
 }
 
 .button-flavor {
-    -st-extends: Button;
-    background: value(background);
-    color: value(text);
+  -st-extends: Button;
+  background: value(background);
+  color: value(text);
 }
 
 .userForm-flavor {
-    -st-extends: UserForm;
-    background: value(background);
-    color: value(text);
-    border: 1px solid value(borderColor);
+  -st-extends: UserForm;
+  background: value(background);
+  color: value(text);
+  border: 1px solid value(borderColor);
 }
 ```
 
@@ -99,12 +109,16 @@ In this example, we use our existing flavors from above to customize our compone
 @st-import [button-flavor, userForm-flavor] from "./flavors.st.css";
 
 @st-scope .root {
-    Button {
-        -st-mixin: button-flavor(background black, text white);
-    }
+  Button {
+    -st-mixin: button-flavor(background black, text white);
+  }
 
-    UserForm {
-        -st-mixin: userForm-flavor(background black, text white, borderColor #f4f4f4);
-    }
+  UserForm {
+    -st-mixin: userForm-flavor(
+      background black,
+      text white,
+      borderColor #f4f4f4
+    );
+  }
 }
 ```

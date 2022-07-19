@@ -1,6 +1,6 @@
 ---
 id: st-variables
-title: Stylable Variables
+title: Stylable Variable
 ---
 
 Use variables to define common values to be used across the stylesheet and so they can be exposed for sharing and theming.
@@ -21,20 +21,20 @@ Use the syntax `:vars` to define variables, and apply them with a `value()`:
 ```css
 @namespace "Example1";
 :vars {
-    color1: red;
-    color2: green;
+  color1: red;
+  color2: green;
 }
 .root {
-    color: value(color1);
-    background: value(color2);
+  color: value(color1);
+  background: value(color2);
 }
 ```
 
 ```css
 /* CSS output */
 .Example1__root {
-    color: red; /* color1 */
-    background: green; /* color2 */
+  color: red; /* color1 */
+  background: green; /* color2 */
 }
 ```
 
@@ -47,20 +47,20 @@ Any var defined in a stylesheet is exported as a named export and can be [import
 @st-import [color1, color2] from "./example1.st.css";
 
 .root {
-    border: 10px solid value(color1);
+  border: 10px solid value(color1);
 }
 .root:hover {
-    border: 10px solid value(color2);
+  border: 10px solid value(color2);
 }
 ```
 
 ```css
 /* CSS output */
 .Example2__root {
-    border: 10px solid red; /* color1 */
+  border: 10px solid red; /* color1 */
 }
 .Example2__root:hover {
-    border: 10px solid green; /* color2 */
+  border: 10px solid green; /* color2 */
 }
 ```
 
@@ -79,60 +79,62 @@ You can set the value of a variable using another variable.
 @st-import [color1, color2] from "./example1.st.css";
 
 :vars {
-    border1: 10px solid value(color1); /* use color1 in a complex value */
+  border1: 10px solid value(color1); /* use color1 in a complex value */
 }
 .root {
-    border: value(border1); /* user border1 */
+  border: value(border1); /* user border1 */
 }
 ```
 
 ```css
 /* CSS output */
 .Example3__root {
-    border: 10px solid red; /* 10px solid {color1} */
+  border: 10px solid red; /* 10px solid {color1} */
 }
 ```
 
 ## Advanced variable types
-You can use Stylable custom types when defining a variable to group multiple values under a shared context. This gives you a better way to define and manage variables in your stylesheet. 
+
+You can use Stylable custom types when defining a variable to group multiple values under a shared context. This gives you a better way to define and manage variables in your stylesheet.
 
 Stylable does this by utilizing a type function in the variable definition and passing additional arguments to the `value()` function.
 
 ### Stylable native variable types
+
 By default, Stylable exposes two types of variables that are available globally and do not require a special import:
-* `st-map`  
-* `st-array`
+
+- `st-map`
+- `st-array`
 
 #### st-map
+
 Use the `st-map` function to provide an interface similar to a map. You can group variables by context and retrieve them by key.
 
 Its definition is comprised of key/value pairs with a space as a delimiter between them, and a comma as a separator between pairs.
 
 ```css
 :vars {
-    colors: st-map(
-        bg green,
-        text red
-    );
+  colors: st-map(bg green, text red);
 }
 
 .root {
-    background-color: value(colors, bg); /* green */
+  background-color: value(colors, bg); /* green */
 }
 ```
 
 #### st-array
-Use the `st-array` function to provide an interface which is similar to an array. This enables you to group variables by context and retrieve them by their index. 
+
+Use the `st-array` function to provide an interface which is similar to an array. This enables you to group variables by context and retrieve them by their index.
 
 Its definition is comprised of values that are zero-based and comma separated.
 
 ```css
 :vars {
-    colors: st-array(red, green);
+  colors: st-array(red, green);
 }
 
 .root {
-    background-color: value(colors, 1); /* green */
+  background-color: value(colors, 1); /* green */
 }
 ```
 
@@ -146,13 +148,13 @@ Stylable also offers a custom variable type, `stBorder`, that must be imported f
 @st-import [stBorder] from "@stylable/custom-value";
 
 :vars {
-    /* order of arguments: size style color */
-    myBorder: stBorder(1px, solid, green);
+  /* order of arguments: size style color */
+  myborder: stBorder(1px, solid, green);
 }
 
 .root {
-    border: value(myBorder); /* 1px solid green */
-    background-color: value(myBorder, color); /* green */
+  border: value(myBorder); /* 1px solid green */
+  background-color: value(myBorder, color); /* green */
 }
 ```
 

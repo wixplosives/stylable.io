@@ -1,6 +1,6 @@
 ---
 id: pseudo-elements
-title: Pseudo-Elements
+title: Pseudo-Element
 ---
 
 In addition to CSS's native [pseudo-elements](https://developer.mozilla.org/en/docs/Web/CSS/Pseudo-elements), **Stylable** stylesheets automatically expose CSS classes as custom pseudo-elements. This enables you to access internal parts of a component to apply styling.
@@ -14,38 +14,40 @@ When you define a CSS class inside a component, in this case a `playButton` in a
 ```css
 /* video-player.st.css */
 @namespace "VideoPlayer";
-.root {}
-.playButton { 
-    background: black; 
-    color: white;
+.root {
+}
+.playButton {
+  background: black;
+  color: white;
 }
 ```
 
-## Style custom pseudo-elements
+## Style a custom pseudo-element
 
-Use `::` to access an internal part of a component after a [custom tag selector](./tag-selectors.md#component-element) or after an [extended class selector](./extend-stylesheet.md).
+Use `::` to access an internal part of a component after a [custom element type selector](./tag-selectors.md#component-element) or after an [extended class selector](./extend-stylesheet.md).
 
 In this example, you [import](./imports.md) a `VideoPlayer` component into your stylesheet, and style an internal part called `playButton` overriding its original styling.
-
 
 ```css
 @namespace "Page";
 @st-import VideoPlayer from "./video-player.st.css";
 .mainVideo {
-    -st-extends: VideoPlayer; /* define mainVideo as VideoPlayer */
+  -st-extends: VideoPlayer; /* define mainVideo as VideoPlayer */
 }
-.mainVideo::playButton { /* override mainVideo playButton */
-    background: green;
-    color: purple;
+.mainVideo::playbutton {
+  /* override mainVideo playButton */
+  background: green;
+  color: purple;
 }
 ```
 
 ```css
 /* CSS output */
-.Page__mainVideo.VideoPlayer__root {}
+.Page__mainVideo.VideoPlayer__root {
+}
 .Page__mainVideo.VideoPlayer__root .VideoPlayer__playButton {
-    background: green;
-    color: purple;
+  background: green;
+  color: purple;
 }
 ```
 
@@ -55,11 +57,11 @@ Custom pseudo-elements are not limited to the end of a selector like native pseu
 
 :::
 
-## Extend stylesheet pseudo-elements
+## Extend a stylesheet's pseudo-element
 
 When a Stylable stylesheet [root](./root.md) extends another stylesheet, pseudo-elements are automatically exposed on the extending stylesheet and available inline.
 
-In this example, the class `playButton` is available from the original component file `video-player.css`, and extended and styled in the `super-video-player.css` stylesheet as a custom pseudo-element on the `root` class. 
+In this example, the class `playButton` is available from the original component file `video-player.css`, and extended and styled in the `super-video-player.css` stylesheet as a custom pseudo-element on the `root` class.
 
 The `page.css` stylesheet can then extend `super-video-player.css` and on the `.mainPlayer` class, style `playButton` differently.
 
@@ -68,18 +70,19 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 @namespace "SuperVideoPlayer";
 @st-import VideoPlayer from "./video-player.st.css";
 .root {
-    -st-extends: VideoPlayer;
+  -st-extends: VideoPlayer;
 }
-.root::playButton {
-    color: gold;
+.root::playbutton {
+  color: gold;
 }
 ```
 
 ```css
 /* CSS output */
-.SuperVideoPlayer__root.VideoPlayer__root {}
+.SuperVideoPlayer__root.VideoPlayer__root {
+}
 .SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton {
-    color: gold; 
+  color: gold;
 }
 ```
 
@@ -88,25 +91,25 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 @namespace "Page";
 @st-import SuperVideoPlayer from "./super-video-player.st.css";
 .mainPlayer {
-    -st-extends: SuperVideoPlayer;
+  -st-extends: SuperVideoPlayer;
 }
-.mainPlayer::playButton {
-    color: silver;
+.mainPlayer::playbutton {
+  color: silver;
 }
 ```
 
 ```css
 /* CSS output */
-.Page__mainPlayer.SuperVideoPlayer__root {}
+.Page__mainPlayer.SuperVideoPlayer__root {
+}
 .Page__mainPlayer.SuperVideoPlayer__root .VideoPlayer__playButton {
-    color: silver;
+  color: silver;
 }
 ```
 
+## Override a custom pseudo-element
 
-## Override custom pseudo-elements
-
-You can use CSS classes to override extended pseudo-elements. 
+You can use CSS classes to override extended pseudo-elements.
 
 :::caution
 
@@ -120,21 +123,27 @@ In this example, `root` extends `VideoPlayer` and so any class placed on the `ro
 @namespace "SuperVideoPlayer";
 @st-import VideoPlayer from "./video-player.st.css";
 .root {
-    -st-extends: VideoPlayer;
+  -st-extends: VideoPlayer;
 }
-.playButton { /* override VideoPlayer playButton */
-    color: gold;
+.playButton {
+  /* override VideoPlayer playButton */
+  color: gold;
 }
-.root::playButton {
-    color: grey;
+.root::playbutton {
+  color: grey;
 }
 ```
 
 ```css
 /* CSS output */
-.SuperVideoPlayer__root.VideoPlayer__root {}
-.SuperVideoPlayer__playButton { color: gold; }
-.SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton { color: grey; }
+.SuperVideoPlayer__root.VideoPlayer__root {
+}
+.SuperVideoPlayer__playButton {
+  color: gold;
+}
+.SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton {
+  color: grey;
+}
 ```
 
 :::note

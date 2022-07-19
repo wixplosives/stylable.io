@@ -1,42 +1,53 @@
 ---
 id: class-selectors
-title: CSS Class Selectors
-sidebar_label: Class Selectors
+title: Class Selector
 ---
 
 You use [CSS classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) to define the local name of internal component parts. For example, you can define a `.button` in a menu component.
 
-In **Stylable**, class selectors are scoped to the [namespace](./namespace.md) of the stylesheet. 
+In **Stylable**, class selectors are scoped to the [namespace](./namespace.md) of the stylesheet.
 
 You should use camelCase to name class selectors. Avoid using hyphens (-) and capital first letters.
 
 ```css
 @namespace "Page";
-.root:hover .thumbnail { background:red; }
-.thumbnail { background:green; }
-.thumbnail:hover { background:blue; }
+.root:hover .thumbnail {
+  background: red;
+}
+.thumbnail {
+  background: green;
+}
+.thumbnail:hover {
+  background: blue;
+}
 ```
 
 ```css
 /* CSS output */
-.Page__root:hover .Page__thumbnail { background:red; }
-.Page__thumbnail { background:green;}
-.Page__thumbnail:hover { background:blue; }
+.Page__root:hover .Page__thumbnail {
+  background: red;
+}
+.Page__thumbnail {
+  background: green;
+}
+.Page__thumbnail:hover {
+  background: blue;
+}
 ```
 
 ```jsx
 /* comp.jsx */
-import React from 'react';
-import { style, classes } from './comp.st.css';
+import React from "react";
+import { style, classes } from "./comp.st.css";
 
 class Comp extends React.Component {
-    render () {
-        return (
-            <div className={style(classes.root, {}, this.props)}>
-                <img className={style.thumbnail} />
-            </div>
-        )
-    };
+  render() {
+    return (
+      <div className={style(classes.root, {}, this.props)}>
+        <img className={style.thumbnail} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -62,11 +73,18 @@ Classes imported this way should be scoped to your local stylesheet by adding `.
 ```css
 /* button.st.css */
 @namespace "Button";
-.root { background:green; }
-.icon { border: 2px solid black; } 
-.label { font-size: 20px; } 
+.root {
+  background: green;
+}
+.icon {
+  border: 2px solid black;
+}
+.label {
+  font-size: 20px;
+}
 ```
 
+<!-- prettier-ignore-start -->
 ```css
 /* form.st.css */
 @namespace "Form";
@@ -74,8 +92,8 @@ Classes imported this way should be scoped to your local stylesheet by adding `.
 @st-import [icon, label] from "./button.st.css";
 
 /* @selector .Form__myIcon.Button__icon */
-.myIcon { 
-    -st-extends: icon; 
+.myIcon {
+  -st-extends: icon;
 }
 
 /* @selector .Form__root .Button__icon */
@@ -83,9 +101,10 @@ Classes imported this way should be scoped to your local stylesheet by adding `.
 
 /* @selector .Form__label.Button__label */
 .label {
-    -st-extends: label;
+  -st-extends: label;
 }
 ```
+<!-- prettier-ignore-end -->
 
 ```css
 /* 
@@ -101,5 +120,5 @@ Classes imported this way should be scoped to your local stylesheet by adding `.
 
 ## Usage
 
-* [Style pseudo-elements](./pseudo-elements.md)
-* [Use CSS mixins](./mixins.md)
+- [Style pseudo-elements](./pseudo-elements.md)
+- [Use CSS mixins](./mixins.md)
