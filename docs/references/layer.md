@@ -69,7 +69,7 @@ An exported layer definition can be imported into another stylesheet with the [`
 @st-import [layer(layerA, layerB)] from './x.st.css';
 ```
 
-### native CSS import
+### Native CSS import
 
 CSS native [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) can be used to import a stylesheet into a layer:
 
@@ -84,7 +84,7 @@ While Stylable collects and namespaces layer definitions from native CSS imports
 
 :::
 
-## runtime
+## Runtime
 
 A layer can be accessed for dynamic styles using the `layers` mapping on the **Stylable** runtime stylesheet:
 
@@ -95,7 +95,7 @@ import { layers } from "./sheet.st.css";
 layers["layer-name"];
 ```
 
-## namespace
+## Namespace
 
 Stylable automatically namespaces any layer name according to the stylesheet it is defined in:
 
@@ -111,14 +111,13 @@ Output:
 @layer ns__base, ns__layout, ns__theme;
 ```
 
-### disable namespace
+### Disable namespace
 
 In some cases the default namespace behavior is unwanted, for example when a layer is external and not defined or imported by Stylable. In such cases, `st-global` can be used to mark a layer definition as global:
 
 ```css
 /* keep the layer name as-is with no namespace */
-@layer st-global(external) {
-}
+@layer st-global(external);
 ```
 
 Once a layer is marked as global, all references to that layer transpile to the un-namespaced name (nested or imported).
