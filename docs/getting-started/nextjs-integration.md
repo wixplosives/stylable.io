@@ -19,6 +19,10 @@ const {
   applyWebpackConfigStylableExcludes,
 } = require("@stylable/webpack-plugin");
 
+/* single optimizer for NextJS multiple builds in order to sync client/server namespaces */
+const StylableOptimizer = require("@stylable/optimizer").StylableOptimizer;
+const stylableOptimizer = new StylableOptimizer();
+
 module.exports = {
   future: {
     webpack5: true,
@@ -35,6 +39,9 @@ module.exports = {
 
         /* output CSS to the correct location */
         filename: "static/css/stylable.[contenthash].css",
+
+        /* a shared optimizer instance */
+        optimizer: stylableOptimizer,
       })
     );
     return config;
