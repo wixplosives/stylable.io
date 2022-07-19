@@ -33,6 +33,7 @@ Syntax unique to Stylable - Click each to access code examples and descriptions
     - [**default import**](../references/imports.md#import-the-default-export-of-a-local-reference-stylesheet-for-use-in-the-scoped-stylesheet) - Import the file's default export value
     - [**named import**](../references/imports.md#import-named-parts-from-a-local-stylesheet) - Import the file's named export value or values
     - [**`keyframes(x1, x2)`**](../references/keyframes.md#imports-and-exports) - Import named keyframe definitions from a different stylesheet
+    - [**`layer(l1, l2)`**](../references/layer.md#import-and-export) - Import named layer definitions from a different stylesheet
 - [**`:vars {}`**](../references/variables.md) - Define common values to be used across the stylesheet or project
 - **Utility directives**
   - [**`@st-scope .x {}`**](../references/st-scope.md) - Scope nested rules with a given selector
