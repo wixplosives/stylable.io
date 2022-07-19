@@ -1,24 +1,25 @@
 ---
 id: layer
-title: Layer
+title: Layers
 ---
 
-In CSS, `@layer` provides a way to group rules together in order to override other rules for a better control of the styling order.
+In CSS, `@layer` provides a way to group rules together in order to override other rules for better control of the styling order.
 
 This page goes over how Stylable handles `@layer`, for more details about the language feature itself, check out the following resources:
 
 - [MDN @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer)
+- [The Future of CSS: Cascade Layers by Bramus](https://www.bram.us/2021/09/15/the-future-of-css-cascade-layers-css-at-layer/)
 - [CSS cascade spec](https://drafts.csswg.org/css-cascade-5/#layering)
 
 ## Syntax
 
-**layer order definition**
+**Layer order definition**
 
 ```css
 @layer base, layout, theme;
 ```
 
-**layer style definition**
+**Layer style definition**
 
 ```css
 @layer theme {
@@ -26,7 +27,7 @@ This page goes over how Stylable handles `@layer`, for more details about the la
 }
 ```
 
-**nested style definition**
+**Nested style definition**
 
 ```css
 @layer theme {
@@ -46,7 +47,7 @@ This page goes over how Stylable handles `@layer`, for more details about the la
 
 An exported layer definition can be imported into another stylesheet with the [`@st-import`](./imports.md) atrule.
 
-**insert rules into imported layer**
+**Insert rules into imported layer**
 
 ```css
 /* get base layer definition from another stylesheet */
@@ -58,7 +59,7 @@ An exported layer definition can be imported into another stylesheet with the [`
 }
 ```
 
-**more import examples**
+**More import examples**
 
 ```css
 /* map 'base' layer to local name 'x-base' */
@@ -79,24 +80,24 @@ CSS native [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import)
 
 :::caution
 
-While Stylable collects and namespace layer definitions from native CSS imports, it doesn't handle bundling of them at current time, and they are not recommended.
+While Stylable collects and namespaces layer definitions from native CSS imports, it does not handle bundling of them at current time, and they are not recommended for use.
 
 :::
 
 ## runtime
 
-A layer can be accessed for dynamic styles using the `layers` field on the **Stylable** runtime stylesheet:
+A layer can be accessed for dynamic styles using the `layers` mapping on the **Stylable** runtime stylesheet:
 
 ```js
-import { layers } from './sheet.css.ts';
+import { layers } from "./sheet.st.css";
 
 // map to target namespaced layer
-layers['layer-name'];
+layers["layer-name"];
 ```
 
 ## namespace
 
-Stylable automatically namespace any layer name according to the stylesheet it is defined in:
+Stylable automatically namespaces any layer name according to the stylesheet it is defined in:
 
 Source:
 
