@@ -9,7 +9,7 @@ In this chapter, we'll dive deeper to see how other symbols in CSS can be render
 
 ## Supported symbols
 
-We've only mentioned classes up to this point, but in CSS there are many other symbols that share the same naming context and require namespacing to avoid poitential conflicts.
+We've only mentioned classes up to this point, but in CSS there are many other symbols that share the same naming context and require namespacing to avoid potential conflicts.
 
 Symbols that Stylable namespaces:
 
@@ -21,7 +21,7 @@ Symbols that Stylable namespaces:
 | layer           | `@layer theme`     | `@layer NS__theme`     |
 
 :::note
-Stylable does not perform namespacing for `id`, `custom-element` or other symbols at the moment. We might add additional symbol namespacing support in the future.
+Stylable does not perform namespacing for `id`, `custom-element`, `attribute` or other symbols at the moment. We might add additional symbol namespacing support in the future.
 :::
 
 ## Global
@@ -80,6 +80,6 @@ To do so, we can use the `@namespace "OverrideNS";` definition. [Click here](../
 
 ## Project level namespacing
 
-On a more general level, we can have granular control of Styleable's namespacing process by passing a custom namespace resolver to Stylable at initialization using configuration.
+On a more general level, we can have granular control of Stylable's namespacing process by passing a custom namespace resolver to Stylable at initialization using configuration.
 
 <!-- TODO: create stylable.config entry and link to it -->

@@ -5,7 +5,7 @@ title: Classes
 
 <!-- ## map style to view -->
 
-Most basic building block of stylable, used to mark elements on the DOM, so those could in turn be targetted and styled via our CSS
+Most basic building block of stylable, used to mark elements on the DOM, so those could in turn be targeted and styled via our CSS
 
 ## CSS classes
 
@@ -33,16 +33,16 @@ To resolve this, we can use a BEM methodology (TODO: add link) to namespace our 
 
 This solution works but is hard to scale, requires manual upkeep and makes our code more verbose than we'd like.
 
-To solve this issue, Stylable offers automatic namepacing of CSS classes, and other symbols (more on that in the [Namespacing chapter](./namespace.md)).
+To solve this issue, Stylable offers automatic namespacing of CSS classes, and other symbols (more on that in the [Namespacing chapter](./namespace.md)).
 
-## Runtime JS import - classes map
+## Runtime mapping
 
 By turning the namespacing process to an automatic one, we find ourselves needing to map the runtime classes on the DOM to the original classes we defined in our stylesheet.
 
 To access this class name mappings, we will import the stylesheet to our JavaScript, and utilize the `classes` object to get our desired global name.
 
 :::info
-The example below assumes that Stylable was run as part of a build process, using one of our intergrations or hooks to generate the runtime JS module with the required mappings and utility functions.
+The example below assumes that Stylable was run as part of a build process, using one of our integrations or hooks to generate the runtime JS module with the required mappings and utility functions.
 :::
 
 ```jsx

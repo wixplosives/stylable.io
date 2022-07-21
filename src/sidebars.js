@@ -31,6 +31,7 @@ module.exports = {
         "guides/walkthrough/intro",
         "guides/walkthrough/class-walkthrough",
         "guides/walkthrough/namespacing-walkthrough",
+        "guides/walkthrough/custom-state-walkthrough",
       ],
     },
     "guides/components-basics",
