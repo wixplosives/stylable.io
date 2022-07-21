@@ -23,6 +23,16 @@ module.exports = {
     },
   ],
   Guides: [
+    {
+      type: "category",
+      label: "New Guide",
+      collapsed: false,
+      items: [
+        "guides/walkthrough/intro",
+        "guides/walkthrough/class-walkthrough",
+        "guides/walkthrough/namespacing-walkthrough",
+      ],
+    },
     "guides/components-basics",
     "guides/component-best-practices",
     "guides/stylable-application",
