@@ -14,7 +14,7 @@ Some examples of such cases:
 
 - Bind classes to view
 - Activate dynamic states
-- Dynamically set custom property values
+- Set dynamic values
 
 ## Mapped symbols
 
