@@ -29,7 +29,7 @@ module.exports = {
           position: "left",
         },
         {
-          to: "docs/guides/components-basics",
+          to: "docs/guides/handbook/intro",
           activeBasePath: "docs/guides",
           label: "Guides",
           position: "left",
