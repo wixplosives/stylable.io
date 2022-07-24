@@ -1,5 +1,5 @@
 ---
-id: namespacing-walkthrough
+id: namespacing
 title: Namespacing
 ---
 
@@ -18,7 +18,7 @@ Symbols that Stylable namespaces:
 | Class           | `.okButton`        | `.NS__okButton`        |
 | Custom property | `--bgColor`        | `--NS-bgColor`         |
 | Keyframes       | `@keyframes slide` | `@keyframes NS__slide` |
-| layer           | `@layer theme`     | `@layer NS__theme`     |
+| Layer           | `@layer theme`     | `@layer NS__theme`     |
 
 :::note
 Stylable does not perform namespacing for `id`, `custom-element`, `attribute` or other symbols at the moment. We might add additional symbol namespacing support in the future.

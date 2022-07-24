@@ -25,13 +25,14 @@ module.exports = {
   Guides: [
     {
       type: "category",
-      label: "New Guide",
+      label: "Handbook",
       collapsed: false,
       items: [
-        "guides/walkthrough/intro",
-        "guides/walkthrough/class-walkthrough",
-        "guides/walkthrough/namespacing-walkthrough",
-        "guides/walkthrough/custom-state-walkthrough",
+        "guides/handbook/intro",
+        "guides/handbook/class",
+        "guides/handbook/namespacing",
+        "guides/handbook/custom-state",
+        "guides/handbook/runtime",
       ],
     },
     "guides/components-basics",
