@@ -9,12 +9,6 @@ There are currently two options for installing and working with **Stylable** as 
 
 To begin writing your own project, you can create a **Stylable** app from our boilerplate. The project can be created by any of the following commands:
 
-Using `npx`:
-
-```bash
-npx create-stylable-app <project-name>
-```
-
 Using `npm`:
 
 ```bash
@@ -27,67 +21,42 @@ Using `yarn`:
 yarn create stylable-app <project-name>
 ```
 
-For the `<project-name>` placeholder above, replace with the name of your project. Once you run the command, a directory with that same name is created. Go to that directory and run `npm start` to view the project in a browser, or `npm run build` to build your project's target code.
+For the `<project-name>` placeholder above, replace with the name of your project, Once you run the command, a directory with that same name is created. Go to that directory and run `npm start` to view the project in a browser, or`npm run build` to build your project's target code.
 
 The project includes several basic components and **Stylable** stylesheets with the suffix `.st.css`.
 
+### Alternative template
+
+The default template when starting `stylable-app` is `ts-react-webpack`, which combines Typescript, React, and Webpack. Another supported template to replace Webpack with Rollup can be installed with:
+
+Using `npm`:
+
+```bash
+npm init stylable-app <project-name> --template ts-react-rollup
+```
+
+Using `yarn`:
+
+```bash
+yarn create stylable-app <project-name> --template ts-react-rollup
+```
+
 ## Install Stylable to work with an existing project
 
-To work with an existing `webpack` based project, you can install [Stylable](https://github.com/wix/stylable) and the [@stylable/webpack-plugin](https://github.com/wix/stylable/tree/master/packages/webpack-plugin) packages from our GitHub repositories.
+There are several different integrations for stylable to pick from:
 
-Install **Stylable** and the **@stylable/webpack-plugin** as a dependency in your local project.
+- [Webpack integration](./webpack-integration.md)
+- [Next.js integration](./nextjs-integration.md)
+<!-- - [Rollup integration] -->
 
-Using npm:
-
-```bash
-npm install @stylable/core @stylable/webpack-plugin --save-dev
-```
-
-Using Yarn:
-
-```bash
-yarn add @stylable/core @stylable/webpack-plugin --dev
-```
-
-## Write in Stylable
-
-Once you've installed either the boilerplate or the packages into your own project, you can begin writing in **Stylable**. Look through the [Specifications Reference](../references/cheatsheet.md) for specs and code examples.
+## Language server
 
 To take advantage of code completion and diagnostics, install [**Stylable Intelligence**](./stylable-intelligence.md) (currently only supported for Visual Studio Code).
-
-## Build configuration
-
-We currently support Webpack as our build system. To author a component library, use our CLI tool to build each CSS separately.
-
-Add **Stylable** to your Webpack configuration as follows:
-
-```js
-const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
-...
-{
-    module: {
-        rules: [
-        {
-            test: /\.(png|jpg|gif)$/,
-            use: [
-            {
-                loader: "url-loader",
-                options: {
-                    limit: 8192
-                }
-            }
-            ]
-        }
-        ]
-    }
-    plugins: [
-        new StylableWebpackPlugin()
-    ]
-}
-```
-
-For more information on configuring the @stylable/webpack-plugin, see the [readme file](https://github.com/wix/stylable/tree/master/packages/webpack-plugin).
 
 ## TypeScript support
 
 To configure Stylable to work with TypeScript, check out our [TypeScript Integration](./typescript-integration.md) guide.
+
+## Write in Stylable
+
+Once you've installed either the boilerplate or the manually configured Stylable, you can begin writing in **Stylable**. Look through the [Handbook](../guides/handbook/intro.md) and [Specifications Reference](../references/cheatsheet.md) for specs and code examples.
