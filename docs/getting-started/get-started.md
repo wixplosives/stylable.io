@@ -7,7 +7,7 @@ title: Intro
 
 **Stylable** is a CSS preprocessor that enables you to write reusable, highly-performant, styled components. Each component exposes a style API that maps its internal parts so you can reuse components across teams without sacrificing stylability.
 
-- Scopes styles to components so they don't "leak" and clash with other styles.
+- Namespace styles to components so they don't "leak" and clash with other styles.
 - Enables custom pseudo-classes and pseudo-elements that abstract the internal structure of a component. These can then be styled externally.
 
 At build time, the preprocessor converts the **Stylable** CSS into flat, static, valid, vanilla CSS that works cross-browser.
@@ -24,12 +24,8 @@ While **Stylable** can work with any component framework, we offer a [React comp
 
 Optionally, you can install [**Stylable Intelligence**](./stylable-intelligence.md), an extension providing IDE support for code completion and diagnostics. Currently supported for only Visual Studio Code (version 1.18 and later).
 
-## What can I do
+## What's next
 
-- **Build a Stylable component** - If you are looking to style a component, follow the steps in the [Stylable Basics Guide](../guides/components-basics.md) and [Best Practices Guide](../guides/component-best-practices.md)
+- **Learn with the handbook** - Take a tour through stylable features and how to use them in the [handbook guides](../guides/handbook/intro.md)
 
-- **Build an app** - If you want to use **Stylable** while building a web application, go to [Build a Stylable Application](../guides/stylable-application.md). Read the steps and recommendations for building a performant web application that doesn't depend on other libraries for styling.
-
-- **Create a library** - If you want guidance in creating a component library, read [Create a Stylable Component Library](../guides/stylable-component-library.md). Here you can follow our recommendations for building a library that can be used cross-project and includes theming, external styling and reusable components.
-
-- **Learn** - Take a look at our [specification reference documents](../references/cheatsheet.md) to get more acquanted with our code and for specific code examples. Use the overview as a cheatsheet to help you keep track of **Stylable** syntax.
+- **Read the API docs** - Take a look at our [specification reference documents](../references/cheatsheet.md) to get more acquainted with our code and for specific code examples. Use the overview as a cheatsheet to help you keep track of **Stylable** syntax.
