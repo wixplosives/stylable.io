@@ -23,7 +23,7 @@ yarn add @stylable/webpack-plugin --dev
 
 ## Configuration
 
-In the `webpack.config` add the `StylableWebpaclPlugin` to setup stylable:
+In the `webpack.config` add the `StylableWebpackPlugin` to setup stylable:
 
 ```js
 const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');

@@ -47,7 +47,7 @@ There are several different integrations for stylable to pick from:
 
 - [Webpack integration](./webpack-integration.md)
 - [Next.js integration](./nextjs-integration.md)
-<!-- - [Rollup integration] -->
+- [Rollup integration](./rollup-integration.md)
 
 ## Language server
 

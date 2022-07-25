@@ -17,6 +17,7 @@ module.exports = {
       items: [
         'getting-started/nextjs-integration',
         'getting-started/react-integration',
+        'getting-started/rollup-integration',
         'getting-started/storybook-integration',
         'getting-started/typescript-integration',
         'getting-started/webpack-integration',
