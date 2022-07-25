@@ -5,6 +5,7 @@ title: Runtime
 
 Imported **Stylable** stylesheets contain minimal runtime code to help define the structure and state of the component.
 
+<!-- prettier-ignore-start -->
 ```css
 /* style.st.css */
 .root {
@@ -17,29 +18,31 @@ Imported **Stylable** stylesheets contain minimal runtime code to help define th
 ```javascript
 /* index.jsx - stylesheet runtime api */
 import { 
-    style,    // runtime utility function 
-    st,       // alias for the style function above
-    classes,  // class names mapping
-    vars,     // css variables mapping
-    stVars,   // stylable build-time variable values
-    cssStates // utility function for setting stylable states
-    keyframes // keyframes mapping
+    style,     // runtime utility function 
+    st,        // alias for the style function above
+    classes,   // class mapping
+    vars,      // custom properties mapping
+    stVars,    // stylable build-time variable values
+    cssStates, // utility function for setting stylable states
+    keyframes, // keyframes mapping
+    layers     // layer mapping
 }  from "style.st.css";
 ```
+<!-- prettier-ignore-end -->
 
 ## Manual mapping
 
 CSS class names, defined in the stylesheet, are exposed on the imported `classes` reference and mapped to their runtime target value. The expected class name is then used as an element class name in the structure.
 
 ```javascript
-classes.root  // "style__root"
-classes.label // "style__label"
-classes.icon  // "style__icon"
+classes.root; // "style__root"
+classes.label; // "style__label"
+classes.icon; // "style__icon"
 ```
 
 :::note
 
-The [root class](../references/root.md) is available even when it is not defined in the stylesheet. 
+The [root class](../references/root.md) is available even when it is not defined in the stylesheet.
 
 :::
 
@@ -49,15 +52,15 @@ The [root class](../references/root.md) is available even when it is not defined
 
 ```javascript
 /* { 'data-style-selected':true } */
-cssStates({ selected:true })
+cssStates({ selected: true });
 /* { 'data-style-unknownstate':true } */
-cssStates({ unknownState:true })
+cssStates({ unknownState: true });
 
 /* { } */
-cssStates({ selected:false }) // no states
+cssStates({ selected: false }); // no states
 
 /* { 'data-style-a':true, 'data-style-b':true } */
-cssStates({ a:true, b:true }) // multiple
+cssStates({ a: true, b: true }); // multiple
 ```
 
 ### Element name
@@ -66,16 +69,16 @@ The first argument represents the scoped name of the element, and passes through
 
 ```javascript
 /* 'style__root'  */
-style(classes.root) 
+style(classes.root);
 /* 'style__label' */
-style(classes.label) 
+style(classes.label);
 
 // multiple markings
-style(classes.label, classes.icon) 
+style(classes.label, classes.icon);
 /* 'style__label style__icon' */
 
 // string pass-through
-style('root') 
+style("root");
 /* 'root' */
 ```
 
@@ -93,12 +96,12 @@ States are optional and the second argument can be replaced with another classNa
 
 ```javascript
 /* 'style__root style--selected' */
-style(classes.root, { selected:true })
+style(classes.root, { selected: true });
 /* 'style__label style--searched' */
-style(classes.label, { searched:true })
+style(classes.label, { searched: true });
 
 /* 'style__label style__icon' */
-style(classes.label, classes.icon)
+style(classes.label, classes.icon);
 ```
 
 ### Merge props
@@ -108,11 +111,11 @@ The third argument (and any arguments after) can be used for any additional clas
 ```js
 // this.props.className = 'app__root app--selected'
 /*  'style__root app__root app--selected' */
-style(classes.root, this.props.className)
+style(classes.root, this.props.className);
 
 /*  'style__root label icon' */
-style(classes.root, 'label', 'icon') // label and icon are global (un-scoped)
+style(classes.root, "label", "icon"); // label and icon are global (un-scoped)
 
 /*  'style__root style--selected' */
-style(classes.root, 'style--selected')
+style(classes.root, "style--selected");
 ```

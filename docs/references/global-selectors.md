@@ -1,23 +1,23 @@
 ---
 id: global-selectors
-title: Global Selectors
+title: Global Selector
 ---
 
-In **Stylable**, selectors are scoped to the stylesheet. But what if you want to target global or other selectors that are not scoped? You can use the `:global()` directive selector. 
+In **Stylable**, selectors are scoped to the stylesheet. But what if you want to target global or other selectors that are not scoped? You can use the `:global()` directive selector.
 
 In this example `.classB` and `.classC` are not scoped to `Comp` but are part of the selector query.
 
 ```css
 @namespace "Comp";
 .classA :global(.classB > .classC) .classD:hover {
-    color: red;
+  color: red;
 }
 ```
 
 ```css
 /* CSS output */
 .Comp__classA .classB > .classC .Comp__classD:hover {
-    color: red;
+  color: red;
 }
 ```
 
@@ -27,7 +27,7 @@ You can also use global to keep pseudo-classes native. You can describe them usi
 
 ```css
 .classA:global(:selected) {
-    color: red;
+  color: red;
 }
 ```
 

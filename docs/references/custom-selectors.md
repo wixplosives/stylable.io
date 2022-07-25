@@ -1,9 +1,9 @@
 ---
 id: custom-selectors
-title: Custom Selectors
+title: Custom Selector
 ---
 
-You use [custom selectors](https://drafts.csswg.org/css-extensions/#custom-selectors) to define an alias that can match complex selectors. 
+You use [custom selectors](https://drafts.csswg.org/css-extensions/#custom-selectors) to define an alias that can match complex selectors.
 
 For example, a specific type of button within a form that appears only when hovered can be defined as a custom selector. By defining the button as a custom selector with its own name, the button is exposed in the API and available for use by using just the custom selector name.
 
@@ -13,18 +13,23 @@ You could also use custom selectors to define a group of selectors with one name
 
 The following code maps the alias name `controlBtn` that matches any `.btn` CSS class nested under the `.controls` CSS class.
 
-****
+---
+
 ```css
 @namespace "Comp";
 @custom-selector :--controlBtn .controls .btn;
 /* 
 selector: .Comp__controls .Comp__btn 
 */
-:--controlBtn { border: 1px solid grey; }
+:--controlBtn {
+  border: 1px solid grey;
+}
 /* 
 selector: .Comp__controls .Comp__btn:hover 
 */
-:--controlBtn:hover { border-color: red; }
+:--controlBtn:hover {
+  border-color: red;
+}
 ```
 
 ### Expose pseudo-element
@@ -39,8 +44,8 @@ Custom selectors generate a [pseudo-element](./pseudo-elements.md). So, for exam
 /*
 selector: .Comp__root .Comp__controls .Comp__btn
 */
-Comp::controlBtn { 
-    background: gold; 
+Comp::controlbtn {
+  background: gold;
 }
 ```
 
@@ -56,7 +61,7 @@ The following examples demonstrate how to effectively use custom selectors in **
 
 ### Container and recursive components
 
-Some components might contain nested instances of themselves because they're a container or a "recursive" component. For example, a tree component might render itself. 
+Some components might contain nested instances of themselves because they're a container or a "recursive" component. For example, a tree component might render itself.
 
 If the component exposes any `pseudo-elements`, it is a good practice to define them as `custom selectors` with [child selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Child_selectors) to avoid affecting the inner parts of internal instances.
 
@@ -78,7 +83,7 @@ Here you can use the icon `custom selector` from the outside just like you would
 selector: .Tree__root > .Tree__icon
 */
 Tree::icon {
-    background: yellow;  /* paints the icons all the way down the tree */
+  background: yellow; /* paints the icons all the way down the tree */
 }
 ```
 
@@ -91,7 +96,7 @@ For example, you can expose a `pseudo-element` named `navigationBtn` that enable
 ```css
 @st-import Gallery from "./gallery.st.css";
 
-@custom-selector :--navigationBtn Gallery::navBtn;
+@custom-selector :--navigationBtn Gallery::navbtn;
 ```
 
 ### Combination selector
@@ -113,8 +118,8 @@ For example, a `pseudo-element` named `navBtn` matches any `btn` CSS class neste
 /*
 selector: .Comp__root .Comp__nav .Comp__btn
 */
-Comp::navBtn { 
-    border: 1px solid grey; 
+Comp::navbtn {
+  border: 1px solid grey;
 }
 ```
 
@@ -129,8 +134,8 @@ You could also use custom selectors to gather a collection of selectors into a s
 selector: 
 .Comp__image, .Comp__video 
 */
-:--media { 
-    border: 1px solid grey; 
+:--media {
+  border: 1px solid grey;
 }
 ```
 
@@ -145,15 +150,15 @@ For example, when you import the `Comp` stylesheet (the selector described in th
 
 @st-import Comp from "./comp.st.css";
 
-Comp::media { 
-    border-color: red; 
+Comp::media {
+  border-color: red;
 }
 ```
 
 ```css
 /* CSS Output */
-.Comp__root .Comp__image, 
+.Comp__root .Comp__image,
 .Comp__root .Comp__video {
-    border-color: red;
+  border-color: red;
 }
 ```

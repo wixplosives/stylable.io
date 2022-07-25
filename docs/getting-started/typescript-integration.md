@@ -1,6 +1,6 @@
 ---
 id: typescript-integration
-title: TypeScript Integration
+title: TypeScript
 ---
 
 Stylable requires `*.st.css` stylesheets to be imported into your `*.ts/*.tsx` files for class names, states, variables, or keyframes to be applied to your components.
