@@ -3,7 +3,7 @@ id: global-selectors
 title: Global Selector
 ---
 
-In **Stylable**, selectors are namespaced to the stylesheet. However there are times you want to target global selectors, without Stylable namespacing them, And for that you can use the `:global()` selector.
+In **Stylable**, selectors are namespaced to the stylesheet. However there are times you want to target global selectors without Stylable namespacing them, And for that you can use the `:global()` selector.
 
 ## Syntax
 
@@ -37,7 +37,7 @@ Any definitions within the `:global(...)` pseudo-class are not treated as symbol
 
 In case a class definition overrides a native `pseudo` with either [-st-states](./pseudo-classes.md#define-a-custom-pseudo-class) or a [custom pseudo-element](./pseudo-elements.md#override-a-custom-pseudo-element) then the `:global()` selector can be used to force the native:
 
-**customInput with override `:selector`**
+**customInput with override `:selected`**
 ```css
 CustomInput:selected {}
 CustomInput:global(:selected) {}
