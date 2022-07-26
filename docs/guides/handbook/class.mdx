@@ -3,7 +3,7 @@ id: class
 title: Classes
 ---
 
-Most basic building block of stylable, used to mark elements on the DOM, so those could in turn be targeted and styled via our CSS
+Classes are the most basic building block of stylable, used to mark elements on the DOM, so those could in turn be targeted and styled via our CSS
 
 ## CSS classes
 
@@ -17,7 +17,7 @@ A CSS class starts with a `.` (period) following a CSS identifier. Read more abo
 
 Here we define the class named `okButton` that will color the background of the element it targets with the color `green`.
 
-## local-to-global
+## Resolve global conflicts
 
 All CSS loaded to the browser for a given page is global, and so other stylesheets can create their own `okButton`, and conflict with our definition
 
@@ -29,9 +29,9 @@ To resolve this, we can use a BEM methodology (TODO: add link) to namespace our 
 }
 ```
 
-This solution works but is hard to scale, requires manual upkeep and makes our code more verbose than we'd like.
+This conventions-based solution works, but is difficult to scale, requires communication and agreement, demands manual upkeep, and makes our code more verbose than it needs to be.
 
-To solve this issue, Stylable offers automatic namespacing of CSS classes, and other symbols (more on that in the [Namespacing chapter](./namespace.md)).
+Stylable automates the namespacing process, using a similar convention to BEM for CSS classes and other symbols (more on that in the [Namespacing chapter](./namespace.md)).
 
 ## Runtime mapping
 

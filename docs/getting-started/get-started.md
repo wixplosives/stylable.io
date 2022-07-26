@@ -8,7 +8,7 @@ title: Intro
 **Stylable** is a CSS preprocessor that enables you to write reusable, highly-performant, styled components. Each component exposes a style API that maps its internal parts so you can reuse components across teams without sacrificing stylability.
 
 - Namespace styles to components so they don't "leak" and clash with other styles.
-- Enables custom pseudo-classes and pseudo-elements that abstract the internal structure of a component. These can then be styled externally.
+- Enable custom pseudo-classes and pseudo-elements that abstract the internal structure of a component. These can then be styled externally.
 
 At build time, the preprocessor converts the **Stylable** CSS into flat, static, valid, vanilla CSS that works cross-browser.
 

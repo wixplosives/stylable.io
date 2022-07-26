@@ -3,18 +3,19 @@ id: runtime
 title: Runtime
 ---
 
-In the previous chapter we saw brief examples of mapping our `classes` local names to their global namespaced names at runtime, as well as the `cssStates` utility function to activate their states.
+In the [previous chapter](./state.md) we saw brief examples of mapping our `classes` local names to their global namespaced names at runtime, as well as the `cssStates` utility function to activate their states.
 
-In this chapter, we'll explore the runtime feature set of Stylable, and how those features can be used.
+In this chapter, we'll explore the runtime features of Stylable, and their usage.
 
-One of the core ideas behind Stylable, is to try and shift as much of the work as possible from runtime to build time.
-However, there are some cases where we need to do additional work in JS.
+One of the core ideas behind Stylable, is to try and shift as much of the work as possible from runtime to build time to increase performence and end-user experience.
 
-Some examples of such cases:
+However, in some instances, we need to do additional work in JS.
 
-- Bind classes to view
-- Activate dynamic states
-- Set dynamic values
+For example:
+
+- Binding classes to view
+- Activating dynamic states
+- Setting dynamic values
 
 ## Mapped symbols
 

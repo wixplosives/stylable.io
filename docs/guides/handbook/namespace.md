@@ -3,7 +3,7 @@ id: namespacing
 title: Namespacing
 ---
 
-In the previous [Class selector chapter](./class.md#local-to-global), we briefly explained the concept of namespacing for the purpose of avoiding conflicts between stylesheets.
+In the [Classes chapter](./class.md#local-to-global), we briefly explained the concept of namespacing for the purpose of avoiding conflicts between stylesheets.
 
 In this chapter, we'll dive deeper to see how other symbols in CSS can be rendered safe to use and how namespacing can be controlled.
 
@@ -13,15 +13,15 @@ We've only mentioned classes up to this point, but in CSS there are many other s
 
 Symbols that Stylable namespaces:
 
-| Symbol          | Source             | Target                 |
-| --------------- | ------------------ | ---------------------- |
-| Class           | `.okButton`        | `.NS__okButton`        |
-| Custom property | `--bgColor`        | `--NS-bgColor`         |
-| Keyframes       | `@keyframes slide` | `@keyframes NS__slide` |
-| Layer           | `@layer theme`     | `@layer NS__theme`     |
+| Symbol          | Source             | Target                        |
+| --------------- | ------------------ | ----------------------------- |
+| Class           | `.okButton`        | `.NAMESPACE__okButton`        |
+| Custom property | `--bgColor`        | `--NAMESPACE-bgColor`         |
+| Keyframes       | `@keyframes slide` | `@keyframes NAMESPACE__slide` |
+| Layer           | `@layer theme`     | `@layer NAMESPACE__theme`     |
 
 :::note
-Stylable does not perform namespacing for `id`, `custom-element`, `attribute` or other symbols at the moment. We might add additional symbol namespacing support in the future.
+Stylable does not namespace `id`, `custom-element`, `attribute` or other symbols at the moment. We might add additional symbol namespacing support in the future.
 :::
 
 ## Global
@@ -31,7 +31,7 @@ In some cases, we might want to avoid namespacing for a specific symbol.
 For example:
 
 - To style a third-party component that is using pre-determined global class names
-- To expose a persistent, globally namespaced, API for non-Stylable consumers that are using our project
+- To expose a persistent, globally namespaced API for non-Stylable consumers that are using our project
 
 ### Disable in selector
 
@@ -43,7 +43,7 @@ To avoid namespacing on classes in a selector, wrap those classes with a `:globa
 }
 
 /* OUTPUT */
-.NS__okButton.highlight {
+.NAMESPACE__okButton.highlight {
   background: yellow;
 }
 ```
@@ -60,7 +60,7 @@ We can avoid namespacing for all symbols (except classes) by using the `st-globa
 - `@keyframes st-global(slide)` - [read more](../../references/keyframes#global-keyframes)
 - `@layer st-global(theme)` - [read more](../../references/layer#disable-namespace)
 
-If we want to create a CSS class with a local name that is handy for us to use, but map it to a different global selector, we can use the `-st-global` declaration.
+Unlike the other symbols that are mapped from a local name to their global one, when we map a class using `-st-global`, we can define a global selector that will replace it.
 
 ```css
 .okButton {
@@ -68,7 +68,7 @@ If we want to create a CSS class with a local name that is handy for us to use, 
 }
 ```
 
-Notice that in this case, we are mapping our class to a class selector and not just a simple class name. This is because classes can be mapped to any selector, including multiple classes, elements and other CSS selector parts.
+Notice that in this case, we are mapping our `okButton` class to a `.myLib__ok` class selector. This is because classes can be mapped to any selector, including multiple classes, elements, attributes and other CSS selector parts.
 
 <!-- TODO: expand on -st-global outcomes in the runtime api and link to it here -->
 
@@ -76,7 +76,7 @@ Notice that in this case, we are mapping our class to a class selector and not j
 
 By default namespace is derived in Stylable using the stylesheet filename, but in some edge cases we might want to override this behavior.
 
-To do so, we can use the `@namespace "OverrideNS";` definition. [Click here](../../references/namespace.md) to read more about the namespace API.
+To do so, we can use the `@namespace "OverrideNAMESPACE";` definition. [Click here](../../references/namespace.md) to read more about the namespace API.
 
 ## Project level namespacing
 

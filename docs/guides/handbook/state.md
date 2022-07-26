@@ -7,7 +7,7 @@ In CSS we have the ability to target native states of various elements, using th
 
 While this is very handy, as of today CSS does not provide a set way for us to define a custom state. For example, we might want a `registered` custom state to represent a player element that has signed up for our game.
 
-We could choose to implement such a state manually, by using a class selector (e.g. using a [BEM modifier](http://getbem.com/naming/#modifier:~:text=block__elem%20%7B%20color%3A%20%23042%3B%20%7D-,Modifier,-Flags%20on%20blocks): `.NS--registered`) or an attribute selector (e.g. `[data-NS-registered]`).
+We could choose to implement such a state manually, by using a class selector (e.g. using a [BEM modifier](http://getbem.com/naming/#modifier:~:text=block__elem%20%7B%20color%3A%20%23042%3B%20%7D-,Modifier,-Flags%20on%20blocks): `.NAMESPACE--registered`) or an attribute selector (e.g. `[data-NAMESPACE-registered]`).
 
 This is a bit of a pain for several reasons, unlike native pseudo-classes, a class or an attribute selector is not semantic, and so we lose the original intent. If a convention like BEM is used, then the semantics are conserved, but it increases the verbosity of our code.
 
@@ -27,8 +27,8 @@ We can then target this state using our newly defined `:registered` pseudo-class
 .player:registered {}     /* usage */
 
 /* OUTPUT */
-.NS__player {}
-.NS__player.NS--registered {}
+.NAMESPACE__player {}
+.NAMESPACE__player.NAMESPACE--registered {}
 ```
 <!-- prettier-ignore-end -->
 
