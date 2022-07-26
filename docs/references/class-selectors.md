@@ -29,7 +29,7 @@ button.navBtn.baseBtn {}
 
 ## Root
 
-The `.root` class has a special meaning in Stylable stylesheets. Every stylesheet has a root to represent the root element of the component or page of the stylesheet.
+The `.root` class has a special meaning in Stylable stylesheets. Every stylesheet has a root to represent the root element of the component or page of the stylesheet - [see root reference](./root.md).
 
 ## Import and Export
 
