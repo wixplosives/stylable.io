@@ -5,9 +5,9 @@ title: Installation
 
 There are currently two options for installing and working with **Stylable** as described in the following sections.
 
-## Create a new Stylable project from a boilerplate
+## Starting from a boilerplate
 
-To begin writing your own project, you can create a **Stylable** app from our boilerplate. The project can be created by any of the following commands:
+To begin writing your own project, you can create a **Stylable** app from our boilerplate. The project can be created by the following commands:
 
 Using `npm`:
 
@@ -27,7 +27,7 @@ The project includes several basic components and **Stylable** stylesheets with 
 
 ### Alternative template
 
-The default template when starting `stylable-app` is `ts-react-webpack`, which combines Typescript, React, and Webpack. Another supported template to replace Webpack with Rollup can be installed with:
+The default template when starting `stylable-app` is `ts-react-webpack`, which combines Typescript, React, and Webpack. A different template which uses Rollup instead of Webpack can be installed with:
 
 Using `npm`:
 
@@ -41,13 +41,13 @@ Using `yarn`:
 yarn create stylable-app <project-name> --template ts-react-rollup
 ```
 
-## Install Stylable to work with an existing project
+## Working with an existing project
 
 There are several different integrations for stylable to pick from:
 
 - [Webpack integration](./webpack-integration.md)
-- [Next.js integration](./nextjs-integration.md)
 - [Rollup integration](./rollup-integration.md)
+- [Next.js integration](./nextjs-integration.md)
 
 ## Language server
 
@@ -59,4 +59,4 @@ To configure Stylable to work with TypeScript, check out our [TypeScript Integra
 
 ## Write in Stylable
 
-Once you've installed either the boilerplate or the manually configured Stylable, you can begin writing in **Stylable**. Look through the [Handbook](../guides/handbook/intro.md) and [Specifications Reference](../references/cheatsheet.md) for specs and code examples.
+Once you've installed either the boilerplate or the manually configured Stylable, you can begin writing in **Stylable**. Look through the [Handbook](../guides/handbook/intro.md) and [Specifications Reference](../references/cheatsheet.md) to help guide you in your work.

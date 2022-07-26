@@ -3,7 +3,7 @@ id: namespacing
 title: Namespacing
 ---
 
-In the [Classes chapter](./class.md#local-to-global), we briefly explained the concept of namespacing for the purpose of avoiding conflicts between stylesheets.
+In the [Classes chapter](./class.mdx#resolve-global-conflicts), we briefly explained the concept of namespacing for the purpose of avoiding conflicts between stylesheets.
 
 In this chapter, we'll dive deeper to see how other symbols in CSS can be rendered safe to use and how namespacing can be controlled.
 

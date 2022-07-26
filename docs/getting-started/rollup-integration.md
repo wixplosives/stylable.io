@@ -7,7 +7,7 @@ The Stylable Rollup integration provides development, build, and bundle capabili
 
 ## Install
 
-Install the **@stylable/rollup-plugin** as a dependency in your local project.
+Install the **@stylable/rollup-plugin** as a dev dependency in your local project.
 
 Using npm:
 

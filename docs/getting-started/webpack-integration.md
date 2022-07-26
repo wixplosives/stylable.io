@@ -7,7 +7,7 @@ The Stylable Webpack integration provides development, build, and bundle capabil
 
 ## Install
 
-Install the **@stylable/webpack-plugin** as a dependency in your local project.
+Install the **@stylable/webpack-plugin** as a dev dependency in your local project.
 
 Using npm:
 
@@ -23,7 +23,7 @@ yarn add @stylable/webpack-plugin --dev
 
 ## Configuration
 
-In the `webpack.config` add the `StylableWebpackPlugin` to setup stylable:
+In the `webpack.config` add the `StylableWebpackPlugin` to setup Stylable:
 
 ```js
 const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
@@ -38,10 +38,9 @@ For more information on configuring the `@stylable/webpack-plugin`, see the [rea
 
 ### With another CSS solution
 
-Coming into an existing project with other Webpack CSS integration
-solutions, you need to exclude `.st.css` files from that other integration.
+When coming into a project with an existing Webpack CSS integration, you will need to exclude `.st.css` files from any other integration.
 
-For example, exclude stylable from `css-loader`:
+For example, exclude Stylable from `css-loader`:
 
 ```js {11}
 const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
