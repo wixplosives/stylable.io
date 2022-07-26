@@ -119,9 +119,7 @@ Wrapping a class selector with `:global()` pseudo-class prevents namespacing:
 .icon-heart {}
 ```
 
-:::caution
-Classes used within the `:global(...)` pseudo-class are not treated as symbols in the stylesheet and are not exported. This means that they are not available for use in other stylesheets or in the runtime JS module.
-:::
+[see `global selector` reference](./global-selectors.md)
 
 ### Map to global selector
 

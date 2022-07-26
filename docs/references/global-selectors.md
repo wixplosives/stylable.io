@@ -3,32 +3,46 @@ id: global-selectors
 title: Global Selector
 ---
 
-In **Stylable**, selectors are scoped to the stylesheet. But what if you want to target global or other selectors that are not scoped? You can use the `:global()` directive selector.
+In **Stylable**, selectors are namespaced to the stylesheet. However there are times you want to target global selectors, without Stylable namespacing them, And for that you can use the `:global()` selector.
 
-In this example `.classB` and `.classC` are not scoped to `Comp` but are part of the selector query.
+## Syntax
 
+**Mark as global**
 ```css
-@namespace "Comp";
-.classA :global(.classB > .classC) .classD:hover {
-  color: red;
-}
+:global(.g) {}
+
+/* OUTPUT */
+.g {}
 ```
 
+**Valid cases**
 ```css
-/* CSS output */
-.Comp__classA .classB > .classC .Comp__classD:hover {
-  color: red;
-}
+/* multiple classes */
+:global(.g1.g2) {}
+
+/* compound selector (`g` class not namespaced) */
+.a:global(.g):hover.b {}
 ```
 
-:::note
-
-You can also use global to keep pseudo-classes native. You can describe them using the syntax below where `classA` is scoped and `:selected` is native.
-
+**Invalid cases**
 ```css
-.classA:global(:selected) {
-  color: red;
-}
+/* only a single selector is supported */
+.a:global(.g1, .g2):hover.b {}
 ```
-
+:::caution
+Any definitions within the `:global(...)` pseudo-class are not treated as symbols in the stylesheet and are not exported. That means that they are not available for use in other stylesheets or in the runtime JS module.
 :::
+
+## Force native
+
+In case a class definition overrides a native `pseudo` with either [-st-states](./pseudo-classes.md#define-a-custom-pseudo-class) or a [custom pseudo-element](./pseudo-elements.md#override-a-custom-pseudo-element) then the `:global()` selector can be used to force the native:
+
+**customInput with override `:selector`**
+```css
+CustomInput:selected {}
+CustomInput:global(:selected) {}
+
+/* OUTPUT */
+.customInput__root.customInput--selected {}
+.customInput__root:selected {}
+```
