@@ -3,23 +3,14 @@ id: runtime
 title: Runtime
 ---
 
-Imported **Stylable** stylesheets contain minimal runtime code to help define the structure and state of the component.
+Imported Stylable stylesheets in JS contain minimal runtime code to help define the structure and state of the component.
+
 
 <!-- prettier-ignore-start -->
-```css
-/* style.st.css */
-.root {
-    -st-states: selected;
-}
-.label {}
-.icon {}
-```
-
-```javascript
+```js
 /* index.jsx - stylesheet runtime api */
-import { 
-    style,     // runtime utility function 
-    st,        // alias for the style function above
+import {
+    st,        // runtime utility function
     classes,   // class mapping
     vars,      // custom properties mapping
     stVars,    // stylable build-time variable values
@@ -32,13 +23,28 @@ import {
 
 ## Manual mapping
 
-CSS class names, defined in the stylesheet, are exposed on the imported `classes` reference and mapped to their runtime target value. The expected class name is then used as an element class name in the structure.
+Any namespaced symbols, defined in the stylesheet, are exposed on maps from their local name to their target namespaced name:
 
-```javascript
-classes.root; // "style__root"
-classes.label; // "style__label"
-classes.icon; // "style__icon"
+<!-- prettier-ignore-start -->
+```js
+import { classes, vars, keyframes, layers } from 'style.st.css';
+
+// class mapping
+classes.root;            // "style__root"
+classes.label;           // "style__label"
+classes.icon;            // "style__icon"
+classes['dashed-part'];  // "style__dashed-part"
+
+// custom property mapping
+vars.color1              // "--style-color1"
+
+// keyframes
+keyframes.slide          // "style__slide"
+
+// keyframes
+layers.theme             // "style__theme"
 ```
+<!-- prettier-ignore-end -->
 
 :::note
 
@@ -46,76 +52,86 @@ The [root class](../references/root.md) is available even when it is not defined
 
 :::
 
-## Custom state mapping
+## Build vars
 
-[Custom states](../references/pseudo-classes.md), which can be targeted from the style, are generated using the `cssStates` function. The function accepts a map of local state names and generates string with concatenated class names used to mark the element state.
-
-```javascript
-/* { 'data-style-selected':true } */
-cssStates({ selected: true });
-/* { 'data-style-unknownstate':true } */
-cssStates({ unknownState: true });
-
-/* { } */
-cssStates({ selected: false }); // no states
-
-/* { 'data-style-a':true, 'data-style-b':true } */
-cssStates({ a: true, b: true }); // multiple
+Local stylesheet [build vars](./variables.md) are exported with their set value.
+<!-- prettier-ignore-start -->
+```css
+:vars {
+    bg: black;
+    color: gold;
+}
 ```
-
-### Element name
-
-The first argument represents the scoped name of the element, and passes through the received class name.
-
-```javascript
-/* 'style__root'  */
-style(classes.root);
-/* 'style__label' */
-style(classes.label);
-
-// multiple markings
-style(classes.label, classes.icon);
-/* 'style__label style__icon' */
-
-// string pass-through
-style("root");
-/* 'root' */
-```
-
-:::caution
-
-Stylable no longer performs auto-scoping for classes, and strings are passed as-is. Use the `classes` mapping object to resolve to the scoped class name.
-
-:::
-
-### Custom states
-
-The second argument represents the [custom state](#custom-state-mapping) (or another class), and returns a class to represent every custom state on the element.
-
-States are optional and the second argument can be replaced with another className if needed.
-
-```javascript
-/* 'style__root style--selected' */
-style(classes.root, { selected: true });
-/* 'style__label style--searched' */
-style(classes.label, { searched: true });
-
-/* 'style__label style__icon' */
-style(classes.label, classes.icon);
-```
-
-### Merge props
-
-The third argument (and any arguments after) can be used for any additional classes that need to be applied to the element. In a component root node, it is recommended to pass along the `className` prop received through your parent component as props.
 
 ```js
-// this.props.className = 'app__root app--selected'
-/*  'style__root app__root app--selected' */
-style(classes.root, this.props.className);
+import { stVars } from 'style.st.css';
 
-/*  'style__root label icon' */
-style(classes.root, "label", "icon"); // label and icon are global (un-scoped)
+stVars.bg;    // "black"
+stVars.color; // "gold"
+```
+<!-- prettier-ignore-end -->
 
-/*  'style__root style--selected' */
-style(classes.root, "style--selected");
+## `st()` function
+
+A utility function for concatenating [classes](./class-selectors.md) and [custom states](./pseudo-classes.md).
+
+- the **second argument** can optionally receive state activation
+- multiple classes can be added with additional arguments
+
+**Multiple classes**
+```js
+import { st, classes } from 'style.st.css';
+
+// namespaced part class + additional class
+st(classes.part, 'additional');  // "style__part additional"
+
+// namespaced part class + multiple classes
+st(classes.part, 'a', 'b', 'c'); // "style__part a b c"
+
+// undefined is ignored
+st(classes.part, 'a', undefined, 'c'); // "style__part a c"
+```
+
+**State activation**
+```js
+import { st, classes } from 'style.st.css';
+
+// namespaced a + isOn boolean state
+st(classes.a, {isOn: true}); // "style__a style--isOn"
+
+// namespaced a + multiple states
+st(classes.a, {x: true, y: false}); // "style__a style--x"
+
+// namespaced a + parameter
+st(classes.a, {rank: 'first'}); // "style__a style--rank-5-first"
+```
+
+**State activation + additional classes**
+```js
+import { st, classes } from 'style.st.css';
+
+// namespaced a + isOn state + x class
+st(classes.a, {isOn: true}, 'x'); // "style__a style--isOn x"
+```
+
+## Custom state mapping
+
+The `cssStates` function can be used to produce just the active [custom state](../references/pseudo-classes.md) classes.
+
+The function accepts a map of local state names and generates a string with concatenated class names used to mark the element's state.
+
+```js
+import { cssStates } from 'style.st.css';
+
+// single state
+cssStates({ selected: true }); // "style--selected"
+
+// un-active state
+cssStates({ selected: false }); // ""
+
+// string/enum state
+cssStates({ rank: 'first' }); // "style--rank-5-first"
+
+// multiple states
+cssStates({ a: true, b: false, c: true }); // "a c"
 ```

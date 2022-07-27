@@ -93,7 +93,7 @@ function Gallery(props) {
 
 :::note
 
-In the component example above, we call the `st()`<!-- ToDo: add link to runtime#st()-function --> function in order to pass both the gallery root class and any class name provided externally in order to style the component from the outside. 
+In the component example above, we call the [st() function](./runtime.md#st-function) in order to pass both the gallery root class and any class name provided externally in order to style the component from the outside. 
 
 :::
 
