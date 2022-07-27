@@ -299,7 +299,7 @@ You can override the behavior of native pseudo-classes. This can enable you to w
 
 Custom pseudo-classes are implemented using `className` attributes and need additional runtime logic to control when they are on and off.
 
-**Stylable** offers [React CSS state integration](../getting-started/react-integration.md) to help components manage custom pseudo-classes easily.
+**Stylable** offers a [runtime API](./runtime.md#st-function) to help components manage custom pseudo-classes easily.
 
 ```jsx
 /* sample of a stylable component */

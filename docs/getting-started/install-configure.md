@@ -59,4 +59,4 @@ To configure Stylable to work with TypeScript, check out our [TypeScript Integra
 
 ## Write in Stylable
 
-Once you've installed either the boilerplate or the manually configured Stylable, you can begin writing in **Stylable**. Look through the [Handbook](../guides/handbook/intro.md) and [Specifications Reference](../references/cheatsheet.md) to help guide you in your work.
+Once you've installed either the boilerplate or the manually configured Stylable, you can begin writing in **Stylable**. Look through the [Handbook](../guides/handbook/intro.md) and [Specifications Reference](../references/cheatsheet.mdx) to help guide you in your work.

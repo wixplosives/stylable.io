@@ -24,7 +24,7 @@ If the root class exists and is being used, all other classes defined in the sty
 .Comp__root { background: red; }
 ```
 
-The `root` class name can be applied to a component node by using our [React integration](../getting-started/react-integration.md).
+The `root` class name can be applied to a component node by using our [runtime API](./runtime.md).
 
 ```jsx
 /* comp.jsx */

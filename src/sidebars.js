@@ -14,6 +14,13 @@ module.exports = {
             type: 'category',
             label: 'Integrations',
             collapsed: false,
+            link: {
+                type: 'generated-index',
+                title: 'Integrations',
+                description: 'Click on one of our available integrations below to learn more about how to use it.',
+                slug: '/getting-started/integrations',
+                keywords: ['integrations'],
+            },
             items: [
                 'getting-started/nextjs-integration',
                 'getting-started/rollup-integration',
@@ -81,7 +88,7 @@ module.exports = {
             // link: {
             //   type: "generated-index",
             // },
-            collapsed: true,
+            collapsed: false,
             items: [
                 'references/imports',
                 'references/root',
@@ -98,7 +105,7 @@ module.exports = {
             // link: {
             //   type: "generated-index",
             // },
-            collapsed: true,
+            collapsed: false,
             items: ['references/st-variables', 'references/mixins', 'references/formatters'],
         },
         'references/runtime',

@@ -50,13 +50,13 @@ Syntax that is unique to Stylable or extended from CSS.
 
 ### Templating
 
-| Syntax                                                                                          | Explanations                                                                               |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| <CodeBlock language="css" className="inline-code">:vars { x: red; y: blue; }</CodeBlock>        | Build time variables definition ([api](../references/st-variables.md#use-in-stylesheet))   |
-| <CodeBlock language="css" className="inline-code">prop: value(x);</CodeBlock>                   | Insert var value into declaration ([api](../references/st-variables.md#use-in-stylesheet)) |
-| <CodeBlock language="css" className="inline-code">prop: x(arg1, arg2);</CodeBlock>              | Computed value from custom formatter ([api](../references/formatters.md))                  |
-| <CodeBlock language="css" className="inline-code">-st-mixin: x, y;</CodeBlock>                  | Apply multiple mixins to CSS ruleset ([api](../references/mixins.md))                      |
-| <CodeBlock language="css" className="inline-code">-st-mixin: x(param v1, param v2);</CodeBlock> | Apply mixins with override params ([api](../references/mixins.md))                         |
+| Syntax                                                                                          | Explanations                                                                            |
+| ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| <CodeBlock language="css" className="inline-code">:vars { x: red; y: blue; }</CodeBlock>        | Build time variables definition ([api](../references/variables.md#use-in-stylesheet))   |
+| <CodeBlock language="css" className="inline-code">prop: value(x);</CodeBlock>                   | Insert var value into declaration ([api](../references/variables.md#use-in-stylesheet)) |
+| <CodeBlock language="css" className="inline-code">prop: x(arg1, arg2);</CodeBlock>              | Computed value from custom formatter ([api](../references/formatters.md))               |
+| <CodeBlock language="css" className="inline-code">-st-mixin: x, y;</CodeBlock>                  | Apply multiple mixins to CSS ruleset ([api](../references/mixins.md))                   |
+| <CodeBlock language="css" className="inline-code">-st-mixin: x(param v1, param v2);</CodeBlock> | Apply mixins with override params ([api](../references/mixins.md))                      |
 
 ### Other
 
