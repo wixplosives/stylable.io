@@ -1,9 +1,9 @@
 ---
 id: tag-selectors
-title: Element Type Selector
+title: Type Selector
 ---
 
-Like CSS [type selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors), **Stylable** `element Type selectors` can match the names of elements in the DOM.
+Like CSS [type selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors), **Stylable** element `Type selectors` can match the names of elements in the DOM.
 
 Element type selectors are **not** scoped themselves. Other selectors used with an element selector can be scoped. For example if a [class selector](./class-selectors.md) is used with a element selector, the class is scoped and the element selector is not. The matching qualified name of a element selector can therefore target any element in the subtree of the component.
 
