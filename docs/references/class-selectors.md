@@ -67,11 +67,12 @@ While any valid ident can be used for the default root import, It is recommended
 A class can be accessed using the `classes` mapping on the Stylable stylesheet runtime.
 
 ```js
-import { classes } from "./sheet.st.css";
+import { classes } from "./gallery.st.css";
 
 // map from local name to target class name
-classes["part"];
-classes["root"];
+classes.part;
+classes.root;
+classes['dashed-class'];
 ```
 
 Use the class mapping to bind the stylesheet to the rendered view:

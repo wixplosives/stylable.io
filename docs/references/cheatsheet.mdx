@@ -1,0 +1,66 @@
+---
+id: cheatsheet
+title: Cheatsheet
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+## CSS Terminology
+
+- **Simple selector**: Type selector, class selector (+Stylable [root class](../references/root.md))
+- **CSS property**: Name of the rule (e.g. color)
+- **CSS declaration**: CSS property paired with a value
+- **CSS declaration Block**: List of CSS declarations
+- **CSS ruleset**: CSS declaration block paired with a selector
+
+[MDN docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Syntax#CSS_Declarations)
+
+## Syntax cheatsheet
+
+Syntax unique to Stylable - Click each to access code examples and descriptions
+
+### Selectors
+
+| Syntax                                                                     | Explanations                                                                        |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| <CodeBlock language="css" className="inline-code">.x {}</CodeBlock>        | Class selector ([api](../references/class-selectors.md))                            |
+| <CodeBlock language="css" className="inline-code">x {}</CodeBlock>         | Element type selector ([api](../references/tag-selectors.md))                       |
+| <CodeBlock language="css" className="inline-code">:x {}</CodeBlock>        | Pseudo-class or custom state selector ([api](../references/pseudo-classes.md))      |
+| <CodeBlock language="css" className="inline-code">::x {}</CodeBlock>       | Pseudo-element or custom-element selector ([api](../references/pseudo-elements.md)) |
+| <CodeBlock language="css" className="inline-code">:--x {}</CodeBlock>      | custom selector ([api](../references/custom-selectors.md))                          |
+| <CodeBlock language="css" className="inline-code">:global() {}</CodeBlock> | prevents namespacing selector ([api](../references/global-selectors.md))            |
+
+### Module system
+
+| Syntax                                                                                                          | Explanations                                                                         |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| <CodeBlock language="css" className="inline-code">@st-import X from './y.st.css';</CodeBlock>                   | Import stylesheet's root ([api](../references/imports.md#stylesheet-default-export)) |
+| <CodeBlock language="css" className="inline-code">@st-import [x, y] from './y.st.css';</CodeBlock>              | Import named exports ([api](../references/imports.md#stylesheet-named-exports))      |
+| <CodeBlock language="css" className="inline-code">@st-import X, [y, z] from './y.st.css';</CodeBlock>           | Import default & named ([api](../references/imports.md#stylesheet-named-exports))    |
+| <CodeBlock language="css" className="inline-code">@st-import [x as local-x] from './y.st.css';</CodeBlock>      | Map named export ([api](../references/imports.md#alias-js-named-exports))            |
+| <CodeBlock language="css" className="inline-code">@st-import [keyframes(x1, x2)] from './y.st.css';</CodeBlock> | Import keyframes ([api](../references/keyframes#import-and-export))                  |
+| <CodeBlock language="css" className="inline-code">@st-import [layers(x1, x2)] from './y.st.css';</CodeBlock>    | Import layers ([api](../references/layer#import-and-export))                         |
+
+### Class extensions
+
+| Syntax                                                                                    | Explanations                                                          |
+| ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| <CodeBlock language="css" className="inline-code">-st-extends: Gallery;</CodeBlock>       | Extend an existing class ([api](../references/extend-stylesheet.md))  |
+| <CodeBlock language="css" className="inline-code">-st-states: stateA, stateB;</CodeBlock> | Define custom pseudo-classes ([api](../references/pseudo-classes.md)) |
+
+### Templating
+
+| Syntax                                                                                          | Explanations                                                                               |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| <CodeBlock language="css" className="inline-code">:vars { x: red; y: blue; }</CodeBlock>        | Build time variables definition ([api](../references/st-variables.md#use-in-stylesheet))   |
+| <CodeBlock language="css" className="inline-code">prop: value(x);</CodeBlock>                   | Insert var value into declaration ([api](../references/st-variables.md#use-in-stylesheet)) |
+| <CodeBlock language="css" className="inline-code">prop: x(arg1, arg2);</CodeBlock>              | Computed value from custom formatter ([api](../references/formatters.md))                  |
+| <CodeBlock language="css" className="inline-code">-st-mixin: x, y;</CodeBlock>                  | Apply multiple mixins to CSS ruleset ([api](../references/mixins.md))                      |
+| <CodeBlock language="css" className="inline-code">-st-mixin: x(param v1, param v2);</CodeBlock> | Apply mixins with override params ([api](../references/mixins.md))                         |
+
+### Other
+
+| Syntax                                                                        | Explanations                                                                |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| <CodeBlock language="css" className="inline-code">@st-scope .x {}</CodeBlock> | Scope nested rules with a given selector ([api](../references/st-scope.md)) |
+| <CodeBlock language="css" className="inline-code">@namespace "x";</CodeBlock> | Development display name for debugging ([api](../references/namespace.md))  |
