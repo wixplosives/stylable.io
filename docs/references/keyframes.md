@@ -3,156 +3,109 @@ id: keyframes
 title: Keyframes
 ---
 
-In CSS, [`@keyframes`](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) exhibit a behavior similar to classes where all names are global and can potentially clash in the DOM.
+The `@keyframes` CSS atrule is used to define an animation that can be referenced to animate a DOM element.
 
-To avoid this issue, **Stylable** performs automatic namespacing of keyframes based on the stylesheet in which they were created.
+This page goes over how Stylable handles `@keyframes`, for more details about the language feature itself, checkout the following resources:
+- [MDN @keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)
+- [CSS animation spec](https://drafts.csswg.org/css-animations/#keyframes)
 
-### Example
+## Syntax
 
+**Keyframes definition**
 ```css
-@namespace "Comp";
+/* empty definition */
+@keyframes slide {}
 
-@keyframes slide {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
+/* animation definition */
+@keyframes jump {
+  from { color: red }
+  to { color: green }
 }
 
-.root {
-  animation-name: slide;
+/* percentage keyframes */
+@keyframes jump {
+  0% { color: red }
+  50% { color: green }
+  100% { color: blue }
 }
 ```
 
+**Keyframes usage**
 ```css
-/* CSS output */
-
-@keyframes Comp__slide {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
+.x {
+  /* within animation shorthand */
+  animation: slide 3s ease-out infinite;
 }
-
-.Comp__root {
-  animation-name: Comp__slide;
+.y {
+  /* same as above */
+  animation-name: slide;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
 }
 ```
 
 ## Import and Export
 
-**Stylable** automatically exports all keyframes created within a stylesheet. **Stylable** will also re-export any imported keyframes.
+An exported keyframes can be imported into another stylesheet with the [@st-import](./imports.md) atrule.
 
-To import any such symbol in a different stylesheet, **Stylable** uses a utility function, `keyframes([NAME1, NAME2, ...])` to specifically target keyframes imports.
-
-### Example
+**Insert rules into imported layer**
 
 ```css
-/* index.st.css */
+/* get 'slide' keyframes definition from another stylesheet */
+@st-import [keyframes(slide)] from './x.st.css';
 
-@st-import [keyframes(slideX, slideY)] from "./animations.st.css";
-
-.root {
-  animation-name: slideX;
-}
-
-.part {
-  animation-name: slideY;
+.x {
+  /* use in animation */
+  animation-name: slide;
 }
 ```
 
+**More import examples**
 ```css
-/* animations.st.css */
+/* map 'slide' keyframes to local name 'x-slide' */
+@st-import [keyframes(slide as x-slide)] from './x.st.css';
 
-@keyframes slideX {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
+/* import multiple keyframes */
+@st-import [keyframes(slide, jump)] from './x.st.css';
+```
+
+## Runtime
+
+A Keyframes definition can be accessed for dynamic styles using the keyframes mapping on the Stylable runtime stylesheet:
+
+```js
+import { keyframes } from "./sheet.st.css";
+
+// map to target namespaced keyframes
+keyframes.jump;
+```
+
+## Namespace
+
+Stylable automatically namespaces any keyframes name according to the stylesheet it is defined in:
+
+```css
+@keyframes slide {}
+
+/* OUTPUT */
+@keyframes NAMESPACE__slide {}
+```
+
+### Disable namespace
+
+In some cases the default namespace behavior is unwanted. In such cases, `st-global` can be used to mark a keyframes definition as global:
+
+<!-- ToDo: accept missing body to define just the symbol without overriding previous keyframes: "@keyframes st-global(slide);" for the case of external global keyframes -->
+```css
+@keyframes st-global(slide) {}
+.x {
+  animation-name: slide;
 }
 
-@keyframes slideY {
-  from {
-    transform: translateY(0%);
-  }
-  to {
-    transform: translateY(100%);
-  }
-}
-```
-
-### Keyframes aliasing
-
-To create a local alias of a keyframe, Stylable supports the same `[NAME] as [NEW_NAME]` syntax inside the keyframe import utility, as it does for any named import.
-
-```css
-@st-import [keyframes(slide as mySlide)] from "./animations.st.css";
-```
-
-Note that this keyframe will be re-exported under its new alias name, and not the original imported name.
-
-## Runtime mapping
-
-The **Stylable** runtime stylesheet exposes the `keyframes` key which contains a mapping of source keyframe names to their namespaced target name.
-You can use these keyframes to apply animations via inline styling.
-
-### Example
-
-```css
-@namespace "Comp";
-
-@keyframes slide {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-```
-
-```jsx
-import { classes, keyframes } from "./entry.st.css";
-
-<div className={classes.root} style={{ animationName: keyframes.slide }}></div>;
-```
-
-```html
-/* DOM output */
-
-<div className="Comp__root" style="animation-name: Comp__slide;"></div>
-```
-
-## Global keyframes
-
-To create global (unscoped) keyframes, **Stylable** provides `st-global` function which accepts a global keyframe name as its parameter.
-
-```css
-@keyframes st-global(slide) {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-```
-
-```css
-/* CSS output */
-
-@keyframes slide {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
+/* OUTPUT */
+@keyframes slide {}
+.x {
+  animation-name: slide; /* no namespace */
 }
 ```
