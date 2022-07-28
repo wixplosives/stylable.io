@@ -1,0 +1,209 @@
+---
+id: import-class
+title: Import Class
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+In the [runtime chapter](./runtime.md), we saw how a Stylable stylesheet's API can be imported to JavaScript and how that API can be used. In this chapter, we'll see how our game example can be divided into linked stylesheet modules, to provide better development experience.
+
+<!-- - here we'll focus on importing symbols across stylesheets, and how to import stuff from javascript to Stylable stylesheets -->
+
+Up to this point, we've talked mostly about a single stylesheet for our project (`game.st.css`), but now, we'll explore how to organize our code in multiple stylesheets.
+
+**Current status:**
+
+<!-- prettier-ignore-start -->
+```css title="game.st.css"
+.board { /* ... */ }
+
+.player {
+  -st-states: registered, 
+              ranking(enum(first, second, third));
+  background: blue;
+}
+```
+<!-- prettier-ignore-end -->
+
+## Stylesheet root
+
+Let's refactor the `player` class from our `game.st.css` to be in its own stylesheet.
+
+<!-- prettier-ignore-start -->
+```css title="player.st.css"
+.root {
+  -st-states: registered,
+              ranking(enum(first, second, third));
+  background: blue;
+}
+```
+
+<!-- prettier-ignore-end -->
+
+Above we created a new `player.st.css` file, and in it created a new `.root` class. We then moved the contents of the `.player` class rules to our new `root` class.
+
+:::info default root class
+In Stylable, each component stylesheet is represented by a `root` class that is automatically created, even if not explicitly defined by the user.
+
+This root class is expected to be applied to the [root element of the component](../../references/root.md#examples).
+:::
+
+<!-- TODO: might be nice to have an example component jsx here too -->
+
+We can see that when we moved the `player` class, we also included it's styling declarations. This might cause additional work in the future, when trying to customize this class from the outside.
+
+Stylable recommends that a component's stylesheet include minimal styling. Meaning, only what is crucial for the functionality of the component or defines its structure.
+
+In order to follow this best practice, we need a way to import the `player.st.css` stylesheet over to `game.st.css`, and perform our styling customizations there.
+
+## Default import
+
+Keep in mind, that as we saw earlier in the [Namespacing chapter](./namespace.md#supported-symbols), classes in Stylable are automatically namespaced. This means that if we wish to target a class from another stylesheet in a selector, then we import it in order to link to it.
+
+Below, we import the `player.st.css` stylesheet and customize it by using the `@st-import` at-rule and providing it with a **local name** for the default export (beginning with a capital letter), and a **request** to the target stylesheet.
+
+We then move any customizations out of `player.st.css` into `game.st.css`.
+
+<!-- prettier-ignore-start -->
+```css title="game.st.css - moved player customization"
+@st-import Player from "./player.st.css";
+
+.board { /* ... */ }
+
+Player {
+  background: blue; /* moved from player.st.css */
+}
+```
+
+<details>
+    <summary>
+    Namespacing output
+    </summary>
+    <CodeBlock title="game.st.css" language="css">
+    {`@st-import Player from "./player.st.css";  
+ 
+/* namespaced locally */
+.game__board { /* ... */ } 
+  
+/* namespaced by player.st.css */
+.player__root {            
+  background: blue;
+}`}
+    </CodeBlock>
+</details>
+
+<!-- prettier-ignore-end -->
+
+### Stylesheet root selector
+
+We can note that a default import of a Stylable stylesheet, represents a component root, and is in fact pointing to the `root` class of that stylesheet.
+
+:::caution Unscoped warning
+
+By importing the default export of a stylesheet, and styling it, we are potentially customizing every instance of the component across our project.
+
+It is therefore **strongly recommended** to scope any selector that originates from a different namespace (stylesheet) or includes native elements with a local class.
+
+<!-- prettier-ignore-start -->
+```css
+/* report unscoped warning */
+Player {}
+
+/* no warning */
+.root Player {}
+```
+<!-- prettier-ignore-end -->
+
+:::
+
+## Class named import
+
+For the next step, we would like to add an `avatar` and `username` parts to `player.st.css`. These will be applied to inner elements of the component, and are assumed to be nested under the `root` class.
+
+<!-- prettier-ignore-start -->
+```css title="player.st.css - added avatar and username"
+.root {
+  -st-states: registered,
+              ranking(enum(first, second, third));
+}
+.avatar {}
+.username {}
+```
+
+We then proceeed to bind these new classes to their matching elements in the component.
+
+```jsx title="player.jsx - bind avatar and username"
+import { classes } from "./player.st.css";
+
+<div className={classes.root}>
+  <image className={classes.avatar} />
+  <span className={classes.username}></span>
+</div>
+```
+<!-- prettier-ignore-end -->
+
+Now that we have these new classes, we can customize them externally through `game.st.css`.
+
+We do this by adding two `named imports`, inside square brackets, that link to our classes.
+
+<!-- prettier-ignore-start -->
+```css title="game.st.css - player customization"
+@st-import Player, [avatar, username] from "./player.st.css";
+
+Player {
+  /* paint the Player component background blue */
+  background: blue;
+}
+Player .avatar {
+  /* circle avatar */
+  border-radius: 50%;
+}
+Player .username {
+  /* all caps username */
+  text-transform: uppercase;
+}
+```
+
+<details>
+    <summary>
+    Namespacing output - selectors only
+    </summary>
+    <CodeBlock title="game.st.css" language="css">
+    {`@st-import Player, [avatar, username] from "./player.st.css";  
+ 
+.player__root {}
+.player__root .player__avatar {}
+.player__root .player__username {}`}
+    </CodeBlock>
+</details>
+
+<!-- prettier-ignore-end -->
+
+### Validations
+
+One of the nice things that we gain by using these Stylable imports, is that validation for requested symbols is performed, and we will be notified if any of the imported parts are not found.
+
+```css title="game.st.css - missing import"
+/* report an error about an unknown "missingImport" symbol */
+@st-import [missingImport] from "./player.st.css";
+```
+
+### Exported by default
+
+Any classes and other symbols defined in a stylesheet are automatically exported and available for import.
+
+:::note Explicit exports
+we are in the process of developing [explicit export support](https://github.com/wix/stylable/issues/2604) and will expand this section once available
+:::
+
+## Further import use-cases
+
+Up to this point, we've only needed to import classes between stylesheets. In later chapters of this guide, we will learn how to import and use additional symbols, as well as additional import use-cases from JavaScript to our stylesheet.
+
+Check out the API cheatsheet to see various [@st-import](../../references/cheatsheet#module-system) examples.
+
+---
+
+In this chapter, we've seen how to divide a stylesheet to separate modules and how to customize those externally. The way we've approached doing so was by manually importing each class (default or named) and customizing them together using a selector.
+
+[Next chapter](./extend), we'll learn how Stylable can extend stylesheets, exposing their inner parts as API making our lives easier.

@@ -41,6 +41,8 @@ module.exports = {
                 'guides/handbook/namespacing',
                 'guides/handbook/custom-state',
                 'guides/handbook/runtime',
+                'guides/handbook/import-class',
+                'guides/handbook/extend',
             ],
         },
         {

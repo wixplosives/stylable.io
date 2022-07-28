@@ -39,7 +39,8 @@ We can define such a state, by passing the `enum` parameter type to the `ranking
 <!-- prettier-ignore-start -->
 ```css
 .player {
-  -st-states: registered, ranking(enum(first, second, third)); 
+  -st-states: registered, 
+              ranking(enum(first, second, third)); 
 }
 
 .player:ranking(first)   {}    
