@@ -9,7 +9,7 @@ In this chapter, we'll explore the runtime features of Stylable, and their usage
 
 One of the core ideas behind Stylable, is to try and shift as much of the work as possible from runtime to build time to increase performence and end-user experience.
 
-However, in some instances, we need to do additional work in JS.
+However, in some instances, we need to do additional work in JavaScript.
 
 For example:
 

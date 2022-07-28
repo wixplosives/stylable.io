@@ -3,7 +3,7 @@ id: imports
 title: Import
 ---
 
-**Stylable** enables you to import other stylesheets and modules in a way that is similar to [JS Imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). You can then use the stylesheet or module as it's been defined, or just one or more of its named values, in your own **Stylable** stylesheet.
+**Stylable** enables you to import other stylesheets and modules in a way that is similar to [JavaScript Imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). You can then use the stylesheet or module as it's been defined, or just one or more of its named values, in your own **Stylable** stylesheet.
 
 ## Import syntax
 
@@ -81,7 +81,7 @@ In this
 @st-import [label, icon, --bgColor] from './button.st.css';
 ```
 
-### JS named exports
+### JavaScript named exports
 
 The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript module `my-mixins.js`. These named exports are now imported into this scoped stylesheet.
 
@@ -96,7 +96,7 @@ When importing named values, they are generally used as class or element type se
 @st-import [gridMixin, tooltipMixin] from './my-mixins';
 ```
 
-### Alias JS named exports
+### Alias JavaScript named exports
 
 The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript module `my-mixins.js`. The value `gridMixin` is used as is and `tooltipMixin` has been renamed for use in this scoped stylesheet as `tooltip`. These mixins are referred to as `gridMixin` and `tooltip` in this stylesheet.
 

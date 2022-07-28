@@ -203,7 +203,7 @@ A partial mixin will include any declaration in the mixed-in class (or rules con
 
 JavaScript mixins allow you to create complex structures in CSS based on the arguments passed to the mixin.
 
-A JS mixin returns a CSS fragment which can contain multiple declarations with optional sub style-rules.
+A JavaScript mixin returns a CSS fragment which can contain multiple declarations with optional sub style-rules.
 
 Arguments are passed to the mixin as a string argument and it's the mixin's responsibility to parse them.
 

@@ -8,7 +8,7 @@ import CodeBlock from '@theme/CodeBlock';
 ## CSS Terminology
 
 - **Simple selector**: Type selector, class selector (+Stylable [root class](../references/root.md))
-- **CSS property**: Name of the rule (e.g. color)
+- **CSS property**: Name of the declaration (e.g. color)
 - **CSS declaration**: CSS property paired with a value
 - **CSS declaration Block**: List of CSS declarations
 - **CSS ruleset**: CSS declaration block paired with a selector
@@ -28,18 +28,18 @@ Syntax that is unique to Stylable or extended from CSS.
 | <CodeBlock language="css" className="inline-code">:x {}</CodeBlock>        | Pseudo-class or custom state selector ([api](../references/pseudo-classes.md))      |
 | <CodeBlock language="css" className="inline-code">::x {}</CodeBlock>       | Pseudo-element or custom-element selector ([api](../references/pseudo-elements.md)) |
 | <CodeBlock language="css" className="inline-code">:--x {}</CodeBlock>      | custom selector ([api](../references/custom-selectors.md))                          |
-| <CodeBlock language="css" className="inline-code">:global() {}</CodeBlock> | prevents namespacing selector ([api](../references/global-selectors.md))            |
+| <CodeBlock language="css" className="inline-code">:global() {}</CodeBlock> | disables selector namespacing ([api](../references/global-selectors.md))            |
 
 ### Module system
 
-| Syntax                                                                                                          | Explanations                                                                         |
-| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| <CodeBlock language="css" className="inline-code">@st-import X from './y.st.css';</CodeBlock>                   | Import stylesheet's root ([api](../references/imports.md#stylesheet-default-export)) |
-| <CodeBlock language="css" className="inline-code">@st-import [x, y] from './y.st.css';</CodeBlock>              | Import named exports ([api](../references/imports.md#stylesheet-named-exports))      |
-| <CodeBlock language="css" className="inline-code">@st-import X, [y, z] from './y.st.css';</CodeBlock>           | Import default & named ([api](../references/imports.md#stylesheet-named-exports))    |
-| <CodeBlock language="css" className="inline-code">@st-import [x as local-x] from './y.st.css';</CodeBlock>      | Map named export ([api](../references/imports.md#alias-js-named-exports))            |
-| <CodeBlock language="css" className="inline-code">@st-import [keyframes(x1, x2)] from './y.st.css';</CodeBlock> | Import keyframes ([api](../references/keyframes#import-and-export))                  |
-| <CodeBlock language="css" className="inline-code">@st-import [layers(x1, x2)] from './y.st.css';</CodeBlock>    | Import layers ([api](../references/layer#import-and-export))                         |
+| Syntax                                                                                                          | Explanations                                                                                  |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| <CodeBlock language="css" className="inline-code">@st-import X from './y.st.css';</CodeBlock>                   | Import stylesheet's root ([api](../references/imports.md#stylesheet-default-export))          |
+| <CodeBlock language="css" className="inline-code">@st-import [x, y] from './y.st.css';</CodeBlock>              | Import named exports ([api](../references/imports.md#stylesheet-named-exports))               |
+| <CodeBlock language="css" className="inline-code">@st-import X, [y, z] from './y.st.css';</CodeBlock>           | Import default & named ([api](../references/imports.md#stylesheet-named-exports))             |
+| <CodeBlock language="css" className="inline-code">@st-import [x as local-x] from './y.st.css';</CodeBlock>      | Local alias for named import ([api](../references/imports.md#alias-javascript-named-exports)) |
+| <CodeBlock language="css" className="inline-code">@st-import [keyframes(x1, x2)] from './y.st.css';</CodeBlock> | Import keyframes ([api](../references/keyframes#import-and-export))                           |
+| <CodeBlock language="css" className="inline-code">@st-import [layers(x1, x2)] from './y.st.css';</CodeBlock>    | Import layers ([api](../references/layer#import-and-export))                                  |
 
 ### Class extensions
 

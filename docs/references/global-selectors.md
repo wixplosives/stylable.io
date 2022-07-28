@@ -3,7 +3,7 @@ id: global-selectors
 title: Global Selector
 ---
 
-In **Stylable**, selectors are namespaced to the stylesheet. However there are times you want to target global selectors without Stylable namespacing them, And for that you can use the `:global()` selector.
+In Stylable, selectors are namespaced to the stylesheet. However there might be cases where you want to target global selectors without Stylable namespacing them, For that you can use the `:global()` selector.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ In **Stylable**, selectors are namespaced to the stylesheet. However there are t
 .a:global(.g1, .g2):hover.b {}
 ```
 :::caution
-Any definitions within the `:global(...)` pseudo-class are not treated as symbols in the stylesheet and are not exported. That means that they are not available for use in other stylesheets or in the runtime JS module.
+Any definitions within the `:global(...)` pseudo-class are not treated as symbols in the stylesheet and are not exported. That means that they are not available for use in other stylesheets or in the runtime JavaScript module.
 :::
 
 ## Force native

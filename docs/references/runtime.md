@@ -3,7 +3,7 @@ id: runtime
 title: Runtime
 ---
 
-Imported Stylable stylesheets in JS contain minimal runtime code to help define the structure and state of the component.
+Imported Stylable stylesheets in JavaScript contain minimal runtime code to help define the structure and state of the component.
 
 
 <!-- prettier-ignore-start -->
@@ -17,7 +17,7 @@ import {
     cssStates, // utility function for setting stylable states
     keyframes, // keyframes mapping
     layers     // layer mapping
-}  from "style.st.css";
+} from "style.st.css";
 ```
 <!-- prettier-ignore-end -->
 
@@ -29,26 +29,26 @@ Any namespaced symbols, defined in the stylesheet, are exposed on maps from thei
 ```js
 import { classes, vars, keyframes, layers } from 'style.st.css';
 
-// class mapping
+// class
 classes.root;            // "style__root"
 classes.label;           // "style__label"
 classes.icon;            // "style__icon"
 classes['dashed-part'];  // "style__dashed-part"
 
-// custom property mapping
+// custom property
 vars.color1              // "--style-color1"
 
 // keyframes
 keyframes.slide          // "style__slide"
 
-// keyframes
+// layers
 layers.theme             // "style__theme"
 ```
 <!-- prettier-ignore-end -->
 
 :::note
 
-The [root class](../references/root.md) is available even when it is not defined in the stylesheet.
+The [root class](../references/root.md) is available even when it is not explicitly defined in the stylesheet.
 
 :::
 
@@ -73,9 +73,9 @@ stVars.color; // "gold"
 
 ## `st()` function
 
-A utility function for concatenating [classes](./class-selectors.md) and [custom states](./pseudo-classes.md).
+A utility function for concatenating [classes](./class-selectors.md) and activating [custom states](./pseudo-classes.md).
 
-- the **second argument** can optionally receive state activation
+- the optional **second argument** can receive either a state activation or another class to concatenate
 - multiple classes can be added with additional arguments
 
 **Multiple classes**

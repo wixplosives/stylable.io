@@ -49,7 +49,7 @@ To avoid namespacing on classes in a selector, wrap those classes with a `:globa
 ```
 
 :::caution
-Classes used within the `:global(...)` pseudo-class are not treated as symbols in the stylesheet and are not exported. This means that they are not available for use in other stylesheets or in the runtime JS module.
+Classes used within the `:global(...)` pseudo-class are not treated as symbols in the stylesheet and are not exported. This means that they are not available for use in other stylesheets or in the runtime JavaScript module.
 :::
 
 ### Defining global symbols

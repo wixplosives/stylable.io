@@ -3,7 +3,7 @@ id: keyframes
 title: Keyframes
 ---
 
-The `@keyframes` CSS atrule is used to define an animation that can be referenced to animate a DOM element.
+The `@keyframes` CSS at-rule is used to define an animation that can be referenced to animate a DOM element.
 
 This page goes over how Stylable handles `@keyframes`, for more details about the language feature itself, checkout the following resources:
 - [MDN @keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)
@@ -88,8 +88,16 @@ Stylable automatically namespaces any keyframes name according to the stylesheet
 ```css
 @keyframes slide {}
 
+.x {
+  animation-name: slide;
+}
+
 /* OUTPUT */
 @keyframes NAMESPACE__slide {}
+
+.x {
+  animation-name: NAMESPACE__slide;
+}
 ```
 
 ### Disable namespace
