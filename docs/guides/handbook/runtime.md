@@ -3,19 +3,17 @@ id: runtime
 title: Runtime
 ---
 
-In the [previous chapter](./state.md) we saw brief examples of mapping our `classes` local names to their global namespaced names at runtime, as well as the `cssStates` utility function to activate their states.
+In the [previous chapter](./state.md), we saw brief examples of mapping our `classes` local names to their global namespaced names at runtime, as well as the `cssStates` utility function to activate their states.
 
-In this chapter, we'll explore the runtime features of Stylable, and their usage.
+In this chapter, we'll explore the runtime features of Stylable and their usage.
 
-One of the core ideas behind Stylable, is to try and shift as much of the work as possible from runtime to build time to increase performence and end-user experience.
+One of the core ideas behind Stylable is to try and shift as much of the work as possible from runtime to build time to increase performence and end-user experience. However, in some instances, we need to do additional work in JavaScript.
 
-However, in some instances, we need to do additional work in JavaScript.
+For example, we need to:
 
-For example:
-
-- Binding classes to view
-- Activating dynamic states
-- Setting dynamic values
+- Bind classes to views
+- Activate dynamic states
+- Set dynamic values
 
 ## Mapped symbols
 
@@ -70,9 +68,9 @@ import { st, classes } from "game.st.css";
 <div className={st(classes.player, { registered: true })}></div>;
 ```
 
-There are cases in which we would like add additional classes to an element, for example, a component might want to accept an external class name to allow for custom styling.
+There are cases in which we would like to add additional classes to an element. For example, a component might want to accept an external class name to allow for custom styling.
 
-Below we can see just such a case, where we bind a class (`player`), activate a state (`registered`), and add an external class from props for customization purposes.
+Below, we can see such a case, where we bind a class (`player`), activate a state (`registered`), and add an external class from props for customization purposes.
 
 <!-- TODO: highlight line 5 once we sort how it looks -->
 
@@ -92,7 +90,7 @@ For further details on the runtime API, [see the runtime reference](../../refere
 
 We have yet to cover Stylable build variables, but seeing as they too expose part of their functionality to runtime, we'll cover them here briefly.
 
-As opposed to the native runtime symbols we saw namespaced above, Stylable build variables do not require namespacing as they are transpiled away at build time. In this case, the runtime export maps variables to their defined values.
+As opposed to the native runtime symbols we saw namespaced above, Stylable build variables do not require namespacing, as they are transpiled away at build time. In this case, the runtime export maps variables to their defined values.
 
 <!-- prettier-ignore-start -->
 ```js
