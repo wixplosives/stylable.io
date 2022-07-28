@@ -5,11 +5,11 @@ title: Namespacing
 
 In the [Classes chapter](./class.mdx#resolve-global-conflicts), we briefly explained the concept of namespacing for the purpose of avoiding conflicts between stylesheets.
 
-In this chapter, we'll dive deeper to see how other symbols in CSS can be rendered safe to use and how namespacing can be controlled.
+In this chapter, we'll dive deeper to see how other symbols in CSS can be rendered safe to use, and how namespacing can be controlled.
 
 ## Supported symbols
 
-We've only mentioned classes up to this point, but in CSS there are many other symbols that share the same naming context and require namespacing to avoid potential conflicts.
+We've only mentioned classes up to this point, but in CSS, there are many other symbols that share the same naming context, therefore requiring namespacing to avoid potential conflicts.
 
 Symbols that Stylable namespaces:
 
@@ -21,7 +21,7 @@ Symbols that Stylable namespaces:
 | Layer           | `@layer theme`     | `@layer NAMESPACE__theme`     |
 
 :::note
-Stylable does not namespace `id`, `custom-element`, `attribute` or other symbols at the moment. We might add additional symbol namespacing support in the future.
+Stylable does not namespace `id`, `custom-element`, `attribute`, or other symbols at the moment, but we may add additional symbol namespacing support in the future.
 :::
 
 ## Global
@@ -30,8 +30,8 @@ In some cases, we might want to avoid namespacing for a specific symbol.
 
 For example:
 
-- To style a third-party component that is using pre-determined global class names
-- To expose a persistent, globally namespaced API for non-Stylable consumers that are using our project
+- To style a third-party component that is using pre-determined global class names.
+- To expose a persistent, globally-namespaced API for non-Stylable consumers that are using our project.
 
 ### Disable in selector
 
@@ -49,7 +49,7 @@ To avoid namespacing on classes in a selector, wrap those classes with a `:globa
 ```
 
 :::caution
-Classes used within the `:global(...)` pseudo-class are not treated as symbols in the stylesheet and are not exported. This means that they are not available for use in other stylesheets or in the runtime JavaScript module.
+Classes used within the `:global(...)` pseudo-class are not treated as symbols in the stylesheet, and are not exported. This means that they are not available for use in other stylesheets or in the runtime JavaScript module.
 :::
 
 ### Defining global symbols
@@ -68,13 +68,13 @@ Unlike the other symbols that are mapped from a local name to their global one, 
 }
 ```
 
-Notice that in this case, we are mapping our `okButton` class to a `.myLib__ok` class selector. This is because classes can be mapped to any selector, including multiple classes, elements, attributes and other CSS selector parts.
+Notice that in this case, we are mapping our `okButton` class to a `.myLib__ok` class selector. This is because classes can be mapped to any selector, including multiple classes, elements, attributes, and other CSS selector parts.
 
 <!-- TODO: expand on -st-global outcomes in the runtime api and link to it here -->
 
 ## Stylesheet level namespacing
 
-By default namespace is derived in Stylable using the stylesheet filename, but in some edge cases we might want to override this behavior.
+By default, namespacing is derived in Stylable using the stylesheet filename, but in some edge cases we might want to override this behavior.
 
 To do so, we can use the `@namespace "OverrideNAMESPACE";` definition. [Click here](../../references/namespace.md) to read more about the namespace API.
 
