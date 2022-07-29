@@ -6,12 +6,15 @@ title: Keyframes
 The `@keyframes` CSS at-rule is used to define an animation that can be referenced to animate a DOM element.
 
 This page goes over how Stylable handles `@keyframes`, for more details about the language feature itself, checkout the following resources:
+
 - [MDN @keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)
 - [CSS animation spec](https://drafts.csswg.org/css-animations/#keyframes)
 
 ## Syntax
 
 **Keyframes definition**
+
+<!-- prettier-ignore-start -->
 ```css
 /* empty definition */
 @keyframes slide {}
@@ -29,8 +32,10 @@ This page goes over how Stylable handles `@keyframes`, for more details about th
   100% { color: blue }
 }
 ```
+<!-- prettier-ignore-end -->
 
 **Keyframes usage**
+
 ```css
 .x {
   /* within animation shorthand */
@@ -62,6 +67,7 @@ An exported keyframes can be imported into another stylesheet with the [@st-impo
 ```
 
 **More import examples**
+
 ```css
 /* map 'slide' keyframes to local name 'x-slide' */
 @st-import [keyframes(slide as x-slide)] from './x.st.css';
@@ -75,7 +81,7 @@ An exported keyframes can be imported into another stylesheet with the [@st-impo
 A Keyframes definition can be accessed for dynamic styles using the keyframes mapping on the Stylable runtime stylesheet:
 
 ```js
-import { keyframes } from "./sheet.st.css";
+import { keyframes } from './sheet.st.css';
 
 // map to target namespaced keyframes
 keyframes.jump;
@@ -85,6 +91,7 @@ keyframes.jump;
 
 Stylable automatically namespaces any keyframes name according to the stylesheet it is defined in:
 
+<!-- prettier-ignore-start -->
 ```css
 @keyframes slide {}
 
@@ -99,12 +106,14 @@ Stylable automatically namespaces any keyframes name according to the stylesheet
   animation-name: NAMESPACE__slide;
 }
 ```
+<!-- prettier-ignore-end -->
 
 ### Disable namespace
 
 In some cases the default namespace behavior is unwanted. In such cases, `st-global` can be used to mark a keyframes definition as global:
 
 <!-- ToDo: accept missing body to define just the symbol without overriding previous keyframes: "@keyframes st-global(slide);" for the case of external global keyframes -->
+<!-- prettier-ignore-start -->
 ```css
 @keyframes st-global(slide) {}
 .x {
@@ -117,3 +126,4 @@ In some cases the default namespace behavior is unwanted. In such cases, `st-glo
   animation-name: slide; /* no namespace */
 }
 ```
+<!-- prettier-ignore-end -->

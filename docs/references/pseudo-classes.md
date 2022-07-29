@@ -250,7 +250,7 @@ Stylable generates namespaced CSS classes for custom states:
 ```
 <!-- prettier-ignore-end -->
 
-### Disable namespace
+### Map to selector
 
 In some cases the default way Stylable transforms a state into a class is not the desired behavior, for example when writing style interface to an external view that might mark state as an attribute, For this `mapped state` can be used to transform the state into a another selector.
 
