@@ -40,7 +40,7 @@ module.exports = {
                     label: 'API',
                     position: 'left',
                 },
-                // {to: 'blog', label: 'Blog', position: 'left'},
+                { to: 'blog', label: 'Blog', position: 'left' },
                 {
                     href: 'https://github.com/wix/stylable',
                     position: 'right',
