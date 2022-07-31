@@ -15,7 +15,6 @@ export default function Playground() {
       wrapperClassName={styles.playgroundWrapper}
     >
       <iframe
-        ref={iframeRef}
         src={
           "https://wixplosives.github.io/stylable-playground2/" +
           getLocationSearch()
