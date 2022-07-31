@@ -3,118 +3,133 @@ id: imports
 title: Import
 ---
 
-**Stylable** enables you to import other stylesheets and modules in a way that is similar to [JavaScript Imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). You can then use the stylesheet or module as it's been defined, or just one or more of its named values, in your own **Stylable** stylesheet.
+The Stylable `@st-import` at-rule is used to reference definitions from other `.st.css` or `.js` modules in a similar way to [JavaScript Imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
-## Import syntax
+<!-- ToDo: add difference from native @import -->
 
-**Stylable** supports two types of import syntax that can be used, the two are identical in their capabilities.
-
-- `@st-import` at-rule directive - A newer more concise syntax, similar to ES imports:
-  - replace `<DEFAULT_NAME>` with your desired local name to import an entire stylesheet, representing its root class
-  - Inside the square brackets, import any inner parts belonging to said stylesheet
+## Syntax
 
 ```css
-@st-import DefaultComp, [somePart, someVar] from './stylesheet.st.css';
+@st-import Default, [namedA, namedB as localB] from 'request';
 ```
 
-- `:import` ruleset directive - The legacy more verbose way of importing symbols, uses the **Stylable** syntax beginning with `-st-` inside the `:import` ruleset:
-  - `-st-from:` Identifies the path to the stylesheet or JavaScript module. Can be a relative path or a 3rd party path.
-  - `-st-default:` Imports the default export of the module named in `-st-from:`. Use with the name by which to identify the imported value in the scoped stylesheet.
-  - `-st-named:` List of the named exports to import into the local scoped stylesheet from the file named in `-st-from:`.
+<!-- specifier? / request? -->
 
+:::info re-declare symbol
+
+- import local names must be unique.
+- Imports are hoisted above local definitions.
+
+:::
+
+### Default import
+
+In order to reference the the default export of a module, provide a local name after the `@st-import`.
+
+<!-- prettier-ignore-start -->
 ```css
-:import {
-  -st-from: "./stylesheet.st.css";
-  -st-default: <DEFAULT_NAME>;
-  -st-named: <NAMED_PART1, NAMED_PART2, ...>;
+@st-import DefaultLocalName from 'request';
+```
+<!-- prettier-ignore-end -->
+
+### Named import
+
+To reference named exports of a module, in square brackets (after the optional default import), provide a comma separated list of requested names.
+
+<!-- prettier-ignore-start -->
+```css
+/* named imports */
+@st-import [partA, partB] from 'request';
+
+/* default + named imports */
+@st-import Default, [partA, partB] from 'request';
+```
+<!-- prettier-ignore-end -->
+
+#### Local alias
+
+Use the `as` keyword to map an export name to a local name.
+
+<!-- prettier-ignore-start -->
+```css
+@st-import [part as localPartName] from 'request';
+```
+<!-- prettier-ignore-end -->
+
+## Stylable stylesheet
+
+When importing from a stylesheet, the [root](./root.md) class is mapped to the default export, and several named symbols can be referenced by name:
+
+<!-- prettier-ignore-start -->
+```css title="origin.st.css"
+/* define symbols */
+.part {
+  --customProp: yellow;
+}
+@keyframes anim {}
+@layer comps, theme;
+:vars {
+  stVar: green;
 }
 ```
 
-Every example below will feature both types of import syntaxes, their end result is identical.
+```css title="entry.st.css"
+@st-import OriginRoot, [
+  part,         /* part class name */
+  --customProp, /* custom property */
+  stVar         /* build var */
+] from './origin.st.css';
+```
+<!-- prettier-ignore-end -->
 
-:::important
-
-- `:import` is a Stylable directive and not a selector.
-- likewise, `@st-import` is a Stylable directive and not an actual at-rule.
-- Import statements cannot be nested or be part of a complex selector.
-- Multiple imports may conflict in their used symbol names; the last one in the file wins.
-- When an imported symbol conflicts with a local symbol the local will be used.
-
+:::caution Stylesheet default capitalization
+When importing a **default** value from a stylable stylesheet, you should use a capital letter to signify that the value represents a component root.
 :::
 
-## Basic usage
+### Named type assertion
 
-Here are some examples of how you can use imports in your **Stylable** stylesheet.
+To import keyframes or layers from another stylesheet, a special [keyframes()](./keyframes.md#import-and-export) or [layer()](./layer#import-and-export) assertion is required.
 
-### Stylesheet default export
+<!-- prettier-ignore-start -->
+```css title="entry.st.css"
+/* import keyframe and layer */
+@st-import [
+  keyframes(anim),
+  layer(theme)
+] from './origin.st.css';
 
-Import the `button.st.css` stylesheet from a local location. Assign the name `Button` to the default export of that stylesheet for use in this scoped stylesheet.
+/* multiple */
+@st-import [
+  keyframes(anim1, anim2), 
+  layer(comps, theme)
+] from './origin.st.css';
+```
+<!-- prettier-ignore-end -->
 
-When importing another stylesheet, the default import represents the root of the stylesheet and is generally treated as a component, and named imports represent other internal stylesheet parts.
+## Javascript
 
-:::important
+To import Javascript definitions for [values](./variables.md), [mixins](./mixins.md), and [formatters](./formatters.md), use the `@st-import` statement in the same way as you would for a stylesheet.
 
-Generally when importing a **default** value from a stylable file, you should use a capital letter to signify that the value represents a component root node in this stylesheet.
-
-:::
+<!-- prettier-ignore-start -->
 
 ```css
-/* comp.st.css - atRule syntax */
-@st-import ToggleButton from './button.st.css';
+@st-import DefaultExport, [namedA, namedB as localB] from './code.js';
 ```
 
-### Stylesheet named exports
+<!-- prettier-ignore-end -->
 
-Named imports from a stylesheet can be used to bring symbols of different types, which you can then use inside your stylesheet.
+## Legacy syntax
 
-- Elements
-- Classes
-- Stylable Variables
-- CSS Variables
-- Keyframes - see [importing keyframes](#importing_keyframes)
-- Layers - see [importing layers](./layer#Import_and_Export)
+An older variation for `@st-import` is the `:import` (pseudo-import). While it still works, it is **highly discouraged** for usage, verbose and will be deprecated in the future.
 
-In this
-
+<!-- prettier-ignore-start -->
 ```css
-/* comp.st.css - atRule syntax */
-@st-import [label, icon, --bgColor] from './button.st.css';
+:import {
+  -st-from: 'request';
+  -st-default: DefaultLocalName;
+  -st-named: namedA, namedB as localB;
+}
 ```
+<!-- prettier-ignore-end -->
 
-### JavaScript named exports
-
-The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript module `my-mixins.js`. These named exports are now imported into this scoped stylesheet.
-
-:::tip
-
-When importing named values, they are generally used as class or element type selectors and, therefore, you should camelCase to name them.
-
-:::
-
-```css
-/* comp.st.css - atRule syntax */
-@st-import [gridMixin, tooltipMixin] from './my-mixins';
-```
-
-### Alias JavaScript named exports
-
-The values `gridMixin` and `tooltipMixin` are imported from the local JavaScript module `my-mixins.js`. The value `gridMixin` is used as is and `tooltipMixin` has been renamed for use in this scoped stylesheet as `tooltip`. These mixins are referred to as `gridMixin` and `tooltip` in this stylesheet.
-
-```css
-/* comp.st.css - atRule syntax */
-@st-import [gridMixin, tooltipMixin as tooltip] from './my-mixins';
-```
-
-## Keyframes and Layers
-
-In Stylable, both class names, keyframes, and layers undergo namespacing to avoid collision. However, despite the three being global, they do not share a namespace in CSS - this means that you can have both a class name, a keyframe and a layer all with the same name.
-
-Due to this, when importing keyframes or layers from another stylesheet, a special `keyframes()` or `layer()` directive is required.
-
-```css
-/* comp.st.css - atRule syntax */
-@st-import [keyframes(slideX, slideY)] from './keyframes.st.css';
-@st-import [layer(theme)] from './layer.st.css';
-```
-
-You can read more about keyframes behavior [here](./keyframes.md), or about layers [here](./layer.md).
+A code-mod to migrate to the new syntax is available ([see doc](https://github.com/wix/stylable/tree/master/packages/cli#builtin-codemods))
