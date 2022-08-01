@@ -42,6 +42,11 @@ module.exports = {
         },
         // {to: 'blog', label: 'Blog', position: 'left'},
         {
+          to: "community",
+          label: "Community",
+          position: "left",
+        },
+        {
           href: "https://github.com/wix/stylable",
           position: "right",
           className: "header-github-link",
