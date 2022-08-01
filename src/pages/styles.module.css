@@ -45,6 +45,13 @@
   margin: 2.25em 0;
 }
 
+html[data-theme='dark'] .featureImage {
+  fill: white;
+}
+.featureImage {
+  fill: #1b1f23;
+}
+
 .heart {
   color: rgb(204, 27, 27);
 }
@@ -62,7 +69,7 @@
 .quote::before {
   position: absolute;
   margin: -12px 0px 0px 0px;
-  content: " ";
+  content: ' ';
   background-image: url(/img/quote.svg);
   width: 12px;
   height: 12px;
