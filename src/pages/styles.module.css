@@ -45,7 +45,7 @@
   margin: 2.25em 0;
 }
 
-html[data-theme='dark'] .featureImage {
+html[data-theme="dark"] .featureImage {
   fill: white;
 }
 .featureImage {
@@ -69,7 +69,7 @@ html[data-theme='dark'] .featureImage {
 .quote::before {
   position: absolute;
   margin: -12px 0px 0px 0px;
-  content: ' ';
+  content: " ";
   background-image: url(/img/quote.svg);
   width: 12px;
   height: 12px;
@@ -109,6 +109,10 @@ html[data-theme='dark'] .featureImage {
   margin: 1em 0 0 0;
 }
 
+.communityPageTitle {
+  margin-top: 4em;
+}
+
 @media screen and (max-width: 996px) {
   .feature {
     padding: 2.5em;
@@ -116,6 +120,11 @@ html[data-theme='dark'] .featureImage {
   .featureImage {
     float: left;
     margin: 0 3em 0 0;
+  }
+
+  .communityPageTitle {
+    margin-top: 2.25em;
+    padding-inline-start: 2.5em;
   }
 }
 
@@ -126,6 +135,12 @@ html[data-theme='dark'] .featureImage {
 
   .featureImage {
     float: none;
-    margin: 2.25em 0;
+    margin: 0 0 1em;
+    width: 25%;
+  }
+
+  .communityPageTitle {
+    margin-top: 2.25em;
+    padding-inline-start: 2.25em;
   }
 }

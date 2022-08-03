@@ -85,6 +85,10 @@ module.exports = {
               label: "Twitter",
               href: "https://twitter.com/stylableio",
             },
+            {
+              label: "Discord",
+              href: "https://discord.gg/C5ZhENSbV7",
+            },
           ],
         },
         {
