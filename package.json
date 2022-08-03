@@ -14,11 +14,11 @@
     "prettify": "npx prettier . --write"
   },
   "dependencies": {
-    "@algolia/client-search": "^4.14.0",
-    "@docusaurus/core": "^2.0.0-rc.1",
-    "@docusaurus/preset-classic": "^2.0.0-rc.1",
-    "@docusaurus/mdx-loader": "^2.0.0-rc.1",
-    "@easyops-cn/docusaurus-search-local": "^0.29.2",
+    "@algolia/client-search": "^4.14.2",
+    "@docusaurus/core": "^2.0.1",
+    "@docusaurus/preset-classic": "^2.0.1",
+    "@docusaurus/mdx-loader": "^2.0.1",
+    "@easyops-cn/docusaurus-search-local": "^0.30.2",
     "clsx": "^1.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
