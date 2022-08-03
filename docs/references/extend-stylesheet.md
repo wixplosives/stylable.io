@@ -13,10 +13,7 @@ Use the `-st-extends` directive rule to extend a CSS class with another styleshe
 
 In this example, the stylesheet is extending the `toggle-button.st.css` stylesheet. The `checkBtn` class has a `label`, which is a custom pseudo-element, and has a custom pseudo-class, `toggled`.
 
-```css
-/* page.st.css */
-@namespace "Page";
-
+```css title="page.st.css"
 @st-import ToggleButton from "./toggle-button.st.css";
 
 .checkBtn {
@@ -29,27 +26,24 @@ In this example, the stylesheet is extending the `toggle-button.st.css` styleshe
 .checkBtn:toggled::label {
   color: red;
 } /* style pseudo element label when check-box is toggled */
-```
 
-```css
-/* CSS output */
-.Page__checkBtn {
+/* OUTPUT */
+.page__checkBtn {
   background: white;
 }
-.Page__checkBtn .ToggleButton__label {
+.page__checkBtn .toggleButton__label {
   color: green;
 }
-.Page__checkBtn.ToggleButton--toggled .ToggleButton__label {
+.page__checkBtn.toggleButton--toggled .toggleButton__label {
   color: red;
 }
 ```
 
-```jsx
-/* page.jsx */
-import React from "react";
-import { style, classes } from "./comp.st.css";
+```jsx title="page.jsx"
+import React from 'react';
+import { style, classes } from './comp.st.css';
 
-import ToggleButton from "./toggle-button";
+import ToggleButton from './toggle-button';
 
 class Page {
   constructor(props) {
@@ -84,10 +78,8 @@ Any class other than `root` defined in a Stylesheet is considered an inner part.
 
 ### Extending example
 
-```css
-/* page.st.css */
-@namespace "Page";
-
+<!-- prettier-ignore-start -->
+```css title="page.st.css"
 @st-import ToggleButton from "./toggle-button.st.css";
 @st-import [toggleVariant] from "./toggle-button-variant.st.css";
 
@@ -97,20 +89,17 @@ Any class other than `root` defined in a Stylesheet is considered an inner part.
 .variantCheckBtn {
   -st-extends: toggleVariant; /* extending class */
 }
-```
 
-```css
-/* CSS output */
-.Page__defaultCheckBtn {
-}
-.Page__variantCheckBtn {
-}
+/* OUTPUT */
+.page__defaultCheckBtn {}
+.page__variantCheckBtn {}
 ```
+<!-- prettier-ignore-end -->
 
 ```js
 /* runtime JS output*/
-import { classes } from "./page.st.css";
+import { classes } from './page.st.css';
 
-console.log(classes.defaultCheckBtn); // "Page__defaultCheckBtn"
-console.log(classes.variantCheckBtn); // "Page__variantCheckBtn ToggleButton__toggleVariant"
+console.log(classes.defaultCheckBtn); // "page__defaultCheckBtn"
+console.log(classes.variantCheckBtn); // "page__variantCheckBtn toggleButton__toggleVariant"
 ```

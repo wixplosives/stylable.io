@@ -77,27 +77,25 @@ Override CSS only for behaviors that **must** be overridden for the component to
 
 Styling pseudo-elements in a component creates a selector that takes more specificity to override
 
-```css
-@namespace "comp";
+<!-- prettier-ignore-start -->
+```css title="gallery.st.css"
 /* 
 > directly style navBtn - a type of button
 selector: .comp__gallery .gallery__navBtn
 specificity: 0,0,2,0 
 */
-.gallery::navbtn {
-}
+.gallery::navbtn {}
 ```
 
-```css
-@namespace "page";
+```css title="page.st.css"
 /* 
 > less specific than component override 
 selector: .page__root button
 specificity: 0,0,1,1
 */
-.root button {
-}
+.root button {}
 ```
+<!-- prettier-ignore-end -->
 
 :::note
 

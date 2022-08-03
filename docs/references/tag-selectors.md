@@ -13,8 +13,7 @@ Targeting a native element matches any element with the same element name that i
 
 To target **all** elements of a certain type in your project, use a [`global selector`](./global-selectors.md).
 
-```css
-@namespace "Page";
+```css title="page.st.css"
 .root form {
   background: green;
 }
@@ -24,19 +23,18 @@ To target **all** elements of a certain type in your project, use a [`global sel
 :global(span) {
   background: blue;
 }
-```
 
-```css
-/* CSS output - form is scoped to the page - affects any nested instance */
-.Page__root form {
+/* OUTPUT - form is scoped to the page - affects any nested instance */
+.page__root form {
   background: green;
 }
-.Page__sideBar:hover form {
+.page__sideBar:hover form {
   background: red;
 }
 span {
+  /* affects *ALL* spans in your application */
   background: blue;
-} /* this will affect *ALL* spans in your application */
+}
 ```
 
 :::note
@@ -45,10 +43,9 @@ The value `form` itself is not namespaced.
 
 :::
 
-```jsx
-/* comp.jsx */
-import React from "react";
-import { style, classes } from "./comp.st.css";
+```jsx title="comp.jsx"
+import React from 'react';
+import { style, classes } from './comp.st.css';
 
 class Comp extends React.Component {
   render() {
@@ -69,8 +66,7 @@ class Comp extends React.Component {
 
 When the value of a stylesheet is [imported](./imports.md) with a **capital first letter**, it can be used as a component element selector.
 
-```css
-@namespace "Page";
+```css title="page.st.css"
 @st-import ToggleButton from "./toggle-button.st.css";
 
 .root ToggleButton {
@@ -79,25 +75,22 @@ When the value of a stylesheet is [imported](./imports.md) with a **capital firs
 .sideBar:hover ToggleButton {
   background: red;
 }
-```
 
-```css
-/* CSS output - ToggleButton is scoped to the page, affects any nested toggle button */
-.Page__root .ToggleButton__root {
+/* OUTPUT - ToggleButton is scoped to the page, affects any nested toggle button */
+.page__root .toggleButton__root {
   background: green;
 }
-.Page__sideBar:hover .ToggleButton__root {
+.page__sideBar:hover .toggleButton__root {
   background: red;
 }
 ```
 
-```jsx
-/* comp.jsx */
-import React from "react";
-import { style, classes } from "./comp.st.css";
+```jsx title="comp.jsx"
+import React from 'react';
+import { style, classes } from './comp.st.css';
 
-/* React implementation - button component implements toggle-button.css */
-import ToggleButton from "./toggle-button";
+/* React implementation - button component uses toggle-button.css */
+import ToggleButton from './toggle-button';
 
 class Comp extends React.Component {
   render() {

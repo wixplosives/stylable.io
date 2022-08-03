@@ -13,19 +13,16 @@ You could also use custom selectors to define a group of selectors with one name
 
 The following code maps the alias name `controlBtn` that matches any `.btn` CSS class nested under the `.controls` CSS class.
 
----
-
-```css
-@namespace "Comp";
+```css title="comp.st.css"
 @custom-selector :--controlBtn .controls .btn;
 /* 
-selector: .Comp__controls .Comp__btn 
+selector: .comp__controls .comp__btn 
 */
 :--controlBtn {
   border: 1px solid grey;
 }
 /* 
-selector: .Comp__controls .Comp__btn:hover 
+selector: .comp__controls .comp__btn:hover 
 */
 :--controlBtn:hover {
   border-color: red;
@@ -36,13 +33,11 @@ selector: .Comp__controls .Comp__btn:hover
 
 Custom selectors generate a [pseudo-element](./pseudo-elements.md). So, for example, [importing](./imports.md) a stylesheet into another stylesheet enables access to the `controlBtn` pseudo-element. In this example, the stylesheet `comp.st.css` from the previous example is imported into this stylesheet.
 
-```css
-@namespace "Page";
-
+```css title="page.st.css"
 @st-import Comp from "./comp.st.css";
 
 /*
-selector: .Comp__root .Comp__controls .Comp__btn
+selector: .comp__root .comp__controls .comp__btn
 */
 Comp::controlbtn {
   background: gold;
@@ -67,20 +62,17 @@ If the component exposes any `pseudo-elements`, it is a good practice to define 
 
 The following example shows how a tree component exposes an icon.
 
-```css
-@namespace "Tree";
+```css title="tree.st.css"
 @custom-selector :--icon .root > .icon;
 ```
 
 Here you can use the icon `custom selector` from the outside just like you would use any other `pseudo-element`.
 
-```css
-@namespace "Panel";
-
+```css title="panel.st.css"
 @st-import Tree from "./tree.st.css";
 
 /*
-selector: .Tree__root > .Tree__icon
+selector: .tree__root > .tree__icon
 */
 Tree::icon {
   background: yellow; /* paints the icons all the way down the tree */
@@ -105,18 +97,15 @@ You may have a component with several basic CSS classes and with corresponding `
 
 For example, a `pseudo-element` named `navBtn` matches any `btn` CSS class nested in a `nav` CSS class.
 
-```css
-@namespace "Comp";
+```css title="comp.st.css"
 @custom-selector :--navBtn .nav .btn;
 ```
 
-```css
-@namespace "Page";
-
+```css title="page.st.css"
 @st-import Comp from "./comp.st.css";
 
 /*
-selector: .Comp__root .Comp__nav .Comp__btn
+selector: .comp__root .comp__nav .comp__btn
 */
 Comp::navbtn {
   border: 1px solid grey;
@@ -127,12 +116,11 @@ Comp::navbtn {
 
 You could also use custom selectors to gather a collection of selectors into a single selector. For example, you may want to access media that includes both images and videos.
 
-```css
-@namespace "Comp";
+```css title="comp.st.css"
 @custom-selector :--media .image, .video;
 /*
 selector: 
-.Comp__image, .Comp__video 
+.comp__image, .comp__video 
 */
 :--media {
   border: 1px solid grey;
@@ -145,20 +133,16 @@ Aliasing multiple selectors in a `custom selector` may generate lots of CSS that
 
 For example, when you import the `Comp` stylesheet (the selector described in the previous example) into another stylesheet, in the output the selector is split for each override.
 
-```css
-@namespace "Page";
-
+```css title="page.st.css"
 @st-import Comp from "./comp.st.css";
 
 Comp::media {
   border-color: red;
 }
-```
 
-```css
-/* CSS Output */
-.Comp__root .Comp__image,
-.Comp__root .Comp__video {
+/* OUTPUT */
+.comp__root .comp__image,
+.comp__root .comp__video {
   border-color: red;
 }
 ```

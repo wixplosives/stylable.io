@@ -11,16 +11,15 @@ Any [CSS class](./class-selectors.md) is accessible as a pseudo-element of an [e
 
 When you define a CSS class inside a component, in this case a `playButton` in a `VideoPlayer`, that class may be targeted as a pseudo-element of any class that extends the component `videoPlayer`.
 
-```css
-/* video-player.st.css */
-@namespace "VideoPlayer";
-.root {
-}
+<!-- prettier-ignore-start -->
+```css title="video-player.st.css"
+.root {}
 .playButton {
   background: black;
   color: white;
 }
 ```
+<!-- prettier-ignore-end -->
 
 ## Style a custom pseudo-element
 
@@ -28,8 +27,8 @@ Use `::` to access an internal part of a component after a [custom element type 
 
 In this example, you [import](./imports.md) a `VideoPlayer` component into your stylesheet, and style an internal part called `playButton` overriding its original styling.
 
-```css
-@namespace "Page";
+<!-- prettier-ignore-start -->
+```css title="page.st.css"
 @st-import VideoPlayer from "./video-player.st.css";
 .mainVideo {
   -st-extends: VideoPlayer; /* define mainVideo as VideoPlayer */
@@ -39,17 +38,15 @@ In this example, you [import](./imports.md) a `VideoPlayer` component into your 
   background: green;
   color: purple;
 }
-```
 
-```css
-/* CSS output */
-.Page__mainVideo.VideoPlayer__root {
-}
-.Page__mainVideo.VideoPlayer__root .VideoPlayer__playButton {
+/* OUTPUT */
+.page__mainVideo.videoPlayer__root {}
+.page__mainVideo.videoPlayer__root .videoPlayer__playButton {
   background: green;
   color: purple;
 }
 ```
+<!-- prettier-ignore-end -->
 
 :::note
 
@@ -65,9 +62,8 @@ In this example, the class `playButton` is available from the original component
 
 The `page.css` stylesheet can then extend `super-video-player.css` and on the `.mainPlayer` class, style `playButton` differently.
 
-```css
-/* super-video-player.st.css */
-@namespace "SuperVideoPlayer";
+<!-- prettier-ignore-start -->
+```css title="super-video-player.st.css"
 @st-import VideoPlayer from "./video-player.st.css";
 .root {
   -st-extends: VideoPlayer;
@@ -75,20 +71,15 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 .root::playbutton {
   color: gold;
 }
-```
 
-```css
-/* CSS output */
-.SuperVideoPlayer__root.VideoPlayer__root {
-}
-.SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton {
+/* OUTPUT */
+.superVideoPlayer__root.videoPlayer__root {}
+.superVideoPlayer__root.videoPlayer__root .videoPlayer__playButton {
   color: gold;
 }
 ```
 
-```css
-/* page.st.css */
-@namespace "Page";
+```css title="page.st.css"
 @st-import SuperVideoPlayer from "./super-video-player.st.css";
 .mainPlayer {
   -st-extends: SuperVideoPlayer;
@@ -96,16 +87,14 @@ The `page.css` stylesheet can then extend `super-video-player.css` and on the `.
 .mainPlayer::playbutton {
   color: silver;
 }
-```
 
-```css
-/* CSS output */
-.Page__mainPlayer.SuperVideoPlayer__root {
-}
-.Page__mainPlayer.SuperVideoPlayer__root .VideoPlayer__playButton {
+/* OUTPUT */
+.page__mainPlayer.superVideoPlayer__root {}
+.page__mainPlayer.superVideoPlayer__root .videoPlayer__playButton {
   color: silver;
 }
 ```
+<!-- prettier-ignore-end -->
 
 ## Override a custom pseudo-element
 
@@ -119,8 +108,8 @@ You can also override native pseudo-elements using **Stylable's** custom pseudo-
 
 In this example, `root` extends `VideoPlayer` and so any class placed on the `root` overrides the pseudo-element.
 
-```css
-@namespace "SuperVideoPlayer";
+<!-- prettier-ignore-start -->
+```css title="super-video-player.st.css"
 @st-import VideoPlayer from "./video-player.st.css";
 .root {
   -st-extends: VideoPlayer;
@@ -132,19 +121,17 @@ In this example, `root` extends `VideoPlayer` and so any class placed on the `ro
 .root::playbutton {
   color: grey;
 }
-```
 
-```css
-/* CSS output */
-.SuperVideoPlayer__root.VideoPlayer__root {
-}
-.SuperVideoPlayer__playButton {
+/* OUTPUT */
+.superVideoPlayer__root.videoPlayer__root {}
+.superVideoPlayer__playButton {
   color: gold;
 }
-.SuperVideoPlayer__root.VideoPlayer__root .VideoPlayer__playButton {
+.superVideoPlayer__root.videoPlayer__root .videoPlayer__playButton {
   color: grey;
 }
 ```
+<!-- prettier-ignore-end -->
 
 :::note
 

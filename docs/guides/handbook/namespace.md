@@ -64,7 +64,7 @@ Unlike the other symbols that are mapped from a local name to their global one, 
 
 ```css
 .okButton {
-  -st-global: ".myLib__ok";
+  -st-global: '.myLib__ok';
 }
 ```
 
@@ -76,7 +76,7 @@ Notice that in this case, we are mapping our `okButton` class to a `.myLib__ok` 
 
 By default, namespacing is derived in Stylable using the stylesheet filename, but in some edge cases we might want to override this behavior.
 
-To do so, we can use the `@namespace "OverrideNAMESPACE";` definition. [Click here](../../references/namespace.md) to read more about the namespace API.
+To do so, we can use the `@st-namespace "OverrideNAMESPACE";` definition. [Click here](../../references/namespace.md) to read more about the namespace API.
 
 ## Project level namespacing
 
