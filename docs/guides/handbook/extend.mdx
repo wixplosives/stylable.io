@@ -191,7 +191,7 @@ By extending a stylesheet, which in turn has a part that extends a stylesheet, w
 ```
 <!-- prettier-ignore-end -->
 
-:::info Catch breaking changes
+:::tip Catch breaking changes
 Let's imagine a case, where the `Avatar` component has undergone refactoring which changed the part name `frame` to `box`. If we were using native CSS, and were aware of this change, we could try and manually locate all instances of `frame` and replace them with `box`. But if we were to miss an instance, CSS would provide no indication of the problem.
 
 Because we used Stylable to declare that a class extends a stylesheet, and access its inner parts, we are assured that the interface exists and is valid, and if this interface were to change, an error would be reported at build-time and in the IDE.
@@ -205,6 +205,6 @@ Next we'll start talking about features that have to do with style templating, b
 
 ---
 
-:::note You've reached the end of the handbook, so far
+:::info You've reached the end of the handbook, so far
 This handbook is a work in progress and is not yet complete. You can track the plan and progress for it in [this issue](https://github.com/wixplosives/stylable.io/issues/39)
 :::
