@@ -28,7 +28,7 @@ import {
   vars,      // custom properties mapping
   keyframes, // keyframes mapping
   layers,    // layer mapping
-} from "game.st.css";
+} from "./game.st.css";
 
 ```
 
@@ -50,7 +50,7 @@ For example, in the following example we can see that we are binding the `player
 
 <!-- prettier-ignore-start -->
 ```jsx
-import { classes, stStates } from "game.st.css";
+import { classes, stStates } from "./game.st.css";
 
 <div> 
     className={classes.player + ' ' + stStates({registered: true})}
@@ -63,7 +63,7 @@ import { classes, stStates } from "game.st.css";
 We can use the `st()` function to simplify this process, by passing it the class name as its **first argument**, and the activated states as its **second argument**.
 
 ```jsx
-import { st, classes } from "game.st.css";
+import { st, classes } from './game.st.css';
 
 <div className={st(classes.player, { registered: true })}></div>;
 ```
@@ -74,8 +74,8 @@ Below, we can see such a case, where we bind a class (`player`), activate a stat
 
 <!-- TODO: highlight line 5 once we sort how it looks -->
 
-```jsx
-import { st, classes } from "game.st.css";
+```jsx title="game.jsx"
+import { st, classes } from "./game.st.css";
 const Game = ({ className }) => (
     ...
     <div className={
@@ -96,7 +96,7 @@ As opposed to the native runtime symbols we saw namespaced above, Stylable build
 ```js
 import {
   stVars // Stylable build variables
-} from "game.st.css";
+} from "./game.st.css";
 
 // runtime namespaced names
 stVars.boardBackgroundColor; // "green"

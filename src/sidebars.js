@@ -107,7 +107,7 @@ module.exports = {
             // link: {
             //   type: "generated-index",
             // },
-            collapsed: false,
+            collapsed: true,
             items: ['references/st-variables', 'references/mixins', 'references/formatters'],
         },
         'references/runtime',
