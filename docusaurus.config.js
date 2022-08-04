@@ -40,6 +40,12 @@ module.exports = {
           label: "API",
           position: "left",
         },
+        {
+          to: "playground",
+          // activeBasePath: "docs/references",
+          label: "Playground",
+          position: "left",
+        },
         // {to: 'blog', label: 'Blog', position: 'left'},
         {
           to: "community",
