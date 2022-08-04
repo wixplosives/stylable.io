@@ -94,17 +94,19 @@ Additionally a [custom-selector](./custom-selectors.md) defined within a stylesh
 ```
 <!-- prettier-ignore-end -->
 
-:::note Native pseudo-element override
+:::caution Native pseudo-element override
 Override of native pseudo-elements is possible, however it is **strongly discouraged**.
 :::
 
 ### Element inheritance
 
-An extending [stylesheet root](./root.md) automatically inherits any pseudo-elements from the extended definition, and then can override them by defining its own public parts.
+An extending [stylesheet root](./root.md) automatically inherits any pseudo-elements from the extended definition, and can then override them by defining its own public parts.
+
+<!-- TODO: add example here -->
 
 ## Build transformation
 
-Custom pseudo-elements are transformed in build to target the actual selector they represent.
+Custom pseudo-elements are transformed in build-time to target the internal selector they represent.
 
 <!-- prettier-ignore-start -->
 ```css title="comp.st.css"
