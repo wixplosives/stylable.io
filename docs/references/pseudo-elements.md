@@ -3,138 +3,127 @@ id: pseudo-elements
 title: Pseudo-Element
 ---
 
-In addition to CSS's native [pseudo-elements](https://developer.mozilla.org/en/docs/Web/CSS/Pseudo-elements), **Stylable** stylesheets automatically expose CSS classes as custom pseudo-elements. This enables you to access internal parts of a component to apply styling.
+In addition to CSS's native pseudo-elements, like `::before` and `::backdrop`, Stylable allow you to define custom pseudo-elements so that you can target and apply styles to inner parts of your components.
 
-## Define a custom pseudo-element
+This page goes over how Stylable handles custom pseudo-elements, for more details about the language feature itself, checkout the following resources:
 
-Any [CSS class](./class-selectors.md) is accessible as a pseudo-element of an [extending stylesheet](./extend-stylesheet.md).
+- [MDN pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+- [pseudo-element in spec](https://www.w3.org/TR/CSS22/selector.html#pseudo-element-selectors)
 
-When you define a CSS class inside a component, in this case a `playButton` in a `VideoPlayer`, that class may be targeted as a pseudo-element of any class that extends the component `videoPlayer`.
+## Syntax
+
+To target an internal element, Use the pseudo-element prefix `::` with the part name.
 
 <!-- prettier-ignore-start -->
-```css title="video-player.st.css"
-.root {}
-.playButton {
-  background: black;
-  color: white;
-}
+```css
+Component::firstlevel::secondlevel {}
 ```
 <!-- prettier-ignore-end -->
 
-## Style a custom pseudo-element
+:::info deep pseudo-elements
+Custom pseudo-elements are not limited to the end of a selector like native pseudo-elements, and can be chained. For example, you can access the label of a navigation button from a gallery: `Gallery::navBtn::label`
+:::
 
-Use `::` to access an internal part of a component after a [custom element type selector](./tag-selectors.md#component-element) or after an [extended class selector](./extend-stylesheet.md).
+## Style a component
 
-In this example, you [import](./imports.md) a `VideoPlayer` component into your stylesheet, and style an internal part called `playButton` overriding its original styling.
+Customizing **all component instances** nested under a stylesheet using the imported [component type selector](./tag-selectors.md#component-element).
+
+<!-- prettier-ignore-start -->
+```css
+@st-import Comp from './comp.st.css';
+
+/* target Comp internal part */
+.root Comp::part {/* customize */}
+```
+<!-- prettier-ignore-end -->
+
+## Style a variant
+
+Customizing a variant class of a component by [extending](./extend-stylesheet.md) a class with the component stylesheet.
 
 <!-- prettier-ignore-start -->
 ```css title="page.st.css"
-@st-import VideoPlayer from "./video-player.st.css";
-.mainVideo {
-  -st-extends: VideoPlayer; /* define mainVideo as VideoPlayer */
-}
-.mainVideo::playbutton {
-  /* override mainVideo playButton */
-  background: green;
-  color: purple;
-}
+@st-import Comp from './comp.st.css';
 
-/* OUTPUT */
-.page__mainVideo.videoPlayer__root {}
-.page__mainVideo.videoPlayer__root .videoPlayer__playButton {
-  background: green;
-  color: purple;
+.compVariant {
+  /* set compVariant to inherit from Comp */
+  -st-extends: Comp;
 }
+/* target compVariant internal part (inherited from Comp) */
+.compVariant::part {/* customize */}
 ```
 <!-- prettier-ignore-end -->
 
-:::note
-
-Custom pseudo-elements are not limited to the end of a selector like native pseudo-elements, and they can be chained. For example, you can access the label of a navigation button from a gallery: `.myGallery::navBtn::label`.
-
-:::
-
-## Extend a stylesheet's pseudo-element
-
-When a Stylable stylesheet [root](./root.md) extends another stylesheet, pseudo-elements are automatically exposed on the extending stylesheet and available inline.
-
-In this example, the class `playButton` is available from the original component file `video-player.css`, and extended and styled in the `super-video-player.css` stylesheet as a custom pseudo-element on the `root` class.
-
-The `page.css` stylesheet can then extend `super-video-player.css` and on the `.mainPlayer` class, style `playButton` differently.
+Then set the variant class to the component instance.
 
 <!-- prettier-ignore-start -->
-```css title="super-video-player.st.css"
-@st-import VideoPlayer from "./video-player.st.css";
-.root {
-  -st-extends: VideoPlayer;
-}
-.root::playbutton {
-  color: gold;
-}
+```jsx title="page.jsx"
+import Comp from './comp';
+import { classes } from './page.st.css';
 
-/* OUTPUT */
-.superVideoPlayer__root.videoPlayer__root {}
-.superVideoPlayer__root.videoPlayer__root .videoPlayer__playButton {
-  color: gold;
-}
+const Page = () => {
+  return (
+    <div>
+      /* customize Comp with compVariant class */
+      <Comp class={classes.compVariant}>
+    </div>
+  );
+};
+```
+<!-- prettier-ignore-end -->
+
+## Define
+
+Any [CSS class](./class-selectors.md) that is exported from a stylesheet is accessible as a pseudo-element.
+
+<!-- prettier-ignore-start -->
+```css title="comp.st.css"
+/* available as ::part for this stylesheet */
+.part {} 
+```
+<!-- prettier-ignore-end -->
+
+Additionally a [custom-selector](./custom-selectors.md) defined within a stylesheet is exposed as a custom pseudo-element and will take precedence over a class with the same name.
+
+<!-- prettier-ignore-start -->
+```css title="comp.st.css"
+/* available as ::part for this stylesheet
+   and preserves the direct child combinator
+   when used */
+@custom-selector :--part .root > .part; 
+```
+<!-- prettier-ignore-end -->
+
+:::note Native pseudo-element override
+Override of native pseudo-elements is possible, however it is **strongly discouraged**.
+:::
+
+### Element inheritance
+
+An extending [stylesheet root](./root.md) automatically inherits any pseudo-elements from the extended definition, and then can override them by defining its own public parts.
+
+## Build transformation
+
+Custom pseudo-elements are transformed in build to target the actual selector they represent.
+
+<!-- prettier-ignore-start -->
+```css title="comp.st.css"
+.part {}
+@custom-selector :--directPart .root > .part; 
 ```
 
 ```css title="page.st.css"
-@st-import SuperVideoPlayer from "./super-video-player.st.css";
-.mainPlayer {
-  -st-extends: SuperVideoPlayer;
-}
-.mainPlayer::playbutton {
-  color: silver;
-}
+@st-import Comp from './comp.st.css';
 
-/* OUTPUT */
-.page__mainPlayer.superVideoPlayer__root {}
-.page__mainPlayer.superVideoPlayer__root .videoPlayer__playButton {
-  color: silver;
-}
-```
-<!-- prettier-ignore-end -->
-
-## Override a custom pseudo-element
-
-You can use CSS classes to override extended pseudo-elements.
-
-:::caution
-
-You can also override native pseudo-elements using **Stylable's** custom pseudo-elements but this is not recommended as it can lead to code that's confusing and hard to maintain.
-
-:::
-
-In this example, `root` extends `VideoPlayer` and so any class placed on the `root` overrides the pseudo-element.
-
-<!-- prettier-ignore-start -->
-```css title="super-video-player.st.css"
-@st-import VideoPlayer from "./video-player.st.css";
 .root {
-  -st-extends: VideoPlayer;
+  -st-extends: Comp;
 }
-.playButton {
-  /* override VideoPlayer playButton */
-  color: gold;
-}
-.root::playbutton {
-  color: grey;
-}
+
+.root::part {}
+.root::directPart {}
 
 /* OUTPUT */
-.superVideoPlayer__root.videoPlayer__root {}
-.superVideoPlayer__playButton {
-  color: gold;
-}
-.superVideoPlayer__root.videoPlayer__root .videoPlayer__playButton {
-  color: grey;
-}
+.page__root .comp__part {}
+.page__root > .comp__part {}
 ```
 <!-- prettier-ignore-end -->
-
-:::note
-
-Overriding pseudo-elements changes the targeting in the overriding stylesheet and not in the stylesheet being extended.
-
-:::
