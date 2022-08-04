@@ -16,7 +16,7 @@ authors:
     url: https://twitter.com/RavivTom
     image_url: https://github.com/tomrav.png
 tags: [intro, release]
-image: https://stylable.io/img/branding/logo/SVG/96-logo-OnlySymbol.svg
+image: /img/synthwave-space.png
 hide_table_of_contents: false
 ---
 
