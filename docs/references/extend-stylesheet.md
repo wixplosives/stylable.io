@@ -88,7 +88,7 @@ const Page = () => {
 
 There is a slight difference between the runtime output when extending a stylesheet root and extending a normal CSS class.
 
-\- **A CSS class is composed to the runtime class name while a stylesheet root is not.**
+**A CSS class is composed to the runtime class name while a stylesheet root is not.**
 
 This is because Stylable assumes that a stylesheet root will be set within the component that is being extended and composing it from the outside is redundant.
 
@@ -118,6 +118,8 @@ Stylable currently does not support extending multiple classes. We hope to intro
 :::
 
 ## Namespace
+
+`-st-extends` provides access to inner parts and states, but does not modify the namespace of the extending class.
 
 <!-- prettier-ignore-start -->
 ```css title="page.st.css"
