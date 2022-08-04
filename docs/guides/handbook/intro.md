@@ -8,6 +8,7 @@ title: Introduction
 This document provides an overview of Stylable and its features, and serves as a quick guide for getting started. Each chapter focuses on one core feature of Stylable, introducing a problem or need, showing how CSS might address it, and then how Stylable can be used to simplify the solution. This handbook is not a complete reference for Stylable, but merely a starting point for learning to use it.
 
 <!-- TODO: when adding chapters about tooling, add mention here -->
+
 ## What is Stylable?
 
 Stylable is a **superset of the CSS language** - it introduces additional syntax to CSS to allow us to add features to styling during pre-processing time. It is designed for working with components, variants, themes, and various modern design patterns.
@@ -20,7 +21,8 @@ The Stylable pre-processor works at build-time, meaning that we can use all of i
 
 - Namespacing all parts of CSS that can conflict so that multiple stylesheets can be loaded together safely.
 - A module system to CSS so that individual symbols can be used across stylesheets.
-- Templating capabilities for creating complex design patterns using variables, mixins, and formatters.
+- Template capabilities for creating complex design patterns using variables, mixins, and formatters.
+- The ability to perform external customization of any component or theme by using its _Style API_ through extensions, compositions and overrides.
 
 ### Type system
 
