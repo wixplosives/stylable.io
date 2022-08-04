@@ -22,7 +22,7 @@ hide_table_of_contents: false
 
 ## First time hearing about Stylable?
 
-Stylable is a tool that empowers you to create safe, reusable style APIs for your components. It's a superset of CSS that adds a type system to it, providing type safety, and powerful language capabilities.
+No worries! Stylable is a tool that empowers you to create safe, reusable style APIs for your components. It's a superset of CSS that adds a type system to it, providing type safety, and powerful language capabilities.
 
 Want to learn more? We recently started writing a [new handbook](/docs/guides/handbook/intro) to help get you up to speed, and more content is on its way over the coming weeks.
 
