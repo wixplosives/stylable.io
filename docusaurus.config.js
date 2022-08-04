@@ -29,7 +29,7 @@ module.exports = {
                     position: 'left',
                 },
                 {
-                    to: 'docs/guides/components-basics',
+                    to: 'docs/guides/handbook/intro',
                     activeBasePath: 'docs/guides',
                     label: 'Guides',
                     position: 'left',
@@ -110,6 +110,7 @@ module.exports = {
                 docs: {
                     sidebarPath: require.resolve('./src/sidebars'),
                     editUrl: 'https://github.com/wixplosives/stylable.io/edit/master',
+                    exclude: ['unpublished/**'],
                 },
                 blog: {
                     showReadingTime: true,
