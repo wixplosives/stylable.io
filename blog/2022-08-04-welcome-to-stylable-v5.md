@@ -1,7 +1,7 @@
 ---
 title: Welcome to Stylable v5
 description: Launching Stylable Version 5
-slug: stylable-v5
+slug: welcome-to-stylable-v5
 authors:
   - name: Barak Igal
     title: Co-creator of Stylable
@@ -16,7 +16,7 @@ authors:
     url: https://twitter.com/RavivTom
     image_url: https://github.com/tomrav.png
 tags: [intro, release]
-image: /img/synthwave-space.png
+image: /img/synthwave-space-logo.png
 hide_table_of_contents: false
 ---
 
