@@ -3,103 +3,135 @@ id: extend-stylesheet
 title: Extend
 ---
 
-Use the `-st-extends` directive rule to extend a CSS class with another stylesheet. This enables you to style [pseudo-classes](./pseudo-classes.md) and [pseudo-elements](./pseudo-elements.md) of the extended stylesheet.
+The Stylable `-st-extends` declaration is used to indicate that a [CSS class](./class-selectors.md) inherits from a stylesheet or another class.
 
-:::important
+It assumes both the class and the extended reference will share the same element in the DOM, and enables the targeting of inner parts and states as an API with validations and completions.
 
-`-st-extends` can be applied only to [class selectors](./class-selectors.md) and [root](./root.md).
+## Syntax
 
+Use `-st-extends` with the value of a component [stylesheet root](./root.md) to indicate that a class is used to customize the component, or with a value of another class to compose them (usually a utility class).
+
+<!-- ToDo: add link to guides/patterns/utility-class once exist -->
+
+**Extend a stylesheet root**
+
+```css
+@st-import Comp from './comp.st.css';
+
+.x {
+  -st-extends: Comp;
+}
+```
+
+**Extend a class**
+
+```css
+@st-import [class] from './comp.st.css';
+
+.x {
+  -st-extends: class;
+}
+```
+
+:::tip Local extends
+Extend is not limited to imported definitions, a class can extend other local classes, as well as the local stylesheet root.
 :::
 
-In this example, the stylesheet is extending the `toggle-button.st.css` stylesheet. The `checkBtn` class has a `label`, which is a custom pseudo-element, and has a custom pseudo-class, `toggled`.
+## Example
 
-```css title="page.st.css"
-@st-import ToggleButton from "./toggle-button.st.css";
-
-.checkBtn {
-  -st-extends: ToggleButton;
-  background: white;
-}
-.checkBtn::label {
-  color: green;
-} /* style pseudo element label */
-.checkBtn:toggled::label {
-  color: red;
-} /* style pseudo element label when check-box is toggled */
-
-/* OUTPUT */
-.page__checkBtn {
-  background: white;
-}
-.page__checkBtn .toggleButton__label {
-  color: green;
-}
-.page__checkBtn.toggleButton--toggled .toggleButton__label {
-  color: red;
-}
-```
-
-```jsx title="page.jsx"
-import React from 'react';
-import { style, classes } from './comp.st.css';
-
-import ToggleButton from './toggle-button';
-
-class Page {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={style(classes.root, this.props.className)}>
-        <ToggleButton className={classes.checkBtn} />
-      </div>
-    );
-  }
-}
-```
-
-## Extending stylesheets vs. classes
-
-Stylable offers you the ability to import a stylesheet (default import) or class (named import). The two methods differ in their runtime export values.
-
-### Extending a root
-
-When extending a `root` class, Stylable assumes the component itself will place its own `root` class, and as such Stylable exports only the local className during runtime.
-
-The extended component will receive the extending (external) class name through its props and concat it to the `root` node class list.
-
-### Extending an inner part
-
-Any class other than `root` defined in a Stylesheet is considered an inner part. Usually in Stylable extending a class signifies the use of a [variant](../guides/component-variants.md) or composed\* utility class.
-
-\* - Stylable currently does not support composing multiple classes on the same part. We hope to introduce this capability in the near future.
-
-### Extending example
+The following example illustrates a page with a customized main gallery instance.
 
 <!-- prettier-ignore-start -->
-```css title="page.st.css"
-@st-import ToggleButton from "./toggle-button.st.css";
-@st-import [toggleVariant] from "./toggle-button-variant.st.css";
-
-.defaultCheckBtn {
-  -st-extends: ToggleButton; /* extending stylesheet */
+```css title="slider-gallery.st.css"
+/* gallery style API */
+.root {
+  -st-states: pos(enum(start, middle, end));
 }
-.variantCheckBtn {
-  -st-extends: toggleVariant; /* extending class */
-}
-
-/* OUTPUT */
-.page__defaultCheckBtn {}
-.page__variantCheckBtn {}
+.prevBtn {}
+.nextBtn {}
 ```
 <!-- prettier-ignore-end -->
 
-```js
-/* runtime JS output*/
+Customizes the main gallery by importing the gallery component stylesheet into the page stylesheet, create a `mainGallery` class, extend it with the value of the gallery stylesheet, and then target it's inner [custom pseudo-elements](./pseudo-elements.md) and [custom pseudo-states](./pseudo-classes.md).
+
+```css title="page.st.css"
+@st-import SliderGallery from './slider-gallery.st.css';
+
+.mainGallery {
+  -st-extends: mainGallery; /* mainGallery is a SliderGallery */
+}
+.mainGallery::nextbtn {
+  /* customize mainGallery inner nextBtn part */
+}
+.mainGallery:pos(end)::nextbtn {
+  /* customize mainGallery in end position inner nextBtn part */
+}
+```
+
+In the view, set the `mainGallery` class on the gallery instance.
+
+```jsx title="page.jsx"
+import SliderGallery from './slider-gallery';
 import { classes } from './page.st.css';
 
-console.log(classes.defaultCheckBtn); // "page__defaultCheckBtn"
-console.log(classes.variantCheckBtn); // "page__variantCheckBtn toggleButton__toggleVariant"
+const Page = () => {
+  <div>
+    /* customize SliderGallery as mainGallery */
+    <SliderGallery className={classes.mainGallery} />
+  </div>;
+};
 ```
+
+<!-- prettier-ignore-end -->
+
+## Runtime - root vs class
+
+There is a slight difference between the runtime output when extending a stylesheet root and extending a normal CSS class.
+
+\- **A CSS class is composed to the runtime class name while a stylesheet root is not.**
+
+This is because Stylable assumes that a stylesheet root will be set within the component that is being extended and composing it from the outside is redundant.
+
+<!-- prettier-ignore-start -->
+```css title="page.st.css"
+@st-import Gallery from './gallery.st.css';
+@st-import [center] from './utils.st.css';
+
+.variant {
+  -st-extends: Gallery;
+}
+.title {
+  -st-extends: center;
+}
+```
+
+```js title="page.jsx"
+import { classes } from './page.st.css';
+
+classes.variant // "page__variant"
+classes.title   // "page__title utils__center"
+```
+<!-- prettier-ignore-end -->
+
+:::info unsupported multiple extends
+Stylable currently does not support extending multiple classes. We hope to introduce this capability in the future.
+:::
+
+## Namespace
+
+<!-- prettier-ignore-start -->
+```css title="page.st.css"
+@st-import Gallery from './gallery.st.css';
+.variant {
+  -st-extends: Gallery;
+}
+.variant {}
+.variant::navBtn {}
+.variant:loading {}
+
+/* OUTPUT */
+.page__variant {}
+.page__variant .gallery__navBtn {}
+.page__variant.gallery--loading {}
+```
+<!-- prettier-ignore-end -->
