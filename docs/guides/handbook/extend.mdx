@@ -37,7 +37,7 @@ Player .username {
 ```
 <!-- prettier-ignore-end -->
 
-Previously, we manually customized the `Player` component by creating a selector that includes a descendant combinator between the `Player` and our targeted parts. This selector is based on knowledge we have about the `Player` component structure, but this structure might change in the future, and break our assumptions.
+Previously, we manually customized the `Player` component by creating a selector that includes a [descendant combinator](https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator) between the `Player` and our targeted parts. This selector is based on knowledge we have about the `Player` component structure, but this structure might change in the future, and break our assumptions.
 
 ## Extend a stylesheet
 
@@ -127,7 +127,7 @@ We can now use the custom pseudo-element syntax to safely target the `avatar` an
 
 ### Access a state
 
-Similar to how we used custom pseudo-elements to access inner parts of a component externally, we can now target custom pseudo-classes (states) of our extended part as well.
+Similar to how we used custom pseudo-elements to access inner parts of a component externally, we can now target custom pseudo-classes (states) of our extended parts as well.
 
 <!-- prettier-ignore-start -->
 ```css title="game.st.css"
@@ -146,8 +146,6 @@ Similar to how we used custom pseudo-elements to access inner parts of a compone
 ## Extend multiple levels
 
 Let's say that we want to turn our current `avatar` part, into a component to support a more complex design with separate elements for the `frame` and the `image`.
-
-### Another example, this time quick
 
 To do this, we'll create a new `avatar.st.css` stylesheet, import it to `player.st.css`, and extend our `avatar` class with it.
 
@@ -195,7 +193,7 @@ By extending a stylesheet, which in turn has a part that extends a stylesheet, w
 :::tip Catch breaking changes
 Let's imagine a case, where the `Avatar` component has undergone refactoring which changed the part name `frame` to `box`. If we were using native CSS, and were aware of this change, we could try and manually locate all instances of `frame` and replace them with `box`. But if we were to miss an instance, CSS would provide no indication of the problem.
 
-Because we used Stylable to declare that a class extends a stylesheet, and access its inner parts, we are assured that the interface exists and is valid, and if this interface were to change, an error would be reported at build-time and in the IDE.
+Because we used Stylable to declare that a class extends a stylesheet, and then accessed its inner parts, we are assured that the interface exists and is valid, and if this interface were to change, an error would be reported at build-time and in the IDE.
 :::
 
 ---

@@ -49,7 +49,7 @@ We can define such a state by passing the `enum` parameter type to the `ranking`
 ```
 <!-- prettier-ignore-end -->
 
-There are additional parameter types, as well as validators, default values, and mapping capabilities to Stylable custom states. [Read more in the API reference](../../references/pseudo-classes.md)
+There are additional parameter types, as well as validators, default values, and mapping capabilities to Stylable custom states. [Read more in the API reference](../../references/pseudo-classes.md).
 
 :::caution Conflicts with native
 At this point, you may have noticed that we can define states that would conflict with native CSS ones. For example, we can define a "custom" state called `:hover` that would conflict with the native `:hover` pseudo-class.

@@ -12,8 +12,9 @@ One of the core ideas behind Stylable is to try and shift as much of the work as
 For example, we need to:
 
 - Bind classes to views
-- Activate dynamic states
-- Set dynamic values
+- Activate states
+- Set custom property values
+- Dynamically generate CSS
 
 ## Mapped symbols
 
@@ -46,7 +47,7 @@ import {
 
 Up to this point, all use cases we saw for wiring elements were simplified or overly verbose.
 
-For example, in the following example we can see that we are binding the `player` class to the `player` view, as well as activating the `registered` state.
+In the following example we can see that we are binding the `player` class to the `player` view, as well as activating the `registered` state.
 
 <!-- prettier-ignore-start -->
 ```jsx
@@ -74,21 +75,23 @@ Below, we can see such a case, where we bind a class (`player`), activate a stat
 
 <!-- TODO: highlight line 5 once we sort how it looks -->
 
+<!-- prettier-ignore-start -->
 ```jsx title="game.jsx"
-import { st, classes } from "./game.st.css";
-const Game = ({ className }) => (
-    ...
-    <div className={
-        st(classes.player, { registered: true }, className)
-    }></div>
-);
+import { st, classes } from './game.st.css';
+const Game = ({ className }) => {
+  return (
+    <div className={st(classes.player, { registered: true }, className)}>
+    </div>
+  );
+}
 ```
+<!-- prettier-ignore-end -->
 
 For further details on the runtime API, [see the runtime reference](../../references/runtime.md).
 
 ## Stylable build variables
 
-We have yet to cover Stylable build variables, but seeing as they too expose part of their functionality to runtime, we'll cover them here briefly.
+We have yet to cover Stylable build variables, but seeing as they expose their value in runtime, we'll cover them here briefly.
 
 As opposed to the native runtime symbols we saw namespaced above, Stylable build variables do not require namespacing, as they are transpiled away at build time. In this case, the runtime export maps variables to their defined values.
 

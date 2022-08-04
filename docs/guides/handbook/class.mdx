@@ -3,7 +3,7 @@ id: class
 title: Classes
 ---
 
-Classes are the most basic building block of stylable, used to mark elements on the DOM, so those could in turn be targeted and styled via our CSS
+Classes are the most basic building block of stylable, used to mark elements on the DOM, so those could in turn be targeted and styled via our CSS.
 
 ## CSS classes
 
@@ -39,10 +39,6 @@ By turning the namespacing process to an automatic one, we find ourselves needin
 
 To access this class name mappings, we will import the stylesheet to our JavaScript, and utilize the `classes` object to get our desired global name.
 
-:::info
-The example below assumes that Stylable was run as part of a build process, using one of our integrations or hooks to generate the runtime JavaScript module with the required mappings and utility functions.
-:::
-
 ```jsx title="game.jsx"
 import { classes } from './game.st.css';
 
@@ -50,6 +46,10 @@ console.log(classes.player); // "game__player"
 
 <div className={classes.player}></div>;
 ```
+
+:::info Prerequisite
+The example above assumes that Stylable was run as part of a build process, using one of our integrations or hooks to generate the runtime JavaScript module with the required mappings and utility functions.
+:::
 
 ## Naming tip
 

@@ -21,7 +21,7 @@ Symbols that Stylable namespaces:
 | Layer           | `@layer theme`     | `@layer NAMESPACE__theme`     |
 
 :::note
-Stylable does not namespace `id`, `custom-element`, `attribute`, or other symbols at the moment, but we may add additional symbol namespacing support in the future.
+Stylable does not namespace `id`, `custom-element`, `attribute`, or other symbols at the moment, but may add additional symbol namespacing support in the future.
 :::
 
 ## Global

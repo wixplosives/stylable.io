@@ -19,8 +19,8 @@ There are different aspects to Stylable, and the tooling and capabilities that i
 
 The Stylable pre-processor works at build-time, meaning that we can use all of its features while writing the code. Its input is a Stylable stylesheet, and its output is **valid vanilla CSS**. The pre-processing it performs adds the following to CSS:
 
-- Namespacing all parts of CSS that can conflict so that multiple stylesheets can be loaded together safely.
-- A module system to CSS so that individual symbols can be used across stylesheets.
+- Namespace all parts of CSS that can conflict so that multiple stylesheets can be loaded together safely.
+- A module system to CSS so that individual symbols can be re-used across stylesheets.
 - Template capabilities for creating complex design patterns using variables, mixins, and formatters.
 - The ability to perform external customization of any component or theme by using its _Style API_ through extensions, compositions and overrides.
 

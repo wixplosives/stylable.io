@@ -27,7 +27,7 @@ Up to this point, we've talked mostly about a single stylesheet for our project 
 
 ## Stylesheet root
 
-Let's refactor the `player` class from our `game.st.css` to be in its own stylesheet.
+Let's refactor the `player` class from out of our `game.st.css` to be in its own stylesheet.
 
 <!-- prettier-ignore-start -->
 ```css title="player.st.css"
@@ -50,7 +50,9 @@ In Stylable, each component stylesheet is represented by a `root` class that is 
 
 We can see that when we moved the `player` class, we also included its styling declarations. This might cause additional work in the future when trying to customize this class from the outside.
 
+:::tip base style recommendation
 Stylable recommends that a component's stylesheet include minimal styling - only what is crucial for the functionality of the component or defines its structure. To follow this best practice, we need a way to import the `player.st.css` stylesheet over to `game.st.css`, and perform our styling customizations there.
+:::
 
 ## Default import
 
@@ -98,11 +100,15 @@ By importing the default export of a stylesheet and then styling it, we are pote
 
 <!-- prettier-ignore-start -->
 ```css
-/* report unscoped warning */
-Player {}
+@st-import Player from "./player.st.css";
 
-/* no warning */
+/* report unscoped warnings */
+Player {}
+div {}
+
+/* no warnings */
 .root Player {}
+.root div {}
 ```
 <!-- prettier-ignore-end -->
 
@@ -127,12 +133,16 @@ We then proceed to bind these new classes to their matching elements in the comp
 
 <!-- prettier-ignore-start -->
 ```jsx title="player.jsx - bind avatar and username"
-import { classes } from "./player.st.css";
+import { st, classes } from "./player.st.css";
 
-<div className={classes.root}>
-  <image className={classes.avatar} />
-  <span className={classes.username}></span>
-</div>
+const Player = ({ className }) => {
+  return (
+    <div className={st(classes.root, { /* states */ }, className)}>
+      <image className={classes.avatar} />
+      <span className={classes.username}></span>
+    </div>
+  )
+}
 ```
 <!-- prettier-ignore-end -->
 
@@ -192,7 +202,7 @@ We are in the process of developing [explicit export support](https://github.com
 
 Up to this point, we've only needed to import classes between stylesheets. In later chapters of this guide, we will learn how to import and use additional symbols, as well as additional import use cases from JavaScript to our stylesheet.
 
-Check out the API cheat sheet to see various [@st-import](../../references/cheatsheet#module-system) examples.
+Check out the API cheatsheet to see various [@st-import](../../references/cheatsheet#module-system) examples.
 
 ---
 
