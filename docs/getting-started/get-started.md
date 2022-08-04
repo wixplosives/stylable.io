@@ -30,4 +30,4 @@ Optionally, you can install [**Stylable Intelligence**](./stylable-intelligence.
 
 - **Read the API docs** - Take a look at our [specification reference documents](../references/cheatsheet.mdx) to get more acquainted with our code and for specific code examples. Use the overview as a cheatsheet to help you keep track of **Stylable** syntax.
 
-- **Play with Stylable Online** - Take Stylable for a spin and see how it works in the [Stylable Playground](../playground/index.html)
+- **Play with Stylable Online** - Take Stylable for a spin and see how it works in the [Stylable Playground](../../playground/)

@@ -171,7 +171,7 @@ There are several options that can be used to validate the potential number para
 
 ## State inheritance
 
-When using [-st-extends](./extend-stylesheet.md) to extend another stylesheet or class, states definitions are inherited, but can also be overridden at any level.
+When using [-st-extends](./extend-stylesheet) to extend another stylesheet or class, states definitions are inherited, but can also be overridden at any level.
 
 <!-- prettier-ignore-start -->
 ```css title="base.st.css"
@@ -209,7 +209,7 @@ You can override the behavior of native pseudo-classes. This can enable you to w
 
 ## Runtime
 
-To activate a custom state, use the [cssStates](./runtime.md#custom-state-mapping) or [st() function](./runtime.md#st-function) to generate the active `CSS classes` states.
+To activate a custom state, use the [cssStates](./runtime#custom-state-mapping) or [st() function](./runtime#st-function) to generate the active `CSS classes` states.
 
 <!-- prettier-ignore-start -->
 ```js

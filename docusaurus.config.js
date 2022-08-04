@@ -71,7 +71,7 @@ module.exports = {
                         },
                         {
                             label: 'Guides',
-                            to: 'docs/guides/components-basics',
+                            to: 'docs/guides/handbook/intro',
                         },
                         {
                             label: 'API',

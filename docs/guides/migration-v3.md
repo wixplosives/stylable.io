@@ -42,8 +42,8 @@ If TypeScript is used in the project, we recommend updating the global typings
 (usually `globals.d.ts`) with an `.st.css` module declaration:
 
 ```ts
-declare module "*.st.css" {
-  const stylesheet: import("@stylable/runtime").RuntimeStylesheet;
+declare module '*.st.css' {
+  const stylesheet: import('@stylable/runtime').RuntimeStylesheet;
   export = stylesheet;
 }
 ```
@@ -68,7 +68,7 @@ import {
   stVars,
   style,
   vars,
-} from "./style.st.css";
+} from './style.st.css';
 ```
 
 This means that all imports of `.st.css` files have to be changed, for example:
@@ -111,6 +111,7 @@ There are subtle but very important nuances in this change.
 
    This way one or more props would be applied to the component. Thus, code that looks like this:
 
+<!-- prettier-ignore-start -->
    ```jsx
    <div
      {...style(
@@ -120,27 +121,29 @@ There are subtle but very important nuances in this change.
      )}
    />
    ```
+<!-- prettier-ignore-end -->
 
-   once evaluated, would behave like this:
+once evaluated, would behave like this:
 
-   ```jsx
-   <div className="root additional-class" data-hook="test" />
-   ```
+```jsx
+<div className="root additional-class" data-hook="test" />
+```
 
-   Stylable v2 and v3 usage is like so:
+Stylable v2 and v3 usage is like so:
 
-   ```js
-   className={st(classes.root, states, this.props.className)}
-   ```
+```js
+className={st(classes.root, states, this.props.className)}
+```
 
-   There is no props spreading anymore and Stylable requires only
-   `className` to be used.
+There is no props spreading anymore and Stylable requires only
+`className` to be used.
 
-   However, if you were relying on the props spread pattern, in v2 and v3 you
-   might find some props missing.
+However, if you were relying on the props spread pattern, in v2 and v3 you
+might find some props missing.
 
-   Therefore, with Stylable v3 it is up to you to apply any additional props:
+Therefore, with Stylable v3 it is up to you to apply any additional props:
 
+<!-- prettier-ignore-start -->
    ```jsx
    <div
      className={st(classes.root, states, "additional-class")}
@@ -148,6 +151,7 @@ There are subtle but very important nuances in this change.
      hello="world"
    />
    ```
+<!-- prettier-ignore-end -->
 
 2. Stylable v1 `style()` would accept unscoped css class name as a string  
    This is no longer acceptable in Stylable v2 or v3, for example:
@@ -162,7 +166,7 @@ There are subtle but very important nuances in this change.
 
    Similar scoping is applied to css variables too, imported from `vars`
 
-Note: find more details and examples in our [Runtime](../references/runtime) and [React integration](../getting-started/react-integration) guides.
+Note: find more details and examples in our [Runtime reference](../references/runtime).
 
 ## Update tests
 
