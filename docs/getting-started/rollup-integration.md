@@ -23,9 +23,7 @@ yarn add @stylable/rollup-plugin --dev
 
 ## Configuration
 
-In the `rollup.config.js` add the plugin to setup stylable:
-
-```js
+```js title="rollup.config.js"
 const { stylableRollupPlugin } = require('@stylable/rollup-plugin');
 
 module.exports = {

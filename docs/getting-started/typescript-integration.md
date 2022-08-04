@@ -37,10 +37,7 @@ stc --outDir="dist" --stcss --dts --dtsSourceMap
 
 ## Manually generating stylesheet definition files
 
-Stylable provides the ability to generate type definition files (`.d.ts`) for any stylesheet. These serve as static typings for each export that the stylesheet provides:
-
-- `class`/`var`/`stVar`/`keyframe` - exposes available symbols defined within the stylesheet.
-- `st`/`style`/`cssStates` - exposes stylesheet utility functions typed according to states defined within stylesheet.
+Stylable provides the ability to generate type definition files (`.d.ts`) for any stylesheet. These serve as static typings for each export that the [stylesheet runtime](../references/runtime.md) provides.
 
 Generate a `.d.ts` next to all `*.st.css` files:
 
@@ -64,7 +61,7 @@ Then modify your `tsconfig.json` to specify two `rootDirs`, your source files, a
 }
 ```
 
-### Import third-party stylesheets that does not provide `.d.ts` files
+### Import third-party stylesheets that do not provide `.d.ts` files
 
 You will have to [declare global typings](#declaring-global-stylesheet-typings), but to keep it type safe you should update the request to match the module's stylesheets only.
 
@@ -72,8 +69,8 @@ For example:
 
 ```ts
 /* globals.d.ts: */
-declare module "my-module/*.st.css" {
-  export * from "@stylable/runtime/stylesheet";
+declare module 'third-party-package/*.st.css' {
+  export * from '@stylable/runtime/stylesheet';
 
   const defaultExport: unknown;
   export default defaultExport;
@@ -101,7 +98,7 @@ To have a good experience when working locally in dev mode, we recommend generat
 This ensures that as you are working your code, validations, completions and other language-service capabilities will remain up-to-date.
 
 ```sh
-stc --dts --dtsSourceMap -w --cjs false
+stc --dts --dtsSourceMap -w
 ```
 
 :::tip
@@ -122,8 +119,8 @@ To do this, create a `globals.d.ts` file in your `./src` directory and add the f
 
 ```ts
 /* globals.d.ts: */
-declare module "*.st.css" {
-  export * from "@stylable/runtime/stylesheet";
+declare module '*.st.css' {
+  export * from '@stylable/runtime/stylesheet';
 
   const defaultExport: unknown;
   export default defaultExport;

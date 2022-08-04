@@ -3,30 +3,30 @@ id: nextjs-integration
 title: NextJS
 ---
 
-There are few steps you need to follow to integrate Stylable in your NextJS project.
+There are few steps you need to follow to integrate Stylable in to your NextJS project.
 
 1. Create a `next.config.js` file
-2. Use the NextJS webpack 5 future flag
-3. Exclude other CSS loaders from loading Stylable (\*.st.css) files
-4. Add the Stylable plugin to the webpack configuration
+2. Exclude other CSS loaders from loading Stylable (\*.st.css) files
+3. Add the Stylable plugin to the webpack configuration
 
 ### Example Configuration:
 
-```js
-// next.config.js
-const {
-  StylableWebpackPlugin,
-  applyWebpackConfigStylableExcludes,
-} = require("@stylable/webpack-plugin");
+<!-- prettier-ignore-start -->
 
-/* single optimizer for NextJS multiple builds in order to sync client/server namespaces */
-const StylableOptimizer = require("@stylable/optimizer").StylableOptimizer;
+```js title="next.config.js"
+const { 
+  StylableWebpackPlugin,
+  applyWebpackConfigStylableExcludes 
+} = require('@stylable/webpack-plugin');
+
+/* 
+ * single optimizer for NextJS multiple builds 
+ * in order to sync client/server namespaces 
+*/
+const StylableOptimizer = require('@stylable/optimizer').StylableOptimizer;
 const stylableOptimizer = new StylableOptimizer();
 
 module.exports = {
-  future: {
-    webpack5: true,
-  },
   webpack: (config) => {
     /* exclude Stylable files from all other loaders */
     applyWebpackConfigStylableExcludes(config);
@@ -38,7 +38,7 @@ module.exports = {
         filterAssets: () => false,
 
         /* output CSS to the correct location */
-        filename: "static/css/stylable.[contenthash].css",
+        filename: 'static/css/stylable.[contenthash].css',
 
         /* a shared optimizer instance */
         optimizer: stylableOptimizer,
@@ -48,6 +48,8 @@ module.exports = {
   },
 };
 ```
+
+<!-- prettier-ignore-end -->
 
 :::important
 The `applyWebpackConfigStylableExcludes` export and `filterAssets` flag are available in `@stylable/webpack-plugin` version `4.2.2` and onwards.

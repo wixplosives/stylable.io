@@ -4,15 +4,19 @@ title: Stylable Intelligence
 ---
 
 **Stylable Intelligence** is an extension implementing the Language Server Protocol that provides IDE support for **Stylable**. It currently includes:
-* Code completion 
-* Diagnostics
+
+- Syntax highlighting
+- Code completion
+- Go to definition
+- Diagnostics
 
 ## Installation
 
 You can install **Stylable Intelligence** from the [Visual Studio Code market](https://marketplace.visualstudio.com/items?itemName=wix.stylable-intelligence):
-* In your VSC window, click the **Extensions** icon to open the market.
-* In the search field, enter **Stylable Intelligence**. 
-* Install and reload the window when prompted.
+
+- In your VSC window, click the **Extensions** icon to open the market.
+- In the search field, enter **Stylable Intelligence**.
+- Install and reload the window when prompted.
 
 ## IDE extensions
 
@@ -29,7 +33,8 @@ Because Stylable files are not recognized as CSS, we proxy the CSS Language Serv
 :::note
 
 Future plans include:
-* More Language Server features. 
-* Support for JetBrains IDEs (WebStorm, IntelliJ). Currently supported only in VSCode (version 1.16 and later).
+
+- More Language Server features.
+- Support for JetBrains IDEs (WebStorm, IntelliJ). Currently supported only in VSCode.
 
 :::
