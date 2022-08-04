@@ -29,3 +29,5 @@ Optionally, you can install [**Stylable Intelligence**](./stylable-intelligence.
 - **Learn with the handbook** - Take a tour through stylable features and how to use them in the [handbook guides](../guides/handbook/intro.md)
 
 - **Read the API docs** - Take a look at our [specification reference documents](../references/cheatsheet.mdx) to get more acquainted with our code and for specific code examples. Use the overview as a cheatsheet to help you keep track of **Stylable** syntax.
+
+- **Try out the Stylable Playground** - Take Stylable for a spin and see how it works in the [Stylable Playground](../playground/index.html) 
