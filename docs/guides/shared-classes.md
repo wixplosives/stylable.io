@@ -40,6 +40,6 @@ js value: "comp__messageBox project__emphasisBox"
 
 :::note
 
-For the `.emphasisBox` selector, we manually added the `.root` class to avoid overriding `emphasisBox` outside of this scope.
+For the `.emphasisBox` selector, we manually added the `.root` class to avoid overriding `emphasisBox` outside this scope.
 
 :::
