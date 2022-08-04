@@ -47,6 +47,11 @@ module.exports = {
                     className: 'header-github-link',
                     'aria-label': 'GitHub repository',
                 },
+                {
+                    to: 'community',
+                    label: 'Community',
+                    position: 'left',
+                },
             ],
         },
         footer: {
@@ -79,6 +84,10 @@ module.exports = {
                         {
                             label: 'Twitter',
                             href: 'https://twitter.com/stylableio',
+                        },
+                        {
+                            label: 'Discord',
+                            href: 'https://discord.gg/C5ZhENSbV7',
                         },
                     ],
                 },
