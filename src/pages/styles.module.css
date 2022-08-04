@@ -45,6 +45,13 @@
   margin: 2.25em 0;
 }
 
+html[data-theme="dark"] .featureImage {
+  fill: white;
+}
+.featureImage {
+  fill: #1b1f23;
+}
+
 .heart {
   color: rgb(204, 27, 27);
 }
@@ -102,6 +109,10 @@
   margin: 1em 0 0 0;
 }
 
+.communityPageTitle {
+  margin-top: 4em;
+}
+
 @media screen and (max-width: 996px) {
   .feature {
     padding: 2.5em;
@@ -109,6 +120,11 @@
   .featureImage {
     float: left;
     margin: 0 3em 0 0;
+  }
+
+  .communityPageTitle {
+    margin-top: 2.25em;
+    padding-inline-start: 2.5em;
   }
 }
 
@@ -119,6 +135,12 @@
 
   .featureImage {
     float: none;
-    margin: 2.25em 0;
+    margin: 0 0 1em;
+    width: 25%;
+  }
+
+  .communityPageTitle {
+    margin-top: 2.25em;
+    padding-inline-start: 2.25em;
   }
 }

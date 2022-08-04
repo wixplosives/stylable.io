@@ -42,6 +42,11 @@ module.exports = {
         },
         // {to: 'blog', label: 'Blog', position: 'left'},
         {
+          to: "community",
+          label: "Community",
+          position: "left",
+        },
+        {
           href: "https://github.com/wix/stylable",
           position: "right",
           className: "header-github-link",
@@ -79,6 +84,10 @@ module.exports = {
             {
               label: "Twitter",
               href: "https://twitter.com/stylableio",
+            },
+            {
+              label: "Discord",
+              href: "https://discord.gg/C5ZhENSbV7",
             },
           ],
         },
