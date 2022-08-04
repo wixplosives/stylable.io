@@ -89,10 +89,10 @@ While Stylable collects and namespaces layer definitions from native CSS imports
 A layer can be accessed for dynamic styles using the `layers` mapping on the **Stylable** runtime stylesheet:
 
 ```js
-import { layers } from "./sheet.st.css";
+import { layers } from './sheet.st.css';
 
 // map to target namespaced layer
-layers["layer-name"];
+layers['layer-name'];
 ```
 
 ## Namespace

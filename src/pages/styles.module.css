@@ -69,7 +69,7 @@ html[data-theme="dark"] .featureImage {
 .quote::before {
   position: absolute;
   margin: -12px 0px 0px 0px;
-  content: " ";
+  content: ' ';
   background-image: url(/img/quote.svg);
   width: 12px;
   height: 12px;

@@ -1,0 +1,207 @@
+---
+id: extend
+title: Extend
+pagination_next: null
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+In the [Import Class chapter](./import.mdx), we saw how we can import CSS classes and target them by composing a selector to target our desired parts.
+
+In this chapter, we'll see how to extend a stylesheet to target inner parts and states.
+
+**Current status:**
+
+<!-- prettier-ignore-start -->
+```css title="player.st.css"
+.root {
+  -st-states: registered,
+              ranking(enum(first, second, third));
+}
+.avatar {}
+.username {}
+```
+
+```css title="game.st.css"
+@st-import Player, [avatar, username] from "./player.st.css";
+
+Player {
+  background: blue;
+}
+Player .avatar {
+  border-radius: 50%;
+}
+Player .username {
+  text-transform: uppercase;
+}
+```
+<!-- prettier-ignore-end -->
+
+Previously, we manually customized the `Player` component by creating a selector that includes a [descendant combinator](https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator) between the `Player` and our targeted parts. This selector is based on knowledge we have about the `Player` component structure, but this structure might change in the future, and break our assumptions.
+
+## Extend a stylesheet
+
+To help us abstract our selector, we'll extend the `Player` stylesheet to gain access to the stylesheet API, letting us target inner parts using [custom pseudo-elements](../../references/pseudo-elements.md).
+
+We'll first set the `-st-extends` property with the value of the imported `Player` stylesheet on the local `player` class.
+
+<!-- prettier-ignore-start -->
+```css title="game.st.css"
+@st-import Player from "./player.st.css";
+
+.player {
+    -st-extends: Player;
+}
+```
+
+<details>
+  <summary>Namespacing output</summary>
+  <CodeBlock title="game.st.css" language="css">
+    {`@st-import Player from "./player.st.css";
+  
+/* customizing class, local namespace */
+.game__player {
+    -st-extends: Player;
+}`}
+  </CodeBlock>
+</details>
+
+<!-- prettier-ignore-end -->
+
+We [previously saw](./import.mdx#stylesheet-root-selector) that we can't simply target an imported stylesheet, as that would affect all instances of it.
+
+Here, by using the `-st-extends` property on a local class, we are scoping these customizations to the subtree of our component stylesheet.
+
+### Apply the extending class
+
+To customize a `Player` component instance using our local stylesheet, we will need to apply the extending local class to the instance of the component.
+
+```jsx
+import Player from './player.jsx';
+import { st, classes } from './game.st.css';
+
+const Game = ({ className }) => (
+  <div className={st(classes.root, className)}>
+    <Player className={classes.player} />
+  </div>
+);
+```
+
+### Access inner parts
+
+We can now use the custom pseudo-element syntax to safely target the `avatar` and `username` parts of the `Player` component.
+
+<!-- prettier-ignore-start -->
+```css title="game.st.css"
+@st-import Player from "./player.st.css";
+
+.player {
+  -st-extends: Player;
+}
+.player::avatar {
+  border-radius: 50%;
+}
+.player::username {
+  text-transform: uppercase;
+}
+```
+
+<details>
+  <summary>Namespacing output</summary>
+  <CodeBlock title="game.st.css" language="css">
+    {`@st-import Player from "./player.st.css";
+  
+.game__player {
+  -st-extends: Player;
+}
+.game__player .player__avatar {
+  border-radius: 50%;
+}
+.game__player .player__username {
+  text-transform: uppercase;
+}`}
+  </CodeBlock>
+</details>
+
+<!-- prettier-ignore-end -->
+
+### Access a state
+
+Similar to how we used custom pseudo-elements to access inner parts of a component externally, we can now target custom pseudo-classes (states) of our extended parts as well.
+
+<!-- prettier-ignore-start -->
+```css title="game.st.css"
+@st-import Player from "./player.st.css";
+
+.player {
+  -st-extends: Player;
+}
+.player:ranking(first) {
+  background: gold;
+}
+/* ... */
+```
+<!-- prettier-ignore-end -->
+
+## Extend multiple levels
+
+Let's say that we want to turn our current `avatar` part, into a component to support a more complex design with separate elements for the `frame` and the `image`.
+
+To do this, we'll create a new `avatar.st.css` stylesheet, import it to `player.st.css`, and extend our `avatar` class with it.
+
+<!-- prettier-ignore-start -->
+```css title="avatar.st.css"
+.root {}
+.frame {}
+.image {}
+```
+
+```css title="player.st.css"
+@st-import Avatar from "./avatar.st.css";
+
+.root {
+  -st-states: registered, 
+              ranking(enum(first, second, third));
+}
+.avatar {
+  -st-extends: Avatar;
+}
+.username {}
+```
+
+By extending a stylesheet, which in turn has a part that extends a stylesheet, we can target inner parts through multiple levels with code completion and validations.
+
+```css title="game.st.css"
+@st-import Player from "./player.st.css";
+
+.player {
+  -st-extends: Player;
+}
+
+/* all player instances have an avatar with a green frame*/
+.player::avatar::frame {
+  background: green;
+}
+
+/* the player in the first ranking, has an avatar with a golden frame */
+.player:ranking(first)::avatar::frame {
+  background: gold;
+}
+```
+<!-- prettier-ignore-end -->
+
+:::tip Catch breaking changes
+Let's imagine a case, where the `Avatar` component has undergone refactoring which changed the part name `frame` to `box`. If we were using native CSS, and were aware of this change, we could try and manually locate all instances of `frame` and replace them with `box`. But if we were to miss an instance, CSS would provide no indication of the problem.
+
+Because we used Stylable to declare that a class extends a stylesheet, and then accessed its inner parts, we are assured that the interface exists and is valid, and if this interface were to change, an error would be reported at build-time and in the IDE.
+:::
+
+---
+
+In this chapter we saw how once we extend a stylesheet, we can target inner parts and states using native-like syntax, while benefiting from language service features and diagnostics.
+
+Next we'll start talking about features that have to do with style templating, beginning with variables, both native custom properties, and Stylable's build-time variables.
+
+:::info You've reached the end of the handbook, so far
+This handbook is a work in progress and is not yet complete. You can track the plan and progress for it in [this issue](https://github.com/wixplosives/stylable.io/issues/39)
+:::

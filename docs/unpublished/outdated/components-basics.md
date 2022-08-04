@@ -23,8 +23,8 @@ Let's say you have a `Button` component with a render function per this example.
 
 ```jsx
 /* button.jsx */
-import * as React from "react";
-import { style, classes } from "./button.st.css";
+import * as React from 'react';
+import { style, classes } from './button.st.css';
 
 class Button {
   constructor(props) {
@@ -58,7 +58,7 @@ Now in the component's **Stylable** CSS file called `button.st.css`, you can dec
 
 .icon {
   /* set image height and display: block */
-  background-image: url("./assets/btnIcon.svg");
+  background-image: url('./assets/btnIcon.svg');
 }
 
 .label {
@@ -89,9 +89,9 @@ Let's take the `Button` component and import it into the JSX file, and also add 
 
 ```jsx
 /* panel.jsx */
-import * as React from "react";
-import { Button } from "../button";
-import { style, classes } from "./panel.st.css";
+import * as React from 'react';
+import { Button } from '../button';
+import { style, classes } from './panel.st.css';
 
 export const Panel = () => (
   <div className={style(classes.root, this.props.className)}>
@@ -131,8 +131,8 @@ A custom pseudo-class can be used to reflect any logical state of your component
 
 ```jsx
 /* button.jsx */
-import * as React from "react";
-import { style, classes } from "./button.st.css";
+import * as React from 'react';
+import { style, classes } from './button.st.css';
 
 class Button {
   constructor(props) {
@@ -190,9 +190,3 @@ You can then target `Button`'s `on` state in your `panel` component as follows:
   box-shadow: 2px 2px 2px 1px indigo;
 }
 ```
-
-## See also:
-
-- [Building an Application](./stylable-application.md)
-- [Building a Component Library](./stylable-component-library.md)
-- [Stylable Cheatsheet](../references/cheatsheet.md)

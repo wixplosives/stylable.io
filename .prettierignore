@@ -1,0 +1,5 @@
+dist
+*.st.css
+tsconfig.base.json
+tsconfig.json
+packages/style-panel/src/test-kit/style-panel-example/selector-inheritance.css

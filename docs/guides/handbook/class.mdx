@@ -1,0 +1,68 @@
+---
+id: class
+title: Classes
+---
+
+Classes are the most basic building block of stylable, used to mark elements on the DOM, so those could in turn be targeted and styled via our CSS.
+
+## CSS classes
+
+A CSS class starts with a `.` (period) following a CSS identifier. Read more about [CSS classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) in the MDN documentation.
+
+```css title="game.st.css"
+.player {
+  background: green;
+}
+```
+
+Here we create a `game.st.css` stylesheet and define a class named `player` that will color the background of the element it targets with the color `green`.
+
+## Resolve global conflicts
+
+All CSS loaded to the browser for a given page is global, and so other stylesheets can create their own `player`, and conflict with our definition
+
+To resolve this, we can use a [BEM methodology](http://getbem.com/introduction/) to namespace our `player` class with a unique prefix.
+
+```css title="game.st.css"
+.game__player {
+  background: green;
+}
+```
+
+This conventions-based solution works, but is difficult to scale, requires communication and agreement, demands manual upkeep, and makes our code more verbose than it needs to be.
+
+Stylable automates the namespacing process, using a similar convention to BEM for CSS classes and other symbols (more on that in the [Namespacing chapter](./namespace.md)).
+
+## Runtime mapping
+
+By turning the namespacing process to an automatic one, we find ourselves needing to map the runtime classes on the DOM to the original classes we defined in our stylesheet.
+
+To access this class name mappings, we will import the stylesheet to our JavaScript, and utilize the `classes` object to get our desired global name.
+
+```jsx title="game.jsx"
+import { classes } from './game.st.css';
+
+console.log(classes.player); // "game__player"
+
+<div className={classes.player}></div>;
+```
+
+:::info Prerequisite
+The example above assumes that Stylable was run as part of a build process, using one of our integrations or hooks to generate the runtime JavaScript module with the required mappings and utility functions.
+:::
+
+## Naming tip
+
+Due to the fact that these class symbols are generated from the stylesheet, but are also consumed in JavaScript, we recommend using camelCase for class names to avoid cases that require [property accessors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors).
+
+<!-- prettier-ignore-start -->
+
+```js
+import { classes } from "./dialog.st.css";
+
+classes.okButton;     // recommended
+classes["ok-button"]; // not recommended
+```
+<!-- prettier-ignore-end -->
+
+We would further recommend to avoid using special characters that are not valid JavaScript identifiers.

@@ -10,7 +10,8 @@
     "deploy": "gh-pages -d build",
     "serve": "docusaurus serve",
     "test": "npm run build",
-    "clear": "docusaurus clear"
+    "clear": "docusaurus clear",
+    "prettify": "npx prettier . --write"
   },
   "dependencies": {
     "@algolia/client-search": "^4.14.2",

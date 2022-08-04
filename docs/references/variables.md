@@ -18,8 +18,7 @@ Variables are scoped to the specific stylesheet and do not conflict with variabl
 
 Use the syntax `:vars` to define variables, and apply them with a `value()`:
 
-```css
-@namespace "Example1";
+```css title="example1.st.css"
 :vars {
   color1: red;
   color2: green;
@@ -28,11 +27,9 @@ Use the syntax `:vars` to define variables, and apply them with a `value()`:
   color: value(color1);
   background: value(color2);
 }
-```
 
-```css
-/* CSS output */
-.Example1__root {
+/* OUTPUT */
+.example1__root {
   color: red; /* color1 */
   background: green; /* color2 */
 }
@@ -42,8 +39,7 @@ Use the syntax `:vars` to define variables, and apply them with a `value()`:
 
 Any var defined in a stylesheet is exported as a named export and can be [imported](./imports.md) by other stylesheets.
 
-```css
-@namespace "Example2";
+```css title="example2.st.css"
 @st-import [color1, color2] from "./example1.st.css";
 
 .root {
@@ -52,14 +48,12 @@ Any var defined in a stylesheet is exported as a named export and can be [import
 .root:hover {
   border: 10px solid value(color2);
 }
-```
 
-```css
-/* CSS output */
-.Example2__root {
+/* OUTPUT */
+.example2__root {
   border: 10px solid red; /* color1 */
 }
-.Example2__root:hover {
+.example2__root:hover {
   border: 10px solid green; /* color2 */
 }
 ```
@@ -74,8 +68,7 @@ Imported variables are not exported from the stylesheet that has imported them. 
 
 You can set the value of a variable using another variable.
 
-```css
-@namespace "Example3";
+```css title="example3.st.css"
 @st-import [color1, color2] from "./example1.st.css";
 
 :vars {
@@ -84,11 +77,9 @@ You can set the value of a variable using another variable.
 .root {
   border: value(border1); /* user border1 */
 }
-```
 
-```css
-/* CSS output */
-.Example3__root {
+/* OUTPUT */
+.example3__root {
   border: 10px solid red; /* 10px solid {color1} */
 }
 ```

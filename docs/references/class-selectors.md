@@ -3,122 +3,189 @@ id: class-selectors
 title: Class Selector
 ---
 
-You use [CSS classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) to define the local name of internal component parts. For example, you can define a `.button` in a menu component.
+A CSS `class selector` is used as a generic way to target a DOM element with a matching `class name`. In Stylable a CSS class is used primarily as a component part, for example a `.navBtn` of gallery component, but can also be used as utility class or a mixin.
 
-In **Stylable**, class selectors are scoped to the [namespace](./namespace.md) of the stylesheet.
+This page goes over how Stylable handles `class selector`, for more details about the language feature itself, checkout the following resources:
 
-You should use camelCase to name class selectors. Avoid using hyphens (-) and capital first letters.
+- [MDN class selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors)
+- [class selector in spec](https://drafts.csswg.org/selectors/#class-html)
 
-```css
-@namespace "Page";
-.root:hover .thumbnail {
-  background: red;
-}
-.thumbnail {
-  background: green;
-}
-.thumbnail:hover {
-  background: blue;
-}
-```
+## Syntax
 
-```css
-/* CSS output */
-.Page__root:hover .Page__thumbnail {
-  background: red;
-}
-.Page__thumbnail {
-  background: green;
-}
-.Page__thumbnail:hover {
-  background: blue;
-}
-```
+To define a `class symbol`: set a `class selector` anywhere in a stylesheet.
 
-```jsx
-/* comp.jsx */
-import React from "react";
-import { style, classes } from "./comp.st.css";
-
-class Comp extends React.Component {
-  render() {
-    return (
-      <div className={style(classes.root, {}, this.props)}>
-        <img className={style.thumbnail} />
-      </div>
-    );
-  }
-}
-```
-
-:::note
-
-In **Stylable**, as you can see in these examples, `.root` as a class name is reserved for the main [root](./root.md).  
-CSS classes can also define [states](./pseudo-classes) and [extend another component](./extend-stylesheet.md).
-
-:::
-
-## Class selector export
-
-Any class defined in a **Stylable** stylesheet is exported as a named export and can be imported by other stylesheets using the directive `-st-named`. These classes are also imported using the [react-integration](../getting-started/react-integration.md) and applied to the DOM as needed.
-
-:::note
-
-Classes imported this way should be scoped to your local stylesheet by adding `.root` or a local class as a prefix to the selector. Adding the scoping causes the selector to affect only the rendering subtree from this point onwards. If classes are imported without scoping to your local stylesheet, this may cause unexpected effects throughout your project.
-
-:::
-
-### Example
-
-```css
-/* button.st.css */
-@namespace "Button";
-.root {
-  background: green;
-}
-.icon {
-  border: 2px solid black;
-}
-.label {
-  font-size: 20px;
-}
-```
+**Standalone definition**
 
 <!-- prettier-ignore-start -->
 ```css
-/* form.st.css */
-@namespace "Form";
-
-@st-import [icon, label] from "./button.st.css";
-
-/* @selector .Form__myIcon.Button__icon */
-.myIcon {
-  -st-extends: icon;
-}
-
-/* @selector .Form__root .Button__icon */
-.root .icon {}
-
-/* @selector .Form__label.Button__label */
-.label {
-  -st-extends: label;
-}
+.navBtn {}
 ```
 <!-- prettier-ignore-end -->
 
+**In-selector definition**
+
+<!-- prettier-ignore-start -->
 ```css
-/* 
-    JavaScript runtime exports:
-    {
-        root: "Form__root",
-        myIcon: "Form__myIcon Button__icon",
-        icon: "Button__icon",
-        label: "Form__label Button__label"
-    }
-*/
+/* compound */
+button.navBtn.baseBtn {}
+
+/* multiple selectors */
+.navBtn, .thumb {}
+```
+<!-- prettier-ignore-end -->
+
+## Root
+
+The `.root` class has a special meaning in Stylable stylesheets. Every stylesheet has a root to represent the root element of the component or page of the stylesheet - [see root reference](./root.md).
+
+## Import and Export
+
+A class selector can be imported into another stylesheet with the [`@st-import`](./imports.md) atrule.
+
+**Import class by name**
+
+<!-- prettier-ignore-start -->
+```css
+/* reference the navBtn class  */
+@st-import [navBtn] from './gallery.st.css';
+
+/* reference multiple classes */
+@st-import [navBtn, thumb] from './gallery.st.css';
+
+/* map imported class to local name "galleryNavBtn" */
+@st-import [navBtn as galleryNavBtn] from './gallery.st.css';
+```
+<!-- prettier-ignore-end -->
+
+**Import stylesheet `root` class**
+
+<!-- prettier-ignore-start -->
+```css
+/* get the gallery root class (default export) */
+@st-import Gallery from './gallery.st.css';
+
+/* reference the gallery named root class */
+@st-import [root as GalleryRoot] from './gallery.st.css';
+```
+<!-- prettier-ignore-end -->
+
+:::caution capitalize default stylesheet import
+While any valid ident can be used for the default root import, It is **strongly recommend** to capitalize the name to signify it represents a component element.
+:::
+
+## Runtime
+
+A class can be accessed using the `classes` mapping on the Stylable stylesheet runtime.
+
+```js
+import { classes } from './gallery.st.css';
+
+// map from local name to target class name
+classes.part;
+classes.root;
+classes['dashed-class'];
 ```
 
-## Usage
+Use the class mapping to bind the stylesheet to the rendered view:
+
+**React example**
+
+```js
+/* gallery.jsx */
+import { st, classes } from './gallery.st.css';
+
+function Gallery(props) {
+  return (
+    <div className={st(classes.root, props.className)}>
+      <button className={classes.navBtn}>next</button>
+      <button className={classes.navBtn}>prev</button>
+    </div>
+  );
+}
+```
+
+:::note component instance customization
+In the component example above, we call the [st() function](./runtime.md#st-function) in order to pass both the gallery root class and any class name provided externally in order to style the component from the outside.
+:::
+
+## Namespace
+
+Stylable automatically [namespaces](../guides/handbook/namespace.md) any class selector according to the stylesheet it is defined in:
+
+<!-- prettier-ignore-start -->
+```css
+.a {}
+
+/* OUTPUT */
+.NAMESPACE__a {}
+```
+<!-- prettier-ignore-end -->
+
+### Disable in selector
+
+Wrapping a class selector with `:global()` pseudo-class prevents namespacing:
+
+<!-- prettier-ignore-start -->
+```css
+:global(.icon-heart) {}
+
+/* OUTPUT */
+.icon-heart {}
+```
+<!-- prettier-ignore-end -->
+
+[see `global selector` reference](./global-selectors.md)
+
+### Map to global selector
+
+Class selector can be mapped to a custom global selector with the `-st-global` declaration:
+
+**Map to global class**
+
+<!-- prettier-ignore-start -->
+```css
+.button {
+  -st-global: '.myLib__button';
+}
+.button:hover {}
+
+/* OUTPUT */
+.myLib__button {}
+.myLib__button:hover {}
+```
+<!-- prettier-ignore-end -->
+
+**Valid values**
+
+<!-- prettier-ignore-start -->
+```css
+/* global selector */
+.x { -st-global: '.a' }
+
+/* compound selector of multiple classes */
+.x { -st-global: '.a.b' }
+
+/* complex selector (runtime `classes.x` not exported) */
+.x { -st-global: '.a .b' }
+
+/* non class selectors (runtime `classes.x` not exported) */
+.x { -st-global: '[c]' }
+.x { -st-global: '.a[c]' }
+```
+<!-- prettier-ignore-end -->
+
+**Invalid values**
+
+<!-- prettier-ignore-start -->
+```css
+/* empty selector */
+.x { -st-global: '' }
+/* only a single selector is supported */
+.x { -st-global: '.a, .b' }
+```
+<!-- prettier-ignore-end -->
+
+## Related
 
 - [Style pseudo-elements](./pseudo-elements.md)
 - [Use CSS mixins](./mixins.md)
