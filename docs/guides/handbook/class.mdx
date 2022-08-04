@@ -9,22 +9,22 @@ Classes are the most basic building block of stylable, used to mark elements on 
 
 A CSS class starts with a `.` (period) following a CSS identifier. Read more about [CSS classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) in the MDN documentation.
 
-```css
-.okButton {
+```css title="game.st.css"
+.player {
   background: green;
 }
 ```
 
-Here we define the class named `okButton` that will color the background of the element it targets with the color `green`.
+Here we create a `game.st.css` stylesheet and define a class named `player` that will color the background of the element it targets with the color `green`.
 
 ## Resolve global conflicts
 
-All CSS loaded to the browser for a given page is global, and so other stylesheets can create their own `okButton`, and conflict with our definition
+All CSS loaded to the browser for a given page is global, and so other stylesheets can create their own `player`, and conflict with our definition
 
-To resolve this, we can use a BEM methodology (TODO: add link) to namespace our `okButton` class with a unique prefix.
+To resolve this, we can use a [BEM methodology](http://getbem.com/introduction/) to namespace our `player` class with a unique prefix.
 
-```css
-.dialog__okButton {
+```css title="game.st.css"
+.game__player {
   background: green;
 }
 ```
@@ -43,12 +43,12 @@ To access this class name mappings, we will import the stylesheet to our JavaScr
 The example below assumes that Stylable was run as part of a build process, using one of our integrations or hooks to generate the runtime JavaScript module with the required mappings and utility functions.
 :::
 
-```jsx
-import { classes } from './dialog.st.css';
+```jsx title="game.jsx"
+import { classes } from './game.st.css';
 
-console.log(classes.okButton); // dialog__okButton
+console.log(classes.player); // "game__player"
 
-<Button className={classes.okButton} />;
+<div className={classes.player}></div>;
 ```
 
 ## Naming tip

@@ -37,13 +37,13 @@ For example:
 
 To avoid namespacing on classes in a selector, wrap those classes with a `:global(...)` pseudo-class.
 
-```css
-.okButton:global(.highlight) {
+```css title="game.st.css"
+.player:global(.highlight) {
   background: yellow;
 }
 
 /* OUTPUT */
-.NAMESPACE__okButton.highlight {
+.game__player.highlight {
   background: yellow;
 }
 ```
@@ -63,12 +63,12 @@ We can avoid namespacing for all symbols (except classes) by using the `st-globa
 Unlike the other symbols that are mapped from a local name to their global one, when we map a class using `-st-global`, we can define a global selector that will replace it.
 
 ```css
-.okButton {
-  -st-global: '.myLib__ok';
+.player {
+  -st-global: '.myGame__player';
 }
 ```
 
-Notice that in this case, we are mapping our `okButton` class to a `.myLib__ok` class selector. This is because classes can be mapped to any selector, including multiple classes, elements, attributes, and other CSS selector parts.
+Notice that in this case, we are mapping our `player` class to a `.myGame__player` class selector. This is because classes can be mapped to any selector, including multiple classes, elements, attributes, and other CSS selector parts.
 
 <!-- TODO: expand on -st-global outcomes in the runtime api and link to it here -->
 
@@ -76,7 +76,7 @@ Notice that in this case, we are mapping our `okButton` class to a `.myLib__ok` 
 
 By default, namespacing is derived in Stylable using the stylesheet filename, but in some edge cases we might want to override this behavior.
 
-To do so, we can use the `@st-namespace "OverrideNAMESPACE";` definition. [Click here](../../references/namespace.md) to read more about the namespace API.
+To do so, we can use the `@st-namespace 'OverrideNamespace';` definition. [Click here](../../references/namespace.md) to read more about the namespace API.
 
 ## Project level namespacing
 

@@ -5,7 +5,7 @@ title: Custom State
 
 In CSS, we have the ability to target native states of various elements using the [`pseudo-class`](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) syntax (for instance, `:hover` or `:active`).
 
-While this is very handy, as of today, CSS does not provide a set way for us to define a custom state. For example, we might want a `registered` custom state to represent a player element that has signed up for our game.
+While this is very handy, as of today, CSS does not provide a way for us to define a custom state on every element. For example, we might want a `registered` custom state to represent a player element that has signed up for our game.
 
 We could choose to implement such a state manually by using a class selector (e.g. using a [BEM modifier](http://getbem.com/naming/#modifier:~:text=block__elem%20%7B%20color%3A%20%23042%3B%20%7D-,Modifier,-Flags%20on%20blocks): `.NAMESPACE--registered`) or attribute selector (e.g. `[data-NAMESPACE-registered]`).
 
@@ -20,15 +20,15 @@ To define a registered state for our `player` class, we will use the `-st-states
 We can then target this state using our newly-defined `:registered` pseudo-class, knowing it will be transformed to a valid, safe selector at build time.
 
 <!-- prettier-ignore-start -->
-```css
+```css title="game.st.css"
 .player {
   -st-states: registered; /* definition */
 }
 .player:registered {}     /* usage */
 
-/* OUTPUT */
-.NAMESPACE__player {}
-.NAMESPACE__player.NAMESPACE--registered {}
+/* OUTPUT - namespace class and state */
+.game__player {}
+.game__player.game--registered {}
 ```
 <!-- prettier-ignore-end -->
 
@@ -37,7 +37,7 @@ In the example above, we defined a `registered` boolean state that can either be
 We can define such a state by passing the `enum` parameter type to the `ranking` state definition, and in it, list our possible options.
 
 <!-- prettier-ignore-start -->
-```css
+```css title="game.st.css"
 .player {
   -st-states: registered, 
               ranking(enum(first, second, third)); 
@@ -71,7 +71,7 @@ Due to this potentially confusing behavior, we **strongly recommend** against na
 Now that we have defined our states, we want to be able to toggle them at runtime in our component.
 
 <!-- prettier-ignore-start -->
-```js
+```js title="game.jsx"
 import { cssStates, classes } from "./game.st.css";
 
 // create a registered first ranking player
