@@ -5,7 +5,7 @@ title: Import Class
 
 import CodeBlock from '@theme/CodeBlock';
 
-In the [runtime chapter](./runtime.md), we saw how a Stylable stylesheet's API can be imported into a JavaScript module, and how that API can be used. In this chapter, we'll see how our game example can be divided into linked stylesheet modules to provide a better development experience.
+In the [Runtime chapter](./runtime.md), we saw how a Stylable stylesheet's API can be imported into a JavaScript module, and how that API can be used. In this chapter, we'll see how our game example can be divided into linked stylesheet modules to provide a better development experience.
 
 <!-- - here we'll focus on importing symbols across stylesheets, and how to import stuff from javascript to Stylable stylesheets -->
 
@@ -48,13 +48,13 @@ In Stylable, each component stylesheet is represented by a `root` class that is 
 
 <!-- TODO: might be nice to have an example component jsx here too -->
 
-We can see that when we moved the `player` class, we also included it's styling declarations. This might cause additional work in the future when trying to customize this class from the outside.
+We can see that when we moved the `player` class, we also included its styling declarations. This might cause additional work in the future when trying to customize this class from the outside.
 
 Stylable recommends that a component's stylesheet include minimal styling - only what is crucial for the functionality of the component or defines its structure. To follow this best practice, we need a way to import the `player.st.css` stylesheet over to `game.st.css`, and perform our styling customizations there.
 
 ## Default import
 
-Keep in mind that as we saw earlier in the [Namespacing chapter](./namespace.md#supported-symbols), classes in Stylable are automatically namespaced. This means that if we wish to target a class from another stylesheet in a selector, we need to import it to link to it.
+Keep in mind that, as we saw earlier in the [Namespacing chapter](./namespace.md#supported-symbols), classes in Stylable are automatically namespaced. This means that if we wish to target a class from another stylesheet in a selector, we need to import it to link to it.
 
 Below, we import the `player.st.css` stylesheet and customize it by using the `@st-import` at-rule, and providing it with a **local name** for the default export (beginning with a capital letter) and a **request** to the target stylesheet. Then we move any customizations out of `player.st.css` into `game.st.css`.
 
@@ -123,7 +123,7 @@ For the next step, we would like to add `avatar` and `username` parts to `player
 ```
 <!-- prettier-ignore-end -->
 
-We then proceeed to bind these new classes to their matching elements in the component.
+We then proceed to bind these new classes to their matching elements in the component.
 
 <!-- prettier-ignore-start -->
 ```jsx title="player.jsx - bind avatar and username"
@@ -192,7 +192,7 @@ We are in the process of developing [explicit export support](https://github.com
 
 Up to this point, we've only needed to import classes between stylesheets. In later chapters of this guide, we will learn how to import and use additional symbols, as well as additional import use cases from JavaScript to our stylesheet.
 
-Check out the API cheatsheet to see various [@st-import](../../references/cheatsheet#module-system) examples.
+Check out the API cheat sheet to see various [@st-import](../../references/cheatsheet#module-system) examples.
 
 ---
 

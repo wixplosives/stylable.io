@@ -59,4 +59,4 @@ Application creators can use Stylable to compose their own components alongside 
 ---
 
 Sounds interesting? Ready to start?  
-Head on over to the [first chapter](./class.mdx) where we talk about classes, and what they mean in Stylable.
+Head on over to the [first chapter](./class.mdx), where we discuss classes, and what they mean in Stylable.

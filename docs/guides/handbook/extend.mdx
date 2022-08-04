@@ -6,9 +6,9 @@ pagination_next: null
 
 import CodeBlock from '@theme/CodeBlock';
 
-In the [import class chapter](./import.mdx), we saw how we can import CSS classes and target them by composing a selector to target our desired parts.
+In the [Import Class chapter](./import.mdx), we saw how we can import CSS classes and target them by composing a selector to target our desired parts.
 
-In this chapater, we'll see how to extend a stylesheet in order to target inner parts and states.
+In this chapter, we'll see how to extend a stylesheet to target inner parts and states.
 
 **Current status:**
 
@@ -70,11 +70,11 @@ We'll first set the `-st-extends` property with the value of the imported `Playe
 
 We [previously saw](./import.mdx#stylesheet-root-selector) that we can't simply target an imported stylesheet, as that would affect all instances of it.
 
-Here, by using the `-st-extends` property on a local class, we are scoping these customization to the sub-tree of our component stylesheet.
+Here, by using the `-st-extends` property on a local class, we are scoping these customizations to the subtree of our component stylesheet.
 
 ### Apply the extending class
 
-In order to be able to customize a `Player` component instance using our local stylesheet, we will need to apply the extending local class to the instance of the component.
+To customize a `Player` component instance using our local stylesheet, we will need to apply the extending local class to the instance of the component.
 
 ```jsx
 import Player from './player.jsx';
@@ -89,7 +89,7 @@ const Game = ({ className }) => (
 
 ### Access inner parts
 
-We can now use the custom pseudo-element syntax to safetly target the `avatar` and `username` parts of the `Player` component.
+We can now use the custom pseudo-element syntax to safely target the `avatar` and `username` parts of the `Player` component.
 
 <!-- prettier-ignore-start -->
 ```css title="game.st.css"
