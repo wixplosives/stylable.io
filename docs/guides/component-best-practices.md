@@ -36,9 +36,9 @@ Gallery::nav-btn {
 
 ## Avoid global settings in your stylesheet
 
-Try avoiding global-related selectors like `@media` or matching DOM outside of the component scope like `body`. These would potentially cause side-effects if others use them.
+Try avoiding global-related selectors like `@media` or matching DOM outside the component scope like `body`. These would potentially cause side effects if others use them.
 
-[Element type selectors](../references/tag-selectors.md) should be avoided inside a component because they affect any nested component or element. The exception to this is when specifically targeting the element with **child selector** (for example `.root > p`) and not a **descendent selector** (for example `.root p`).
+[Element type selectors](../references/tag-selectors.md) should be avoided inside a component because they affect any nested component or element. The exception to this is when specifically targeting the element with **child selector** (for example `.root > p`) and not a **descendant selector** (for example `.root p`).
 
 ## Keep your layout minimal
 
@@ -73,7 +73,7 @@ Write low specificity selectors that will be easy to override from a parent comp
 
 It takes a more complex selector to override a high specificity selector that was defined in a component stylesheet.
 
-Override CSS only for behaviors that **must** be overridden for the component to function and minimize the use of `element type selectors` and `pseudo-elements` of nested components.
+Override CSS only for behaviors that **must** be overridden for the component to function, and minimize the use of `element type selectors` and `pseudo-elements` of nested components.
 
 Styling pseudo-elements in a component creates a selector that takes more specificity to override
 
@@ -99,13 +99,13 @@ specificity: 0,0,1,1
 
 :::note
 
-For the `button` selector, we manually added the `.root` class to avoid overriding `button` outside of this scope.
+For the `button` selector, we manually added the `.root` class to avoid overriding `button` outside this scope.
 
 :::
 
 ## Justify your CSS declarations in comments
 
-A good way to validate minimal CSS is to add comments. There should be a few words clarifying why a certain declaration or ruleset combination is found in the stylesheet. We recommend you justify any special overrides or interactions with a comment per this example.
+A good way to validate minimal CSS is to add comments. There should be a few words clarifying why a certain declaration or rule set combination is found in the stylesheet. We recommend you justify any special overrides or interactions with a comment per this example.
 
 ```css
 .link {
@@ -115,7 +115,7 @@ A good way to validate minimal CSS is to add comments. There should be a few wor
 }
 ```
 
-This helps with maintenance and development since we don't test CSS as thoroughly as other code.
+This helps with maintenance and development, since we don't test CSS as thoroughly as other code.
 
 ## Use consistent variables from a central location
 
@@ -132,6 +132,6 @@ Import CSS or Stylable variables from the [project commons stylesheet](../guides
 
 ## Keep SVG and images overridable
 
-When using an image element source or svg directly in the DOM, it is not easy, and in some cases not possible, to modify the asset from outside the component using CSS.
+When using an image element source or SVG directly in the DOM, it is not easy, and in some cases not possible, to modify the asset from outside the component using CSS.
 
 When an asset is part of the style API, it should be placed in the background of an element, allowing it to be overridden from a parent component.
