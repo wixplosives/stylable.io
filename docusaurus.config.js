@@ -41,6 +41,11 @@ module.exports = {
                     position: 'left',
                 },
                 {
+                    to: 'playground',
+                    label: 'Playground',
+                    position: 'left',
+                },
+                {
                     to: 'community',
                     label: 'Community',
                     position: 'left',
@@ -123,7 +128,6 @@ module.exports = {
                 },
                 blog: {
                     showReadingTime: true,
-                    // Please change this to your repo.
                     editUrl: 'https://github.com/wixplosives/stylable.io/edit/master',
                 },
                 theme: {

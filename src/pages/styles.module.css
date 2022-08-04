@@ -100,6 +100,14 @@ html[data-theme="dark"] .featureImage {
   height: 100%;
 }
 
+.playgroundWrapper {
+  position: relative;
+  display: flex;
+}
+.playgroundWrapper > * {
+  width: 100%;
+}
+
 .lspDemo {
   width: 100%;
   margin-bottom: 1em;
