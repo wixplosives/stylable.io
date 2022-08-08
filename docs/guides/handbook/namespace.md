@@ -56,7 +56,7 @@ Classes used within the `:global(...)` pseudo-class are not treated as symbols i
 
 We can avoid namespacing for all symbols (except classes) by using the `st-global()` function:
 
-- `@property st-global(--bgColor)` - [read more](../../references/css-vars#use-a-global-custom-property)
+- `@property st-global(--bgColor)` - [read more](../../references/css-vars#disable-namespace)
 - `@keyframes st-global(slide)` - [read more](../../references/keyframes#disable-namespace)
 - `@layer st-global(theme)` - [read more](../../references/layer#disable-namespace)
 

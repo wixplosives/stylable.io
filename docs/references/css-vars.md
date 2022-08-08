@@ -3,141 +3,175 @@ id: css-vars
 title: Custom Property
 ---
 
-`CSS Custom Properties` provides the ability to define and re-use variables that participate in the runtime cascade.
+CSS `custom property` is used to dynamically pass custom values at runtime.
 
-CSS Custom Properties are defined using the `--*` property syntax, and accessed using the `var(--*)` CSS function.
+This page goes over how Stylable handles with `custom properties`, for more details about the language feature itself, checkout the following resources:
 
-To learn more about this language feature, check out the following resources
-
-- [MDN - Custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
+- [MDN custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
+- [MDN @property](https://developer.mozilla.org/en-US/docs/Web/CSS/@property)
+- [MDN var()](https://developer.mozilla.org/en-US/docs/Web/CSS/var)
 - [MDN - Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
 - [Smashing Magazine - It's Time To Start Using CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
 
-## Stylable variables vs. CSS custom properties
+## syntax
 
-[Stylable variables](./variables.md) and CSS custom properties offer different capabilities, and as such serve different use-cases.
+A CSS custom property name must start with the `--` prefix.
 
-Stylable variables exist only in your source code, and get replaced during transpilation to the final target code. They serve well for calculations that are not supported by native CSS, reducing code repetition, increasing readability and can benefit any static theme or styling without incurring any runtime performance cost.
+### Get / Set
 
-CSS custom properties on the other hand do incur a small runtime cost, but offer the ability to override their values during runtime, allowing dynamic styling through Stylable.
-
-## Automatic scoping (namespacing)
-
-Stylable automatically scopes any CSS custom property found in the stylesheet. It does so by generating a unique namespace for the stylesheet (similar to how classes are scoped), and replaces the variable with its scoped counterpart.
-
-Example:
+A custom property can be referenced from a `declaration property` or within a value `var()` call:
 
 ```css
-/* entry.st.css */
-.root {
-  --myVar: green;
-  color: var(--myVar);
+.a {
+  /* set */
+  --x: green;
+}
+.a .b {
+  /* get */
+  color: var(--x);
+}
+.b {
+  /* fallback to yellow if property is unset */
+  color: var(--notSet, yellow);
+
+  /* fallback to --x if property is unset */
+  color: var(--notSet, var(--x));
 }
 ```
 
-Transpiled output:
-
-```css
-/* entry.st.css */
-.root {
-  --entry-myVar: green;
-  color: var(--entry-myVar);
-}
-```
-
-## Import a CSS variable
-
-Due to the fact Stylable provides scoping to CSS variables, it also provides the ability to import CSS variables defined in another stylesheet.
-
-```css
-/* entry.st.css */
-@st-import [--myVar] from "./imported.st.css";
-
-.root {
-  /* value determined by the nearest property assignment up the DOM tree */
-  color: var(--myVar);
-}
-
-.part {
-  /* this override will match the namespace of the imported stylesheet */
-  --myVar: gold;
-  background-color: var(--myVar); /* gold */
-}
-```
-
-```css
-/* imported.st.css */
-.root {
-  --myVar: green;
-}
-```
-
-## Runtime custom property override
-
-Override any variable by redefining its value using an inline style attribute.
-
-```jsx
-import { classes, vars } from "./entry.st.css";
-
-<div
-  className={classes.root}
-  style={{
-    [vars.myVar]: "pink",
-    background: "gold",
-  }}
-/>;
-```
-
-Output:
-
-```jsx
-<div
-  className="entry__root"
-  style="--entry-color: green; --entry-border-size: 5px; background: gold;"
-></div>
-```
-
-## CSS runtime register
-
-Stylable supports the [@property](https://developer.mozilla.org/en-US/docs/Web/CSS/@property) at-rule, it scope the CSS variable and provide extra configuration at runtime:
-
-```css
-@property --myVar {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #c3e88d;
-}
-```
-
-:::info
-
-`@property` definitions without a body are used only for defining a symbol and will be removed at the build process.
-
+:::note no explicit definition
+A custom property can be set and used without an explicit `@property` definition
 :::
 
-## Use a global custom property
+### Runtime definition
 
-In cases where you have no control over the name of the CSS variable used, use the `@property` at-rule with `st-global` to define CSS variables that will not be scoped, and will maintain their exact given name.
+Use `@property` at-rule to register a configuration for a runtime property:
 
-This is mostly useful when working with 3rd-party libraries, where you only attempt to affect it externally.
+<!-- prettier-ignore-start -->
+```css
+/* runtime type definition */
+@property --x {
+  syntax: '<color>';     /* type */
+  inherits: true;        /* is taken from cascade */
+  initial-value: green;  /* default when unset */
+}
+
+.b {
+  /* get green from initial value
+     if --x is unset */
+  color: var(--x);
+}
+```
+<!-- prettier-ignore-end -->
+
+### Build only definition
+
+To define a custom property to be used outside of stylesheet, without explicitly registering it in runtime or using it as a declaration property or value, you can define the `@property` at-rule without a body:
 
 ```css
-@property st-global(--color);
+@property --x;
+```
 
-.root {
-  --color: green;
-  color: var(--color);
+:::info removed at build
+A property with no configuration body is removed at `build-time` as it is un-useful at `runtime`
+:::
+
+## Comparison to build vars
+
+[Stylable variables](./variables.md) (build vars) and CSS custom properties offer different capabilities, and as such serve different use-cases.
+
+Stylable variables exist only in your source code, and get replaced during build. They serve well for calculations that are not supported by native CSS, reducing code repetition, increasing readability and can benefit any static theme or styling without incurring any runtime performance cost.
+
+CSS custom properties on the other hand do incur a small runtime cost, but offer the ability to override their values during runtime, allowing native CSS dynamic styling.
+
+## Import and Export
+
+An exported custom-property can be imported into another stylesheet with the [@st-import](./imports.md#named-import) at-rule.
+
+```css
+@st-import [--x] from "./common.st.css";
+
+.a {
+  /* get --x value */
+  color: var(--x);
+}
+
+.b {
+  /* set/override --x value */
+  --x: gold;
+
+  /* get override 'gold' value */
+  background-color: var(--x); /* gold */
 }
 ```
 
-```jsx
-import { classes } from "./entry.st.css";
+## Runtime
 
-<div className={classes.root} style={{ "--color": "red" }} />;
+A custom property can be used dynamically in JavaScript.
+
+<!-- prettier-ignore-start -->
+
+```css title="comp.st.css"
+@property --x;
 ```
 
-:::note
+```jsx title="comp.jsx"
+import { vars } from './comp.st.css';
 
-Accessing any globally defined variable on the stylesheet will return its global name (un-scoped).
+/* inline style set property value */
+<div style={{ [vars.x]: 'pink' }} />;
+```
 
-:::
+<!-- prettier-ignore-start -->
+
+## Namespace
+
+Stylable automatically namespace any CSS custom property name according to the stylesheet it is defined in.
+
+```css
+@property --x {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: green;
+}
+.a {
+  --x: var(--x);
+}
+
+/* OUTPUT */
+@property --NAMESPACE-x {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: green;
+}
+.NAMESPACE__a {
+  --NAMESPACE-x: var(--NAMESPACE-x);
+}
+```
+
+### Disable namespace
+
+In some cases the default namespace behavior in unwanted. In such cases, `st-global` can be used to mark a custom property definition as global.
+
+```css
+@property st-global(--x) {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: green;
+}
+
+.a {
+  --x: var(--x);
+}
+
+/* OUTPUT */
+@property --x {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: green;
+}
+
+.NAMESPACE__a {
+  --x: var(--x);
+}
+```
