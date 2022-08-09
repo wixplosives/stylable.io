@@ -1,141 +1,175 @@
 ---
 id: st-variables
-title: Stylable Variable
+title: Variables
 ---
 
-Use variables to define common values to be used across the stylesheet and so they can be exposed for sharing and theming.
-These variables are used only during build-time and have no impact on the resulting runtime code.
+Stylable variables provide a way to define common values to be used across the stylesheet and exposed for sharing and theming.
+These variables are used only during build-time and have no runtime impact.
 
-If you wish to use dynamic variables, and to change their values during runtime, see [css custom properties (vars)](./css-vars.md) for further details.
+If you wish to use native dynamic variables, that can change value during runtime, see [css custom properties](./css-vars.md) for further details.
 
-:::important
+## Syntax
 
-Variables are scoped to the specific stylesheet and do not conflict with variables from another stylesheet.
+Use the `:vars` top level rule to define build variables.
 
-:::
+### Define
 
-## Use in stylesheet
+To define a variable, add a variable declaration within a `:vars` ruleset.
 
-Use the syntax `:vars` to define variables, and apply them with a `value()`:
-
-```css title="example1.st.css"
+```css
 :vars {
-  color1: red;
-  color2: green;
-}
-.root {
-  color: value(color1);
-  background: value(color2);
-}
+  /* define x with value green */
+  x: green;
 
-/* OUTPUT */
-.example1__root {
-  color: red; /* color1 */
-  background: green; /* color2 */
+  /* define y with value blue */
+  y: blue;
 }
 ```
 
-## Import variables
+### Evaluate
 
-Any var defined in a stylesheet is exported as a named export and can be [imported](./imports.md) by other stylesheets.
+To get a variable value, use the `value()` function with the variable name as the first argument.
+
+<!-- prettier-ignore-start -->
+```css
+.a {
+  /* evaluate in declaration value */
+  color: value(x);
+
+  /* compose in declaration value */
+  background: url(a.jpg) no-repeat, url(b.jpg) repeat-x value(x);
+}
+
+/* set media params from a variable */
+@media value(y) {}
+```
+<!-- prettier-ignore-end -->
+
+### Compose
+
+Variables can be composed into a declaration value.
+
+```css
+:vars {
+  x: green;
+
+  /* define y with the value green from x */
+  y: value(x);
+
+  /* define z with composed x value */
+  z: red, value(x), blue;
+}
+```
+
+### Array
+
+Use `st-array` to define a variable that holds a list of values that can be accessed by zero-based index.
+
+```css
+:vars {
+  /* comma separated list */
+  colors: st-array(red, green, blue);
+}
+
+.a {
+  /* access 2nd cell value */
+  color: value(colors, 1); /* green */
+}
+```
+
+### Map
+
+Use `st-map` to define a variable that holds key/value pairs that can be accessed by key.
+
+<!-- prettier-ignore-start -->
+```css
+:vars {
+  /* comma separated key/value pairs */
+  colors: st-map(
+    bg   black, 
+    text gold,
+  );
+}
+
+.a {
+  /* access 'text' key value */
+  color: value(colors, text); /* gold */
+}
+```
+<!-- prettier-ignore-end -->
+
+:::note map delimiters
+Each key/value pair uses a space as a delimiter between them, and a comma separates each pair.
+:::
+
+<!-- ### Nested -->
+<!-- ToDo: open this section once the referencing of array in map is fixed -->
+<!-- In the same way `st-map` and `st-array` can be defined with nested values, they can also reference other variables. -->
+
+<!-- prettier-ignore-start -->
+<!-- ```css
+:vars {
+  / single value /
+  singleColor: green;
+
+  / reference variable and inline values /
+  listOfColors: st-array(red, value(singleColor), blue);
+
+  mapColorThemes: st-map(
+    / inline list/
+    monochrome st-array(white, grey, black),
+    / referenced list variable /
+    colorful value(listOfColors),
+  );
+}
+
+.a {
+  / access 'colorful' key and then index 1 /
+  color: value(mapColorThemes, colorful, 1); / green /
+}
+``` -->
+<!-- prettier-ignore-end -->
+
+## Import and Export
+
+An exported build variable can be imported into another stylesheet with the [@st-import](./imports) at-rule.
 
 ```css title="example2.st.css"
-@st-import [color1, color2] from "./example1.st.css";
+@st-import [color1] from "./common.st.css";
 
-.root {
+.a {
+  /* compose color1 to border value*/
   border: 10px solid value(color1);
 }
-.root:hover {
-  border: 10px solid value(color2);
-}
-
-/* OUTPUT */
-.example2__root {
-  border: 10px solid red; /* color1 */
-}
-.example2__root:hover {
-  border: 10px solid green; /* color2 */
-}
 ```
 
-:::important
+## Runtime
 
-Imported variables are not exported from the stylesheet that has imported them. They can be imported only from the stylesheet in which they are declared.
+A build variable value can be accessed using the `stVars` mapping on the Stylable stylesheet runtime.
 
+<!-- prettier-ignore-start -->
+```jsx
+import { stVars } from './common.st.css';
+
+// map from local name to value
+stVars.color1;         // "green"
+stVars['dashed-name']; // "blue"
+```
+<!-- prettier-ignore-end -->
+
+:::important only local export
+Only build variables that are defined by the stylesheet are exported to Javascript - **imported onces are not!**
 :::
 
-## Compose variables
+## Custom variable
 
-You can set the value of a variable using another variable.
+:::danger experimental
+This API is not stable
+:::
 
-```css title="example3.st.css"
-@st-import [color1, color2] from "./example1.st.css";
+Composed data structures like `st-array` and `st-map` can be defined from Javascript. Take a look at `stBorder` from the [@stylable/custom-value](https://github.com/wix/stylable/tree/master/packages/custom-value) to see how it works.
 
-:vars {
-  border1: 10px solid value(color1); /* use color1 in a complex value */
-}
-.root {
-  border: value(border1); /* user border1 */
-}
-
-/* OUTPUT */
-.example3__root {
-  border: 10px solid red; /* 10px solid {color1} */
-}
-```
-
-## Advanced variable types
-
-You can use Stylable custom types when defining a variable to group multiple values under a shared context. This gives you a better way to define and manage variables in your stylesheet.
-
-Stylable does this by utilizing a type function in the variable definition and passing additional arguments to the `value()` function.
-
-### Stylable native variable types
-
-By default, Stylable exposes two types of variables that are available globally and do not require a special import:
-
-- `st-map`
-- `st-array`
-
-#### st-map
-
-Use the `st-map` function to provide an interface similar to a map. You can group variables by context and retrieve them by key.
-
-Its definition is comprised of key/value pairs with a space as a delimiter between them, and a comma as a separator between pairs.
-
-```css
-:vars {
-  colors: st-map(bg green, text red);
-}
-
-.root {
-  background-color: value(colors, bg); /* green */
-}
-```
-
-#### st-array
-
-Use the `st-array` function to provide an interface which is similar to an array. This enables you to group variables by context and retrieve them by their index.
-
-Its definition is comprised of values that are zero-based and comma separated.
-
-```css
-:vars {
-  colors: st-array(red, green);
-}
-
-.root {
-  background-color: value(colors, 1); /* green */
-}
-```
-
-### Custom variable type
-
-Stylable also offers a custom variable type, `stBorder`, that must be imported from the `@stylable/custom-value` [package](https://github.com/wix/stylable/tree/master/packages/custom-value).
-
-`stBorder` accepts three arguments, `size`, `style` and `color` in that order. When using the type, you can either invoke the entire border definition (by not passing an additional argument), or specific parts of it, according to their key.
-
-```css
+```css title="stBorder usage example"
 @st-import [stBorder] from "@stylable/custom-value";
 
 :vars {
@@ -148,9 +182,3 @@ Stylable also offers a custom variable type, `stBorder`, that must be imported f
   background-color: value(myBorder, color); /* green */
 }
 ```
-
-:::note
-
-`stBorder` is just the first of future custom variable types that will be available in Stylable.
-
-:::
