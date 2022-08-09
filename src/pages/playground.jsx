@@ -4,9 +4,8 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
 
 export default function Playground() {
-  useSyncUrlToPlaygroundFrame();
   const context = useDocusaurusContext();
-
+  const frame = usePlaygroundFrame();
   return (
     <Layout
       title={context.siteConfig.title}
@@ -14,15 +13,23 @@ export default function Playground() {
       noFooter={true}
       wrapperClassName={styles.playgroundWrapper}
     >
-      <iframe src={getFrameLocation()} frameBorder={0} />
+      <iframe ref={frame} frameBorder={0} />
     </Layout>
   );
 }
 
-function getFrameLocation() {
-  return typeof window !== 'undefined'
-    ? 'https://wixplosives.github.io/stylable-playground2/' + window.location.search
-    : 'https://wixplosives.github.io/stylable-playground2/';
+function usePlaygroundFrame() {
+  useSyncUrlToPlaygroundFrame();
+  const frame = useRef(null);
+  useEffect(() => {
+    if (frame.current) {
+      frame.current.src =
+        typeof window !== 'undefined'
+          ? 'https://wixplosives.github.io/stylable-playground2/' + window.location.search
+          : 'about:blank';
+    }
+  }, []);
+  return frame;
 }
 
 function useSyncUrlToPlaygroundFrame() {
