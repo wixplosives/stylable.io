@@ -22,7 +22,7 @@ export default function Playground() {
 function getFrameLocation() {
   return typeof window !== 'undefined'
     ? 'https://wixplosives.github.io/stylable-playground2/' + window.location.search
-    : 'about:blank';
+    : 'https://wixplosives.github.io/stylable-playground2/';
 }
 
 function useSyncUrlToPlaygroundFrame() {
