@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import Layout from "@theme/Layout";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import styles from "./styles.module.css";
+import React, { useEffect, useRef } from 'react';
+import Layout from '@theme/Layout';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import styles from './styles.module.css';
 
 export default function Playground() {
   useSyncUrlToPlaygroundFrame();
@@ -14,19 +14,15 @@ export default function Playground() {
       noFooter={true}
       wrapperClassName={styles.playgroundWrapper}
     >
-      <iframe
-        src={
-          "https://wixplosives.github.io/stylable-playground2/" +
-          getLocationSearch()
-        }
-        frameBorder={0}
-      />
+      <iframe src={getFrameLocation()} frameBorder={0} />
     </Layout>
   );
 }
 
-function getLocationSearch() {
-  return typeof window !== "undefined" ? window.location.search : "";
+function getFrameLocation() {
+  return typeof window !== 'undefined'
+    ? 'https://wixplosives.github.io/stylable-playground2/' + window.location.search
+    : 'about:blank';
 }
 
 function useSyncUrlToPlaygroundFrame() {
@@ -34,12 +30,12 @@ function useSyncUrlToPlaygroundFrame() {
     const handler = ({ data }) => {
       if (data?.infoResponse?.location) {
         const loc = JSON.parse(data.infoResponse.location);
-        history.replaceState({}, "", location.pathname + loc.search);
+        history.replaceState({}, '', location.pathname + loc.search);
       }
     };
-    window.addEventListener("message", handler);
+    window.addEventListener('message', handler);
     return () => {
-      window.removeEventListener("message", handler);
+      window.removeEventListener('message', handler);
     };
   });
 }
