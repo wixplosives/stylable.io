@@ -3,14 +3,15 @@ id: css-vars
 title: Custom Property
 ---
 
-CSS `custom property` is used to dynamically pass custom values at runtime.
+CSS `custom property` is used to define and re-use variables that participate in the cascade, and to dynamically change their values at runtime.
 
-This page goes over how Stylable handles with `custom properties`, for more details about the language feature itself, checkout the following resources:
+This page goes over how Stylable handles `custom properties`, for more details about the language feature itself, checkout the following resources:
 
 - [MDN custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
 - [MDN @property](https://developer.mozilla.org/en-US/docs/Web/CSS/@property)
 - [MDN var()](https://developer.mozilla.org/en-US/docs/Web/CSS/var)
 - [MDN - Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
+- [Custom properties in spec](https://drafts.csswg.org/css-variables/)
 - [Smashing Magazine - It's Time To Start Using CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
 
 ## syntax
@@ -66,14 +67,14 @@ Use `@property` at-rule to register a configuration for a runtime property:
 
 ### Build only definition
 
-To define a custom property to be used outside of stylesheet, without explicitly registering it in runtime or using it as a declaration property or value, you can define the `@property` at-rule without a body:
+To define a custom property to be used outside of a stylesheet, without explicitly registering its runtime type or using it as a declaration property or value, you can define the `@property` at-rule without a body:
 
 ```css
 @property --x;
 ```
 
 :::info removed at build
-A property with no configuration body is removed at `build-time` as it is un-useful at `runtime`
+A property with no configuration body is removed at `build-time` as it serves no purpose during `runtime`
 :::
 
 ## Comparison to build vars
@@ -82,7 +83,7 @@ A property with no configuration body is removed at `build-time` as it is un-use
 
 Stylable variables exist only in your source code, and get replaced during build. They serve well for calculations that are not supported by native CSS, reducing code repetition, increasing readability and can benefit any static theme or styling without incurring any runtime performance cost.
 
-CSS custom properties on the other hand do incur a small runtime cost, but offer the ability to override their values during runtime, allowing native CSS dynamic styling.
+CSS custom properties on the other hand do incur a very small runtime cost, but offer the ability to override their values during runtime, allowing for native CSS dynamic styling.
 
 ## Import and Export
 
@@ -151,7 +152,7 @@ Stylable automatically namespace any CSS custom property name according to the s
 
 ### Disable namespace
 
-In some cases the default namespace behavior in unwanted. In such cases, `st-global` can be used to mark a custom property definition as global.
+In cases where the default namespace behavior is not wanted, `st-global` can be used to mark a custom property definition as global.
 
 ```css
 @property st-global(--x) {
