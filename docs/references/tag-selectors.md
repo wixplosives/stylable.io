@@ -11,7 +11,7 @@ This page goes over how Stylable handles `type selector`, for more details about
 
 ### Native element
 
-A Native element has no special support in Stylable
+A Native element requires no special support in Stylable.
 
 <!-- prettier-ignore-start -->
 ```css
@@ -51,7 +51,7 @@ div.root {}
 ```
 
 :::tip reuse scope
-scope with [@st-scope](./st-scope.md) at-rule minimize selector verbosity.
+Scope rules with the [`@st-scope`](./st-scope.md) at-rule to minimize selector verbosity.
 ```css
 @st-scope .root {
   div {}
@@ -91,7 +91,7 @@ Elements are not available on the Stylable stylesheet runtime.
 
 ## Namespace
 
-Native elements are not namespaced, However, if an element originates from a class, like an component element, then it is transformed at build
+Native elements are not namespaced. However, if an element originates from a class, like a component element default import, then it is transformed during build.
 
 <!-- prettier-ignore-start -->
 ```css title="entry.st.css"
