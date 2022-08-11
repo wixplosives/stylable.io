@@ -63,7 +63,7 @@ Variables can be composed into a declaration value.
 
 ### Array
 
-Use `st-array` to define a variable that holds a list of values that can be accessed by zero-based index.
+Use `st-array` to define a variable that holds a list of comma separated values that can be accessed by a zero-based index as the second argument to the `value()` function.
 
 ```css
 :vars {
@@ -79,7 +79,9 @@ Use `st-array` to define a variable that holds a list of values that can be acce
 
 ### Map
 
-Use `st-map` to define a variable that holds key/value pairs that can be accessed by key.
+Use `st-map` to define a variable that holds key/value pairs with a space as a delimiter between them, and a comma separating each pair.
+
+These values can then be accessed by providing the key as the second argument to the `value()` function.
 
 <!-- prettier-ignore-start -->
 ```css
@@ -97,10 +99,6 @@ Use `st-map` to define a variable that holds key/value pairs that can be accesse
 }
 ```
 <!-- prettier-ignore-end -->
-
-:::note map delimiters
-Each key/value pair uses a space as a delimiter between them, and a comma separates each pair.
-:::
 
 <!-- ### Nested -->
 <!-- ToDo: open this section once the referencing of array in map is fixed -->
@@ -157,8 +155,8 @@ stVars['dashed-name']; // "blue"
 ```
 <!-- prettier-ignore-end -->
 
-:::important only local export
-Only build variables that are defined by the stylesheet are exported to Javascript - **imported onces are not!**
+:::important local export only
+Only build variables that are defined by the stylesheet are exported to Javascript - **imported ones are not!**
 :::
 
 ## Custom variable
