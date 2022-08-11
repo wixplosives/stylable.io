@@ -80,7 +80,7 @@ module.exports = {
                 'references/layer',
                 'references/pseudo-classes',
                 'references/pseudo-elements',
-                'references/tag-selectors',
+                'references/type-selectors',
                 'references/using-external-assets',
             ],
         },

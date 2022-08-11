@@ -1,107 +1,107 @@
 ---
-id: tag-selectors
+id: type-selectors
 title: Type Selector
 ---
 
-Like CSS [type selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors), **Stylable** element `Type selectors` can match the names of elements in the DOM.
+A CSS `type selector` is used to target DOM elements according to their tag name.
 
-Element type selectors are **not** scoped themselves. Other selectors used with an element selector can be scoped. For example if a [class selector](./class-selectors.md) is used with a element selector, the class is scoped and the element selector is not. The matching qualified name of an element selector can therefore target any element in the subtree of the component.
+This page goes over how Stylable handles `type selector`, for more details about the language feature itself, checkout [MDN type selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors).
 
-## Native element
+## Syntax
 
-Targeting a native element matches any element with the same element name that is found in a prefix selector. The prefix selector could be a class selector or the root.
+### Native element
 
-To target **all** elements of a certain type in your project, use a [`global selector`](./global-selectors.md).
+A native element behaves exactly as it does in CSS, and requires no special treatment in Stylable.
 
-```css title="page.st.css"
-.root form {
-  background: green;
-}
-.sideBar:hover form {
-  background: red;
-}
-:global(span) {
-  background: blue;
-}
+<!-- prettier-ignore-start -->
+```css
+/* scoped under local class */
+.root div {} 
 
-/* OUTPUT - form is scoped to the page - affects any nested instance */
-.page__root form {
-  background: green;
-}
-.page__sideBar:hover form {
-  background: red;
-}
-span {
-  /* affects *ALL* spans in your application */
-  background: blue;
-}
+/* scoped to local class */
+div.root  {} 
+```
+<!-- prettier-ignore-end -->
+
+### Component element
+
+Use a **capital first letter** to refer to a [default import](./imports.md#default-import) of a stylesheet [root](./root.md).
+
+<!-- prettier-ignore-start -->
+```css
+@st-import Comp from './comp.st.css';
+
+/* style all Comp nested under root */
+.root Comp {}
+```
+<!-- prettier-ignore-end -->
+
+## Scoping
+
+Stylable validates that a type selector is scoped to the stylesheet it is in. To target a type selector, compound it or scope it under a local class in order to avoid styling unrelated elements outside the scope of the stylesheet.
+
+<!-- prettier-ignore-start -->
+```css
+/* error - unscoped selector */
+div {}
+
+/* valid */
+.root div {}
+div.root {}
 ```
 
-:::note
-
-The value `form` itself is not namespaced.
-
+:::tip reuse scope
+Scope rules with the [`@st-scope`](./st-scope.md) at-rule to minimize selector verbosity.
+```css
+@st-scope .root {
+  div {}
+}
+```
 :::
+<!-- prettier-ignore-end -->
 
-```jsx title="comp.jsx"
-import React from 'react';
-import { style, classes } from './comp.st.css';
+## Import and Export
 
-class Comp extends React.Component {
-  render() {
-    return (
-      <div className={style(classes.root, this.props.className)}>
-        <div className={classes.sideBar}>
-          <form /> /* green background and red while hovering parent */
-        </div>
-        <form /> /* green background */
-        <span /> /* blue background */
-      </div>
-    );
-  }
-}
+Component elements, with **capital first letter**, can be exported from a stylesheet **if used** in a selector. You can import them within the `@st-import` [named import](./imports.md#named-import) brackets.
+
+<!-- prettier-ignore-start -->
+```css title="index.st.css"
+@st-import Button from './button.st.css';
+@st-import Menu from './menu.st.css';
+
+.root Button {}
+.root Menu {}
 ```
 
-## Component element
+```css title="theme.st.css"
+@st-import [Button, Menu] from './index.st.css';
 
-When the value of a stylesheet is [imported](./imports.md) with a **capital first letter**, it can be used as a component element selector.
-
-```css title="page.st.css"
-@st-import ToggleButton from "./toggle-button.st.css";
-
-.root ToggleButton {
-  background: green;
-}
-.sideBar:hover ToggleButton {
-  background: red;
-}
-
-/* OUTPUT - ToggleButton is scoped to the page, affects any nested toggle button */
-.page__root .toggleButton__root {
-  background: green;
-}
-.page__sideBar:hover .toggleButton__root {
-  background: red;
+@st-scope .root {
+  /* customize all buttons nested in theme root */
+  Button {}
+  /* customize all menus nested in theme root */
+  Menu {}
 }
 ```
+<!-- prettier-ignore-end -->
 
-```jsx title="comp.jsx"
-import React from 'react';
-import { style, classes } from './comp.st.css';
+## Runtime
 
-/* React implementation - button component uses toggle-button.css */
-import ToggleButton from './toggle-button';
+Elements are not available on the Stylable stylesheet runtime.
 
-class Comp extends React.Component {
-  render() {
-    return (
-      <div className={style(classes.root, this.props.className)}>
-        <div className={classes.sideBar}>
-          <ToggleButton /> /* green background and red while hovering parent */
-        </div>
-        <ToggleButton /> /* green background */
-      </div>
-    );
-  }
-}
+## Namespace
+
+Native elements are not namespaced. However, if an element originates from a class, like a component element default import, then it is transformed during build.
+
+<!-- prettier-ignore-start -->
+```css title="entry.st.css"
+@st-import Button from './button.st.css';
+
+.root Button {}
+.root div {}
+
+/* OUTPUT */
+.entry__root .button__root {}
+.entry__root div {}
 ```
+<!-- prettier-ignore-end -->
