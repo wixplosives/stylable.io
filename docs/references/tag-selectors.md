@@ -11,7 +11,7 @@ This page goes over how Stylable handles `type selector`, for more details about
 
 ### Native element
 
-A Native element requires no special support in Stylable.
+A native element behaves exactly as it does in CSS, and requires no special treatment in Stylable.
 
 <!-- prettier-ignore-start -->
 ```css
