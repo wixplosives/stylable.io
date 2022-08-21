@@ -3,7 +3,7 @@ id: typescript-integration
 title: TypeScript
 ---
 
-Whenever a TypeScript file imports a Stylable stylesheet, you must provide a type for it because TypeScript has no way of knowing what's inside Stylable `*.st.css` files.
+Whenever a TypeScript file imports a Stylable stylesheet, you must provide a type for it. This is because TypeScript has no way of knowing what is inside of Stylable `*.st.css` files.
 
 ```ts title="Import example"
 import { classes } from './button.st.css'; // requires typings
