@@ -3,7 +3,7 @@ id: typescript-integration
 title: TypeScript
 ---
 
-In a project that includes both TypeScript and Stylable, TypeScript has no way of knowing what is inside an `*.st.css` file, and so whenever a TypeScript file imports a Stylable stylesheet you must provide a type for it.
+Whenever a TypeScript file imports a Stylable stylesheet, you must provide a type for it because TypeScript has no way of knowing what's inside Stylable `*.st.css` files.
 
 ```ts title="Import example"
 import { classes } from './button.st.css'; // requires typings
@@ -17,10 +17,10 @@ Stylable can generate a declaration file for each stylesheet. This approach has 
 
 ### Generated files
 
-Stylable generates two kinds of type related files:
+Stylable generates two kinds of type-related files:
 
-- `*.d.ts` provide typing for the stylesheet runtime API
-- `*.d.ts.map` provide mapping from the generated `.d.ts` file to the original `.st.css` stylesheet. This allows jumping to definition in the original source straight from the TypeScript file.
+- `*.d.ts` provides typing for the stylesheet runtime API
+- `*.d.ts.map` provides mapping from the generated `.d.ts` file to the original `.st.css` stylesheet. This allows jumping to definitions in the original source straight from the TypeScript file.
 
 Type definitions that are generated adjacent to the stylesheet would be automatically detected and used by TypeScript. However, this can cause bloat in the project source files.
 
@@ -37,7 +37,7 @@ To prevent clutter in your project, we recommend that you generate all styleshee
     └── button.st.css.d.ts.map  - type definition source-map
 ```
 
-You'll then need to configure TypeScript to use that directory. To do so, modify your `tsconfig.json` to specify two `rootDirs`: your source files, and the generated typings (learn more about this by reading the [`tsconfig.json` documentation](https://www.typescriptlang.org/tsconfig#rootDirs)):
+You'll then need to configure TypeScript to use that directory. To do this, modify your `tsconfig.json` to specify two `rootDirs`: your source files, and the generated typings (learn more about this by reading the [`tsconfig.json` documentation](https://www.typescriptlang.org/tsconfig#rootDirs)):
 
 ```jsonc title="tsconfig.json"
 {
@@ -100,7 +100,7 @@ stylableRollupPlugin({ stcConfig: true });
 
 ## Global definition
 
-If you choose not to generate `.d.ts` typings for each stylesheet, then it is required that you include in your project a general purpose `*.st.css` global declaration. This provides a broad signature of a Stylable stylesheet.
+If you choose not to generate `.d.ts` typings for each stylesheet, you'll have to include in your project a general purpose `*.st.css` global declaration. This provides a broad signature of a Stylable stylesheet.
 
 To do this, create a `globals.d.ts` file in your `./src` directory and add the following declaration:
 
@@ -115,7 +115,7 @@ declare module '*.st.css' {
 
 ### Typing 3rd-party stylesheets
 
-If your project generates `.d.ts` typings for each stylesheet, but a package you are consuming published `.st.css` files without typings, then you will have to declare global typings for that specific package.
+If your project generates `.d.ts` typings for each stylesheet but you're consuming a package that published `.st.css` files without typings, you will have to declare global typings for that specific package.
 
 ```ts title="globals.d.ts"
 declare module 'third-party-package/*.st.css' {
