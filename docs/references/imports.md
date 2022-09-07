@@ -58,7 +58,7 @@ Use the `as` keyword to map an export name to a local name.
 
 ## Stylable stylesheet
 
-When importing from a stylesheet, the [root](./root.md) class is mapped to the default export, and several named symbols can be referenced by name:
+When importing from a stylesheet, the [root](./root.md#default-export) class is mapped to the default export, and several named symbols can be referenced by name:
 
 <!-- prettier-ignore-start -->
 ```css title="origin.st.css"
