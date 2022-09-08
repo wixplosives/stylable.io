@@ -3,12 +3,12 @@ id: storybook-integration
 title: Storybook
 ---
 
-To integrate Stylable with Storybook, configure your Storybook webpack configuration and add the following snippet.
+To integrate Stylable with Storybook, you need to do two things:
 
-This snippet basically does two things:
+1. Exclude Stylable files (`*.st.css`) from all other existing CSS loaders.
+2. Add `StylableWebpackPlugin` to the webpack configuration.
 
-1. Excludes Stylable files (`*.st.css`) from all other existing CSS loaders
-2. Adds `StylableWebpackPlugin` to the webpack configuration
+Add the following snippit to your Storybook webpack configuration to get these two actions done:
 
 ```js
 const {
@@ -32,6 +32,6 @@ module.exports = {
 
 :::caution
 
-This snippet should work for the default Storybook configuration while having assumptions about the structure of the webpack configuration file, and so this might break in future releases.
+This snippet should work with default Storybook configuration. It assumes some things about the structure of the file which might not be true in future releases of Storybook.
 
 :::
