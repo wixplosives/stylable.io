@@ -4,35 +4,75 @@ title: Root
 layout: docs
 ---
 
-Every Stylable stylesheet has a reserved class called `root` that matches the root node of the component.
-
-The `root` class is used to signify a rendering component top-level where a new scope of namespacing is created. Each component is responsible for placing the `root` class on its top-level node for itself.
-
-You can apply default styling and behavior to the component on the root class itself.
-
-If the root class exists and is being used, all other classes defined in the stylesheet are assumed to be nested under the `root` class (at any depth).
-
-## Examples
+Every Stylable stylesheet has a reserved class called `root` that matches the root node of the component. The `root` class is used to signify the component top-level node where a new namespace scope is created.
 
 <!-- prettier-ignore-start -->
 ```css
-.root { background: red; } /* set component background to red */
+.root { 
+  /* set component background */
+  background: white; 
+} 
 
 /* OUTPUT */
-.NAMESPACE__root { background: red; }
+.NAMESPACE__root { 
+  background: white; 
+}
 ```
 <!-- prettier-ignore-end -->
 
-The `root` class name can be applied to a component node by using our [runtime API](./runtime.md).
+## Default export
 
+The root of a stylesheet can be referenced in other stylesheets by using the [default import](./imports.md#default-import).
+
+<!-- prettier-ignore-start -->
+```css title="page.st.css"
+@st-import DropDown from './dropdown.st.css';
+
+/* style any dropdown component background 
+  nested under the page root */
+.root DropDown {
+  background: salmon;
+}
+
+/* OUTPUT */
+.page__root .dropdown__root { 
+  background: salmon; 
+}
+```
+<!-- prettier-ignore-end -->
+
+## Runtime
+
+Each component is responsible for placing the `root` class on its top-level node using the [runtime API](./runtime.md).
+
+### simple example
+
+<!-- prettier-ignore-start -->
+```jsx title="comp.jsx"
+import { classes } from './comp.st.css';
+
+function Comp() {
+  return <div className={classes.root}></div>;
+}
+```
+<!-- prettier-ignore-end -->
+
+### root + state + customize
+
+The following example uses the [st() function](./runtime.md#st-function) to add multiple classes:
+
+1. the component root class
+2. state classes
+3. classes passed from props for customizations
+
+<!-- prettier-ignore-start -->
 ```jsx title="comp.jsx"
 import { st, classes } from './comp.st.css';
 
 function Comp({ className }) {
-  return <div className={st(classes.root, {}, className)}></div>;
+  return (
+    <div className={st(classes.root, {/*states*/}, className)}></div>
+  );
 }
 ```
-
-:::tip
-Root can also define [states](./pseudo-classes) and [extend another component](./extend-stylesheet.md).
-:::
+<!-- prettier-ignore-end -->
