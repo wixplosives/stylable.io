@@ -21,7 +21,7 @@ Using `yarn`:
 yarn create stylable-app <project-name>
 ```
 
-For the `<project-name>` placeholder above, replace with the name of your project, Once you run the command, a directory with that same name is created. Go to that directory and run `npm start` to view the project in a browser, or`npm run build` to build your project's target code.
+For the `<project-name>` placeholder above, replace with the name of your project, Once you run the command, a directory with that same name is created. Go to that directory and run `npm start` to view the project in a browser, or `npm run build` to build your project's target code.
 
 The project includes several basic components and **Stylable** stylesheets with the suffix `.st.css`.
 
@@ -43,7 +43,7 @@ yarn create stylable-app <project-name> --template ts-react-rollup
 
 ## Working with an existing project
 
-There are several different integrations for stylable to pick from:
+There are several integrations for Stylable to pick from:
 
 - [Webpack integration](./webpack-integration.md)
 - [Rollup integration](./rollup-integration.md)

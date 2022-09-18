@@ -3,7 +3,7 @@ id: typescript-integration
 title: TypeScript
 ---
 
-Whenever a TypeScript file imports a Stylable stylesheet, you must provide a type for it. This is because TypeScript has no way of knowing what is inside of Stylable `*.st.css` files.
+Whenever a TypeScript file imports a Stylable stylesheet, you must provide a type for it. This is because TypeScript has no way of knowing what's inside Stylable `*.st.css` files.
 
 ```ts title="Import example"
 import { classes } from './button.st.css'; // requires typings
@@ -11,7 +11,7 @@ import { classes } from './button.st.css'; // requires typings
 
 <!-- ## Define stylesheet types -->
 
-## Generating type per stylesheet
+## Generating types per stylesheet
 
 Stylable can generate a declaration file for each stylesheet. This approach has the advantage of providing exact typing information for each individual [stylesheet runtime API](../references/runtime.md).
 
@@ -19,12 +19,10 @@ Stylable can generate a declaration file for each stylesheet. This approach has 
 
 Stylable generates two kinds of type-related files:
 
-- `*.d.ts` provides typing for the stylesheet runtime API
+- `*.d.ts` provides typing for the stylesheet runtime API.
 - `*.d.ts.map` provides mapping from the generated `.d.ts` file to the original `.st.css` stylesheet. This allows jumping to definitions in the original source straight from the TypeScript file.
 
-Type definitions that are generated adjacent to the stylesheet would be automatically detected and used by TypeScript. However, this can cause bloat in the project source files.
-
-To prevent clutter in your project, we recommend that you generate all stylesheet typings to a single directory.
+Type definitions that are generated adjacent to the stylesheet are automatically detected and used by TypeScript. This can cause bloat in the project source files, however. To prevent clutter in your project, we recommend that you generate all stylesheet typings to a single directory.
 
 ```
 /* type files grouped in st-types folder */
@@ -37,7 +35,7 @@ To prevent clutter in your project, we recommend that you generate all styleshee
     └── button.st.css.d.ts.map  - type definition source-map
 ```
 
-You'll then need to configure TypeScript to use that directory. To do this, modify your `tsconfig.json` to specify two `rootDirs`: your source files, and the generated typings (learn more about this by reading the [`tsconfig.json` documentation](https://www.typescriptlang.org/tsconfig#rootDirs)):
+You'll then need to configure TypeScript to use that directory. To do this, modify your `tsconfig.json` to specify two `rootDirs` - your source files, and the generated typings (learn more about this by reading the [`tsconfig.json` documentation](https://www.typescriptlang.org/tsconfig#rootDirs)) like this:
 
 ```jsonc title="tsconfig.json"
 {
