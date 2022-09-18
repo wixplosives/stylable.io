@@ -58,7 +58,11 @@ The `applyWebpackConfigStylableExcludes` export and `filterAssets` flag are avai
 
 ### Using 3rd-party stylesheets
 
-If your project consumes any 3rd-party Stylable stylesheets, additional configuration is required to ensure that they will be handled by `@stylable/webpack-plugin`.
+If your project consumes any 3rd-party Stylable stylesheets, additional configuration is required to ensure that they will be handled by `@stylable/webpack-plugin`:
+
+1. Add an import to `bundleServerLibs` from `@stylable/webpack-plugin`
+2. Use the `isServer` flag from the webpack configuration context in the second argument 
+3. Call `bundleServerLibs` with the webpack `config`, packages to bundle, and the `isServer` flag
 
 #### Example Configuration:
 
@@ -67,7 +71,8 @@ If your project consumes any 3rd-party Stylable stylesheets, additional configur
 ```js title="next.config.js"
 const { 
   StylableWebpackPlugin,
-  applyWebpackConfigStylableExcludes 
+  applyWebpackConfigStylableExcludes,
+  bundleServerLibs
 } = require('@stylable/webpack-plugin');
 
 /* 
@@ -78,14 +83,12 @@ const StylableOptimizer = require('@stylable/optimizer').StylableOptimizer;
 const stylableOptimizer = new StylableOptimizer();
 
 module.exports = {
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     /* exclude Stylable files from all other loaders */
     applyWebpackConfigStylableExcludes(config);
     
-    if (isServer) {
-     // causes provided packages to be bundled (not external)
-     bundleLibs(config, new Set(['PACKAGE1', 'PACKAGE2']));
-    }
+    // causes provided packages to be bundled (not external)
+    bundleServerLibs(config, new Set(['PACKAGE1', 'PACKAGE2'], isServer));
 
     /* add the Stylable plugin to the webpack configuration */
     config.plugins.push(
@@ -103,28 +106,6 @@ module.exports = {
     return config;
   },
 };
-
-function bundleLibs(config, packages) {
-  if (!Array.isArray(config.externals) && 
-      config.externals.length === 1 && 
-      typeof config.externals[0] === 'function') {
-    throw new Error(
-      'Invalid configuration: expected config.externals to be an Array with a single function. got ' +
-        JSON.stringify(config.externals)
-    );
-  }
-  const nextExternals = config.externals[0];
-  config.externals = [
-    async (ctx) => {
-      for (const pack of packages) {
-        if (ctx.request.startsWith(pack)) {
-          return false;
-        }
-      }
-      return nextExternals(ctx);
-    },
-  ];
-}
 ```
 
 <!-- prettier-ignore-end -->
