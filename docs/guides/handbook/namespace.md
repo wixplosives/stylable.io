@@ -19,6 +19,7 @@ Symbols that Stylable namespaces:
 | Custom property | `--bgColor`        | `--NAMESPACE-bgColor`         |
 | Keyframes       | `@keyframes slide` | `@keyframes NAMESPACE__slide` |
 | Layer           | `@layer theme`     | `@layer NAMESPACE__theme`     |
+| Container       | `container: panel` | `container: NAEMSPACE__panel` |
 
 :::note
 Stylable does not namespace `id`, `custom-element`, `attribute`, or other symbols at the moment, but may add additional symbol namespacing support in the future.
@@ -59,6 +60,7 @@ We can avoid namespacing for all symbols (except classes) by using the `st-globa
 - `@property st-global(--bgColor)` - [read more](../../references/css-vars#disable-namespace)
 - `@keyframes st-global(slide)` - [read more](../../references/keyframes#disable-namespace)
 - `@layer st-global(theme)` - [read more](../../references/layer#disable-namespace)
+- `container: st-global(panel)` - [read more](../../references/contains#disable-namespace)
 
 Unlike the other symbols that are mapped from a local name to their global one, when we map a class using `-st-global`, we can define a global selector that will replace it.
 
