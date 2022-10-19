@@ -18,7 +18,7 @@ For example, we need to:
 
 ## Mapped symbols
 
-The namespacing chapter covered the basics of namespacing in Stylable, and in it, we saw that in Stylable, **classes, custom-properties, keyframes, layers and containers** all receive namespacing to avoid conflicts.
+The namespacing chapter covered the basics of namespacing in Stylable, and in it, we saw that in Stylable, **classes, custom-properties, keyframes, layers, and containers** all receive namespacing to avoid conflicts.
 
 ### Import example
 
