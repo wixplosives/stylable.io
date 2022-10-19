@@ -39,7 +39,7 @@ This page goes over how Stylable handles the `container-name` declaration and th
 
 ## Import and Export
 
-An exported container can be imported into another stylesheet with the [@st-import](./imports.md) atrule.
+An exported container can be imported into another stylesheet with the [@st-import](./imports.md) at-rule.
 
 **Style nested container rules**
 
