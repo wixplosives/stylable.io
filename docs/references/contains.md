@@ -5,7 +5,7 @@ title: Containers
 
 CSS container queries are used to target and style an element depending on the conditions of a container it is nested within.
 
-This page goes over how Stylable handles the `container-name` declaration and the `@container` at-rule, for more details about the language feature itself, checkout the following resources:
+This page goes over how Stylable handles the `container-name` declaration and the `@container` at-rule, for more details about the language feature itself, check out the following resources:
 
 - [MDN CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries)
 - [CSS contains spec](https://drafts.csswg.org/css-contain-3)
