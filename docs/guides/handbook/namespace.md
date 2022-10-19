@@ -19,7 +19,7 @@ Symbols that Stylable namespaces:
 | Custom property | `--bgColor`        | `--NAMESPACE-bgColor`         |
 | Keyframes       | `@keyframes slide` | `@keyframes NAMESPACE__slide` |
 | Layer           | `@layer theme`     | `@layer NAMESPACE__theme`     |
-| Container       | `container: panel` | `container: NAEMSPACE__panel` |
+| Container       | `container: panel` | `container: NAMESPACE__panel` |
 
 :::note
 Stylable does not namespace `id`, `custom-element`, `attribute`, or other symbols at the moment, but may add additional symbol namespacing support in the future.
