@@ -1,9 +1,10 @@
 ---
 id: stylable-intelligence
 title: Stylable Intelligence
+sidebar_label: VSCode Extension
 ---
 
-**Stylable Intelligence** is an extension implementing the Language Server Protocol that provides IDE support for **Stylable**. It currently includes:
+**Stylable Intelligence** is an extension implementing the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) that provides IDE support for **Stylable**. It currently includes:
 
 - Syntax highlighting
 - Code completion
@@ -16,7 +17,7 @@ You can install **Stylable Intelligence** from the [Visual Studio Code market](h
 
 - In Visual Studio Code, click the **Extensions** icon to open the market.
 - In the search field, enter **Stylable Intelligence**.
-- Install the extention and reload the window when prompted.
+- Install the extension and reload the window when prompted.
 
 ## IDE extensions
 

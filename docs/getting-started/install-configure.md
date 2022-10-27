@@ -51,11 +51,11 @@ There are several integrations for Stylable to pick from:
 
 ## Language server
 
-To take advantage of code completion and diagnostics, install [**Stylable Intelligence**](./stylable-intelligence.md) (currently only supported for Visual Studio Code).
+To take advantage of code completion and diagnostics, install [**Stylable Intelligence**](./tooling/stylable-intelligence) (currently only supported for Visual Studio Code).
 
 ## TypeScript support
 
-To configure Stylable to work with TypeScript, check out our [TypeScript Integration](./typescript-integration.md) guide.
+To configure Stylable to work with TypeScript, check out our [TypeScript Integration](./typescript-integration) guide.
 
 ## Write in Stylable
 

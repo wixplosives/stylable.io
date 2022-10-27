@@ -2,14 +2,19 @@ module.exports = {
     Discover: [
         'getting-started/intro',
         'getting-started/install-configure',
-        // {
-        //   type: "category",
-        //   label: "Tooling",
-        //   collapsed: false,
-        //   items: [
-        'getting-started/stylable-intelligence',
-        //   ],
-        // },
+        {
+            type: 'category',
+            label: 'Tooling',
+            collapsed: false,
+            // link: {
+            //     type: 'generated-index',
+            //     title: 'Integrations',
+            //     description: 'Click on one of our available integrations below to learn more about how to use it.',
+            //     slug: '/getting-started/integrations',
+            //     keywords: ['integrations'],
+            // },
+            items: ['getting-started/tooling/stylable-intelligence', 'getting-started/tooling/stylable-config'],
+        },
         {
             type: 'category',
             label: 'Integrations',
@@ -111,5 +116,6 @@ module.exports = {
             items: ['references/st-variables', 'references/mixins', 'references/formatters'],
         },
         'references/runtime',
+        'references/programmatic-api',
     ],
 };

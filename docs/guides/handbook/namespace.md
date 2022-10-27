@@ -80,6 +80,6 @@ To do so, we can use the `@st-namespace 'OverrideNamespace';` definition. [Click
 
 ## Project level namespacing
 
-On a more general level, we can have granular control of Stylable's namespacing process by passing a custom namespace resolver to Stylable at initialization using configuration.
+On a more general level, we can have granular control of Stylable's namespacing process by passing a [custom namespace resolver](../../getting-started/tooling/stylable-config#resolvenamespace) to Stylable at initialization using configuration.
 
 <!-- TODO: create stylable.config entry and link to it -->
