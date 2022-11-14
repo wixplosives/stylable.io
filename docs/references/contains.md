@@ -27,6 +27,10 @@ This page goes over how Stylable handles the `container-name` declaration and th
 }
 ```
 
+:::note soft definition
+A container name symbol is defined using the `container/container-name` declaration only when not explicitly defined by an import or a [global `@container` definition](#disable-namespace).
+:::
+
 **Usage**
 
 <!-- prettier-ignore-start -->
@@ -98,7 +102,7 @@ Stylable automatically namespaces any container name according to the stylesheet
 
 ### Disable namespace
 
-In some cases the default namespace behavior is unwanted. In such cases, `st-global` can be used to mark a container definition as global:
+In some cases the default namespace behavior is unwanted. In such cases, `st-global` can be used to set a container name as global:
 
 <!-- prettier-ignore-start -->
 ```css
@@ -106,7 +110,7 @@ In some cases the default namespace behavior is unwanted. In such cases, `st-glo
   container: st-global(panel);
 }
 
-@container panel (width > 100px) {}
+@container st-global(panel) (width > 100px) {}
 
 /* OUTPUT */
 .x {
@@ -117,18 +121,28 @@ In some cases the default namespace behavior is unwanted. In such cases, `st-glo
 ```
 <!-- prettier-ignore-end -->
 
-In case a container is not defined within a stylable stylesheet and is just used in a container query, the `st-global` function can be used directly in the `@container` at-rule.
+::note global without symbol deinition
+Setting `st-global` around the container name in either the declaration or container query only references a global container name, without creating a symbol that can later be imported or referenced.
+::
+
+To register a global container name symbol, that can be imported and referenced by other stylesheets, use the `@container` at-rule with no body or query:
 
 <!-- prettier-ignore-start -->
 ```css
-@container st-global(panel) (width > 100px) {}
+/* global panel container name definition */
+@container st-global(panel);
+
+.x {
+  container: panel;
+}
+@container panel (width > 100px) {}
+
 
 /* OUTPUT */
 
+.x {
+  container: panel;
+}
 @container panel (width > 100px) {}
 ```
 <!-- prettier-ignore-end -->
-
-:::info Referencing a global container name
-When `st-global` is used in the `@container` at-rule it doesn't register a symbol and is not available for import in another Stylesheet or in the JavaScript runtime.
-:::
