@@ -5,7 +5,6 @@ title: Runtime
 
 Imported Stylable stylesheets in JavaScript contain minimal runtime code to help define the structure and state of the component.
 
-
 <!-- prettier-ignore-start -->
 ```js
 /* index.jsx - stylesheet runtime api */
@@ -17,6 +16,7 @@ import {
     cssStates, // utility function for setting stylable states
     keyframes, // keyframes mapping
     layers     // layer mapping
+    containers,// container mapping
 } from "style.st.css";
 ```
 <!-- prettier-ignore-end -->
@@ -27,7 +27,7 @@ Any namespaced symbols, defined in the stylesheet, are exposed on maps from thei
 
 <!-- prettier-ignore-start -->
 ```js
-import { classes, vars, keyframes, layers } from 'style.st.css';
+import { classes, vars, keyframes, layers, containers } from 'style.st.css';
 
 // class
 classes.root;            // "style__root"
@@ -43,6 +43,9 @@ keyframes.slide          // "style__slide"
 
 // layers
 layers.theme             // "style__theme"
+
+// containers
+containers.panel         // "style__panel"
 ```
 <!-- prettier-ignore-end -->
 
@@ -55,6 +58,7 @@ The [root class](../references/root.md) is available even when it is not explici
 ## Build vars
 
 Local stylesheet [build vars](./variables.md) are exported with their set value.
+
 <!-- prettier-ignore-start -->
 ```css
 :vars {
@@ -79,11 +83,12 @@ A utility function for concatenating [classes](./class-selectors.md) and activat
 - multiple classes can be added with additional arguments
 
 **Multiple classes**
+
 ```js
 import { st, classes } from 'style.st.css';
 
 // namespaced part class + additional class
-st(classes.part, 'additional');  // "style__part additional"
+st(classes.part, 'additional'); // "style__part additional"
 
 // namespaced part class + multiple classes
 st(classes.part, 'a', 'b', 'c'); // "style__part a b c"
@@ -93,25 +98,27 @@ st(classes.part, 'a', undefined, 'c'); // "style__part a c"
 ```
 
 **State activation**
+
 ```js
 import { st, classes } from 'style.st.css';
 
 // namespaced a + isOn boolean state
-st(classes.a, {isOn: true}); // "style__a style--isOn"
+st(classes.a, { isOn: true }); // "style__a style--isOn"
 
 // namespaced a + multiple states
-st(classes.a, {x: true, y: false}); // "style__a style--x"
+st(classes.a, { x: true, y: false }); // "style__a style--x"
 
 // namespaced a + parameter
-st(classes.a, {rank: 'first'}); // "style__a style--rank-5-first"
+st(classes.a, { rank: 'first' }); // "style__a style--rank-5-first"
 ```
 
 **State activation + additional classes**
+
 ```js
 import { st, classes } from 'style.st.css';
 
 // namespaced a + isOn state + x class
-st(classes.a, {isOn: true}, 'x'); // "style__a style--isOn x"
+st(classes.a, { isOn: true }, 'x'); // "style__a style--isOn x"
 ```
 
 ## Custom state mapping

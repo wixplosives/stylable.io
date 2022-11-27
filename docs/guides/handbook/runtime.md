@@ -18,17 +18,18 @@ For example, we need to:
 
 ## Mapped symbols
 
-The namespacing chapter covered the basics of namespacing in Stylable, and in it, we saw that in Stylable, **classes, custom-properties, keyframes, and layers** all receive namespacing to avoid conflicts.
+The namespacing chapter covered the basics of namespacing in Stylable, and in it, we saw that in Stylable, **classes, custom-properties, keyframes, layers, and containers** all receive namespacing to avoid conflicts.
 
 ### Import example
 
 <!-- prettier-ignore-start -->
 ```js
 import {
-  classes,   // class mapping
-  vars,      // custom properties mapping
-  keyframes, // keyframes mapping
-  layers,    // layer mapping
+  classes,    // class mapping
+  vars,       // custom properties mapping
+  keyframes,  // keyframes mapping
+  layers,     // layer mapping
+  containers, // container mapping
 } from "./game.st.css";
 
 ```
@@ -40,6 +41,7 @@ import {
 | `vars`          | Custom property | `--player1Color`   | `--NS-player1Color`    |
 | `keyframes`     | Keyframes       | `@keyframes slide` | `@keyframes NS__slide` |
 | `layers`        | Layer           | `@layer theme`     | `@layer NS__theme`     |
+| `containers`    | Container       | `container: panel` | `container: NS__panel` |
 
 <!-- prettier-ignore-end -->
 
