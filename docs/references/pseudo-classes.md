@@ -271,3 +271,18 @@ To define a global mapped state, pass a selector as a string instead of a type:
 .NAMESPACE__x[dataSpinner] {}
 ```
 <!-- prettier-ignore-end -->
+
+Additionally a single parameter can be defined after the selector string and referenced in the selector string using `$0`:
+
+<!-- prettier-ignore-start -->
+```css
+.x {
+  -st-states: loading('[size="$0"]', enum(small, medium, large));
+}
+
+.x:size(small) {}
+
+/* OUTPUT */
+.NAMESPACE__x[size='small'] {}
+```
+<!-- prettier-ignore-end -->
