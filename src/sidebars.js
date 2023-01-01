@@ -1,7 +1,9 @@
 module.exports = {
     Discover: [
         'getting-started/intro',
-        'getting-started/install-configure',
+        'getting-started/boilerplate',
+        'getting-started/manual-integration',
+        'getting-started/stylable-config',
         {
             type: 'category',
             label: 'Tooling',
@@ -13,7 +15,7 @@ module.exports = {
             //     slug: '/getting-started/integrations',
             //     keywords: ['integrations'],
             // },
-            items: ['getting-started/tooling/stylable-intelligence', 'getting-started/tooling/stylable-config'],
+            items: ['getting-started/tooling/stylable-intelligence', 'getting-started/tooling/cli'],
         },
         {
             type: 'category',
@@ -92,28 +94,22 @@ module.exports = {
         {
             type: 'category',
             label: 'Stylable',
-            // link: {
-            //   type: "generated-index",
-            // },
             collapsed: false,
             items: [
-                'references/imports',
-                'references/root',
+                'references/custom-selectors',
                 'references/extend-stylesheet',
                 'references/global-selectors',
-                'references/custom-selectors',
-                'references/st-scope',
+                'references/imports',
                 'references/namespace',
+                'references/root',
+                'references/st-scope',
             ],
         },
         {
             type: 'category',
             label: 'Templating',
-            // link: {
-            //   type: "generated-index",
-            // },
-            collapsed: true,
-            items: ['references/st-variables', 'references/mixins', 'references/formatters'],
+            collapsed: false,
+            items: ['references/formatters', 'references/mixins', 'references/st-variables'],
         },
         'references/runtime',
         'references/programmatic-api',

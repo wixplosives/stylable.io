@@ -3,7 +3,7 @@ id: intro
 title: Intro
 ---
 
-## What is Stylable
+## What is Stylable?
 
 **Stylable** is a CSS preprocessor that enables you to write reusable, highly-performant, styled components. Each component exposes a style API that maps its internal parts so you can reuse components across teams without sacrificing stylability.
 
@@ -12,22 +12,21 @@ title: Intro
 
 At build time, the preprocessor converts the **Stylable** CSS into flat, static, valid, vanilla CSS that works cross-browser.
 
-## How do I install
+**Stylable** is agnostic to the component framework being used, it provides a way to write CSS that can be applied to any framework. All examples on the site use React-like syntax for demo purposes. However, the CSS written with **Stylable** can easily be used with any other frameworks such as Vue, Angular, or SolidJS.
 
-There are currently two options for installing and working with **Stylable**:
+## Where do I start?
 
-- To begin writing your own project, you can [create a **Stylable** app](./install-configure.md) from our boilerplate.
+There are currently two ways of starting working with **Stylable**:
 
-- To work with an existing project, install one of our [available integrations](./integrations).
+- Quickly start a new project from a [boilerplate](./boilerplate)
+- Integrate into a new or existing project by [manually configuring](./manual-integration) **Stylable**.
 
-While **Stylable** can work with any component framework, we offer ready-made [React and TypeScript templates](./install-configure.md). If you're a Vue.js fan, here's an example of [Vue and Stylable](https://github.com/wix-playground/stylable-vue-example) working together.
+Optionally, you can install [**Stylable Intelligence**](./tooling/stylable-intelligence.md), an extension providing IDE support for code completion and diagnostics (currently supported only for Visual Studio Code).
 
-Optionally, you can install [**Stylable Intelligence**](./stylable-intelligence.md), an extension providing IDE support for code completion and diagnostics (currently supported only for Visual Studio Code).
+## Want to learn more?
 
-## What's next
+- **Read the handbook** - Take a tour through the features of Stylable, and see how to use them in the [handbook guides](../guides/handbook/intro).
 
-- **Learn with the handbook** - Take a tour through the features of Stylable, and see how to use them in the [handbook guides](../guides/handbook/intro.md).
-
-- **Read the API docs** - Take a look at our [specification reference documents](../references/cheatsheet.mdx) to get more acquainted with our code and to see specific code examples. Use the overview as a cheat sheet to help you keep track of **Stylable** syntax.
+- **Explore the API docs** - Take a look at our [specification reference documents](../references/cheatsheet.mdx) to get more acquainted with our code and to see specific code examples. Use the overview as a cheat sheet to help you keep track of **Stylable** syntax.
 
 - **Play with Stylable Online** - Take Stylable for a spin and see how it works in the [Stylable Playground](../../playground/).

@@ -1,0 +1,111 @@
+---
+id: cli
+title: CLI
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+`@stylable/cli` is a low-level utility used for working with Stylable projects directly.
+
+It lets you:
+
+- Build and transform stylesheets into JavaScript modules
+- Generate an entry index file to help consume a published project
+
+## Installation
+
+<!-- prettier-ignore-start -->
+
+<Tabs groupId="packageManager">
+  <TabItem value="npm" label="NPM" default>
+
+```bash
+npm install @stylable/cli --save-dev
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```bash
+yarn add @stylable/cli -D
+```
+
+  </TabItem>
+</Tabs>
+
+<!-- prettier-ignore-end -->
+
+## Using the CLI
+
+After installing `@stylable/cli`, the `stc` command will be available, running `stc --help` will provide a brief description for the options available.
+
+`stc` accepts CLI arguments or a [Stylable configuration file](../stylable-config).
+
+### CLI Arguments
+
+| Option                    | Alias  | Description                                                                                                                                     | Default Value                                                                                                      |
+| ------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `--version`               | `v`    | show CLI version number                                                                                                                         | `boolean`                                                                                                          |
+| `--rootDir`               |        | root directory of project                                                                                                                       | `cwd`                                                                                                              |
+| `--srcDir`                |        | source directory relative to root                                                                                                               | `./`                                                                                                               |
+| `--outDir`                |        | target directory relative to root                                                                                                               | `./`                                                                                                               |
+| `--indexFile`             |        | filename of the generated index                                                                                                                 | `false`                                                                                                            |
+| `--cjs`                   |        | output commonjs modules (`.js`)                                                                                                                 | `false`                                                                                                            |
+| `--esm`                   |        | output esm modules (`.mjs`)                                                                                                                     | `false`                                                                                                            |
+| `--css`                   |        | output transpiled css files (`.css`)                                                                                                            | `false`                                                                                                            |
+| `--stcss`                 |        | output stylable source files (`.st.css`)                                                                                                        | `false`                                                                                                            |
+| `--dts`                   |        | output definition files for the stylable source files (`.st.css.d.ts`)                                                                          | `false`                                                                                                            |
+| `--dtsSourceMap`          |        | output source-maps for the definitions of stylable source files (`.st.css.d.ts.map`)                                                            | `true` if `--dts` is true, otherwise `false`                                                                       |
+| `--watch`                 | `w`    | enable watch mode                                                                                                                               | `false`                                                                                                            |
+| `--config`                | `c`    | The path to a config file specifying how to build and output Stylable stylesheets                                                               | The directory containing the config file is assumed to be the "rootDir" for the project named "stylable.config.js" |
+| `--useNamespaceReference` | `unsr` | mark output stylable source files with relative path for namespacing purposes (\*)                                                              | `false`                                                                                                            |
+| `--customGenerator`       |        | path of a custom index file generator                                                                                                           | -                                                                                                                  |
+| `--ext`                   |        | extension of stylable css files                                                                                                                 | `.st.css`                                                                                                          |
+| `--cssInJs`               |        | output transpiled css into the js module                                                                                                        | `false`                                                                                                            |
+| `--cssFilename`           |        | pattern of the generated css file                                                                                                               | `[filename].css`                                                                                                   |
+| `--injectCSSRequest`      | `icr`  | add a static import for the generated css in the js module output                                                                               | `false`                                                                                                            |
+| `--namespaceResolver`     | `nsr`  | node request to a module that exports a stylable resolveNamespace function                                                                      | `@stylable/node`                                                                                                   |
+| `--require`               | `r`    | require hook to execute before running                                                                                                          | `-`                                                                                                                |
+| `--optimize`              | `o`    | removes: empty nodes, stylable directives, comments                                                                                             | `false`                                                                                                            |
+| `--minify`                | `m`    | minify generated css                                                                                                                            | `false`                                                                                                            |
+| `--log`                   |        | verbose log                                                                                                                                     | `false`                                                                                                            |
+| `--diagnostics`           |        | print verbose diagnostics                                                                                                                       | `true`                                                                                                             |
+| `--diagnosticsMode`       |        | determine the diagnostics mode. if strict process will exit on any exception, loose will attempt to finish the process regardless of exceptions | `false`                                                                                                            |
+| `--help`                  | `h`    | Show help                                                                                                                                       | `boolean`                                                                                                          |
+
+## Generating an index file
+
+To automatically generate an index file that acts as an export entry for stylable API from your project, use the `--inedexFile` flag:
+
+```bash
+stc --srcDir="./src" --outDir="./dist" --indexFile="index.st.css"
+```
+
+### Control exposed API
+
+Exporting a `Generator` named export class from a JavaScript file will allow it to be used as a customGenerator.
+
+Usually this generator will inherit from our base generator class and override the generateReExports and generateIndexSource methods.
+
+This example demonstrates the default generator behavior (only exports stylesheet roots):
+
+```js
+import { Generator as Base, ReExports } from '@stylable/cli';
+
+export class Generator extends Base {
+  public generateReExports(filePath): ReExports {
+    return {
+      root: this.filename2varname(filePath),
+      parts: {},
+      keyframes: {},
+      stVars: {},
+      vars: {},
+    };
+  }
+  protected generateIndexSource(indexFileTargetPath: string) {
+    const source = super.generateIndexSource(indexFileTargetPath);
+    return '@st-namespace "INDEX";\n' + source;
+  }
+}
+```

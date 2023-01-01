@@ -1,0 +1,146 @@
+---
+id: stylable-config
+title: stylable.config.js
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+The `stylable.config.js` file acts as a central place where you can write your top level configuration for the entire project, so that they are re-used across builds and integrations, and reduce code duplications.
+
+The configuration file should be located in the project root directory in order to be picked up automatically.
+
+## `defaultConfig`
+
+The `defaultConfig` export field is used to set default configuration for Stylable instances across all integrations and tooling.
+
+Currently, the following options are supported:
+
+- [`resolveNamespace`](../references/programmatic-api#resolvenamespace) - control the namespace of the generated CSS
+- [`resolveModule`](../references/programmatic-api#moduleresolver) - control the module resolution
+
+```js title="stylable.config.js - example"
+const { createDefaultResolver } = require('@stylable/core');
+const { createNamespaceStrategyNode } = require('@stylable/node');
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
+
+module.exports = {
+  defaultConfig(fs) {
+    return {
+      // set a custom namespace resolver
+      resolveNamespace: createNamespaceStrategyNode({
+        prefix: 'mylib',
+        strict: true,
+      }),
+
+      // set a custom module resolver with TS paths resolution
+      resolveModule: createDefaultResolver(fs, {
+        plugins: [
+          new TsconfigPathsPlugin({
+            configFile: require.resolve('./tsconfig.json'),
+            extensions: ['.st.css'],
+          }),
+        ],
+      }),
+    };
+  },
+};
+```
+
+## `stcConfig`
+
+The `stcConfig` export field is used as a single point to define multiple build tasks for the Stylable CLI.
+
+To run this configuration, either run the CLI using the `stc` command, or pass the `stcConfig` option to the Webpack or rollup integrations.
+
+<!-- prettier-ignore-start -->
+
+<Tabs groupId="stcConfigExamples">
+  <TabItem value="singleProject" label="Single build task" default>
+
+```js
+const { stcConfig } = require('@stylable/cli');
+
+// use the `stcConfig` function to get type completion and validation
+exports.stcConfig = stcConfig({
+
+  // build type definitions for all stylesheets into the st-types directory
+  options: {
+      srcDir: './src',
+      outDir: './st-types',
+      dts: true
+  }
+});
+```
+
+  </TabItem>
+  <TabItem value="multiProject" label="Multiple build tasks">
+
+```js
+const { stcConfig } = require('@stylable/cli');
+
+exports.stcConfig = stcConfig({
+
+  // default options for each build task set to output sources
+  options: {
+    srcDir: './src',
+    outDir: './dist',
+    outputSources: true,
+  },
+
+  // define a glob path for each build task
+  projects: ['packages/*']
+});
+```
+
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Multiple build tasks interface</summary>
+  <p>
+    Projects allow sharing `stc` configurations and management of Stylable projects in one location. They provides a controllable and predictable build order with caching optimizations.
+  </p>
+
+```ts
+interface MultipleProjectsConfig<PRESET extends string> {
+    options?: PartialBuildOptions;
+    presets?: Presets<PRESET>;
+    projects: Projects<PRESET>;
+    projectsOptions?: {
+        resolveRequests?: ResolveRequests;
+    };
+}
+
+type Projects =
+    | Array<string | [string, ProjectEntryValues]>
+    | Record<string, ProjectEntryValues>;
+
+type ProjectEntryValues<PRESET extends string> =
+    | ProjectEntryValue<PRESET>
+    | Array<ProjectEntryValue<PRESET>>;
+
+type ProjectEntryValue<PRESET extends string> =
+    | PRESET
+    | PartialBuildOptions
+    | {
+          preset?: PRESET;
+          presets?: Array<PRESET>;
+          options: PartialBuildOptions;
+      };
+```
+
+</details>
+
+<!-- prettier-ignore-end -->
+
+To learn more about the various CLI flags, see the [CLI page](./tooling/cli#cli-arguments).
+
+<!-- todo: options diff in stcConfig to cli options -->
+
+## `webpackPlugin`
+
+The `webpackPlugin` export field is used to configure any Stylable Webpack plugins in the project. The `StylableWebpackPlugin` will attempt to load the nearest `stylable.config.js` file and use its `webpackPlugin` export as for its options.
+
+To learn more about the building Stylable using Webpack, see the [Webpack integration](./webpack-integration#stylableconfigjs) page.

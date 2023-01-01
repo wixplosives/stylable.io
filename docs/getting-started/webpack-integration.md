@@ -53,10 +53,26 @@ const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
     rules: [
       {
         test: /\.css$/i,
-        exclude: /\.st\.css?/, /* exclude stylable files */
+        exclude: /\.st\.css?/,
         use: ["css-loader"],
       },
     ],
   },
 }
+```
+
+### `stylable.config.js`
+
+Adding the `webpackPlugin` export field to the [`stylable.config.js`](./stylable-config) will set as the default configuration for any Stylable Webpack plugins in the project.
+
+```js
+module.exports.webpackPlugin = function (config) {
+  return {
+    ...config,
+    optimize: {
+      shortNamespaces: true,
+      minify: true,
+    },
+  };
+};
 ```
