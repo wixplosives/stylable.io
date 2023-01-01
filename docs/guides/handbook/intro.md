@@ -32,7 +32,7 @@ We aspire for **Stylable to be for CSS, what TypeScript is for JavaScript**, and
 
 ### Language server
 
-When working in a modern IDE, a language server makes a huge difference in the development experience. For Stylable, we created the [Stylable Intelligence](../../getting-started/stylable-intelligence.md) VS Code extension to provide a better development experience through completions, definitions, hinting and more.
+When working in a modern IDE, a language server makes a huge difference in the development experience. For Stylable, we created the [Stylable Intelligence](../../getting-started/tooling/stylable-intelligence) VS Code extension to provide a better development experience through completions, definitions, hinting and more.
 
 ### Tooling
 

@@ -10,16 +10,14 @@ To learn more about SSR - see this [introduction post](https://dev.to/sunnysingh
 
 When creating your library / application you will see that you might need to make some changes to your project publish / consumption process in order to integrate Stylable to your SSR flow.
 
-## Rendering Stylable in the Client
-To integrate Stylable into your application, use `@stylable/webpack-plugin` and [configure](https://github.com/wix/stylable/tree/master/packages/webpack-plugin) it according to your project needs.
-
 ## Transforming Stylable in the Server
+
 In order to use Stylable imports from your source files in `nodeJS`, you will need to add `@stylable/node` as a dependency.
 
 Import and use its `requireHook` method before rendering to enable requiring Stylable stylesheets in their `CommonJS` module format.
 
 ```js
-// server.js 
+// server.js
 const { attachHook } = require('@stylable/node');
 
 attachHook(); // enables requiring .st.css files as CommonJS
@@ -28,6 +26,7 @@ attachHook(); // enables requiring .st.css files as CommonJS
 ```
 
 ## Matching namespaces
+
 In order to ensure full SSR compatibility, **generated namespaces for all stylesheets must match exactly** across all different build targets.
 
 The default Stylable `namespaceResolver` uses a combination of file-system path, name and version from the `package.json` file to create its namespace. This means that namespaces can be influenced by the published file path structure.
@@ -40,7 +39,7 @@ When building a library or application for consumption in both client and server
 
 This means that a published project will usually have both `CommonJS` and `ES modules`, each with their own transpiled copy of the project, including the Stylable assets.
 
-This can pose a problem when trying to synchronize namespace creation for SSR. 
+This can pose a problem when trying to synchronize namespace creation for SSR.
 
 ### Publishing SSR-ready source files (`*.st.css`)
 
@@ -51,6 +50,7 @@ When using `@stylable/cli` to publish your source stylesheets, use the `useNames
 ```sh
 stc --srcDir ./src --outDir ./dist/cjs --cjs --stcss --useNamespaceReference
 ```
+
 ```sh
 stc --srcDir ./src --outDir ./dist/esm --esm --stcss --useNamespaceReference
 ```

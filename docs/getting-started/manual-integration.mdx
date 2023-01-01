@@ -1,0 +1,47 @@
+---
+id: manual-integration
+title: Manual Integration
+---
+
+When integrating **Stylable** into a project, there are key differences to consider whether the project is an _application_ or a _component library_.
+
+An application is a project that is deployed to production for end-users to access. While a component library is a project that is published to a package manager for other developers to consume in their projects.
+
+This difference mostly manifests in how these projects are built. For example, an application might build a final bundle for deployment, while a component library would build standalone modules to be consumed in various ways.
+
+## TypeScript development
+
+For any project using TypeScript (applications or component libraries), it is strongly recommended to configure the project integrations to [generate `.d.ts` definitions](./typescript-integration.md#generating-types-per-stylesheet) for all **Stylable** stylesheets. This will provide contextual completions and type-checking for imported stylesheets during development.
+
+## Application
+
+### Bundler
+
+Stylable officially supports two different bundlers, [webpack](./webpack-integration.md) and [Rollup](./rollup-integration.md). These bundlers are used to process and bundle your CSS, JavaScript and asset files for use in a web application.
+
+### Server-side rendering (SSR)
+
+To integrate Stylable with server-side rendering, you have two options.
+
+- The first option is to pre-build your stylesheets and assets using the Stylable, and then consume them on the server without any further Stylable-specific integration. <!-- TODO: Add instructions in the ssr guide for pre-building Stylable and add a link -->
+- The second option is to use the [**Stylable** node integration](../guides/server-side-rendering.md#transforming-stylable-in-the-server), which allows you to load and render Stylable stylesheets directly on the server. To use this option, you will need to integrate `@stylable/node` into your server-side rendering pipeline.
+
+## Component library
+
+:::note
+This section is a work in progress and will be updated further soon.
+:::
+
+## Additional tooling support
+
+**Stylable** offers several additional ready-made integrations to pick from:
+
+- [Next.js integration](./nextjs-integration.md) - for applications using the NextJS framework
+- [Storybook integration](./storybook-integration.md) - for projects using Storybook to demo their components
+- [Codux](https://codux.com) - a visual IDE for react projects, supports Stylable out of the box, no special integration needed
+
+---
+
+## Integrated and ready to learn?
+
+Once you've finished configuring your project, you can begin styling with **Stylable**. Read through the [Handbook](../guides/handbook/intro.md) or explore the [API References](../references/cheatsheet.mdx) to help guide you in your work.

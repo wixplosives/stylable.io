@@ -1,0 +1,58 @@
+---
+id: boilerplate
+title: Boilerplate
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+To get started quickly, **Stylable** offers a boilerplate utility that can be used to bootstrap new projects from a list of templates.
+
+## `ts-react-webpack` (app)
+
+This is the default template, it creates a new project and includes:
+
+- A **React** application
+- **Webpack** bundling including production optimizations
+- **TypeScript** support with automatically generated stylesheet type definitions
+
+To use this template, run the following command:
+
+<Tabs groupId="packageManager">
+  <TabItem value="npm" label="NPM" default>
+    <CodeBlock language="bash">npm init stylable-app [PROJECT_NAME]</CodeBlock>
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    <CodeBlock language="bash">yarn create stylable-app [PROJECT_NAME]</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## `ts-react-rollup` (app)
+
+This is an alternative template, it creates a new project and includes:
+
+- A **React** application
+- **Rollup** bundling
+- **TypeScript** support with automatically generated stylesheet type definitions
+
+To use this template, run the following command:
+
+<Tabs groupId="packageManager">
+  <TabItem value="npm" label="NPM" default>
+    <CodeBlock language="bash">npm init stylable-app [PROJECT_NAME] --template ts-react-rollup</CodeBlock>
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    <CodeBlock language="bash">yarn create stylable-app [PROJECT_NAME] --template ts-react-rollup</CodeBlock>
+  </TabItem>
+</Tabs>
+
+:::note Missing a template?
+Got a use-case we don't support? A template you would like us to add? Let us know by [creating a new template proposal](https://github.com/wix/stylable/issues/new?assignees=&labels=triage&template=proposal.yaml).
+:::
+
+---
+
+## Integrated and ready to learn?
+
+Once your project is up and running, you can begin styling with **Stylable**. Read through the [Handbook](../guides/handbook/intro.md) or explore the [API References](../references/cheatsheet.mdx) to help guide you in your work.

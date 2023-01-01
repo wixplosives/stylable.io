@@ -1,15 +1,22 @@
 module.exports = {
     Discover: [
         'getting-started/intro',
-        'getting-started/install-configure',
-        // {
-        //   type: "category",
-        //   label: "Tooling",
-        //   collapsed: false,
-        //   items: [
-        'getting-started/stylable-intelligence',
-        //   ],
-        // },
+        'getting-started/boilerplate',
+        'getting-started/manual-integration',
+        'getting-started/stylable-config',
+        {
+            type: 'category',
+            label: 'Tooling',
+            collapsed: false,
+            // link: {
+            //     type: 'generated-index',
+            //     title: 'Integrations',
+            //     description: 'Click on one of our available integrations below to learn more about how to use it.',
+            //     slug: '/getting-started/integrations',
+            //     keywords: ['integrations'],
+            // },
+            items: ['getting-started/tooling/stylable-intelligence', 'getting-started/tooling/cli'],
+        },
         {
             type: 'category',
             label: 'Integrations',
@@ -88,29 +95,24 @@ module.exports = {
         {
             type: 'category',
             label: 'Stylable',
-            // link: {
-            //   type: "generated-index",
-            // },
             collapsed: false,
             items: [
-                'references/imports',
-                'references/root',
+                'references/custom-selectors',
                 'references/extend-stylesheet',
                 'references/global-selectors',
-                'references/custom-selectors',
-                'references/st-scope',
+                'references/imports',
                 'references/namespace',
+                'references/root',
+                'references/st-scope',
             ],
         },
         {
             type: 'category',
             label: 'Templating',
-            // link: {
-            //   type: "generated-index",
-            // },
-            collapsed: true,
-            items: ['references/st-variables', 'references/mixins', 'references/formatters'],
+            collapsed: false,
+            items: ['references/formatters', 'references/mixins', 'references/st-variables'],
         },
         'references/runtime',
+        'references/programmatic-api',
     ],
 };

@@ -1,0 +1,170 @@
+---
+id: programmatic-api
+title: Programmatic API
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+## Stylable instance
+
+Stylable is usually consumed through one of its available integration, for more specific or advanced use-cases, the programmatic API can be used for greater control on how Stylable operates.
+
+:::note
+The APIs described here are treated as stable, and available for use. Any other API exposed by Stylable not described here may changed, and should not be dependant on.
+:::
+
+The `Stylable` class provided from `@stylable/core` requires configuration to initialize.
+
+Example:
+
+<!-- prettier-ignore-start -->
+
+```js title="Initialize Stylable instance"
+import fs from 'node:fs';
+import { Stylable } from '@stylable/core';
+
+// minimal required configuration
+Stylable({ fs, projectRoot: __dirname });
+```
+
+<!-- prettier-ignore-end -->
+
+### Configuration
+
+| Option             | Type                                                                                              | Default Value                                                     | Description                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `fs`               | [`MinimalFS`](#minimalfs)                                                                         | `required`                                                        | Filesystem instance to use                                           |
+| `projectRoot`      | `string`                                                                                          | `required`                                                        | The project root directory path                                      |
+| `mode`             | `string`                                                                                          | `"production"`                                                    | Development or production mode                                       |
+| `resolveNamespace` | [`ResolveNamespace`](#resolvenamespace)                                                           | default resolver depends on running context                       | Function to determine namespacing                                    |
+| `resolveModule`    | [`ModuleResolver`](#moduleresolver)                                                               | [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve) | Module resolver to be used for all import paths and `url()` requests |
+| `resolveOptions`   | <CodeBlock className="inline-code">{<br/> alias?: any;<br/> symlinks?: boolean;<br/>}</CodeBlock> | <CodeBlock className="inline-code">{}</CodeBlock>                 | Options that are passed to the **default** module resolver           |
+| `requrieModule`    | [`RequireModule`](#requiremodule)                                                                 | none                                                              | Require module that receives a path, and attempts to return a module |
+
+### `MinimalFS`
+
+Stylable minimal required file system interface:
+
+```ts title="MinimalFS interface"
+interface MinimalFS {
+  statSync: (filePath: string) => { mtime: Date };
+  readFileSync: (filePath: string, encoding: 'utf8') => string;
+  readlinkSync: (filePath: string) => string;
+}
+```
+
+### `ResolveNamespace`
+
+Provide exact control of the namespacing mechanism by providing a function that accepts:
+
+- `namespace` - a stylesheet source namespace - determined by the `@st-namespace` if exists, and falls back to the filename
+- `origin` - an origin path - path to the source stylesheet
+
+This function will then return a string to be used as the "namespace" for stylesheet definitions.
+
+#### Basic example
+
+An example for a basic namespace resolver, that generates unique verbose namespaces based on the component namespace and origin path of the stylesheet.
+
+```ts title="Resolve namespace example"
+const resolveNamespace: ResolveNamespace = (namespace: string, origin: string): string {
+    return namespace + hash(origin);
+}
+```
+
+<!-- prettier-ignore-start -->
+
+```css title="comp.st.css"
+.root {}
+
+/* OUTPUT */
+.comp1169059893__root {}
+```
+
+<!-- prettier-ignore-end -->
+
+### `ModuleResolver`
+
+Override Stylable's default module resolver, to control path resolution according to your projects' needs.
+
+The default module resolver is a function that accepts two arguments:
+
+- `directoryPath` - the directory path to resolve from
+- `request` - the module request to resolve
+
+```js
+const fs = require('node:fs');
+const { createDefaultResolver, Stylable } = require('@stylable/core');
+
+const defaultResolver = createDefaultResolver(fs);
+const stylable = new Stylable({
+  projectRoot: 'path/to/project/root',
+  filesystem: fs,
+  resolveModule: (directoryPath, request) => {
+    if (request.startsWith('my-custom-module')) {
+      return '/path/to/my-custom-module';
+    }
+
+    return defaultResolver(directoryPath, request);
+  },
+});
+```
+
+### `RequireModule`
+
+Defines a function to require imported JavaScript modules from a path, used when a JavaScript [Mixins](./mixins#javascript-mixins) or [Formatters](./formatters) is used within a Stylable stylesheet.
+
+<!-- prettier-ignore-start -->
+
+<Tabs groupId="runtimeEnv">
+  <TabItem value="nodejs" label="NodeJS" default>
+
+```js
+const fs = require('node:fs');
+const { Stylable } = require('@stylable/core');
+
+const stylable = new Stylable({
+    projectRoot: 'path/to/project/root',
+    filesystem: fs,
+    requireModule: require
+})
+```
+
+  </TabItem>
+  <TabItem value="memoryfs" label="Memory FS">
+
+```js
+const { Stylable } = require('@stylable/core');
+
+const stylable = new Stylable({
+    projectRoot: 'path/to/project/root',
+    filesystem: memoryFS,
+    requireModule(path: string) {
+        const _module = {
+            id,
+            exports: {},
+        };
+        try {
+            // create a module evaluation function
+            const fn = new Function(
+                'module',
+                'exports',
+                'require',
+                fs.readFileSync(id, { encoding: 'utf8', flag: 'r' })
+            );
+            // evaluate the module
+            fn(_module, _module.exports, requireModule);
+        } catch (e) { 
+            throw new Error('Cannot require file: ' + id + 'reason: ' + e.message);
+        }
+        return _module.exports;
+    }
+})
+```
+
+  </TabItem>
+</Tabs>
+
+<!-- prettier-ignore-end -->
