@@ -82,6 +82,7 @@ module.exports = {
             collapsed: false,
             items: [
                 'references/class-selectors',
+                'references/contains',
                 'references/css-vars',
                 'references/keyframes',
                 'references/layer',

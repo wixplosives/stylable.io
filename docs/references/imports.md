@@ -65,6 +65,7 @@ When importing from a stylesheet, the [root](./root.md#default-export) class is 
 /* define symbols */
 .part {
   --customProp: yellow;
+  container-name: part;
 }
 @keyframes anim {}
 @layer comps, theme;
@@ -88,20 +89,22 @@ When importing a **default** value from a stylable stylesheet, you should use a 
 
 ### Named type assertion
 
-To import keyframes or layers from another stylesheet, a special [keyframes()](./keyframes.md#import-and-export) or [layer()](./layer#import-and-export) assertion is required.
+To import keyframes, layers or containers from another stylesheet, a special [keyframes()](./keyframes.md#import-and-export), [layer()](./layer#import-and-export), or [container()](./contains#import-and-export) assertion is required.
 
 <!-- prettier-ignore-start -->
 ```css title="entry.st.css"
 /* import keyframe and layer */
 @st-import [
   keyframes(anim),
-  layer(theme)
+  layer(theme),
+  container(panel)
 ] from './origin.st.css';
 
 /* multiple */
 @st-import [
   keyframes(anim1, anim2), 
-  layer(comps, theme)
+  layer(comps, theme),
+  container(panel, header)
 ] from './origin.st.css';
 ```
 <!-- prettier-ignore-end -->
