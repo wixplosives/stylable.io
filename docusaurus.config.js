@@ -147,5 +147,6 @@ module.exports = {
                 hashed: true,
             },
         ],
+        [require.resolve('./plugins/stylable-plugin.js'), {}],
     ],
 };
