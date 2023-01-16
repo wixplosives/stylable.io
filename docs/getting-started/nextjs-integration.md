@@ -61,7 +61,7 @@ The `applyWebpackConfigStylableExcludes` export and `filterAssets` flag are avai
 If your project consumes any 3rd-party Stylable stylesheets, additional configuration is required to ensure that they will be handled by `@stylable/webpack-plugin`:
 
 1. Add an import to `bundleServerLibs` from `@stylable/webpack-plugin`
-2. Use the `isServer` flag from the webpack configuration context in the second argument 
+2. Use the `isServer` flag from the webpack configuration context in the second argument
 3. Call `bundleServerLibs` with the webpack `config`, packages to bundle, and the `isServer` flag
 
 #### Example Configuration:
@@ -87,7 +87,7 @@ module.exports = {
     /* exclude Stylable files from all other loaders */
     applyWebpackConfigStylableExcludes(config);
     
-    // causes provided packages to be bundled (not external)
+    /* causes provided packages to be bundled (not external) */
     bundleServerLibs(config, new Set(['PACKAGE1', 'PACKAGE2'], isServer));
 
     /* add the Stylable plugin to the webpack configuration */
