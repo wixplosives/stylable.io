@@ -8,6 +8,7 @@ module.exports = {
     favicon: 'img/favicon.ico',
     organizationName: 'wixplosives', // Usually your GitHub org/user name.
     projectName: 'stylable.io', // Usually your repo name.
+    trailingSlash: false,
     themeConfig: {
         colorMode: {
             // "light" | "dark"
