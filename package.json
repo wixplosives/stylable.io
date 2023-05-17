@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.17.0",
-    "@docusaurus/core": "^2.4.0",
-    "@docusaurus/preset-classic": "^2.4.0",
-    "@docusaurus/mdx-loader": "^2.4.0",
+    "@docusaurus/core": "^2.4.1",
+    "@docusaurus/preset-classic": "^2.4.1",
+    "@docusaurus/mdx-loader": "^2.4.1",
     "@easyops-cn/docusaurus-search-local": "^0.35.0",
     "clsx": "^1.2.1",
     "react": "^17.0.2",
