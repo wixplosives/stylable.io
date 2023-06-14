@@ -14,7 +14,7 @@
     "prettify": "npx prettier . --write"
   },
   "dependencies": {
-    "@algolia/client-search": "^4.17.1",
+    "@algolia/client-search": "^4.17.2",
     "@docusaurus/core": "^2.4.1",
     "@docusaurus/preset-classic": "^2.4.1",
     "@docusaurus/mdx-loader": "^2.4.1",
