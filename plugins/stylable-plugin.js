@@ -1,4 +1,5 @@
 const { StylableWebpackPlugin, applyWebpackConfigStylableExcludes } = require('@stylable/webpack-plugin');
+const path = require('node:path');
 
 module.exports = function (_context, _options) {
     return {
@@ -14,6 +15,8 @@ module.exports = function (_context, _options) {
 
                         /* ToDo: make sure css+js work for dev */
                         cssInjection: 'css',
+
+                        stcConfig: path.join(__dirname, '../stylable.config.cjs'),
                     }),
                 ],
             };
