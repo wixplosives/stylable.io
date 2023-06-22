@@ -1,6 +1,9 @@
 .root {}
 
-.logo {}
+.logo {
+    width: 100%;
+}
 
 .buttons {}
 
+.getStarted {}

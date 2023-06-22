@@ -7,15 +7,14 @@
 
 .card {
     -st-extends: Feature;
-}
-
-.card::title {
     text-align: center;
 }
 
-.card::imageWrapper {
-    text-align: center;
-}
+.card::title {}
+
+.card::imageWrapper {}
+
+.cards {}
 
 @media screen and (max-width: 996px) {
     .communityPageTitle {

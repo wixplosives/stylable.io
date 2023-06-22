@@ -1,3 +1,4 @@
+@st-import [--ifm-color-emphasis-100, --ifm-link-color] from "../css/infima.st.css";
 @st-import Hero from "../components/hero.st.css";
 @st-import Feature from "../components/feature.st.css";
 @st-import "../css/theme.st.css";
