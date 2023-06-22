@@ -1,10 +1,10 @@
 import React from 'react';
-import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
+import { st, classes } from './community.st.css';
 
 function CardWithImageSrc({
     imageUrl,
@@ -20,7 +20,7 @@ function CardWithImageSrc({
     const imgUrl = useBaseUrl(imageUrl);
 
     return (
-        <div className={clsx('col col--4', styles.feature)}>
+        <div className={st('col col--4', styles.feature)}>
             <Link href={link}>
                 {imgUrl && (
                     <div className="text--center">
@@ -45,7 +45,7 @@ function CardWithThumb({
     children: React.ReactNode;
 }) {
     return (
-        <div className={clsx('col col--4', styles.feature)}>
+        <div className={st('col col--4', styles.feature)}>
             <Link href={link}>
                 <div className="text--center">{thumb}</div>
                 <h3 className="text--center">{title}</h3>
@@ -60,8 +60,8 @@ function Community() {
     const { siteConfig } = context;
     return (
         <Layout title={siteConfig.title} description="A modern CSS pre-processor built for components">
-            <main>
-                <div className={clsx('container', styles.communityPageTitle)}>
+            <main className={classes.root}>
+                <div className={st('container', styles.communityPageTitle)}>
                     <h2>Join the Community</h2>
                 </div>
                 <section className={styles.features}>

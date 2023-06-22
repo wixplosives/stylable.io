@@ -1,15 +1,15 @@
 import React from 'react';
-import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 import Logo from '../../static/img/branding/logo/SVG/96-logo-horizontal.svg';
+import { st, classes } from './index.st.css';
 
 function ResponsiveEmbed({ src }: { src: string }) {
     return (
-        <div className={clsx(styles.responsiveEmbed)}>
+        <div className={st(styles.responsiveEmbed)}>
             <iframe src={src} frameBorder="0" allowFullScreen></iframe>
         </div>
     );
@@ -18,7 +18,7 @@ function ResponsiveEmbed({ src }: { src: string }) {
 function Feature({ imageUrl, title, children }: { imageUrl: string; title: string; children: React.ReactNode }) {
     const imgUrl = useBaseUrl(imageUrl);
     return (
-        <div className={clsx('col col--4', styles.feature)}>
+        <div className={st('col col--4', styles.feature)}>
             {imgUrl && (
                 <div className="text--center">
                     <img className={styles.featureImage} src={imgUrl} alt={title} />
@@ -32,12 +32,12 @@ function Feature({ imageUrl, title, children }: { imageUrl: string; title: strin
 
 function Header() {
     return (
-        <header className={clsx('hero hero--primary', styles.heroBanner)}>
+        <header className={st('hero hero--primary', styles.heroBanner)}>
             <div className="container">
                 <Logo className={styles.mainLogo} />
                 <div className={styles.buttons}>
                     <Link
-                        className={clsx('button button--outline button--secondary button--lg', styles.getStarted)}
+                        className={st('button button--outline button--secondary button--lg', styles.getStarted)}
                         to={useBaseUrl('docs/getting-started/intro')}
                     >
                         Get Started
@@ -84,7 +84,7 @@ function Home() {
                         </div>
                     </div>
                 </section>
-                <section className={clsx(styles.section, styles.sectionAlt)}>
+                <section className={st(styles.section, styles.sectionAlt)}>
                     <div className="container">
                         <h2>What is Stylable?</h2>
                         <p>
@@ -156,7 +156,7 @@ function Home() {
                         </ul>
                     </div>
                 </section>
-                <section className={clsx(styles.section, styles.sectionAlt)}>
+                <section className={st(styles.section, styles.sectionAlt)}>
                     <div className="container">
                         <h2>Tooling</h2>
                         <img
@@ -186,7 +186,7 @@ function Home() {
                         <ResponsiveEmbed src="https://www.youtube.com/embed/jK88TqyXSWs?rel=0" />
                     </div>
                 </section>
-                <section className={clsx(styles.section, styles.sectionAlt)}>
+                <section className={st(styles.section, styles.sectionAlt)}>
                     <div className="container">
                         <h2>Documentation</h2>
                         <Link to="./docs/getting-started/intro">Learn more about Stylable</Link> and get started with
@@ -214,7 +214,7 @@ function Home() {
                         <p className={styles.playWithIt}>Play with it and let us know what you think!</p>
                     </div>
                 </section>
-                <section className={clsx(styles.section, styles.sectionAlt)}>
+                <section className={st(styles.section, styles.sectionAlt)}>
                     <div className="container">
                         <div>
                             <h2>Shut up and take my money!</h2>

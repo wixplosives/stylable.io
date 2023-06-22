@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
+import './playground.st.css';
 
 export default function Playground() {
     const context = useDocusaurusContext();
