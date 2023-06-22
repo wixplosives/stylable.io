@@ -1,0 +1,15 @@
+.main {
+    -st-global: '.main-wrapper';
+}
+
+.blogPages {
+    -st-global: '.blog-wrapper';
+}
+
+.docsPages {
+    -st-global: '.docs-wrapper';
+}
+
+.mdxPages {
+    -st-global: '.mdx-wrapper';
+}

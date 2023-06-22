@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import styles from './styles.module.css';
-import './playground.st.css';
+import { classes } from './playground.st.css';
 
 export default function Playground() {
     const context = useDocusaurusContext();
@@ -12,7 +11,7 @@ export default function Playground() {
             title={context.siteConfig.title}
             description="A modern CSS pre-processor built for components"
             noFooter={true}
-            wrapperClassName={styles.playgroundWrapper}
+            wrapperClassName={classes.root}
         >
             <iframe ref={frame} frameBorder={0} />
         </Layout>

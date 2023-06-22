@@ -1,78 +1,32 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.css';
+import { Feature } from '../components/feature';
 import { st, classes } from './community.st.css';
-
-function CardWithImageSrc({
-    imageUrl,
-    link,
-    title,
-    children,
-}: {
-    imageUrl: string;
-    link: string;
-    title: string;
-    children: React.ReactNode;
-}) {
-    const imgUrl = useBaseUrl(imageUrl);
-
-    return (
-        <div className={st('col col--4', styles.feature)}>
-            <Link href={link}>
-                {imgUrl && (
-                    <div className="text--center">
-                        <img className={styles.featureImage} src={imgUrl} alt={title} />
-                    </div>
-                )}
-                <h3 className="text--center">{title}</h3>
-            </Link>
-            <p className="text--center">{children}</p>
-        </div>
-    );
-}
-function CardWithThumb({
-    link,
-    thumb,
-    title,
-    children,
-}: {
-    link: string;
-    thumb: JSX.Element;
-    title: string;
-    children: React.ReactNode;
-}) {
-    return (
-        <div className={st('col col--4', styles.feature)}>
-            <Link href={link}>
-                <div className="text--center">{thumb}</div>
-                <h3 className="text--center">{title}</h3>
-            </Link>
-            <p className="text--center">{children}</p>
-        </div>
-    );
-}
 
 function Community() {
     const context = useDocusaurusContext();
     const { siteConfig } = context;
     return (
-        <Layout title={siteConfig.title} description="A modern CSS pre-processor built for components">
-            <main className={classes.root}>
-                <div className={st('container', styles.communityPageTitle)}>
+        <Layout
+            wrapperClassName={classes.root}
+            title={siteConfig.title}
+            description="A modern CSS pre-processor built for components"
+        >
+            <main>
+                <div className={st('container', classes.pageTitle)}>
                     <h2>Join the Community</h2>
                 </div>
-                <section className={styles.features}>
+                <section className={classes.cards}>
                     <div className="container">
                         <div className="row">
-                            <CardWithThumb
+                            <Feature
+                                className={classes.card}
                                 link="https://github.com/wix/stylable"
                                 title="GitHub"
-                                thumb={
+                                image={(imageClassName) => (
                                     <svg
-                                        className={styles.featureImage}
+                                        className={imageClassName}
                                         width="100%"
                                         height="100%"
                                         viewBox="0 0 1024 1024"
@@ -86,26 +40,28 @@ function Community() {
                                             transform="scale(64)"
                                         />
                                     </svg>
-                                }
+                                )}
                             >
                                 Track our development, search open issues, report new ones, and contribute back to the
                                 project
-                            </CardWithThumb>
-                            <CardWithImageSrc
+                            </Feature>
+                            <Feature
+                                className={classes.card}
                                 link="https://twitter.com/stylableio"
                                 title="Twitter"
-                                imageUrl="img/twitter-logo.svg"
+                                image="img/twitter-logo.svg"
                             >
                                 Follow our Twitter to stay up to date with the latest happenings in Stylable
-                            </CardWithImageSrc>
-                            <CardWithImageSrc
+                            </Feature>
+                            <Feature
+                                className={classes.card}
                                 link="https://discord.gg/C5ZhENSbV7"
                                 title="Discord"
-                                imageUrl="img/discord-Logo-color.svg"
+                                image="img/discord-Logo-color.svg"
                             >
                                 Join our Discord community, where you can chat with us, ask questions, and showcase your
                                 work
-                            </CardWithImageSrc>
+                            </Feature>
                         </div>
                     </div>
                 </section>

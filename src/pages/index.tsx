@@ -1,95 +1,62 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.css';
-import Logo from '../../static/img/branding/logo/SVG/96-logo-horizontal.svg';
+import Link from '@docusaurus/Link';
+import { Hero } from '../components/hero';
+import { Feature } from '../components/feature';
+import { ResponsiveEmbed } from '../components/responsive-embed';
 import { st, classes } from './index.st.css';
-
-function ResponsiveEmbed({ src }: { src: string }) {
-    return (
-        <div className={st(styles.responsiveEmbed)}>
-            <iframe src={src} frameBorder="0" allowFullScreen></iframe>
-        </div>
-    );
-}
-
-function Feature({ imageUrl, title, children }: { imageUrl: string; title: string; children: React.ReactNode }) {
-    const imgUrl = useBaseUrl(imageUrl);
-    return (
-        <div className={st('col col--4', styles.feature)}>
-            {imgUrl && (
-                <div className="text--center">
-                    <img className={styles.featureImage} src={imgUrl} alt={title} />
-                </div>
-            )}
-            <h3>{title}</h3>
-            <p>{children}</p>
-        </div>
-    );
-}
-
-function Header() {
-    return (
-        <header className={st('hero hero--primary', styles.heroBanner)}>
-            <div className="container">
-                <Logo className={styles.mainLogo} />
-                <div className={styles.buttons}>
-                    <Link
-                        className={st('button button--outline button--secondary button--lg', styles.getStarted)}
-                        to={useBaseUrl('docs/getting-started/intro')}
-                    >
-                        Get Started
-                    </Link>
-                </div>
-            </div>
-        </header>
-    );
-}
 
 function Home() {
     const context = useDocusaurusContext();
     const { siteConfig } = context;
     return (
-        <Layout title={siteConfig.title} description="A modern CSS pre-processor built for components">
-            <Header />
+        <Layout
+            wrapperClassName={classes.root}
+            title={siteConfig.title}
+            description="A modern CSS pre-processor built for components"
+        >
+            <Hero className={classes.hero} />
             <main>
-                <section className={styles.features}>
+                <section className={classes.features}>
                     <div className="container">
                         <div className="row">
-                            <Feature title="CSS Superset" imageUrl="img/component.svg">
+                            <Feature className={classes.feature} title="CSS Superset" image="img/component.svg">
                                 Extending CSS so that it is easier to use in a component ecosystem, but without losing
                                 any of the declarative, familiar, static and fast aspects of CSS.
                             </Feature>
-                            <Feature title="Style API" imageUrl="img/api.svg">
+                            <Feature className={classes.feature} title="Style API" image="img/api.svg">
                                 Each component exposes a Style API that maps its internal parts and states so you can
                                 reuse components across teams without sacrificing stylability or scalability.
                             </Feature>
-                            <Feature title="Type Safety" imageUrl="img/stethoscope.svg">
+                            <Feature className={classes.feature} title="Type Safety" image="img/stethoscope.svg">
                                 Provide the ability to see errors at build time or even while working in your IDE. Wave
                                 goodbye to silent run-time breakage misery!
                             </Feature>
-                            <Feature title="Performant" imageUrl="img/checklist.svg">
+                            <Feature className={classes.feature} title="Performant" image="img/checklist.svg">
                                 Perform build-time transpilation and require only a minimal runtime. Use custom states
                                 and properties for dynamic interactions.
                             </Feature>
-                            <Feature title="Mixins &amp; Formatters" imageUrl="img/prototype.svg">
+                            <Feature
+                                className={classes.feature}
+                                title="Mixins &amp; Formatters"
+                                image="img/prototype.svg"
+                            >
                                 Easily create complex designs using CSS or JavaScript and reuse them across projects.
                             </Feature>
-                            <Feature title="Developer Tooling" imageUrl="img/tool.svg">
+                            <Feature className={classes.feature} title="Developer Tooling" image="img/tool.svg">
                                 Use our language-intelligence IDE extension for a better development experience
                                 including completions, defintions, hinting, diagnostics and more.
                             </Feature>
                         </div>
                     </div>
                 </section>
-                <section className={st(styles.section, styles.sectionAlt)}>
+                <section className={st(classes.section, classes.sectionAlt)}>
                     <div className="container">
                         <h2>What is Stylable?</h2>
                         <p>
                             At <Link to="https://www.wix.engineering/">Wix</Link>, we{' '}
-                            <span className={styles.heart}>&hearts; </span>
+                            <span className={classes.heart}>&hearts; </span>
                             CSS. Its simple, declarative syntax that is native in browsers is easily the fastest way to
                             add styles to web pages and web apps. But when writing CSS that is scoped to individual
                             components, developers have to maintain highly-specific selectors, using elaborate
@@ -97,7 +64,7 @@ function Home() {
                             projects can be tricky.
                         </p>
                         <p>
-                            We also <span className={styles.heart}>&hearts;</span> TypeScript. TypeScript helps us
+                            We also <span className={classes.heart}>&hearts;</span> TypeScript. TypeScript helps us
                             manage these large projects, exposing at build-time what we could once only see at run-time.
                         </p>
                         <div>
@@ -136,7 +103,7 @@ function Home() {
                         style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
                     </div>
                 </section>
-                <section className={styles.section}>
+                <section className={classes.section}>
                     <div className="container">
                         <h2>What Does Stylable Do?</h2>
                         <ul>
@@ -156,11 +123,11 @@ function Home() {
                         </ul>
                     </div>
                 </section>
-                <section className={st(styles.section, styles.sectionAlt)}>
+                <section className={st(classes.section, classes.sectionAlt)}>
                     <div className="container">
                         <h2>Tooling</h2>
                         <img
-                            className={styles.lspDemo}
+                            className={classes.lspDemo}
                             src="img/stylable-lsp-opt.gif"
                             alt="Stylable Intelligence Demo"
                         />
@@ -177,7 +144,7 @@ function Home() {
                         . It supports code completions, diagnostics, go to definitions, syntax highlighting and more.
                     </div>
                 </section>
-                <section className={styles.section}>
+                <section className={classes.section}>
                     <div className="container">
                         <h2>Videos</h2>
                         <h3>Introduction to Stylable</h3>
@@ -186,14 +153,14 @@ function Home() {
                         <ResponsiveEmbed src="https://www.youtube.com/embed/jK88TqyXSWs?rel=0" />
                     </div>
                 </section>
-                <section className={st(styles.section, styles.sectionAlt)}>
+                <section className={st(classes.section, classes.sectionAlt)}>
                     <div className="container">
                         <h2>Documentation</h2>
                         <Link to="./docs/getting-started/intro">Learn more about Stylable</Link> and get started with
                         step by step instructions and code examples.
                     </div>
                 </section>
-                <section className={styles.section}>
+                <section className={classes.section}>
                     <div className="container">
                         <h2>Demo Project</h2>
                         <p>
@@ -211,10 +178,10 @@ function Home() {
                         <div>
                             <ResponsiveEmbed src="https://www.youtube.com/embed/YRhJZZsTEvQ" />
                         </div>
-                        <p className={styles.playWithIt}>Play with it and let us know what you think!</p>
+                        <p className={classes.playWithIt}>Play with it and let us know what you think!</p>
                     </div>
                 </section>
-                <section className={st(styles.section, styles.sectionAlt)}>
+                <section className={st(classes.section, classes.sectionAlt)}>
                     <div className="container">
                         <div>
                             <h2>Shut up and take my money!</h2>
@@ -227,7 +194,7 @@ function Home() {
                                 Click here to access the MIT-licensed{' '}
                                 <Link to="https://github.com/wix/stylable">Stylable GitHub project</Link>.
                             </p>
-                            <blockquote className={styles.quote}>
+                            <blockquote className={classes.quote}>
                                 <p>
                                     New ideas will come along, but they will extend CSS rather than replace it. I
                                     believe that the CSS code we write today will be readable by computers 500 years

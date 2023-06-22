@@ -1,0 +1,127 @@
+@st-import Docusaurus from "./docusaurus.st.css";
+@st-import [theme1 as infimaTheme1, --ifm-color-emphasis-100] from "./infima.st.css";
+@st-import Hero from "../components/hero.st.css";
+@st-import Feature from "../components/feature.st.css";
+@st-import GithubIcon from "../components/github-icon.st.css";
+
+:global(html) {
+    /* ToDo: mark sheet with side-effects */
+    --side-effect: 'applied';
+}
+
+.root {
+    -st-global: ':root';
+}
+
+@st-scope :global(/**/) {
+    Docusaurus {
+        -st-mixin: infimaTheme1;
+    }
+
+    Feature::image {
+        height: 125px;
+        margin: 2.25em 0;
+        width: 125px;
+        fill: #1b1f23;
+    }
+
+    Hero {
+        padding: 4rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        background-color: var(--ifm-color-emphasis-100);
+        color: var(--ifm-font-color-base);
+    }
+
+    Hero::logo {
+        margin: 5% 0;
+    }
+
+    Hero::buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    a.GithubIcon:hover {
+        opacity: 0.6;
+    }
+
+    @media screen and (max-width: 996px) {
+        Feature {
+            padding: 2.5em;
+        }
+
+        Feature::image {
+            float: left;
+            margin: 0 3em 0 0;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        Feature::image {
+            float: none;
+            margin: 0 0 1em;
+            width: 25%;
+        }
+    }
+}
+
+@st-scope Docusaurus:themeMode(light) {}
+
+@st-scope Docusaurus:themeMode(dark) {
+    .GithubIcon::before {
+        filter: invert(1);
+    }
+
+    Feature::image {
+        fill: #fff;
+    }
+}
+
+/*** GLOBAL - ToDo: check if this is valid api ***/
+
+/* The line highligted by code block using "```lang {line}" */
+.docusaurus-highlight-code-line {
+    -st-global: '.docusaurus-highlight-code-line';
+    background-color: rgb(72, 77, 91);
+    display: block;
+    margin: 0 calc(-1 * var(--ifm-pre-padding));
+    padding: 0 var(--ifm-pre-padding);
+}
+
+/* inline highlighted code inline (cheatsheet for example) */
+.inline-code {
+    -st-global: '.inline-code';
+    margin: 0 !important;
+    width: fit-content;
+    overflow: hidden;
+}
+
+.inline-code code {
+    padding: 5px;
+}
+
+.inline-code button[title='Copy'] {
+    display: none;
+}
+
+/*** LEFTOVERS comments - ToDo: use of remove ***/
+
+/* 
+@font-face {
+  font-family: WixMadeForText;
+  src: url(/fonts/WixMadeforText_Rg.ttf);
+}
+
+@font-face {
+  font-family: WixMadeForTextBold;
+  src: url(/fonts/WixMadeforText_Bd.ttf);
+  font-weight: bold;
+}
+
+strong {
+  font-family: WixMadeForTextBold;
+} 
+*/

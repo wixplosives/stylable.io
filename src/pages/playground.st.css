@@ -1,0 +1,13 @@
+@st-import "../css/theme.st.css";
+
+.root {}
+
+.root {
+    position: relative;
+    display: flex;
+}
+
+.root > * {
+    width: 100%;
+    flex: 1;
+}

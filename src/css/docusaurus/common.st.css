@@ -1,0 +1,25 @@
+.editThisPage {
+    -st-global: '.theme-edit-this-page';
+}
+
+.lastUpdated {
+    -st-global: '.theme-last-updated';
+}
+
+.backToTopButton {
+    -st-global: '.theme-back-to-top-button';
+}
+
+.codeBlock {
+    -st-global: '.theme-code-block';
+}
+
+.admonition {
+    -st-global: '.theme-admonition';
+}
+
+.unlistedBanner {
+    -st-global: '.theme-unlisted-banner';
+}
+
+/* ToDo: admonitionType: (type: string) => `theme-admonition-${type}` */

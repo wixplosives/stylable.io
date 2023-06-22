@@ -1,0 +1,65 @@
+@st-import Hero from "../components/hero.st.css";
+@st-import Feature from "../components/feature.st.css";
+@st-import "../css/theme.st.css";
+
+.hero {
+    -st-extends: Hero;
+}
+
+.features {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+    width: 100%;
+}
+
+.feature {
+    -st-extends: Feature;
+}
+
+.feature::imageWrapper {
+    text-align: center;
+}
+
+.section {
+    padding: 3em 0;
+}
+
+.sectionAlt {
+    background-color: var(--ifm-color-emphasis-100);
+}
+
+.heart {
+    color: rgb(204, 27, 27);
+}
+
+.quote {
+    font-family: serif;
+    font-size: 19px;
+    padding: 42px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-left-color: var(--ifm-link-color);
+    color: var(--ifm-font-color-base);
+}
+
+.quote::before {
+    position: absolute;
+    margin: -12px 0px 0px 0px;
+    content: ' ';
+    background-image: url(../../static/img/quote.svg);
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.lspDemo {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.playWithIt {
+    margin: 1em 0 0 0;
+}
