@@ -1,4 +1,5 @@
 const { typedConfiguration } = require('@stylable/cli');
+const { createNamespaceStrategy } = require('@stylable/core');
 
 module.exports.stcConfig = typedConfiguration({
     options: {
@@ -8,3 +9,12 @@ module.exports.stcConfig = typedConfiguration({
         dtsSourceMap: true,
     },
 });
+module.exports.defaultConfig = (fs) => {
+    return {
+        // set a custom namespace resolver
+        resolveNamespace: createNamespaceStrategy({
+            strict: true,
+            hashFragment: 'minimal',
+        }),
+    };
+};
