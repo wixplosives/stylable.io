@@ -1,0 +1,31 @@
+.blogListPage {
+    -st-global: '.blog-list-page';
+}
+
+.blogPostPage {
+    -st-global: '.blog-post-page';
+}
+
+.blogTagsListPage {
+    -st-global: '.blog-tags-list-page';
+}
+
+.blogTagPostListPage {
+    -st-global: '.blog-tags-post-list-page';
+}
+
+.docsDocPage {
+    -st-global: '.docs-doc-page';
+}
+
+.docsTagsListPage {
+    -st-global: '.docs-tags-list-page';
+}
+
+.docsTagDocListPage {
+    -st-global: '.docs-tags-doc-list-page';
+}
+
+.mdxPage {
+    -st-global: '.mdx-page';
+}

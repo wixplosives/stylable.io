@@ -1,0 +1,61 @@
+.docVersionBanner {
+    -st-global: '.theme-doc-version-banner';
+}
+
+.docVersionBadge {
+    -st-global: '.theme-doc-version-badge';
+}
+
+.docBreadcrumbs {
+    -st-global: '.theme-doc-breadcrumbs';
+}
+
+.docMarkdown {
+    -st-global: '.theme-doc-markdown';
+}
+
+.docTocMobile {
+    -st-global: '.theme-doc-toc-mobile';
+}
+
+.docTocDesktop {
+    -st-global: '.theme-doc-toc-desktop';
+}
+
+.docFooter {
+    -st-global: '.theme-doc-footer';
+}
+
+.docFooterTagsRow {
+    -st-global: '.theme-doc-footer-tags-row';
+}
+
+.docFooterEditMetaRow {
+    -st-global: '.theme-doc-footer-edit-meta-row';
+}
+
+.docSidebarContainer {
+    -st-global: '.theme-doc-sidebar-container';
+}
+
+.docSidebarMenu {
+    -st-global: '.theme-doc-sidebar-menu';
+}
+
+.docSidebarItemCategory {
+    -st-global: '.theme-doc-sidebar-item-category';
+}
+
+.docSidebarItemLink {
+    -st-global: '.theme-doc-sidebar-item-link';
+}
+
+/*
+ToDo:
+
+docSidebarItemCategoryLevel: (level: number) =>
+      `theme-doc-sidebar-item-category-level-${level}` as const,
+
+docSidebarItemLinkLevel: (level: number) =>
+    `theme-doc-sidebar-item-link-level-${level}` as const,
+*/

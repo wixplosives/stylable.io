@@ -1,0 +1,31 @@
+@property st-global(--ifm-color-primary);
+@property st-global(--ifm-color-primary-dark);
+@property st-global(--ifm-color-primary-darker);
+@property st-global(--ifm-color-primary-darkest);
+@property st-global(--ifm-color-primary-light);
+@property st-global(--ifm-color-primary-lighter);
+@property st-global(--ifm-color-primary-lightest);
+@property st-global(--ifm-code-font-size);
+@property st-global(--ifm-container-width);
+@property st-global(--ifm-container-width-xl);
+@property st-global(--ifm-color-emphasis-100);
+
+/* Links. */
+@property st-global(--ifm-link-color);
+@property st-global(--ifm-link-decoration);
+@property st-global(--ifm-link-hover-color);
+@property st-global(--ifm-link-hover-decoration);
+
+.theme1 {
+  --ifm-color-primary: #409d3e;
+  --ifm-color-primary-dark: #3a8d38;
+  --ifm-color-primary-darker: #368535;
+  --ifm-color-primary-darkest: #2d6e2b;
+  --ifm-color-primary-light: #46ad44;
+  --ifm-color-primary-lighter: #4ab547;
+  --ifm-color-primary-lightest: #60bf5d;
+  --ifm-code-font-size: 95%;
+  --ifm-container-width: 1024px;
+  --ifm-container-width-xl: 1024px;
+  /* --ifm-font-family-base: WixMadeForText; */
+}

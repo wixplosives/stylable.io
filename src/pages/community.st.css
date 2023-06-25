@@ -1,0 +1,24 @@
+@st-import Feature from '../components/feature.st.css';
+@st-import "../css/theme.st.css";
+
+.pageTitle {
+    margin-top: 4em;
+}
+
+.card {
+    -st-extends: Feature;
+    text-align: center;
+}
+
+.card::title {}
+
+.card::imageWrapper {}
+
+.cards {}
+
+@media screen and (max-width: 996px) {
+    .communityPageTitle {
+        margin-top: 2.25em;
+        padding-inline-start: 2.5em;
+    }
+}

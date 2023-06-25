@@ -55,7 +55,7 @@ module.exports = {
                 {
                     href: 'https://github.com/wix/stylable',
                     position: 'right',
-                    className: 'header-github-link',
+                    className: 'githubIcon__root',
                     'aria-label': 'GitHub repository',
                 },
             ],
@@ -131,9 +131,6 @@ module.exports = {
                     showReadingTime: true,
                     editUrl: 'https://github.com/wixplosives/stylable.io/edit/master',
                 },
-                theme: {
-                    customCss: require.resolve('./src/css/custom.css'),
-                },
                 googleAnalytics: {
                     trackingID: 'UA-109043375-1',
                     anonymizeIP: true,
@@ -148,5 +145,6 @@ module.exports = {
                 hashed: true,
             },
         ],
+        [require.resolve('./plugins/stylable-plugin.js'), {}],
     ],
 };
