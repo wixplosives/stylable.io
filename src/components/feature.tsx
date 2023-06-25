@@ -16,19 +16,20 @@ export function Feature({
     children: React.ReactNode;
     link?: string;
 }) {
+    const srcUrl = typeof image === 'string' ? useBaseUrl(image) : '';
     const imageToRender = React.useMemo(() => {
         if (!image) {
             return null;
         } else if (typeof image === 'string') {
             return (
                 <div className={classes.imageWrapper}>
-                    <img className={classes.image} src={useBaseUrl(image)} alt={title} />
+                    <img className={classes.image} src={srcUrl} alt={title} />
                 </div>
             );
         } else {
             return <div className={classes.imageWrapper}>{image(classes.image)}</div>;
         }
-    }, [image]);
+    }, [image, srcUrl]);
 
     return (
         <div className={st(classes.root, 'col col--4', className)}>
