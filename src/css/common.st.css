@@ -1,0 +1,14 @@
+@st-import [--ifm-container-width, --ifm-spacing-horizontal, --ifm-container-width-xl] from "./infima.st.css";
+
+.centerMainColumn {
+    margin: 0 auto;
+    max-width: var(--ifm-container-width);
+    padding: 0 var(--ifm-spacing-horizontal);
+    width: 100%;
+}
+
+@media (min-width: 1440px) {
+    .container {
+        max-width: var(--ifm-container-width-xl);
+    }
+}

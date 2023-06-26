@@ -1,0 +1,69 @@
+@st-namespace "hero-vairant-1";
+@st-import Hero from "../../components/hero.st.css";
+
+:vars {
+    lightBgColor: #ffffff;
+    darkBgColor: #0A1020;
+}
+
+.root {
+    -st-extends: Hero;
+    background: linear-gradient(
+                    180deg,
+                    #0A1020 -20%,
+                    #13274D 42.71%,
+                    value(darkBgColor) 88.83%
+                );
+}
+
+:global(html[data-theme='light']) .root {
+    /* 
+        override background for light mode.
+        ToDo: figure out how to move the state selector outside
+    */
+    background: value(lightBgColor);
+}
+
+.root::wrapper {
+    position: relative;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1fr);
+    grid-gap: 10px;
+    align-self: start;
+    justify-items: center;
+    background-color: transparent;
+}
+
+.root::gfx {
+    position: relative;
+    z-index: 1;
+    justify-self: end;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.root::logo {
+    position: relative;
+}
+
+.root::background {
+    z-index: 0;
+    position: absolute;
+    overflow: visible;
+}
+
+.root::content {
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1;
+    text-align: start;
+    align-self: center;
+    justify-self: start;
+    max-width: 854px;
+    min-width: 426px;
+}
+
+.root::desc {
+    max-width: 438px;
+}

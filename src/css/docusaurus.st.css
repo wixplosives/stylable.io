@@ -12,3 +12,7 @@
 @custom-selector :--wrapper Wrapper;
 @custom-selector :--common & Common;
 @custom-selector :--docs & Docs;
+
+.navbar {
+    -st-global: ".navbar";
+}

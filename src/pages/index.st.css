@@ -1,13 +1,22 @@
-@st-import [--ifm-color-emphasis-100, --ifm-link-color] from "../css/infima.st.css";
+@st-import [--ifm-color-emphasis-100, --ifm-link-color, --ifm-container-width, --ifm-spacing-horizontal, --ifm-navbar-height] from "../css/infima.st.css";
 @st-import Hero from "../components/hero.st.css";
 @st-import Feature from "../components/feature.st.css";
 @st-import "../css/theme.st.css";
 
+.main {}
+
 .hero {
     -st-extends: Hero;
+    position: relative;
+    display: block;
+    z-index: 0;
+    margin-top: var(--ifm-navbar-height);
+    margin-bottom: max(15em, 15vh);
 }
 
 .features {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     padding: 2rem 0;
@@ -24,10 +33,6 @@
 
 .section {
     padding: 3em 0;
-}
-
-.sectionAlt {
-    background-color: var(--ifm-color-emphasis-100);
 }
 
 .heart {

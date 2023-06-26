@@ -1,21 +1,89 @@
 @st-import Docusaurus from "./docusaurus.st.css";
-@st-import [theme1 as infimaTheme1, --ifm-color-emphasis-100] from "./infima.st.css";
+@st-import [
+    --ifm-color-primary,
+    --ifm-color-primary-dark,
+    --ifm-color-primary-darker,
+    --ifm-color-primary-darkest,
+    --ifm-color-primary-light,
+    --ifm-color-primary-lighter,
+    --ifm-color-primary-lightest,
+    --ifm-background-color,
+    --ifm-code-font-size,
+    --ifm-container-width,
+    --ifm-container-width-xl,
+    --ifm-color-emphasis-100,
+    --ifm-background-surface-color,
+    --ifm-navbar-background-color,
+    --ifm-navbar-padding-horizontal,
+    --ifm-navbar-padding-vertical,
+    --ifm-navbar-height,
+    --ifm-font-family-base,
+] from "./infima.st.css";
 @st-import Hero from "../components/hero.st.css";
 @st-import Feature from "../components/feature.st.css";
 @st-import GithubIcon from "../components/github-icon.st.css";
+@st-import HeroVariant from "./variants/hero.st.css";
 
 :global(html) {
     /* ToDo: mark sheet with side-effects */
     --side-effect: 'applied';
 }
 
+@property --colorScheme {
+    syntax: 'light | dark';
+    inherits: true;
+    initial-value: 'light';
+}
+
+:vars {
+    black0: #0A1020;
+    black1: #1E222E;
+    black2: #272B37;
+    black3: #333742;
+    black4: #4D505A;
+    green0-2: #15b270;
+    green0-1: #47d57d;
+    green0: #7ffd8c;
+    green1: #a0f984;
+    green2: #c9f37a;
+    blue0-2: #1a325e;
+    blue0-1: #106686;
+    blue0: #00BFC9;
+    blue1: #38d0e3;
+    blue2: #72e2ff;
+    red0: #70001b;
+    red1: #8b1727;
+    red2: #b33a3a;
+    lightPrimary: #0a1020;
+    lightPrimary1: rgba(10, 16, 32, 0.81);
+    lightBgColor: #EDF0FC;
+    darkPrimary: #FFFFFF;
+    darkPrimary1: rgba(255, 255, 255, 0.66);
+    darkBgColor: value(black0);
+}
+
 .root {
     -st-global: ':root';
 }
 
+@font-face {
+    font-family: Poppins;
+    src: url(../../static/fonts/poppins/Poppins-Light.ttf);
+}
+
 @st-scope :global(/**/) {
     Docusaurus {
-        -st-mixin: infimaTheme1;
+        --ifm-font-family-base: 'Poppins', sans-serif;
+        /*
+        ToDo: figure out navbar padding 
+        --ifm-navbar-padding-horizontal: 35px;
+        --ifm-navbar-padding-vertical: 20px;
+        --ifm-navbar-height: auto; 
+        */
+    }
+
+    Docusaurus::navbar {
+        backdrop-filter: blur(6px);
     }
 
     Feature::image {
@@ -26,22 +94,10 @@
     }
 
     Hero {
-        padding: 4rem 0;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        background-color: var(--ifm-color-emphasis-100);
-        color: var(--ifm-font-color-base);
-    }
-
-    Hero::logo {
-        margin: 5% 0;
-    }
-
-    Hero::buttons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        -st-mixin: HeroVariant(
+                        darkBgColor value(black0),
+                        lightBgColor value(lightBgColor)
+                    );
     }
 
     a.GithubIcon:hover {
@@ -68,9 +124,47 @@
     }
 }
 
-@st-scope Docusaurus:themeMode(light) {}
+@st-scope Docusaurus:themeMode(light) {
+    &Docusaurus {
+        --colorScheme: 'light';
+        --ifm-background-color: value(lightBgColor);
+        --ifm-background-surface-color: value(lightBgColor);
+        --ifm-color-primary: green;
+        --ifm-color-primary-dark: #3a8d38;
+        --ifm-color-primary-darker: #368535;
+        --ifm-color-primary-darkest: #2d6e2b;
+        --ifm-color-primary-light: #46ad44;
+        --ifm-color-primary-lighter: #4ab547;
+        --ifm-color-primary-lightest: #60bf5d;
+        --ifm-code-font-size: 95%;
+        --ifm-container-width: 1024px;
+        --ifm-container-width-xl: 1024px;
+        --ifm-navbar-background-color: value(darkPrimary1);
+    }
+
+    Feature::image {
+        fill: #fff;
+    }
+}
 
 @st-scope Docusaurus:themeMode(dark) {
+    &Docusaurus {
+        --colorScheme: 'dark';
+        --ifm-background-color: value(black0);
+        --ifm-background-surface-color: value(black0);
+        --ifm-color-primary: green;
+        --ifm-color-primary-dark: #3a8d38;
+        --ifm-color-primary-darker: #368535;
+        --ifm-color-primary-darkest: #2d6e2b;
+        --ifm-color-primary-light: #46ad44;
+        --ifm-color-primary-lighter: #4ab547;
+        --ifm-color-primary-lightest: #60bf5d;
+        --ifm-code-font-size: 95%;
+        --ifm-container-width: 1024px;
+        --ifm-container-width-xl: 1024px;
+        --ifm-navbar-background-color: value(lightPrimary1);
+    }
+
     .GithubIcon::before {
         filter: invert(1);
     }
@@ -106,22 +200,3 @@
 .inline-code button[title='Copy'] {
     display: none;
 }
-
-/*** LEFTOVERS comments - ToDo: use of remove ***/
-
-/* 
-@font-face {
-  font-family: WixMadeForText;
-  src: url(/fonts/WixMadeforText_Rg.ttf);
-}
-
-@font-face {
-  font-family: WixMadeForTextBold;
-  src: url(/fonts/WixMadeforText_Bd.ttf);
-  font-weight: bold;
-}
-
-strong {
-  font-family: WixMadeForTextBold;
-} 
-*/

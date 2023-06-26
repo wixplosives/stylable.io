@@ -16,8 +16,8 @@ function Home() {
             title={siteConfig.title}
             description="A modern CSS pre-processor built for components"
         >
-            <Hero className={classes.hero} />
-            <main>
+            <main className={classes.main}>
+                <Hero className={classes.hero} />
                 <section className={classes.features}>
                     <div className="container">
                         <div className="row">
@@ -51,7 +51,7 @@ function Home() {
                         </div>
                     </div>
                 </section>
-                <section className={st(classes.section, classes.sectionAlt)}>
+                <section className={st(classes.section)}>
                     <div className="container">
                         <h2>What is Stylable?</h2>
                         <p>
@@ -123,7 +123,7 @@ function Home() {
                         </ul>
                     </div>
                 </section>
-                <section className={st(classes.section, classes.sectionAlt)}>
+                <section className={st(classes.section)}>
                     <div className="container">
                         <h2>Tooling</h2>
                         <img
@@ -153,7 +153,7 @@ function Home() {
                         <ResponsiveEmbed src="https://www.youtube.com/embed/jK88TqyXSWs?rel=0" />
                     </div>
                 </section>
-                <section className={st(classes.section, classes.sectionAlt)}>
+                <section className={st(classes.section)}>
                     <div className="container">
                         <h2>Documentation</h2>
                         <Link to="./docs/getting-started/intro">Learn more about Stylable</Link> and get started with
@@ -181,7 +181,7 @@ function Home() {
                         <p className={classes.playWithIt}>Play with it and let us know what you think!</p>
                     </div>
                 </section>
-                <section className={st(classes.section, classes.sectionAlt)}>
+                <section className={st(classes.section)}>
                     <div className="container">
                         <div>
                             <h2>Shut up and take my money!</h2>

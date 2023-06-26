@@ -1,9 +1,33 @@
+@st-import [centerMainColumn] from "../css/common.st.css";
+
 .root {}
 
-.logo {
-    width: 100%;
+.wrapper {
+    -st-extends: centerMainColumn;
+
+    .content {
+        .title {}
+
+        .desc {}
+
+        .nav {}
+
+        .button {}
+    }
+
+    .gfx {
+        .background {}
+
+        .logo {
+            -st-states: colorScheme(enum(light, dark));
+        }
+    }
 }
 
-.buttons {}
+:global(html[data-theme='light']) .logo:colorScheme(dark) {
+    display: none;
+}
 
-.getStarted {}
+:global(html[data-theme='dark']) .logo:colorScheme(light) {
+    display: none;
+} 
