@@ -22,6 +22,8 @@
 @st-import Hero from "../components/hero.st.css";
 @st-import Feature from "../components/feature.st.css";
 @st-import GithubIcon from "../components/github-icon.st.css";
+@st-import Button from "../components/button.st.css";
+@st-import [buttonDesign1, buttonDesign2] from "./variants/button.st.css";
 @st-import HeroVariant from "./variants/hero.st.css";
 
 :global(html) {
@@ -56,14 +58,20 @@
     red2: #b33a3a;
     lightPrimary: #0a1020;
     lightPrimary1: rgba(10, 16, 32, 0.81);
+    lightPrimary2: rgba(10, 16, 32, 0.49);
+    lightPrimary3: rgba(10, 16, 32, 0.18);
+    lightPrimary4: hsla(224, 52%, 8%, 0.5);
     lightBgColor: #EDF0FC;
     darkPrimary: #FFFFFF;
     darkPrimary1: rgba(255, 255, 255, 0.66);
+    darkPrimary2: rgba(255, 255, 255, 0.36);
+    darkPrimary3: rgba(255, 255, 255, 0.16);
+    darkPrimary4: rgba(255, 255, 255, 0.6);
     darkBgColor: value(black0);
 }
 
 .root {
-    -st-global: ':root';
+    -st-global: ':where(:root)';
 }
 
 @font-face {
@@ -72,6 +80,10 @@
 }
 
 @st-scope :global(/**/) {
+    html {
+        background: var(--bgColor);
+    }
+
     Docusaurus {
         --ifm-font-family-base: 'Poppins', sans-serif;
         /*
@@ -93,11 +105,18 @@
         fill: #1b1f23;
     }
 
+    Button:callToAction {
+        -st-mixin: buttonDesign2(
+                       fgColor value(lightPrimary),
+                       bgColor #ffffff,
+                   );
+    }
+
     Hero {
         -st-mixin: HeroVariant(
-                        darkBgColor value(black0),
-                        lightBgColor value(lightBgColor)
-                    );
+                       darkBgColor value(black0),
+                       lightBgColor value(lightBgColor)
+                   );
     }
 
     a.GithubIcon:hover {
@@ -125,44 +144,88 @@
 }
 
 @st-scope Docusaurus:themeMode(light) {
-    &Docusaurus {
+    & {
         --colorScheme: 'light';
-        --ifm-background-color: value(lightBgColor);
-        --ifm-background-surface-color: value(lightBgColor);
-        --ifm-color-primary: green;
-        --ifm-color-primary-dark: #3a8d38;
-        --ifm-color-primary-darker: #368535;
-        --ifm-color-primary-darkest: #2d6e2b;
-        --ifm-color-primary-light: #46ad44;
-        --ifm-color-primary-lighter: #4ab547;
-        --ifm-color-primary-lightest: #60bf5d;
-        --ifm-code-font-size: 95%;
-        --ifm-container-width: 1024px;
-        --ifm-container-width-xl: 1024px;
-        --ifm-navbar-background-color: value(darkPrimary1);
+        --fgColor: value(lightPrimary);
+        --bgColor: value(lightBgColor);
     }
 
-    Feature::image {
-        fill: #fff;
+    & {
+        --ifm-background-color: value(lightBgColor) !important;
+        --ifm-background-surface-color: value(lightBgColor) !important;
+        --ifm-color-primary: green !important;
+        --ifm-color-primary-dark: #3a8d38 !important;
+        --ifm-color-primary-darker: #368535 !important;
+        --ifm-color-primary-darkest: #2d6e2b !important;
+        --ifm-color-primary-light: #46ad44 !important;
+        --ifm-color-primary-lighter: #4ab547 !important;
+        --ifm-color-primary-lightest: #60bf5d !important;
+        --ifm-code-font-size: 95% !important;
+        --ifm-container-width: 1024px !important;
+        --ifm-container-width-xl: 1024px !important;
+        --ifm-navbar-background-color: value(darkPrimary1) !important;
+    }
+
+    &::navbar {
+        background-color: value(darkPrimary1);
+    }
+
+    Button {
+        -st-mixin: buttonDesign1(
+                       fgColor var(--fgColor),
+                       bgColor var(--bgColor),
+                       accentColor value(green0-1)
+                   );
+        background: white;
+    }
+
+    Button::icon {
+        filter: invert(1);
+        background-color: #ffffff;
     }
 }
 
 @st-scope Docusaurus:themeMode(dark) {
-    &Docusaurus {
+    & {
+        /* site */
         --colorScheme: 'dark';
-        --ifm-background-color: value(black0);
-        --ifm-background-surface-color: value(black0);
-        --ifm-color-primary: green;
-        --ifm-color-primary-dark: #3a8d38;
-        --ifm-color-primary-darker: #368535;
-        --ifm-color-primary-darkest: #2d6e2b;
-        --ifm-color-primary-light: #46ad44;
-        --ifm-color-primary-lighter: #4ab547;
-        --ifm-color-primary-lightest: #60bf5d;
-        --ifm-code-font-size: 95%;
-        --ifm-container-width: 1024px;
-        --ifm-container-width-xl: 1024px;
-        --ifm-navbar-background-color: value(lightPrimary1);
+        --fgColor: value(darkPrimary);
+        --bgColor: value(darkBgColor);
+    }
+
+    & {
+        /* docusaurus */
+        --ifm-background-color: value(black0) !important;
+        --ifm-background-surface-color: value(black0) !important;
+        --ifm-color-primary: green !important;
+        --ifm-color-primary-dark: #3a8d38 !important;
+        --ifm-color-primary-darker: #368535 !important;
+        --ifm-color-primary-darkest: #2d6e2b !important;
+        --ifm-color-primary-light: #46ad44 !important;
+        --ifm-color-primary-lighter: #4ab547 !important;
+        --ifm-color-primary-lightest: #60bf5d !important;
+        --ifm-code-font-size: 95% !important;
+        --ifm-container-width: 1024px !important;
+        --ifm-container-width-xl: 1024px !important;
+        --ifm-navbar-background-color: value(lightPrimary1) !important;
+    }
+
+    &::navbar {
+        background-color: value(lightPrimary1);
+    }
+
+    Button {
+        /* --bgColor: white; */
+        -st-mixin: buttonDesign1(
+                       fgColor var(--fgColor),
+                       bgColor value(lightPrimary4),
+                       accentColor value(green0-1),
+                       accentBgColor value(lightPrimary2)
+                   );
+    }
+
+    Button::icon {
+        mix-blend-mode: lighten;
     }
 
     .GithubIcon::before {

@@ -4,8 +4,8 @@
 @st-import Docs from './docusaurus/docs.st.css';
 
 .root {
-    -st-global: ":root";
-    -st-states: themeMode(":is([data-theme='$0'])", enum(light, dark));
+    -st-global: ":where(:root)";
+    -st-states: themeMode(":where(:is([data-theme='$0']))", enum(light, dark));
 }
 
 @custom-selector :--page Page;

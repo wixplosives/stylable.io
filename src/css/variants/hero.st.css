@@ -67,3 +67,8 @@
 .root::desc {
     max-width: 438px;
 }
+
+.root::nav {
+    gap: 15px;
+    display: flex;
+}

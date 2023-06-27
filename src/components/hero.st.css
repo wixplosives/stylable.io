@@ -12,7 +12,9 @@
 
         .nav {}
 
-        .button {}
+        .button {
+            -st-states: action(enum(demo, intro));
+        }
     }
 
     .gfx {

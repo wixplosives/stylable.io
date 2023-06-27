@@ -1,6 +1,7 @@
 import React from 'react';
 import { DarkLogo, LightLogo } from './hero-logo';
 import { HeroBackground } from '../components/hero-background';
+import { Button } from './button';
 import { st, classes } from './hero.st.css';
 
 export function Hero({ className }: { className?: string }) {
@@ -22,8 +23,8 @@ export function Hero({ className }: { className?: string }) {
                         extensions that we believe adhere to the spirit of CSS.
                     </p>
                     <nav className={classes.nav}>
-                        <button className={classes.button}>View Demo</button>
-                        <button className={classes.button}>Get Started</button>
+                        <Button className={st(classes.button, { action: 'demo' })} text="View Demo" />
+                        <Button className={st(classes.button, { action: 'intro' })} callToAction text="Get Started" />
                     </nav>
                 </div>
             </div>
