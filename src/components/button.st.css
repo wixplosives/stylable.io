@@ -5,3 +5,8 @@
 .icon {}
 
 .text {}
+
+.root:is(a) {
+    text-decoration: none;
+    color: inherit;
+}
