@@ -8,12 +8,6 @@
 
 .root {
     -st-extends: Hero;
-    background: linear-gradient(
-                    180deg,
-                    #0A1020 -20%,
-                    #13274D 42.71%,
-                    value(darkBgColor) 88.83%
-                );
 }
 
 :global(html[data-theme='light']) .root {

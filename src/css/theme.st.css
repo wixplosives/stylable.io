@@ -114,7 +114,6 @@
 
     Hero {
         -st-mixin: HeroVariant(
-                       darkBgColor value(black0),
                        lightBgColor value(lightBgColor)
                    );
     }
