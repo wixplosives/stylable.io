@@ -1,4 +1,5 @@
 import React from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import { DarkLogo, LightLogo } from './hero-logo';
 import { HeroBackground } from '../components/hero-background';
 import { Button } from './button';
@@ -23,8 +24,19 @@ export function Hero({ className }: { className?: string }) {
                         extensions that we believe adhere to the spirit of CSS.
                     </p>
                     <nav className={classes.nav}>
-                        <Button className={st(classes.button, { action: 'demo' })} text="View Demo" />
-                        <Button className={st(classes.button, { action: 'intro' })} callToAction text="Get Started" />
+                        <Button
+                            type="a"
+                            href={useBaseUrl('playground')}
+                            className={st(classes.button, { action: 'demo' })}
+                            text="View Demo"
+                        />
+                        <Button
+                            type="a"
+                            href={useBaseUrl('docs/getting-started/intro')}
+                            className={st(classes.button, { action: 'intro' })}
+                            callToAction
+                            text="Get Started"
+                        />
                     </nav>
                 </div>
             </div>
