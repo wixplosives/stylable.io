@@ -11,11 +11,14 @@ export function DevThemeControl({ colorScheme }: { colorScheme: 'light' | 'dark'
     return (
         <div
             style={{
-                background: 'white',
-                borderBottom: '1px solid black',
                 position: 'fixed',
+                color: 'black',
+                background: 'white',
+                outline: '1px solid black',
                 top: '1em',
                 padding: '0.3em',
+                borderRadius: '5px',
+                boxShadow: '2px 2.5px 10px #646A68',
             }}
         >
             <label>
