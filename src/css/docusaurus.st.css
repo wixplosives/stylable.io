@@ -4,7 +4,7 @@
 @st-import Docs from './docusaurus/docs.st.css';
 
 .root {
-    -st-global: ":where(:root)";
+    -st-global: "*";
     -st-states: themeMode(":where(:is([data-theme='$0']))", enum(light, dark));
 }
 

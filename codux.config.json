@@ -1,0 +1,10 @@
+{
+  "$schema": "https://wixplosives.github.io/codux-config-schema/codux.config.schema.json",
+  "resolve": {
+    "alias": {
+      "@docusaurus/useBaseUrl": "./node_modules/@docusaurus/core/lib/client/exports/useBaseUrl.js",
+      "@docusaurus/Link": "./node_modules/@docusaurus/core/lib/client/exports/Link.js",
+      "@generated/*": "./.docusaurus/*"
+    }
+  }
+}

@@ -70,10 +70,6 @@
     darkBgColor: value(black0);
 }
 
-.root {
-    -st-global: ':where(:root)';
-}
-
 @font-face {
     font-family: Poppins;
     src: url(../../static/fonts/poppins/Poppins-Light.ttf);

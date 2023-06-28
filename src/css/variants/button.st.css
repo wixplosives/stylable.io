@@ -93,7 +93,6 @@
 .buttonDesign2 {
     -st-extends: Button;
     -st-mixin: buttonBase;
-    color: value(bgColor);
     color: value(fgColor);
     background: linear-gradient(
                     116.63deg,
