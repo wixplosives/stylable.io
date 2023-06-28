@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from 'react';
+import '../css/theme.st.css';
 
 export function DevThemeControl({ colorScheme }: { colorScheme: 'light' | 'dark' }) {
     const [scheme, setScheme] = React.useState(colorScheme);

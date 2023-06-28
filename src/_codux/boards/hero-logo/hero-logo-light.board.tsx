@@ -1,14 +1,14 @@
 import React from 'react';
 import { createBoard } from '@wixc3/react-board';
-import { DarkLogo } from '../../../components/hero-logo';
+import { LightLogo } from '../../../components/hero-logo';
 import { DevThemeControl } from '../../dev-theme-control';
 
 export default createBoard({
-    name: 'header-logo-dark',
+    name: 'hero-logo [light]',
     Board: () => (
         <>
-            <DevThemeControl colorScheme="dark" />
-            <DarkLogo />
+            <LightLogo />
+            <DevThemeControl colorScheme="light" />
         </>
     ),
 });

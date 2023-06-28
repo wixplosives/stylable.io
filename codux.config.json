@@ -4,6 +4,8 @@
     "alias": {
       "@docusaurus/useBaseUrl": "./node_modules/@docusaurus/core/lib/client/exports/useBaseUrl.js",
       "@docusaurus/Link": "./node_modules/@docusaurus/core/lib/client/exports/Link.js",
+      "/* workaround until codux resolves mjs */": "",
+      "@generated/docusaurus.config": "./.docusaurus/docusaurus.config.mjs",
       "@generated/*": "./.docusaurus/*"
     }
   }
