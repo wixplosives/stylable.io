@@ -119,7 +119,6 @@
     Button:callToAction {
         -st-mixin: buttonDesign2(
                        fgColor value(lightPrimary),
-                       bgColor #ffffff,
                    );
     }
 
