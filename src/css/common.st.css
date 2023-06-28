@@ -1,5 +1,10 @@
 @st-import [--ifm-container-width, --ifm-spacing-horizontal, --ifm-container-width-xl] from "./infima.st.css";
 
+.colorScheme {
+    -st-global: "*";
+    -st-states: type("[data-theme='$0']", enum(light, dark));
+}
+
 .centerMainColumn {
     margin: 0 auto;
     max-width: var(--ifm-container-width);
@@ -8,6 +13,7 @@
 }
 
 @media (min-width: 1440px) {
+    /*ToDo: check this out */
     .container {
         max-width: var(--ifm-container-width-xl);
     }

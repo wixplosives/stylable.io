@@ -1,4 +1,4 @@
-@st-import [centerMainColumn] from "../css/common.st.css";
+@st-import [centerMainColumn, colorScheme] from "../css/common.st.css";
 
 .root {}
 
@@ -26,10 +26,14 @@
     }
 }
 
-:global(html[data-theme='light']) .logo:colorScheme(dark) {
-    display: none;
+@st-scope .colorScheme:type(light) {
+    .logo:colorScheme(dark) {
+        display: none;
+    }
 }
 
-:global(html[data-theme='dark']) .logo:colorScheme(light) {
-    display: none;
-} 
+@st-scope .colorScheme:type(dark) {
+    .logo:colorScheme(light) {
+        display: none;
+    }
+}

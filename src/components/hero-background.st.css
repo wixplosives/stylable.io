@@ -1,12 +1,17 @@
+@st-import [colorScheme] from "../css/common.st.css";
+
 .root {
     -st-states: colorScheme(enum('light', 'dark'));
 }
 
-:global(html[data-theme='light']) .root:colorScheme(dark) {
-    display: none;
+@st-scope .colorScheme:type(light) {
+    .root:colorScheme(dark) {
+        display: none;
+    }
 }
 
-:global(html[data-theme='dark']) .root:colorScheme(light) {
-    display: none;
+@st-scope .colorScheme:type(dark) {
+    .root:colorScheme(light) {
+        display: none;
+    }
 }
-
