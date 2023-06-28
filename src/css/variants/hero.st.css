@@ -35,6 +35,7 @@
     justify-self: end;
     grid-column: 2;
     grid-row: 1;
+    align-self: center;
 }
 
 .root::logo {
@@ -55,7 +56,6 @@
     align-self: center;
     justify-self: start;
     max-width: 854px;
-    min-width: 426px;
 }
 
 .root::desc {
@@ -65,4 +65,16 @@
 .root::nav {
     gap: 15px;
     display: flex;
+}
+
+@media (max-width: 900px) {
+    .root::wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .root::logo {
+        width: 40vh;
+        height: 40vh;
+    }
 }

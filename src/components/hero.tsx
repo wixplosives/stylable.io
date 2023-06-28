@@ -16,8 +16,8 @@ export function Hero({ className }: { className?: string }) {
                 </div>
                 <div className={classes.content}>
                     <h1 className={classes.title}>
-                        CSS <br />
-                        for Components
+                        CSS for <br />
+                        Components
                     </h1>
                     <p className={classes.desc}>
                         Stylable — a CSS preprocessor that enables you to write style rules in CSS syntax, with some
