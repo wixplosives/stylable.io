@@ -95,6 +95,21 @@
     }
 
     Docusaurus::navbar {
+        background-color: transparent;
+    }
+
+    Docusaurus::navbar::before {
+        /* 
+        blur changes the navbar into a stacking context, 
+        which causes the mobile menu inability to grow heigher then the navbar itself. 
+        Instead, move the background to the ::before
+        */
+        content: "";
+        inset: 0;
+        background-color: var(--navbarBgColor, #ffffff33);
+        backdrop-filter: blur(6px);
+        position: absolute;
+        z-index: -1;
         backdrop-filter: blur(6px);
     }
 
@@ -147,6 +162,7 @@
         --colorScheme: 'light';
         --fgColor: value(lightPrimary);
         --bgColor: value(lightBgColor);
+        --navbarBgColor: value(darkPrimary1);
     }
 
     & {
@@ -162,11 +178,7 @@
         --ifm-code-font-size: 95% !important;
         --ifm-container-width: 1024px !important;
         --ifm-container-width-xl: 1024px !important;
-        --ifm-navbar-background-color: value(darkPrimary1) !important;
-    }
-
-    &::navbar {
-        background-color: value(darkPrimary1);
+        --ifm-navbar-background-color: value(darkPrimary) !important;
     }
 
     Button {
@@ -190,6 +202,7 @@
         --colorScheme: 'dark';
         --fgColor: value(darkPrimary);
         --bgColor: value(darkBgColor);
+        --navbarBgColor: value(lightPrimary1);
     }
 
     & {
@@ -206,11 +219,7 @@
         --ifm-code-font-size: 95% !important;
         --ifm-container-width: 1024px !important;
         --ifm-container-width-xl: 1024px !important;
-        --ifm-navbar-background-color: value(lightPrimary1) !important;
-    }
-
-    &::navbar {
-        background-color: value(lightPrimary1);
+        --ifm-navbar-background-color: value(lightPrimary) !important;
     }
 
     Button {
