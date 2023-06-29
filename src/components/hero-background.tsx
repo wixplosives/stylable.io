@@ -13,7 +13,7 @@ export function HeroBackground({ className }: { className?: string }) {
                 xmlns="http://www.w3.org/2000/svg"
                 width="10vw"
                 height="100%"
-                style={{ position: 'absolute', left: '-50vw' }}
+                style={{ position: 'absolute', left: '-100vw' }}
                 preserveAspectRatio="none"
                 fill="none"
                 viewBox="0 210 10 510"
