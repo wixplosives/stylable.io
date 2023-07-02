@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Link from '@docusaurus/Link';
 import { Hero } from '../components/hero';
+import { Decoration } from '../components/decoration';
 import { Feature } from '../components/feature';
 import { ResponsiveEmbed } from '../components/responsive-embed';
 import { st, classes } from './index.st.css';
@@ -19,6 +20,7 @@ function Home() {
             <main className={classes.main}>
                 <Hero className={classes.hero} />
                 <section className={classes.features}>
+                    <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec1']} />
                     <div className="container">
                         <div className="row">
                             <Feature className={classes.feature} title="CSS Superset" image="img/component.svg">

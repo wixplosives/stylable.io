@@ -1,5 +1,6 @@
 @st-import [--ifm-color-emphasis-100, --ifm-link-color, --ifm-container-width, --ifm-spacing-horizontal, --ifm-navbar-height] from "../css/infima.st.css";
 @st-import Hero from "../components/hero.st.css";
+@st-import Decoration from "../components/decoration.st.css";
 @st-import Feature from "../components/feature.st.css";
 @st-import "../css/theme.st.css";
 
@@ -12,6 +13,10 @@
     z-index: 0;
     margin-top: var(--ifm-navbar-height);
     margin-bottom: max(15em, 15vh);
+}
+
+.decoration {
+    -st-extends: Decoration;
 }
 
 .features {

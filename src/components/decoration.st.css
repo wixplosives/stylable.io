@@ -1,0 +1,9 @@
+.root {
+    -st-states: of('.dec--of-$0', string);
+    position: absolute;
+}
+
+.htmlElement {
+    width: 100%;
+    height: 100%;
+}

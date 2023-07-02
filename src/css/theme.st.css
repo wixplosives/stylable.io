@@ -20,6 +20,7 @@
     --ifm-font-family-base,
 ] from "./infima.st.css";
 @st-import Hero from "../components/hero.st.css";
+@st-import Decoration from "../components/decoration.st.css";
 @st-import Feature from "../components/feature.st.css";
 @st-import GithubIcon from "../components/github-icon.st.css";
 @st-import Button from "../components/button.st.css";
@@ -128,6 +129,19 @@
         -st-mixin: HeroVariant(
                        lightBgColor value(lightBgColor)
                    );
+    }
+
+    Decoration:of(home):of(features) {
+        width: 300px;
+        left: 50%;
+    }
+
+    Decoration:of(home):of(features)::htmlElement {
+        border-radius: 50%;
+        background: #121623;
+        box-shadow: inset 21px 0px 45px rgba(255, 255, 255, 0.2),
+                    inset 66px 4px 132px rgba(0, 216, 138, 0.69),
+                    inset 0px 4px 64px rgba(66, 4, 197, 0.3);
     }
 
     a.GithubIcon:hover {
