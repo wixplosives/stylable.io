@@ -1,6 +1,7 @@
 .root {
     -st-states: of('.dec--of-$0', string);
     position: absolute;
+    z-index: -1;
 }
 
 .htmlElement {
