@@ -1,0 +1,24 @@
+/* 
+ToDo: move to new syntax
+@st .root {
+    @st ::title => .title;
+
+    @st ::feaure => .feature {
+        @st ::marker => &::before;
+        @st ::title => .title;
+        @st ::desc => .desc;
+    }
+} 
+*/
+.root {}
+
+.title {}
+
+.feature {}
+
+@custom-selector :--feature-marker .feature::before;
+
+.feature-title {}
+
+.feature-desc {}
+

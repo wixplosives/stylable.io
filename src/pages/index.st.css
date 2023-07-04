@@ -1,7 +1,8 @@
 @st-import [--ifm-color-emphasis-100, --ifm-link-color, --ifm-container-width, --ifm-spacing-horizontal, --ifm-navbar-height] from "../css/infima.st.css";
+@st-import [centerMainColumn] from "../css/common.st.css";
 @st-import Hero from "../components/hero.st.css";
 @st-import Decoration from "../components/decoration.st.css";
-@st-import Feature from "../components/feature.st.css";
+@st-import FeatureList from "../components/feature-list.st.css";
 @st-import "../css/theme.st.css";
 
 .main {}
@@ -20,20 +21,9 @@
 }
 
 .features {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    padding: 2rem 0;
-    width: 100%;
-}
-
-.feature {
-    -st-extends: Feature;
-}
-
-.feature::imageWrapper {
-    text-align: center;
+    -st-extends: FeatureList;
+    -st-mixin: centerMainColumn
+               /* would be better with compose with native section */;
 }
 
 .section {

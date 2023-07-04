@@ -22,10 +22,12 @@
 @st-import Hero from "../components/hero.st.css";
 @st-import Decoration from "../components/decoration.st.css";
 @st-import Feature from "../components/feature.st.css";
+@st-import FeatureList, [feature as FeatureItem] from "../components/feature-list.st.css";
 @st-import GithubIcon from "../components/github-icon.st.css";
 @st-import Button from "../components/button.st.css";
 @st-import [buttonDesign1, buttonDesign2] from "./variants/button.st.css";
 @st-import HeroVariant from "./variants/hero.st.css";
+@st-import [featureListDesign, featureListlightModeOverride] from "./variants/feature-list.st.css";
 
 :global(html) {
     /* ToDo: mark sheet with side-effects */
@@ -69,6 +71,16 @@
     darkPrimary3: rgba(255, 255, 255, 0.16);
     darkPrimary4: rgba(255, 255, 255, 0.6);
     darkBgColor: value(black0);
+    desktopHeading1: 107px/100px var(--fontFamily);
+    desktopHeading2: 85px/90px var(--fontFamily);
+    desktopHeading3: 52px/65px var(--fontFamily);
+    desktopHeading4: 38px/45px var(--fontFamily);
+    desktopHeading5: 28px/45px var(--fontFamily);
+    desktopHeading6: 16px/25px var(--fontFamily);
+    desktopHeading7: 14px/20px var(--fontFamily);
+    screenLarge: 2500px;
+    screenMiddle: 1020px;
+    screenSmall: 750px;
 }
 
 @font-face {
@@ -78,13 +90,47 @@
 
 @st-scope :global(/**/) {
     html {
+        --fontFamily: 'Poppins', sans-serif;
         color: var(--fgColor);
         background: var(--bgColor);
-        font-family: 'Poppins', sans-serif;
+        font-family: var(--fontFamily);
+    }
+
+    H1 {
+        font: value(desktopHeading1);
+    }
+
+    H2 {
+        font: value(desktopHeading2);
+        margin-bottom: 72px;
+    }
+
+    H3 {
+        font: value(desktopHeading3);
+    }
+
+    H4 {
+        font: value(desktopHeading4);
+    }
+
+    H5 {
+        font: value(desktopHeading5);
+    }
+
+    section[data-section-header]::before {
+        content: '-- ' attr(data-section-header);
+        position: relative;
+        font: value(desktopHeading6);
+        left: -1em;
+        margin-bottom: 1em;
+        display: block;
     }
 
     Docusaurus {
         --ifm-font-family-base: 'Poppins', sans-serif;
+        --ifm-code-font-size: 95% !important;
+        --ifm-container-width: 1290px !important;
+        --ifm-container-width-xl: 1290px !important;
         /*
         ToDo: figure out navbar padding 
         --ifm-navbar-padding-horizontal: 35px;
@@ -131,17 +177,9 @@
                    );
     }
 
-    Decoration:of(home):of(features) {
-        width: 300px;
-        left: 50%;
-    }
-
-    Decoration:of(home):of(features)::htmlElement {
-        border-radius: 50%;
-        background: #121623;
-        box-shadow: inset 21px 0px 45px rgba(255, 255, 255, 0.2),
-                    inset 66px 4px 132px rgba(0, 216, 138, 0.69),
-                    inset 0px 4px 64px rgba(66, 4, 197, 0.3);
+    FeatureList {
+        /* ToDo: fix mixin parameters passing to media query */
+        -st-mixin: featureListDesign;
     }
 
     a.GithubIcon:hover {
@@ -186,9 +224,6 @@
         --ifm-color-primary-light: #46ad44 !important;
         --ifm-color-primary-lighter: #4ab547 !important;
         --ifm-color-primary-lightest: #60bf5d !important;
-        --ifm-code-font-size: 95% !important;
-        --ifm-container-width: 1024px !important;
-        --ifm-container-width-xl: 1024px !important;
         --ifm-navbar-background-color: value(darkPrimary) !important;
     }
 
@@ -204,6 +239,10 @@
     Button::icon {
         filter: invert(1);
         background-color: #ffffff;
+    }
+
+    FeatureList {
+        -st-mixin: featureListlightModeOverride;
     }
 }
 
@@ -227,9 +266,6 @@
         --ifm-color-primary-light: #46ad44 !important;
         --ifm-color-primary-lighter: #4ab547 !important;
         --ifm-color-primary-lightest: #60bf5d !important;
-        --ifm-code-font-size: 95% !important;
-        --ifm-container-width: 1024px !important;
-        --ifm-container-width-xl: 1024px !important;
         --ifm-navbar-background-color: value(lightPrimary) !important;
     }
 

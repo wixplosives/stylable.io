@@ -4,9 +4,41 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Link from '@docusaurus/Link';
 import { Hero } from '../components/hero';
 import { Decoration } from '../components/decoration';
-import { Feature } from '../components/feature';
+import { FeatureList } from '../components/feature-list';
 import { ResponsiveEmbed } from '../components/responsive-embed';
 import { st, classes } from './index.st.css';
+
+const features = [
+    {
+        title: 'CSS Superset',
+        desc: `Extending CSS so that it is easier to use in a component ecosystem, but without losing any of
+    the declarative, familiar, static and fast aspects of CSS.`,
+    },
+    {
+        title: 'Style API',
+        desc: `Each component exposes a Style API that maps its internal parts and states so you can reuse
+    components across teams without sacrificing stylability or scalability.`,
+    },
+    {
+        title: 'Type Safety',
+        desc: `Provide the ability to see errors at build time or even while working in your IDE. Wave goodbye
+    to silent run-time breakage misery!`,
+    },
+    {
+        title: 'Performant',
+        desc: `Perform build-time transpilation and require only a minimal runtime. Use custom states and
+    properties for dynamic interactions.`,
+    },
+    {
+        title: 'Mixins & Formatters',
+        desc: `Easily create complex designs using CSS or JavaScript and reuse them across projects.`,
+    },
+    {
+        title: 'Developer Tooling',
+        desc: `Use our language-intelligence IDE extension for a better development experience including
+    completions, defintions, hinting, diagnostics and more.`,
+    },
+];
 
 function Home() {
     const context = useDocusaurusContext();
@@ -19,40 +51,21 @@ function Home() {
         >
             <main className={classes.main}>
                 <Hero className={classes.hero} />
-                <section className={classes.features}>
+                <FeatureList tagName="section" data-section-header="About Us" className={classes.features}>
+                    {features.map(({ title, desc }) => (
+                        <FeatureList.Feature title={title}>
+                            {desc}
+                            <Decoration
+                                preserveAspectRatio="none"
+                                className={st(classes.decoration)}
+                                context={['home', 'feature-bg']}
+                            />
+                        </FeatureList.Feature>
+                    ))}
                     <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec1']} />
-                    <div className="container">
-                        <div className="row">
-                            <Feature className={classes.feature} title="CSS Superset" image="img/component.svg">
-                                Extending CSS so that it is easier to use in a component ecosystem, but without losing
-                                any of the declarative, familiar, static and fast aspects of CSS.
-                            </Feature>
-                            <Feature className={classes.feature} title="Style API" image="img/api.svg">
-                                Each component exposes a Style API that maps its internal parts and states so you can
-                                reuse components across teams without sacrificing stylability or scalability.
-                            </Feature>
-                            <Feature className={classes.feature} title="Type Safety" image="img/stethoscope.svg">
-                                Provide the ability to see errors at build time or even while working in your IDE. Wave
-                                goodbye to silent run-time breakage misery!
-                            </Feature>
-                            <Feature className={classes.feature} title="Performant" image="img/checklist.svg">
-                                Perform build-time transpilation and require only a minimal runtime. Use custom states
-                                and properties for dynamic interactions.
-                            </Feature>
-                            <Feature
-                                className={classes.feature}
-                                title="Mixins &amp; Formatters"
-                                image="img/prototype.svg"
-                            >
-                                Easily create complex designs using CSS or JavaScript and reuse them across projects.
-                            </Feature>
-                            <Feature className={classes.feature} title="Developer Tooling" image="img/tool.svg">
-                                Use our language-intelligence IDE extension for a better development experience
-                                including completions, defintions, hinting, diagnostics and more.
-                            </Feature>
-                        </div>
-                    </div>
-                </section>
+                    <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec2']} />
+                    <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec3']} />
+                </FeatureList>
                 <section className={st(classes.section)}>
                     <div className="container">
                         <h2>What is Stylable?</h2>
