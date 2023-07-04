@@ -24,8 +24,10 @@ function Feature({ className, title, children }: { className?: string; title: st
     return (
         <div className={st(classes.feature, className)}>
             <Decoration className={classes['feature-decoration']} preserveAspectRatio="none" context={[]} />
-            <h3 className={classes['feature-title']}>{title}</h3>
-            <p className={classes['feature-desc']}>{children}</p>
+            <div className={classes.content}>
+                <h3 className={classes['feature-title']}>{title}</h3>
+                <p className={classes['feature-desc']}>{children}</p>
+            </div>
         </div>
     );
 }

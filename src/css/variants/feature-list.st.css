@@ -11,7 +11,7 @@
 
 .featureListDesign {
     -st-extends: FeatureList;
-    --featureInlineEndPad: 110px;
+    --featureInlineEndPad: clamp(1px, 5%, 110px);
     counter-reset: feature;
     position: relative;
     z-index: 3;
@@ -27,13 +27,8 @@
     position: relative;
     z-index: 1;
     counter-increment: feature;
-    min-height: 286px;
-    grid-template-areas: "index title desc";
-    display: grid;
-    grid-template-columns: max-content 1fr min(50%);
-    gap: 1em;
     padding: 90px 0;
-    padding-inline-end: clamp(1px, 5%, var(--featureInlineEndPad));
+    padding-inline-end: var(--featureInlineEndPad);
     /* bottom border */
     border: 0px solid var(--aa-1, rgba(255, 255, 255, 0.16));
 }
@@ -42,29 +37,39 @@
     border-top-width: 1px;
 }
 
+.featureListDesign::content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .featureListDesign::feature-marker {
-    grid-area: index;
+    width: max-content;
     content: "/ 0" counter(feature);
     margin-inline-end: 34px;
     font-size: 16px;
     font-family: Poppins;
-    line-height: 16px;
+    /* line-height: 16px; */
     letter-spacing: 3.2px;
     text-transform: uppercase;
-    vertical-align: middle;
+    /* vertical-align: middle; */
+    align-self: start;
 }
 
 .featureListDesign::feature-title {
-    grid-area: title;
+    flex: 1;
     position: relative;
     z-index: 3 /* above decorations */;
     margin: 0;
     margin-top: -14px;
+    margin-inline-end: 1em;
+    align-self: start;
 }
 
 .featureListDesign::feature-desc {
-    grid-area: desc;
+    width: 50%;
     margin: 0;
+    align-self: start;
 }
 
 .featureListDesign::feature:hover {
@@ -95,40 +100,29 @@
     display: block;
 }
 
-.featureListDesign::feature-desc,
-.featureListDesign::feature-title,
-.featureListDesign::feature-marker {
+.featureListDesign::content {
     transition: translate 0.3s;
 }
 
-.featureListDesign::feature-desc:is(.feature:hover > *),
-.featureListDesign::feature-title:is(.feature:hover > *),
-.feature:hover > :is(.featureListDesign::feature-marker) {
-    translate: 55px;
+.featureListDesign::content:is(.feature:hover > *) {
+    translate: var(--featureInlineEndPad);/*TODO: set according to available space*/
 }
 
 @media (max-width: value(screenMiddle)) {
-    .featureListDesign {
-        --featureInlineEndPad: 0px;
-    }
-
-    .featureListDesign::feature {
-        grid-template-areas:
-            "index index"
-            "title  desc";
-        grid-template-columns: 1fr min(50%);
+    .featureListDesign::feature-marker {
+        flex-basis: 100%;
+        line-height: 2em;
     }
 }
 
 @media (max-width: value(screenSmall)) {
-    .featureListDesign::feature {
-        grid-template-areas:
-            "index"
-            "title"
-            "desc";
-        grid-template-columns: 1fr;
-        padding: 2em 0;
-        min-height: unset;
+    .featureListDesign::feature-title {
+        flex-basis: 100%;
+        margin-top: 0;
+    }
+
+    .featureListDesign::feature-desc {
+        flex-basis: 100%;
     }
 
     .featureListDesign Decoration {

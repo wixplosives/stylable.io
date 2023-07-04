@@ -6,9 +6,11 @@ ToDo: move to new syntax
     @st ::title => .title;
 
     @st ::feaure => .feature {
-        @st ::marker => &::before;
-        @st ::title => .title;
-        @st ::desc => .desc;
+        @st ::content => .content {
+            @st ::marker => &::before;
+            @st ::title => .title;
+            @st ::desc => .desc;
+        }
         @st ::decoration => Decoration;
     }
 } 
@@ -19,7 +21,9 @@ ToDo: move to new syntax
 
 .feature {}
 
-@custom-selector :--feature-marker .feature-title::before;
+.content {}
+
+@custom-selector :--feature-marker .content::before;
 
 .feature-title {}
 
