@@ -1,4 +1,4 @@
-@st-import Feature from '../components/feature.st.css';
+@st-import CommunityCard from '../components/community-card.st.css';
 @st-import "../css/theme.st.css";
 
 .pageTitle {
@@ -6,7 +6,7 @@
 }
 
 .card {
-    -st-extends: Feature;
+    -st-extends: CommunityCard;
     text-align: center;
 }
 

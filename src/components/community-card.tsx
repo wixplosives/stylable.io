@@ -1,9 +1,9 @@
 import React from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
-import { st, classes } from './feature.st.css';
+import { st, classes } from './community-card.st.css';
 
-export function Feature({
+export function CommunityCard({
     className,
     image,
     title,
