@@ -53,14 +53,7 @@ function Home() {
                 <Hero className={classes.hero} />
                 <FeatureList tagName="section" data-section-header="About Us" className={classes.features}>
                     {features.map(({ title, desc }) => (
-                        <FeatureList.Feature title={title}>
-                            {desc}
-                            <Decoration
-                                preserveAspectRatio="none"
-                                className={st(classes.decoration)}
-                                context={['home', 'feature-bg']}
-                            />
-                        </FeatureList.Feature>
+                        <FeatureList.Feature title={title}>{desc}</FeatureList.Feature>
                     ))}
                     <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec1']} />
                     <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec2']} />

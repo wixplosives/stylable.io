@@ -36,7 +36,6 @@
     padding-inline-end: clamp(1px, 5%, var(--featureInlineEndPad));
     /* bottom border */
     border: 0px solid var(--aa-1, rgba(255, 255, 255, 0.16));
-    transition: padding 0.3s;
 }
 
 .featureListDesign::feature + .feature {
@@ -71,10 +70,10 @@
 .featureListDesign::feature:hover {
     /* ToDo: change this to activate each on while scrolling*/
     position: relative;
-    padding-inline-start: 55px;
+    /* padding-inline-start: 55px; */
 }
 
-.featureListDesign Decoration:of(home):of(feature-bg) {
+.featureListDesign::feature-decoration {
     display: none;
     width: 100%;
     height: 100%;
@@ -84,6 +83,28 @@
                     #e4282866 0,
                     transparent 25%
                 );
+}
+
+.featureListDesign::feature-decoration::path {
+    d: path("M 35 762 L 35 399 L 124 199 L 297 108 L 960 -149 L 460 245 L 324 610 L 323 861 L 112 908 Z");
+    fill: #42E5AA55;
+    filter: blur(130px);
+}
+
+.featureListDesign::feature-decoration:is(.feature:hover > *) {
+    display: block;
+}
+
+.featureListDesign::feature-desc,
+.featureListDesign::feature-title,
+.featureListDesign::feature-marker {
+    transition: translate 0.3s;
+}
+
+.featureListDesign::feature-desc:is(.feature:hover > *),
+.featureListDesign::feature-title:is(.feature:hover > *),
+.feature:hover > :is(.featureListDesign::feature-marker) {
+    translate: 55px;
 }
 
 @media (max-width: value(screenMiddle)) {
@@ -149,16 +170,6 @@
     right: calc(var(--featureInlineEndPad) + 400px + 90px);
     top: 1em;
     transform: translateY(-200px) rotateZ(180deg);
-}
-
-.featureListDesign Decoration:of(feature-bg)::path {
-    d: path("M 35 762 L 35 399 L 124 199 L 297 108 L 960 -149 L 460 245 L 324 610 L 323 861 L 112 908 Z");
-    fill: #42E5AA55;
-    filter: blur(130px);
-}
-
-.featureListDesign::feature:hover Decoration:of(feature-bg) {
-    display: block;
 }
 
 .featureListlightModeOverride {}

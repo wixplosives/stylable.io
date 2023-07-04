@@ -1,3 +1,5 @@
+@st-import Decoration from "../components/decoration.st.css";
+
 /* 
 ToDo: move to new syntax
 @st .root {
@@ -7,6 +9,7 @@ ToDo: move to new syntax
         @st ::marker => &::before;
         @st ::title => .title;
         @st ::desc => .desc;
+        @st ::decoration => Decoration;
     }
 } 
 */
@@ -16,9 +19,13 @@ ToDo: move to new syntax
 
 .feature {}
 
-@custom-selector :--feature-marker .feature::before;
+@custom-selector :--feature-marker .feature-title::before;
 
 .feature-title {}
 
 .feature-desc {}
+
+.feature-decoration {
+    -st-extends: Decoration;
+}
 
