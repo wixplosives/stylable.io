@@ -1,25 +1,5 @@
 /* 3rd-party */
 @st-import Docusaurus from "./docusaurus.st.css";
-@st-import [
-    --ifm-color-primary,
-    --ifm-color-primary-dark,
-    --ifm-color-primary-darker,
-    --ifm-color-primary-darkest,
-    --ifm-color-primary-light,
-    --ifm-color-primary-lighter,
-    --ifm-color-primary-lightest,
-    --ifm-background-color,
-    --ifm-code-font-size,
-    --ifm-container-width,
-    --ifm-container-width-xl,
-    --ifm-color-emphasis-100,
-    --ifm-background-surface-color,
-    --ifm-navbar-background-color,
-    --ifm-navbar-padding-horizontal,
-    --ifm-navbar-padding-vertical,
-    --ifm-navbar-height,
-    --ifm-font-family-base,
-] from "./infima.st.css";
 
 /* components */
 @st-import Hero from "../components/hero.st.css";
@@ -33,6 +13,7 @@
 @st-import [root as homePage] from "../pages/index.st.css";
 
 /* design variants */
+@st-import [infimaDesign] from "./variants/infima.st.css";
 @st-import [buttonDesign1, buttonDesign2] from "./variants/button.st.css";
 @st-import HeroVariant from "./variants/hero.st.css";
 @st-import [featureDesign] from "./variants/feature.st.css";
@@ -131,19 +112,6 @@
         display: block;
     }
 
-    Docusaurus {
-        --ifm-font-family-base: 'Poppins', sans-serif;
-        --ifm-code-font-size: 95% !important;
-        --ifm-container-width: 1290px !important;
-        --ifm-container-width-xl: 1290px !important;
-        /*
-        ToDo: figure out navbar padding 
-        --ifm-navbar-padding-horizontal: 35px;
-        --ifm-navbar-padding-vertical: 20px;
-        --ifm-navbar-height: auto; 
-        */
-    }
-
     Docusaurus::navbar {
         background-color: transparent;
     }
@@ -232,19 +200,10 @@
         --fgColor: value(lightPrimary);
         --bgColor: value(lightBgColor);
         --navbarBgColor: value(darkPrimary1);
-    }
-
-    & {
-        --ifm-background-color: value(lightBgColor) !important;
-        --ifm-background-surface-color: value(lightBgColor) !important;
-        --ifm-color-primary: green !important;
-        --ifm-color-primary-dark: #3a8d38 !important;
-        --ifm-color-primary-darker: #368535 !important;
-        --ifm-color-primary-darkest: #2d6e2b !important;
-        --ifm-color-primary-light: #46ad44 !important;
-        --ifm-color-primary-lighter: #4ab547 !important;
-        --ifm-color-primary-lightest: #60bf5d !important;
-        --ifm-navbar-background-color: value(darkPrimary) !important;
+        -st-mixin: infimaDesign(
+                       bgColor value(lightBgColor),
+                       navbarBgColor value(darkPrimary)
+                   );
     }
 
     Button {
@@ -273,20 +232,10 @@
         --fgColor: value(darkPrimary);
         --bgColor: value(darkBgColor);
         --navbarBgColor: value(lightPrimary1);
-    }
-
-    & {
-        /* docusaurus */
-        --ifm-background-color: value(black0) !important;
-        --ifm-background-surface-color: value(black0) !important;
-        --ifm-color-primary: green !important;
-        --ifm-color-primary-dark: #3a8d38 !important;
-        --ifm-color-primary-darker: #368535 !important;
-        --ifm-color-primary-darkest: #2d6e2b !important;
-        --ifm-color-primary-light: #46ad44 !important;
-        --ifm-color-primary-lighter: #4ab547 !important;
-        --ifm-color-primary-lightest: #60bf5d !important;
-        --ifm-navbar-background-color: value(lightPrimary) !important;
+        -st-mixin: infimaDesign(
+                       bgColor value(black0),
+                       navbarBgColor value(lightPrimary)
+                   );
     }
 
     Button {
