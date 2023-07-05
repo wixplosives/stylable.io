@@ -1,3 +1,4 @@
+/* 3rd-party */
 @st-import Docusaurus from "./docusaurus.st.css";
 @st-import [
     --ifm-color-primary,
@@ -19,20 +20,23 @@
     --ifm-navbar-height,
     --ifm-font-family-base,
 ] from "./infima.st.css";
+
+/* components */
 @st-import Hero from "../components/hero.st.css";
 @st-import Decoration from "../components/decoration.st.css";
 @st-import CommunityCard from "../components/community-card.st.css";
-@st-import FeatureList, [feature as FeatureItem] from "../components/feature-list.st.css";
+@st-import Feature from "../components/feature.st.css";
 @st-import GithubIcon from "../components/github-icon.st.css";
 @st-import Button from "../components/button.st.css";
+
+/* pages */
+@st-import [root as homePage] from "../pages/index.st.css";
+
+/* design variants */
 @st-import [buttonDesign1, buttonDesign2] from "./variants/button.st.css";
 @st-import HeroVariant from "./variants/hero.st.css";
-@st-import [featureListDesign, featureListlightModeOverride] from "./variants/feature-list.st.css";
-
-:global(html) {
-    /* ToDo: mark sheet with side-effects */
-    --side-effect: 'applied';
-}
+@st-import [featureDesign] from "./variants/feature.st.css";
+@st-import [sectionHeaderBalls, sectionHeaderBallsLightModeOverride] from "./variants/balls.st.css";
 
 @property --colorScheme {
     syntax: 'light | dark';
@@ -88,6 +92,7 @@
     src: url(../../static/fonts/poppins/Poppins-Light.ttf);
 }
 
+/* ToDo: remove :global() - we just want to opt out of scoping restrictions */
 @st-scope :global(/**/) {
     html {
         --fontFamily: 'Poppins', sans-serif;
@@ -177,9 +182,24 @@
                    );
     }
 
-    FeatureList {
-        /* ToDo: fix mixin parameters passing to media query */
-        -st-mixin: featureListDesign;
+    .homePage::features {
+        position: relative;
+        -st-mixin:
+            sectionHeaderBalls(
+                z-index 2 /* set above feature and below section title */,
+                screenSmall value(screenSmall),
+                marginTop -130px
+            );
+    }
+
+    .homePage::features::title {
+        position: relative;
+        z-index: 3/* above sectionHeaderBalls */;
+    }
+
+    .homePage::features::feature {
+        -st-mixin: featureDesign;
+        z-index: 1/* below sectionHeaderBalls*/;
     }
 
     a.GithubIcon:hover {
@@ -241,8 +261,8 @@
         background-color: #ffffff;
     }
 
-    FeatureList {
-        -st-mixin: featureListlightModeOverride;
+    .homePage::features {
+        -st-mixin: sectionHeaderBallsLightModeOverride;
     }
 }
 

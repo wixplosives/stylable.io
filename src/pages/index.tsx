@@ -4,11 +4,12 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Link from '@docusaurus/Link';
 import { Hero } from '../components/hero';
 import { Decoration } from '../components/decoration';
-import { FeatureList } from '../components/feature-list';
+import { useFeatures } from '../components/feature';
 import { ResponsiveEmbed } from '../components/responsive-embed';
 import { st, classes } from './index.st.css';
+import '../css/theme.st.css' /* apply theme */;
 
-const features = [
+const FEATURES = [
     {
         title: 'CSS Superset',
         desc: `Extending CSS so that it is easier to use in a component ecosystem, but without losing any of
@@ -43,6 +44,7 @@ const features = [
 function Home() {
     const context = useDocusaurusContext();
     const { siteConfig } = context;
+    const features = useFeatures({ features: FEATURES });
     return (
         <Layout
             wrapperClassName={classes.root}
@@ -51,14 +53,13 @@ function Home() {
         >
             <main className={classes.main}>
                 <Hero className={classes.hero} />
-                <FeatureList tagName="section" data-section-header="About Us" className={classes.features}>
-                    {features.map(({ title, desc }) => (
-                        <FeatureList.Feature title={title}>{desc}</FeatureList.Feature>
-                    ))}
-                    <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec1']} />
-                    <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec2']} />
-                    <Decoration className={st(classes.decoration)} context={['home', 'features', 'dec3']} />
-                </FeatureList>
+                <section data-section-header="About Us" className={classes.features}>
+                    <h2>Features</h2>
+                    {features.nodes}
+                    <Decoration context={['home', 'features', 'dec1']} />
+                    <Decoration context={['home', 'features', 'dec2']} />
+                    <Decoration context={['home', 'features', 'dec3']} />
+                </section>
                 <section className={st(classes.section)}>
                     <div className="container">
                         <h2>What is Stylable?</h2>
