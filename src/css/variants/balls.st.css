@@ -26,14 +26,15 @@
     width: 400px;
     top: 0;
     right: value(endPad);
-    transform: translateY(value(marginTop));
+    translate: 0 value(marginTop);
 }
 
 .sectionHeaderBalls > Decoration:of(dec2) {
     width: 135px;
     top: 0;
     right: calc(value(endPad) + 400px - 5px);
-    transform: translateY(calc(value(marginTop) + 135px)) rotateZ(180deg);
+    rotate: 180deg;
+    translate: 0 calc(value(marginTop) + 135px);
 }
 
 .sectionHeaderBalls > Decoration:of(dec3) {
@@ -41,7 +42,8 @@
     width: 50px;
     top: 0;
     right: calc(value(endPad) + 400px + 90px);
-    transform: translateY(value(marginTop)) rotateZ(180deg);
+    rotate: 180deg;
+    translate: 0 value(marginTop);
 }
 
 @media (max-width: value(screenSmall)) {
@@ -81,7 +83,7 @@
 }
 
 .sectionHeaderBallsLightModeOverride > Decoration:of(dec2) {
-    transform: translateY(-67.5px);
+    rotate: unset;
 }
 
 .sectionHeaderBallsLightModeOverride > Decoration:of(dec2)::htmlElement {
@@ -97,7 +99,7 @@
 }
 
 .sectionHeaderBallsLightModeOverride > Decoration:of(dec3) {
-    transform: translateY(-200px);
+    rotate: unset;
 }
 
 .sectionHeaderBallsLightModeOverride > Decoration:of(dec3)::htmlElement {
