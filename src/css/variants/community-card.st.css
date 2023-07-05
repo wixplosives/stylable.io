@@ -1,0 +1,39 @@
+@st-namespace "community-card-variants";
+@st-import CommunityCard from "../../components/community-card.st.css";
+
+:vars {
+    screenLarge: 2500px;
+    screenMiddle: 996px;
+    screenSmall: 600px;
+    fgColor: black;
+}
+
+.communityCardDesign {
+    -st-extends: CommunityCard;
+}
+
+.communityCardDesign::image {
+    height: 125px;
+    margin: 2.25em 0;
+    width: 125px;
+    fill: value(fgColor);
+}
+
+@media screen and (max-width: value(screenMiddle)) {
+    .communityCardDesign {
+        padding: 2.5em;
+    }
+
+    .communityCardDesign::image {
+        float: left;
+        margin: 0 3em 0 0;
+    }
+}
+
+@media screen and (max-width: value(screenSmall)) {
+    .communityCardDesign::image {
+        float: none;
+        margin: 0 0 1em;
+        width: 25%;
+    }
+}

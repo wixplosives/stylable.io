@@ -17,6 +17,7 @@
 @st-import [buttonDesign1, buttonDesign2] from "./variants/button.st.css";
 @st-import HeroVariant from "./variants/hero.st.css";
 @st-import [featureDesign] from "./variants/feature.st.css";
+@st-import [communityCardDesign] from "./variants/community-card.st.css";
 @st-import [sectionHeaderBalls, sectionHeaderBallsLightModeOverride] from "./variants/balls.st.css";
 
 @property --colorScheme {
@@ -75,8 +76,9 @@
 
 /* ToDo: remove :global() - we just want to opt out of scoping restrictions */
 @st-scope :global(/**/) {
-    html {
+    :where(html) {
         --fontFamily: 'Poppins', sans-serif;
+        --fill: black;
         color: var(--fgColor);
         background: var(--bgColor);
         font-family: var(--fontFamily);
@@ -131,11 +133,10 @@
         backdrop-filter: blur(6px);
     }
 
-    CommunityCard::image {
-        height: 125px;
-        margin: 2.25em 0;
-        width: 125px;
-        fill: #1b1f23;
+    CommunityCard {
+        -st-mixin: communityCardDesign(
+                       fgColor var(--fill)
+                   );
     }
 
     Button:callToAction {
@@ -173,25 +174,6 @@
     a.GithubIcon:hover {
         opacity: 0.6;
     }
-
-    @media screen and (max-width: 996px) {
-        CommunityCard {
-            padding: 2.5em;
-        }
-
-        CommunityCard::image {
-            float: left;
-            margin: 0 3em 0 0;
-        }
-    }
-
-    @media screen and (max-width: 600px) {
-        CommunityCard::image {
-            float: none;
-            margin: 0 0 1em;
-            width: 25%;
-        }
-    }
 }
 
 @st-scope Docusaurus:themeMode(light) {
@@ -199,6 +181,7 @@
         --colorScheme: 'light';
         --fgColor: value(lightPrimary);
         --bgColor: value(lightBgColor);
+        --fill: #1b1f23;
         --navbarBgColor: value(darkPrimary1);
         -st-mixin: infimaDesign(
                        bgColor value(lightBgColor),
@@ -231,6 +214,7 @@
         --colorScheme: 'dark';
         --fgColor: value(darkPrimary);
         --bgColor: value(darkBgColor);
+        --fill: #fff;
         --navbarBgColor: value(lightPrimary1);
         -st-mixin: infimaDesign(
                        bgColor value(black0),
@@ -254,10 +238,6 @@
 
     .GithubIcon::before {
         filter: invert(1);
-    }
-
-    CommunityCard::image {
-        fill: #fff;
     }
 }
 
