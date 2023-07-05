@@ -23,7 +23,7 @@
     border: 0px solid var(--aa-1, rgba(255, 255, 255, 0.16));
 }
 
-.featureDesign + .feature {
+.featureDesign + .Feature {
     /* ToDo: improve selector maybe ".mix + :is(.mix)"*/
     border-top-width: 1px;
 }
