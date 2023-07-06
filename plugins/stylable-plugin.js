@@ -16,7 +16,7 @@ module.exports = function (_context, _options) {
                         /* ToDo: make sure css+js work for dev */
                         cssInjection: 'css',
 
-                        stcConfig: path.join(__dirname, '../stylable.config.cjs'),
+                        stcConfig: path.join(__dirname, '../stylable.config.js'),
 
                         optimize: {
                             /* Removes comments from output css */
