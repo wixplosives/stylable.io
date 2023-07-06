@@ -24,19 +24,26 @@
     fgColor: black;
     bgColor: white;
     navbarBgColor: white;
+    containerWidth: 1290px;
+    containerWidthXL: 1290px;
+    containerHorizontalSpace: 10px;
 }
 
-.infimaDesign {
+.infimaOther {
     --ifm-font-family-base: 'Poppins', sans-serif;
     --ifm-code-font-size: 95% !important;
-    --ifm-container-width: 1290px !important;
-    --ifm-container-width-xl: 1290px !important;
+    --ifm-container-width: value(containerWidth) !important;
+    --ifm-container-width-xl: value(containerWidthXL) !important;
+    --ifm-spacing-horizontal: value(containerHorizontalSpace) !important;
     /*
     ToDo: figure out navbar padding 
     --ifm-navbar-padding-horizontal: 35px;
     --ifm-navbar-padding-vertical: 20px;
     --ifm-navbar-height: auto; 
     */
+}
+
+.infimaColors {
     --ifm-background-color: value(bgColor) !important;
     --ifm-background-surface-color: value(bgColor) !important;
     --ifm-color-primary: green !important;

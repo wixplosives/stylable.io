@@ -13,7 +13,7 @@
 @st-import [root as homePage] from "../pages/index.st.css";
 
 /* design variants */
-@st-import [infimaDesign] from "./variants/infima.st.css";
+@st-import [infimaColors, infimaOther] from "./variants/infima.st.css";
 @st-import [buttonDesign1, buttonDesign2] from "./variants/button.st.css";
 @st-import HeroVariant from "./variants/hero.st.css";
 @st-import [featureDesign] from "./variants/feature.st.css";
@@ -79,6 +79,8 @@
     :where(html) {
         --fontFamily: 'Poppins', sans-serif;
         --fill: black;
+        --containerMaxWidth: 1290px;
+        --containerHorizontalSpace: 50px;
         color: var(--fgColor);
         background: var(--bgColor);
         font-family: var(--fontFamily);
@@ -112,6 +114,13 @@
         left: -1em;
         margin-bottom: 1em;
         display: block;
+    }
+
+    Docusaurus {
+        -st-mixin: infimaOther(
+                       containerWidth var(--containerMaxWidth),
+                       containerHorizontalSpace var(--containerHorizontalSpace)
+                   );
     }
 
     Docusaurus::navbar {
@@ -174,6 +183,18 @@
     a.GithubIcon:hover {
         opacity: 0.6;
     }
+
+    @media (max-width: value(screenMiddle)) {
+        :where(html) {
+            --containerHorizontalSpace: 25px;
+        }
+    }
+
+    @media (max-width: value(screenSmall)) {
+        :where(html) {
+            --containerHorizontalSpace: 10px;
+        }
+    }
 }
 
 @st-scope Docusaurus:themeMode(light) {
@@ -183,9 +204,9 @@
         --bgColor: value(lightBgColor);
         --fill: #1b1f23;
         --navbarBgColor: value(darkPrimary1);
-        -st-mixin: infimaDesign(
+        -st-mixin: infimaColors(
                        bgColor value(lightBgColor),
-                       navbarBgColor value(darkPrimary)
+                       navbarBgColor value(darkPrimary),
                    );
     }
 
@@ -216,9 +237,9 @@
         --bgColor: value(darkBgColor);
         --fill: #fff;
         --navbarBgColor: value(lightPrimary1);
-        -st-mixin: infimaDesign(
+        -st-mixin: infimaColors(
                        bgColor value(black0),
-                       navbarBgColor value(lightPrimary)
+                       navbarBgColor value(lightPrimary),
                    );
     }
 
