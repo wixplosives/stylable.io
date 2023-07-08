@@ -83,6 +83,7 @@
         --fill: black;
         --containerMaxWidth: 1290px;
         --containerHorizontalSpace: 50px;
+        --navbarHeight: 3.75rem;
         color: var(--fgColor);
         background: var(--bgColor);
         font-family: var(--fontFamily);
@@ -131,6 +132,7 @@
 
     Docusaurus {
         -st-mixin: infimaOther(
+                       navbarHeight var(--navbarHeight),
                        containerWidth var(--containerMaxWidth),
                        containerHorizontalSpace var(--containerHorizontalSpace)
                    );
@@ -171,6 +173,12 @@
         -st-mixin: HeroVariant(
                        lightBgColor value(lightBgColor)
                    );
+    }
+
+    .homePage::hero {
+        /* set spacing */
+        margin-top: var(--navbarHeight);
+        margin-bottom: max(15em, 15vh);
     }
 
     .homePage::features {

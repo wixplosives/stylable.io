@@ -24,6 +24,7 @@
     fgColor: black;
     bgColor: white;
     navbarBgColor: white;
+    navbarHeight: 60px;
     containerWidth: 1290px;
     containerWidthXL: 1290px;
     containerHorizontalSpace: 10px;
@@ -35,11 +36,11 @@
     --ifm-container-width: value(containerWidth) !important;
     --ifm-container-width-xl: value(containerWidthXL) !important;
     --ifm-spacing-horizontal: value(containerHorizontalSpace) !important;
+    --ifm-navbar-height: value(navbarHeight) !important; 
     /*
     ToDo: figure out navbar padding 
     --ifm-navbar-padding-horizontal: 35px;
     --ifm-navbar-padding-vertical: 20px;
-    --ifm-navbar-height: auto; 
     */
 }
 

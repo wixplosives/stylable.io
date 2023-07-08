@@ -1,4 +1,4 @@
-@st-import [--ifm-color-emphasis-100, --ifm-link-color, --ifm-container-width, --ifm-spacing-horizontal, --ifm-navbar-height] from "../css/infima.st.css";
+@st-import [--ifm-link-color] from "../css/infima.st.css";
 @st-import [centerMainColumn] from "../css/common.st.css";
 @st-import [root as sectionRoot] from "../components/section.st.css";
 @st-import Hero from "../components/hero.st.css";
@@ -19,14 +19,7 @@
 @st .features :is(.section) {
     @st ::feature => .Feature;
 }
-
-.hero {
-    -st-extends: Hero;
-    position: relative;
-    display: block;
-    margin-top: var(--ifm-navbar-height);
-    margin-bottom: max(15em, 15vh);
-}
+@st .hero :is(.Hero);
 
 .section {}
 
