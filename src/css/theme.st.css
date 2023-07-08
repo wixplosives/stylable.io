@@ -215,6 +215,10 @@
         :where(html) {
             --containerHorizontalSpace: 10px;
         }
+
+        section[data-section-header]::before {
+            content: '';
+        }
     }
 }
 
