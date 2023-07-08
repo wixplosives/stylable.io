@@ -2,12 +2,14 @@
 @st-import Docusaurus from "./docusaurus.st.css";
 
 /* components */
+@st-import [centerMainColumn] from "./common.st.css";
 @st-import Hero from "../components/hero.st.css";
 @st-import Decoration from "../components/decoration.st.css";
 @st-import CommunityCard from "../components/community-card.st.css";
 @st-import Feature from "../components/feature.st.css";
 @st-import GithubIcon from "../components/github-icon.st.css";
 @st-import Button from "../components/button.st.css";
+@st-import Section from "../components/section.st.css";
 
 /* pages */
 @st-import [root as homePage] from "../pages/index.st.css";
@@ -105,6 +107,17 @@
 
     H5 {
         font: value(desktopHeading5);
+    }
+
+    .centerMainColumn {
+        margin: 0 auto;
+        max-width: var(--containerMaxWidth);
+        padding: 0 var(--containerHorizontalSpace);
+        width: 100%;
+    }
+
+    Section {
+        padding-block: 3em;
     }
 
     section[data-section-header]::before {

@@ -5,12 +5,7 @@
     -st-states: type("[data-theme='$0']", enum(light, dark));
 }
 
-.centerMainColumn {
-    margin: 0 auto;
-    max-width: var(--ifm-container-width);
-    padding: 0 var(--ifm-spacing-horizontal);
-    width: 100%;
-}
+.centerMainColumn {}
 
 @media (min-width: 1440px) {
     /*ToDo: check this out */

@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Link from '@docusaurus/Link';
 import { Hero } from '../components/hero';
 import { Decoration } from '../components/decoration';
+import { Section } from '../components/section';
 import { useFeatures } from '../components/feature';
 import { ResponsiveEmbed } from '../components/responsive-embed';
 import { st, classes } from './index.st.css';
@@ -53,14 +54,14 @@ function Home() {
         >
             <main className={classes.main}>
                 <Hero className={classes.hero} />
-                <section data-section-header="About Us" className={classes.features}>
+                <Section data-section-header="About Us" className={classes.features}>
                     <h2>Features</h2>
                     {features.nodes}
                     <Decoration context={['home', 'features', 'dec1']} />
                     <Decoration context={['home', 'features', 'dec2']} />
                     <Decoration context={['home', 'features', 'dec3']} />
-                </section>
-                <section className={st(classes.section)}>
+                </Section>
+                <Section className={st(classes.section)}>
                     <div className="container">
                         <h2>What is Stylable?</h2>
                         <p>
@@ -111,8 +112,8 @@ function Home() {
                         So we created <strong>Stylable</strong> &mdash; a CSS preprocessor that enables you to write
                         style rules in CSS syntax, with some extensions that we believe adhere to the spirit of CSS.
                     </div>
-                </section>
-                <section className={classes.section}>
+                </Section>
+                <Section className={classes.section}>
                     <div className="container">
                         <h2>What Does Stylable Do?</h2>
                         <ul>
@@ -131,8 +132,8 @@ function Home() {
                             </li>
                         </ul>
                     </div>
-                </section>
-                <section className={st(classes.section)}>
+                </Section>
+                <Section className={st(classes.section)}>
                     <div className="container">
                         <h2>Tooling</h2>
                         <img
@@ -152,8 +153,8 @@ function Home() {
                         </Link>
                         . It supports code completions, diagnostics, go to definitions, syntax highlighting and more.
                     </div>
-                </section>
-                <section className={classes.section}>
+                </Section>
+                <Section className={classes.section}>
                     <div className="container">
                         <h2>Videos</h2>
                         <h3>Introduction to Stylable</h3>
@@ -161,15 +162,15 @@ function Home() {
                         <h3>The Official Stylable Musical!</h3>
                         <ResponsiveEmbed src="https://www.youtube.com/embed/jK88TqyXSWs?rel=0" />
                     </div>
-                </section>
-                <section className={st(classes.section)}>
+                </Section>
+                <Section className={st(classes.section)}>
                     <div className="container">
                         <h2>Documentation</h2>
                         <Link to="./docs/getting-started/intro">Learn more about Stylable</Link> and get started with
                         step by step instructions and code examples.
                     </div>
-                </section>
-                <section className={classes.section}>
+                </Section>
+                <Section className={classes.section}>
                     <div className="container">
                         <h2>Demo Project</h2>
                         <p>
@@ -189,8 +190,8 @@ function Home() {
                         </div>
                         <p className={classes.playWithIt}>Play with it and let us know what you think!</p>
                     </div>
-                </section>
-                <section className={st(classes.section)}>
+                </Section>
+                <Section className={st(classes.section)}>
                     <div className="container">
                         <div>
                             <h2>Shut up and take my money!</h2>
@@ -219,7 +220,7 @@ function Home() {
                             </blockquote>
                         </div>
                     </div>
-                </section>
+                </Section>
             </main>
         </Layout>
     );

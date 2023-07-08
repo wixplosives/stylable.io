@@ -1,5 +1,6 @@
 @st-import [--ifm-color-emphasis-100, --ifm-link-color, --ifm-container-width, --ifm-spacing-horizontal, --ifm-navbar-height] from "../css/infima.st.css";
 @st-import [centerMainColumn] from "../css/common.st.css";
+@st-import [root as sectionRoot] from "../components/section.st.css";
 @st-import Hero from "../components/hero.st.css";
 @st-import Decoration from "../components/decoration.st.css";
 @st-import Feature from "../components/feature.st.css";
@@ -11,7 +12,7 @@
     @st ::features => .features;
 }
 
-@st .section :is(.centerMainColumn) {
+@st .section :is(.sectionRoot) {
     @st ::title => & > h2;
 }
 
@@ -27,9 +28,7 @@
     margin-bottom: max(15em, 15vh);
 }
 
-.section {
-    padding: 3em 0;
-}
+.section {}
 
 .heart {
     color: rgb(204, 27, 27);
