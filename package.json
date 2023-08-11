@@ -39,7 +39,7 @@
     "@tsconfig/docusaurus": "^2.0.0",
     "@types/react": "^17.0.43",
     "copyfiles": "^2.4.1",
-    "gh-pages": "^5.0.0",
+    "gh-pages": "^6.0.0",
     "typescript": "^5.1.6"
   },
   "license": "UNLICENSED"
