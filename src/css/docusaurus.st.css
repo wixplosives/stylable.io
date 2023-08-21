@@ -3,16 +3,15 @@
 @st-import Common from './docusaurus/common.st.css';
 @st-import Docs from './docusaurus/docs.st.css';
 
-.root {
-    -st-global: "*";
-    -st-states: themeMode(":where(:is([data-theme='$0']))", enum(light, dark));
-}
+@st .root => :global(*) {
+    @st :themeMode(":where(:is([data-theme='$0']))", enum(light, dark));
+    @st ::page => Page;
+    @st ::wrapper => Wrapper;
+    @st ::common => & Common;
+    @st ::docs => & Docs;
 
-@custom-selector :--page Page;
-@custom-selector :--wrapper Wrapper;
-@custom-selector :--common & Common;
-@custom-selector :--docs & Docs;
-
-.navbar {
-    -st-global: ".navbar";
+    @st ::navbar => :global(.navbar) {
+        @st ::menu => :global(.navbar__inner > :first-child);
+        @st ::item => :global(.navbar__item);
+    }
 }

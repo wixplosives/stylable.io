@@ -20,6 +20,12 @@
 @property st-global(--ifm-font-family-base);
 @property st-global(--ifm-spacing-horizontal);
 
+/* search */
+@property st-global(--ifm-navbar-search-input-background-color);
+@property st-global(--ifm-navbar-search-input-color);
+@property st-global(--ifm-navbar-search-input-placeholder-color);
+@property st-global(--ifm-navbar-search-input-icon);
+
 /* Links. */
 @property st-global(--ifm-link-color);
 @property st-global(--ifm-link-decoration);

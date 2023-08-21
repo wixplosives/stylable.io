@@ -1,8 +1,8 @@
 /* 3rd-party */
-@st-import Docusaurus from "./docusaurus.st.css";
+@st-import [root as Docusaurus] from "./docusaurus.st.css";
 
 /* components */
-@st-import [centerMainColumn] from "./common.st.css";
+@st-import [centerMainColumn, sectionLabel] from "./common.st.css";
 @st-import Hero from "../components/hero.st.css";
 @st-import Decoration from "../components/decoration.st.css";
 @st-import CommunityCard from "../components/community-card.st.css";
@@ -57,7 +57,7 @@
     darkPrimary1: rgba(255, 255, 255, 0.66);
     darkPrimary2: rgba(255, 255, 255, 0.36);
     darkPrimary3: rgba(255, 255, 255, 0.16);
-    darkPrimary4: rgba(255, 255, 255, 0.6);
+    darkPrimary4: rgba(255, 255, 255, 0.06);
     darkBgColor: value(black0);
     desktopHeading1: 107px/100px var(--fontFamily);
     desktopHeading2: 85px/90px var(--fontFamily);
@@ -78,7 +78,7 @@
 
 /* ToDo: remove :global() - we just want to opt out of scoping restrictions */
 @st-scope :global(/**/) {
-    :where(html) {
+    html {
         --fontFamily: 'Poppins', sans-serif;
         --fill: black;
         --containerMaxWidth: 1290px;
@@ -121,25 +121,40 @@
         padding-block: 3em;
     }
 
-    section[data-section-header]::before {
-        content: '-- ' attr(data-section-header);
+    .sectionLabel {
         position: relative;
         font: value(desktopHeading6);
-        left: -1em;
+        color: value(lightPrimary);
+        /* text-indent: -1em; */
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
         margin-bottom: 1em;
-        display: block;
+    }
+
+    .sectionLabel::before {
+        content: '-- ';
+        position: absolute;
+        translate: -150%;
     }
 
     Docusaurus {
         -st-mixin: infimaOther(
-                       navbarHeight var(--navbarHeight),
-                       containerWidth var(--containerMaxWidth),
-                       containerHorizontalSpace var(--containerHorizontalSpace)
-                   );
+                        navbarHeight var(--navbarHeight),
+                        containerWidth var(--containerMaxWidth),
+                        containerHorizontalSpace var(--containerHorizontalSpace)
+                    );
     }
 
     Docusaurus::navbar {
         background-color: transparent;
+    }
+
+    Docusaurus::navbar::menu {
+        gap: 0.8vw;
+    }
+
+    Docusaurus::navbar::item {
+        white-space: nowrap;
     }
 
     Docusaurus::navbar::before {
@@ -159,20 +174,20 @@
 
     CommunityCard {
         -st-mixin: communityCardDesign(
-                       fgColor var(--fill)
-                   );
+                        fgColor var(--fill)
+                    );
     }
 
     Button:callToAction {
         -st-mixin: buttonDesign2(
-                       fgColor value(lightPrimary),
-                   );
+                        fgColor value(lightPrimary),
+                    );
     }
 
     Hero {
         -st-mixin: HeroVariant(
-                       lightBgColor value(lightBgColor)
-                   );
+                        lightBgColor value(lightBgColor)
+                    );
     }
 
     .homePage::hero {
@@ -230,17 +245,20 @@
         --fill: #1b1f23;
         --navbarBgColor: value(darkPrimary1);
         -st-mixin: infimaColors(
-                       bgColor value(lightBgColor),
-                       navbarBgColor value(darkPrimary),
-                   );
+                        bgColor value(lightBgColor),
+                        navbarBgColor value(darkPrimary),
+                        searchBgColor rgba(0, 0, 0, 0.05),
+                        searchIcon
+                        url('data:image/svg+xml;utf8,<svg fill="black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>')
+                    );
     }
 
     Button {
         -st-mixin: buttonDesign1(
-                       fgColor var(--fgColor),
-                       bgColor var(--bgColor),
-                       accentColor value(green0-1)
-                   );
+                        fgColor var(--fgColor),
+                        bgColor var(--bgColor),
+                        accentColor value(green0-1)
+                    );
         background: white;
     }
 
@@ -263,19 +281,23 @@
         --fill: #fff;
         --navbarBgColor: value(lightPrimary1);
         -st-mixin: infimaColors(
-                       bgColor value(black0),
-                       navbarBgColor value(lightPrimary),
-                   );
+                        fgColor value(darkPrimary),
+                        bgColor value(black0),
+                        navbarBgColor value(lightPrimary),
+                        searchBgColor rgba(255, 255, 255, 0.05),
+                        searchIcon
+                        url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>')
+                    );
     }
 
     Button {
         /* --bgColor: white; */
         -st-mixin: buttonDesign1(
-                       fgColor var(--fgColor),
-                       bgColor value(lightPrimary4),
-                       accentColor value(green0-1),
-                       accentBgColor value(lightPrimary2)
-                   );
+                        fgColor var(--fgColor),
+                        bgColor value(lightPrimary4),
+                        accentColor value(green0-1),
+                        accentBgColor value(lightPrimary2)
+                    );
     }
 
     Button::icon {

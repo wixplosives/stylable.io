@@ -17,7 +17,7 @@ module.exports = {
         },
         navbar: {
             hideOnScroll: true,
-            title: 'Stylable',
+            // title: 'Stylable',
             logo: {
                 alt: 'Stylable Logo',
                 src: 'img/branding/logo/SVG/96-logo-OnlySymbol.svg',

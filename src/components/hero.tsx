@@ -15,6 +15,7 @@ export function Hero({ className }: { className?: string }) {
                     <LightLogo className={st(classes.logo, { colorScheme: 'light' })} />
                 </div>
                 <div className={classes.content}>
+                    <div className={classes.libName}>STYLABLE</div>
                     <h1 className={classes.title}>
                         CSS for <br />
                         Components

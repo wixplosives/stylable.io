@@ -1,4 +1,5 @@
-@st-import [centerMainColumn, colorScheme] from "../css/common.st.css";
+@st-namespace "st-hero";
+@st-import [centerMainColumn, colorScheme, sectionLabel] from "../css/common.st.css";
 
 .root {}
 
@@ -6,6 +7,10 @@
     -st-extends: centerMainColumn;
 
     .content {
+        .libName {
+            -st-extends: sectionLabel;
+        }
+
         .title {}
 
         .desc {}

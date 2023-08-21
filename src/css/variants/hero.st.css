@@ -61,6 +61,14 @@
     max-width: 854px;
 }
 
+.root::title {
+    margin-bottom: 3rem;
+}
+
+.root::desc {
+    margin-bottom: 4rem;
+}
+
 .root::desc {
     max-width: 438px;
 }
