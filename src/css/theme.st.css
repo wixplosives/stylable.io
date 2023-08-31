@@ -1,82 +1,311 @@
-@st-import Docusaurus from "./docusaurus.st.css";
-@st-import [theme1 as infimaTheme1, --ifm-color-emphasis-100] from "./infima.st.css";
+/* 3rd-party */
+@st-import [root as Docusaurus] from "./docusaurus.st.css";
+
+/* components */
+@st-import [centerMainColumn, sectionLabel] from "./common.st.css";
 @st-import Hero from "../components/hero.st.css";
+@st-import Decoration from "../components/decoration.st.css";
+@st-import CommunityCard from "../components/community-card.st.css";
 @st-import Feature from "../components/feature.st.css";
 @st-import GithubIcon from "../components/github-icon.st.css";
+@st-import Button from "../components/button.st.css";
+@st-import Section from "../components/section.st.css";
 
-:global(html) {
-    /* ToDo: mark sheet with side-effects */
-    --side-effect: 'applied';
+/* pages */
+@st-import [root as homePage] from "../pages/index.st.css";
+
+/* design variants */
+@st-import [infimaColors, infimaOther] from "./variants/infima.st.css";
+@st-import [buttonDesign1, buttonDesign2] from "./variants/button.st.css";
+@st-import HeroVariant from "./variants/hero.st.css";
+@st-import [featureDesign] from "./variants/feature.st.css";
+@st-import [communityCardDesign] from "./variants/community-card.st.css";
+@st-import [sectionHeaderBalls, sectionHeaderBallsLightModeOverride] from "./variants/balls.st.css";
+
+@property --colorScheme {
+    syntax: 'light | dark';
+    inherits: true;
+    initial-value: 'light';
 }
 
-.root {
-    -st-global: ':root';
+:vars {
+    black0: #0A1020;
+    black1: #1E222E;
+    black2: #272B37;
+    black3: #333742;
+    black4: #4D505A;
+    green0-2: #15b270;
+    green0-1: #47d57d;
+    green0: #7ffd8c;
+    green1: #a0f984;
+    green2: #c9f37a;
+    blue0-2: #1a325e;
+    blue0-1: #106686;
+    blue0: #00BFC9;
+    blue1: #38d0e3;
+    blue2: #72e2ff;
+    red0: #70001b;
+    red1: #8b1727;
+    red2: #b33a3a;
+    lightPrimary: #0a1020;
+    lightPrimary1: rgba(10, 16, 32, 0.81);
+    lightPrimary2: rgba(10, 16, 32, 0.49);
+    lightPrimary3: rgba(10, 16, 32, 0.18);
+    lightPrimary4: hsla(224, 52%, 8%, 0.5);
+    lightBgColor: #EDF0FC;
+    darkPrimary: #FFFFFF;
+    darkPrimary1: rgba(255, 255, 255, 0.66);
+    darkPrimary2: rgba(255, 255, 255, 0.36);
+    darkPrimary3: rgba(255, 255, 255, 0.16);
+    darkPrimary4: rgba(255, 255, 255, 0.06);
+    darkBgColor: value(black0);
+    desktopHeading1: 107px/100px var(--fontFamily);
+    desktopHeading2: 85px/90px var(--fontFamily);
+    desktopHeading3: 52px/65px var(--fontFamily);
+    desktopHeading4: 38px/45px var(--fontFamily);
+    desktopHeading5: 28px/45px var(--fontFamily);
+    desktopHeading6: 16px/25px var(--fontFamily);
+    desktopHeading7: 14px/20px var(--fontFamily);
+    screenLarge: 2500px;
+    screenMiddle: 1020px;
+    screenSmall: 750px;
 }
 
+@font-face {
+    font-family: Poppins;
+    src: url(../../static/fonts/poppins/Poppins-Light.ttf);
+}
+
+/* ToDo: remove :global() - we just want to opt out of scoping restrictions */
 @st-scope :global(/**/) {
-    Docusaurus {
-        -st-mixin: infimaTheme1;
+    html {
+        --fontFamily: 'Poppins', sans-serif;
+        --fill: black;
+        --containerMaxWidth: 1290px;
+        --containerHorizontalSpace: 50px;
+        --navbarHeight: 3.75rem;
+        color: var(--fgColor);
+        background: var(--bgColor);
+        font-family: var(--fontFamily);
     }
 
-    Feature::image {
-        height: 125px;
-        margin: 2.25em 0;
-        width: 125px;
-        fill: #1b1f23;
+    H1 {
+        font: value(desktopHeading1);
+    }
+
+    H2 {
+        font: value(desktopHeading2);
+        margin-bottom: 72px;
+    }
+
+    H3 {
+        font: value(desktopHeading3);
+    }
+
+    H4 {
+        font: value(desktopHeading4);
+    }
+
+    H5 {
+        font: value(desktopHeading5);
+    }
+
+    .centerMainColumn {
+        margin: 0 auto;
+        max-width: var(--containerMaxWidth);
+        padding: 0 var(--containerHorizontalSpace);
+        width: 100%;
+    }
+
+    Section {
+        padding-block: 3em;
+    }
+
+    .sectionLabel {
+        position: relative;
+        font: value(desktopHeading6);
+        color: value(lightPrimary);
+        /* text-indent: -1em; */
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 1em;
+    }
+
+    .sectionLabel::before {
+        content: '-- ';
+        position: absolute;
+        translate: -150%;
+    }
+
+    Docusaurus {
+        -st-mixin: infimaOther(
+                        navbarHeight var(--navbarHeight),
+                        containerWidth var(--containerMaxWidth),
+                        containerHorizontalSpace var(--containerHorizontalSpace)
+                    );
+    }
+
+    Docusaurus::navbar {
+        background-color: transparent;
+    }
+
+    Docusaurus::navbar::menu {
+        gap: 0.8vw;
+    }
+
+    Docusaurus::navbar::item {
+        white-space: nowrap;
+    }
+
+    Docusaurus::navbar::before {
+        /* 
+        blur changes the navbar into a stacking context, 
+        which causes the mobile menu inability to grow heigher then the navbar itself. 
+        Instead, move the background to the ::before
+        */
+        content: "";
+        inset: 0;
+        background-color: var(--navbarBgColor, #ffffff33);
+        backdrop-filter: blur(6px);
+        position: absolute;
+        z-index: -1;
+        backdrop-filter: blur(6px);
+    }
+
+    CommunityCard {
+        -st-mixin: communityCardDesign(
+                        fgColor var(--fill)
+                    );
+    }
+
+    Button:callToAction {
+        -st-mixin: buttonDesign2(
+                        fgColor value(lightPrimary),
+                    );
     }
 
     Hero {
-        padding: 4rem 0;
-        text-align: center;
+        -st-mixin: HeroVariant(
+                        lightBgColor value(lightBgColor)
+                    );
+    }
+
+    .homePage::hero {
+        /* set spacing */
+        margin-top: var(--navbarHeight);
+        margin-bottom: max(15em, 15vh);
+    }
+
+    .homePage::features {
         position: relative;
-        overflow: hidden;
-        background-color: var(--ifm-color-emphasis-100);
-        color: var(--ifm-font-color-base);
+        -st-mixin:
+            sectionHeaderBalls(
+                z-index 2 /* set above feature and below section title */,
+                screenSmall value(screenSmall),
+                marginTop -130px
+            );
     }
 
-    Hero::logo {
-        margin: 5% 0;
+    .homePage::features::title {
+        position: relative;
+        z-index: 3/* above sectionHeaderBalls */;
     }
 
-    Hero::buttons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .homePage::features::feature {
+        -st-mixin: featureDesign;
+        z-index: 1/* below sectionHeaderBalls*/;
     }
 
     a.GithubIcon:hover {
         opacity: 0.6;
     }
 
-    @media screen and (max-width: 996px) {
-        Feature {
-            padding: 2.5em;
-        }
-
-        Feature::image {
-            float: left;
-            margin: 0 3em 0 0;
+    @media (max-width: value(screenMiddle)) {
+        :where(html) {
+            --containerHorizontalSpace: 25px;
         }
     }
 
-    @media screen and (max-width: 600px) {
-        Feature::image {
-            float: none;
-            margin: 0 0 1em;
-            width: 25%;
+    @media (max-width: value(screenSmall)) {
+        :where(html) {
+            --containerHorizontalSpace: 10px;
+        }
+
+        section[data-section-header]::before {
+            content: '';
         }
     }
 }
 
-@st-scope Docusaurus:themeMode(light) {}
-
-@st-scope Docusaurus:themeMode(dark) {
-    .GithubIcon::before {
-        filter: invert(1);
+@st-scope Docusaurus:themeMode(light) {
+    & {
+        --colorScheme: 'light';
+        --fgColor: value(lightPrimary);
+        --bgColor: value(lightBgColor);
+        --fill: #1b1f23;
+        --navbarBgColor: value(darkPrimary1);
+        -st-mixin: infimaColors(
+                        bgColor value(lightBgColor),
+                        navbarBgColor value(darkPrimary),
+                        searchBgColor rgba(0, 0, 0, 0.05),
+                        searchIcon
+                        url('data:image/svg+xml;utf8,<svg fill="black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>')
+                    );
     }
 
-    Feature::image {
-        fill: #fff;
+    Button {
+        -st-mixin: buttonDesign1(
+                        fgColor var(--fgColor),
+                        bgColor var(--bgColor),
+                        accentColor value(green0-1)
+                    );
+        background: white;
+    }
+
+    Button::icon {
+        filter: invert(1);
+        background-color: #ffffff;
+    }
+
+    .homePage::features {
+        -st-mixin: sectionHeaderBallsLightModeOverride;
+    }
+}
+
+@st-scope Docusaurus:themeMode(dark) {
+    & {
+        /* site */
+        --colorScheme: 'dark';
+        --fgColor: value(darkPrimary);
+        --bgColor: value(darkBgColor);
+        --fill: #fff;
+        --navbarBgColor: value(lightPrimary1);
+        -st-mixin: infimaColors(
+                        fgColor value(darkPrimary),
+                        bgColor value(black0),
+                        navbarBgColor value(lightPrimary),
+                        searchBgColor rgba(255, 255, 255, 0.05),
+                        searchIcon
+                        url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>')
+                    );
+    }
+
+    Button {
+        /* --bgColor: white; */
+        -st-mixin: buttonDesign1(
+                        fgColor var(--fgColor),
+                        bgColor value(lightPrimary4),
+                        accentColor value(green0-1),
+                        accentBgColor value(lightPrimary2)
+                    );
+    }
+
+    Button::icon {
+        mix-blend-mode: lighten;
+    }
+
+    .GithubIcon::before {
+        filter: invert(1);
     }
 }
 
@@ -106,22 +335,3 @@
 .inline-code button[title='Copy'] {
     display: none;
 }
-
-/*** LEFTOVERS comments - ToDo: use of remove ***/
-
-/* 
-@font-face {
-  font-family: WixMadeForText;
-  src: url(/fonts/WixMadeforText_Rg.ttf);
-}
-
-@font-face {
-  font-family: WixMadeForTextBold;
-  src: url(/fonts/WixMadeforText_Bd.ttf);
-  font-weight: bold;
-}
-
-strong {
-  font-family: WixMadeForTextBold;
-} 
-*/

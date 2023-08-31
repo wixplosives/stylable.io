@@ -1,0 +1,112 @@
+@st-import Decoration from '../../components/decoration.st.css';
+
+:vars {
+    z-index: -1;
+    endPad: 0px;
+    marginTop: 0px;
+    screenSmall: 750px;
+}
+
+.sectionHeaderBalls > Decoration {
+    --workaround: value(screenSmall);
+    z-index: value(z-index);
+    --shine: 200px;
+}
+
+.sectionHeaderBalls > Decoration::htmlElement {
+    border-radius: 50%;
+    background: #121623;
+    box-shadow:
+        0 5px 100px 10px rgba(66, 4, 197, .2) inset,
+        110px 0px var(--shine) 15px rgba(0, 216, 138, .69) inset,
+        45px 0 115px 0px rgba(255, 255, 255, .4) inset;
+}
+
+.sectionHeaderBalls > Decoration:of(dec1) {
+    width: 400px;
+    top: 0;
+    right: value(endPad);
+    translate: 0 value(marginTop);
+}
+
+.sectionHeaderBalls > Decoration:of(dec2) {
+    width: 135px;
+    top: 0;
+    right: calc(value(endPad) + 400px - 5px);
+    rotate: 180deg;
+    translate: 0 calc(value(marginTop) + 135px);
+}
+
+.sectionHeaderBalls > Decoration:of(dec3) {
+    --shine: 450px;
+    width: 50px;
+    top: 0;
+    right: calc(value(endPad) + 400px + 90px);
+    rotate: 180deg;
+    translate: 0 value(marginTop);
+}
+
+@media (max-width: value(screenSmall)) {
+    .sectionHeaderBalls > Decoration {
+        display: none;
+    }
+}
+
+.sectionHeaderBallsLightModeOverride > Decoration::htmlElement {
+    box-shadow: unset;
+    background: radial-gradient(
+                    99.92% 105.34% at 11.42% 20.63%,
+                    #FFBCD9 0%,
+                    #FF1B28 100%
+                );
+    background: radial-gradient(
+                    100.23% 96.52% at 18.42% 20.38%,
+                    #FFD1A6 0%,
+                    #EE2866 99.99%,
+                    #FF1B28 100%
+                )
+                /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    box-shadow: inset 40px 44px 134px rgba(255, 255, 255, 0.25),
+                inset 40px 47px 95px -10px rgba(255, 255, 255, 0.89),
+                inset -54px -36px 132px rgba(136, 1, 169, 0.35),
+                inset -100px -116px 164px rgba(226, 10, 0, 0.39);
+}
+
+.sectionHeaderBallsLightModeOverride > Decoration:of(dec1) {
+    overflow: visible;
+}
+
+.sectionHeaderBallsLightModeOverride > Decoration:of(dec1)::path {
+    d: path("M 386 1002 L 160 618 L 300 295 L 639 99 L 1088 224 L 1441 783 L 1742 1567 L 1122 1233 L 812 1211 Z");
+    fill: #FF5AA999;
+    filter: blur(130px);
+}
+
+.sectionHeaderBallsLightModeOverride > Decoration:of(dec2) {
+    rotate: unset;
+}
+
+.sectionHeaderBallsLightModeOverride > Decoration:of(dec2)::htmlElement {
+    background: radial-gradient(
+                    100% 96.5% at 18.5% 20.5%,
+                    #FFD1A6 0%,
+                    #EE2866 99.99%,
+                    #FF1B28 100%
+                );
+    box-shadow: inset 21px 23px 70px rgba(255, 255, 255, 0.25),
+                inset 21px 24.5px 50px -5px rgba(255, 255, 255, 0.89),
+                inset -52.2178px -60.5726px 85.6372px rgba(226, 10, 0, 0.39);
+}
+
+.sectionHeaderBallsLightModeOverride > Decoration:of(dec3) {
+    rotate: unset;
+}
+
+.sectionHeaderBallsLightModeOverride > Decoration:of(dec3)::htmlElement {
+    background: radial-gradient(
+                    105% 125% at 11% 20%,
+                    #FFC1DE 0%,
+                    #FF1B28 100%
+                );
+    box-shadow: inset 2.5px 0px 22px rgba(255, 255, 255, 0.9);
+}

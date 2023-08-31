@@ -1,34 +1,27 @@
-@st-import [--ifm-color-emphasis-100, --ifm-link-color] from "../css/infima.st.css";
+@st-import [--ifm-link-color] from "../css/infima.st.css";
+@st-import [centerMainColumn] from "../css/common.st.css";
+@st-import [root as sectionRoot] from "../components/section.st.css";
 @st-import Hero from "../components/hero.st.css";
+@st-import Decoration from "../components/decoration.st.css";
 @st-import Feature from "../components/feature.st.css";
-@st-import "../css/theme.st.css";
 
-.hero {
-    -st-extends: Hero;
+@st .root {
+    @st ::main => .main;
+    @st ::hero => .hero;
+    @st ::section => .section;
+    @st ::features => .features;
 }
 
-.features {
-    display: flex;
-    align-items: center;
-    padding: 2rem 0;
-    width: 100%;
+@st .section :is(.sectionRoot) {
+    @st ::title => & > h2;
 }
 
-.feature {
-    -st-extends: Feature;
+@st .features :is(.section) {
+    @st ::feature => .Feature;
 }
+@st .hero :is(.Hero);
 
-.feature::imageWrapper {
-    text-align: center;
-}
-
-.section {
-    padding: 3em 0;
-}
-
-.sectionAlt {
-    background-color: var(--ifm-color-emphasis-100);
-}
+.section {}
 
 .heart {
     color: rgb(204, 27, 27);

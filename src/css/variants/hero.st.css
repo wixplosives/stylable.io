@@ -1,0 +1,91 @@
+@st-namespace "hero-vairant-1";
+@st-import [colorScheme] from "../../css/common.st.css";
+@st-import Hero from "../../components/hero.st.css";
+
+:vars {
+    lightBgColor: #ffffff;
+    darkBgColor: #0A1020;
+}
+
+.root {
+    -st-extends: Hero;
+}
+
+@st-scope .colorScheme:type(light) {
+    .root {
+        /* 
+        override background for light mode.
+        ToDo: figure out how to move the state selector outside
+    */
+        background: value(lightBgColor);
+    }
+}
+
+.root::wrapper {
+    position: relative;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1fr);
+    grid-gap: 10px;
+    align-self: start;
+    justify-items: center;
+    background-color: transparent;
+}
+
+.root::gfx {
+    position: relative;
+    z-index: 1;
+    justify-self: end;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+}
+
+.root::logo {
+    position: relative;
+}
+
+.root::background {
+    z-index: 0;
+    position: absolute;
+    overflow: visible;
+}
+
+.root::content {
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1;
+    text-align: start;
+    align-self: center;
+    justify-self: start;
+    max-width: 854px;
+}
+
+.root::title {
+    margin-bottom: 3rem;
+}
+
+.root::desc {
+    margin-bottom: 4rem;
+}
+
+.root::desc {
+    max-width: 438px;
+}
+
+.root::nav {
+    gap: 15px;
+    display: flex;
+}
+
+@media (max-width: 900px) {
+    .root::wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .root::logo {
+        width: 40vh;
+        height: 40vh;
+    }
+}

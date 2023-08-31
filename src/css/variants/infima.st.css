@@ -1,0 +1,67 @@
+@st-namespace "infima-design";
+@st-import [
+    --ifm-color-primary,
+    --ifm-color-primary-dark,
+    --ifm-color-primary-darker,
+    --ifm-color-primary-darkest,
+    --ifm-color-primary-light,
+    --ifm-color-primary-lighter,
+    --ifm-color-primary-lightest,
+    --ifm-background-color,
+    --ifm-code-font-size,
+    --ifm-container-width,
+    --ifm-container-width-xl,
+    --ifm-color-emphasis-100,
+    --ifm-background-surface-color,
+    --ifm-navbar-background-color,
+    --ifm-navbar-padding-horizontal,
+    --ifm-navbar-padding-vertical,
+    --ifm-navbar-height,
+    --ifm-font-family-base,
+    --ifm-navbar-search-input-background-color,
+    --ifm-navbar-search-input-color,
+    --ifm-navbar-search-input-placeholder-color,
+    --ifm-navbar-search-input-icon,
+] from "../infima.st.css";
+
+:vars {
+    fgColor: black;
+    bgColor: white;
+    navbarBgColor: white;
+    navbarHeight: 60px;
+    containerWidth: 1290px;
+    containerWidthXL: 1290px;
+    containerHorizontalSpace: 10px;
+    searchBgColor: rgba(255, 255, 255, 0.05);
+    searchIcon: url('data:image/svg+xml;utf8,<svg fill="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>');
+}
+
+.infimaOther {
+    --ifm-font-family-base: 'Poppins', sans-serif;
+    --ifm-code-font-size: 95% !important;
+    --ifm-container-width: value(containerWidth) !important;
+    --ifm-container-width-xl: value(containerWidthXL) !important;
+    --ifm-spacing-horizontal: value(containerHorizontalSpace) !important;
+    --ifm-navbar-height: value(navbarHeight) !important; 
+    /*
+    ToDo: figure out navbar padding 
+    --ifm-navbar-padding-horizontal: 35px;
+    --ifm-navbar-padding-vertical: 20px;
+    */
+}
+
+.infimaColors {
+    --ifm-background-color: value(bgColor) !important;
+    --ifm-background-surface-color: value(bgColor) !important;
+    --ifm-color-primary: green !important;
+    --ifm-color-primary-dark: #3a8d38 !important;
+    --ifm-color-primary-darker: #368535 !important;
+    --ifm-color-primary-darkest: #2d6e2b !important;
+    --ifm-color-primary-light: #46ad44 !important;
+    --ifm-color-primary-lighter: #4ab547 !important;
+    --ifm-color-primary-lightest: #60bf5d !important;
+    --ifm-navbar-background-color: value(navbarBgColor) !important;
+    --ifm-navbar-search-input-background-color: value(searchBgColor) !important;
+    --ifm-navbar-search-input-placeholder-color: value(fgColor) !important;
+    --ifm-navbar-search-input-icon: value(searchIcon) !important;
+}

@@ -1,0 +1,12 @@
+.root {
+    -st-states: callToAction;
+}
+
+.icon {}
+
+.text {}
+
+.root:is(a) {
+    text-decoration: none;
+    color: inherit;
+}

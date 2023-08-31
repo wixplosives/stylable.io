@@ -1,5 +1,26 @@
+@st-import Decoration from "../components/decoration.st.css";
+
+/* 
+ToDo: move to new syntax
+@st .root {
+    @st ::content => .content {
+        @st ::marker => &::before;
+        @st ::title => .title;
+        @st ::desc => .desc;
+    }
+    @st ::decoration => Decoration;
+} 
+*/
+.root {}
+
+.decoration {
+    -st-extends: Decoration;
+}
+
+.content {}
+
+@custom-selector :--marker .content::before;
+
 .title {}
 
-.image {}
-
-.imageWrapper {}
+.desc {}

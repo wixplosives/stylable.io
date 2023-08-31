@@ -1,0 +1,5 @@
+@st-import [centerMainColumn] from "../css/common.st.css";
+
+.root {
+    -st-extends: centerMainColumn;
+}

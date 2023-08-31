@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { Feature } from '../components/feature';
+import { CommunityCard } from '../components/community-card';
 import { st, classes } from './community.st.css';
 
 function Community() {
@@ -20,7 +20,7 @@ function Community() {
                 <section className={classes.cards}>
                     <div className="container">
                         <div className="row">
-                            <Feature
+                            <CommunityCard
                                 className={classes.card}
                                 link="https://github.com/wix/stylable"
                                 title="GitHub"
@@ -44,16 +44,16 @@ function Community() {
                             >
                                 Track our development, search open issues, report new ones, and contribute back to the
                                 project
-                            </Feature>
-                            <Feature
+                            </CommunityCard>
+                            <CommunityCard
                                 className={classes.card}
                                 link="https://twitter.com/stylableio"
                                 title="Twitter"
                                 image="img/twitter-logo.svg"
                             >
                                 Follow our Twitter to stay up to date with the latest happenings in Stylable
-                            </Feature>
-                            <Feature
+                            </CommunityCard>
+                            <CommunityCard
                                 className={classes.card}
                                 link="https://discord.gg/C5ZhENSbV7"
                                 title="Discord"
@@ -61,7 +61,7 @@ function Community() {
                             >
                                 Join our Discord community, where you can chat with us, ask questions, and showcase your
                                 work
-                            </Feature>
+                            </CommunityCard>
                         </div>
                     </div>
                 </section>

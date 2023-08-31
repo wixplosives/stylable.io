@@ -1,0 +1,129 @@
+@st-namespace "button-variants";
+@st-import Button from "../../components/button.st.css";
+
+:vars {
+    fgColor: #000000;
+    bgColor: #ffffff;
+    accentColor: #00ffc2;
+    accentBgColor: gray;
+}
+
+.buttonBase {
+    -st-extends: Button;
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    border-width: 0;
+    border-radius: 25px;
+    padding: 5px;
+    color: inherit;
+    font: inherit;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttonBase::icon {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 2em;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: value(bgColor);
+}
+
+.buttonBase::text {
+    margin-inline-start: 15px;
+}
+
+.buttonBase::text:only-child {
+    margin-inline-end: 15px;
+}
+
+/******* 
+ * circular gradiant background with circular icon
+ *******/
+.buttonDesign1 {
+    -st-extends: Button;
+    -st-mixin: buttonBase;
+    color: value(fgColor);
+    --background-position: closest-side at 20% 70px;
+    --background-radius: 240%;
+    border: 1px solid var(--border-color, transparent);
+    background: radial-gradient(
+                    circle var(--background-position),
+                    /*ToDo support color-mix in stylable*/
+                    /* color-mix(in srgb, value(accentColor) 40%, transparent), */
+                    value(accentColor),
+                    value(bgColor) var(--background-radius)
+                ) no-repeat;
+                
+    /* Note: backdrop-filter  has minimal browser support */
+    backdrop-filter: blur(22px);
+}
+
+.buttonDesign1::icon {
+    fill: value(fgColor);
+    color: value(fgColor);
+    /* centered background cutout from background */
+    background-image: url('data:image/svg+xml,<svg width="4" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 7L4 12V2L12 7z" stroke="black" stroke-width="1" fill="black" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-size: 1em;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.buttonDesign1:hover {
+    --background-position: at center 20px;
+    --background-radius: 70%;
+}
+
+.buttonDesign1:active {
+    --background-position: at center 200%;
+    --background-radius: 60%;
+    --border-color: value(accentBgColor);
+}
+
+/******* 
+ * circular gradiant background with circular icon
+ *******/
+.buttonDesign2 {
+    -st-extends: Button;
+    -st-mixin: buttonBase;
+    color: value(fgColor);
+    background: linear-gradient(
+                    116.63deg,
+                    #C9F37A -10.99%,
+                    #7FFD8C 28.18%,
+                    #72E2FF 99.4%
+                );
+}
+
+.buttonDesign2::icon {
+    background-color: transparent;
+    background-image: url('data:image/svg+xml,<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 7H13M7.75 1.75L13 7L7.75 12.25" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    /*reset other states*/
+    mix-blend-mode: unset;
+    filter: none;
+}
+
+.buttonDesign2:hover {
+    background: linear-gradient(
+                    110.87deg,
+                    #C9F37A -16.72%,
+                    #7FFD8C 3.68%,
+                    #72E2FF 74.86%
+                );
+}
+
+.buttonDesign2:active {
+    background: linear-gradient(
+                    106.37deg,
+                    #C9F37A -19.74%,
+                    #7FFD8C 7.05%,
+                    #72E2FF 79.64%
+                );
+}

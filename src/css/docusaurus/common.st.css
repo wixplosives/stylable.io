@@ -1,3 +1,5 @@
+@st-namespace "doc_common";
+
 .editThisPage {
     -st-global: '.theme-edit-this-page';
 }

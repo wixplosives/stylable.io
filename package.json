@@ -38,6 +38,7 @@
   "devDependencies": {
     "@tsconfig/docusaurus": "^2.0.0",
     "@types/react": "^17.0.43",
+    "@wixc3/react-board": "^2.2.1",
     "copyfiles": "^2.4.1",
     "gh-pages": "^6.0.0",
     "typescript": "^5.2.2"

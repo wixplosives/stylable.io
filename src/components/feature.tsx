@@ -1,50 +1,23 @@
 import React from 'react';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import Link from '@docusaurus/Link';
 import { st, classes } from './feature.st.css';
+import { Decoration } from './decoration';
 
-export function Feature({
-    className,
-    image,
-    title,
-    children,
-    link,
-}: {
-    className?: string;
-    image?: string | ((className: string) => JSX.Element);
-    title: string;
-    children: React.ReactNode;
-    link?: string;
-}) {
-    const srcUrl = typeof image === 'string' ? useBaseUrl(image) : '';
-    const imageToRender = React.useMemo(() => {
-        if (!image) {
-            return null;
-        } else if (typeof image === 'string') {
-            return (
-                <div className={classes.imageWrapper}>
-                    <img className={classes.image} src={srcUrl} alt={title} />
-                </div>
-            );
-        } else {
-            return <div className={classes.imageWrapper}>{image(classes.image)}</div>;
-        }
-    }, [image, srcUrl]);
+export const useFeatures = ({ features }: { features: { title: string; desc: string }[] }) => {
+    const nodes = features.map(({ title, desc }) => <Feature title={title}>{desc}</Feature>);
+    const wrapperStyle = {
+        counterReset: 'feature',
+    };
+    return { nodes, wrapperStyle };
+};
 
+function Feature({ className, title, children }: { className?: string; title: string; children: React.ReactNode }) {
     return (
-        <div className={st(classes.root, 'col col--4', className)}>
-            {link ? (
-                <Link href={link}>
-                    {imageToRender}
-                    <h3 className={classes.title}>{title}</h3>
-                </Link>
-            ) : (
-                <>
-                    {imageToRender}
-                    <h3 className={classes.title}>{title}</h3>
-                </>
-            )}
-            <p>{children}</p>
+        <div className={st(classes.root, className)}>
+            <Decoration className={classes.decoration} preserveAspectRatio="none" context={[]} />
+            <div className={classes.content}>
+                <h3 className={classes.title}>{title}</h3>
+                <p className={classes.desc}>{children}</p>
+            </div>
         </div>
     );
 }

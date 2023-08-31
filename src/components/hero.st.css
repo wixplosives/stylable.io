@@ -1,9 +1,44 @@
+@st-namespace "st-hero";
+@st-import [centerMainColumn, colorScheme, sectionLabel] from "../css/common.st.css";
+
 .root {}
 
-.logo {
-    width: 100%;
+.wrapper {
+    -st-extends: centerMainColumn;
+
+    .content {
+        .libName {
+            -st-extends: sectionLabel;
+        }
+
+        .title {}
+
+        .desc {}
+
+        .nav {}
+
+        .button {
+            -st-states: action(enum(demo, intro));
+        }
+    }
+
+    .gfx {
+        .background {}
+
+        .logo {
+            -st-states: colorScheme(enum(light, dark));
+        }
+    }
 }
 
-.buttons {}
+@st-scope .colorScheme:type(light) {
+    .logo:colorScheme(dark) {
+        display: none;
+    }
+}
 
-.getStarted {}
+@st-scope .colorScheme:type(dark) {
+    .logo:colorScheme(light) {
+        display: none;
+    }
+}
