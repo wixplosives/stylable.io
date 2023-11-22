@@ -12,7 +12,7 @@ In this chapter, we'll see how to extend a stylesheet to target inner parts and 
 
 **Current status:**
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="player.st.css"
 .root {
   -st-states: registered,
@@ -35,7 +35,7 @@ Player .username {
   text-transform: uppercase;
 }
 ```
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 Previously, we manually customized the `Player` component by creating a selector that includes a [descendant combinator](https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator) between the `Player` and our targeted parts. This selector is based on knowledge we have about the `Player` component structure, but this structure might change in the future, and break our assumptions.
 
@@ -45,7 +45,7 @@ To help us abstract our selector, we'll extend the `Player` stylesheet to gain a
 
 We'll first set the `-st-extends` property with the value of the imported `Player` stylesheet on the local `player` class.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="game.st.css"
 @st-import Player from "./player.st.css";
 
@@ -66,7 +66,7 @@ We'll first set the `-st-extends` property with the value of the imported `Playe
   </CodeBlock>
 </details>
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 We [previously saw](./import.mdx#stylesheet-root-selector) that we can't simply target an imported stylesheet, as that would affect all instances of it.
 
@@ -91,7 +91,7 @@ const Game = ({ className }) => (
 
 We can now use the custom pseudo-element syntax to safely target the `avatar` and `username` parts of the `Player` component.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="game.st.css"
 @st-import Player from "./player.st.css";
 
@@ -123,13 +123,13 @@ We can now use the custom pseudo-element syntax to safely target the `avatar` an
   </CodeBlock>
 </details>
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ### Access a state
 
 Similar to how we used custom pseudo-elements to access inner parts of a component externally, we can now target custom pseudo-classes (states) of our extended parts as well.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="game.st.css"
 @st-import Player from "./player.st.css";
 
@@ -141,7 +141,7 @@ Similar to how we used custom pseudo-elements to access inner parts of a compone
 }
 /* ... */
 ```
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ## Extend multiple levels
 
@@ -149,7 +149,7 @@ Let's say that we want to turn our current `avatar` part, into a component to su
 
 To do this, we'll create a new `avatar.st.css` stylesheet, import it to `player.st.css`, and extend our `avatar` class with it.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="avatar.st.css"
 .root {}
 .frame {}
@@ -188,7 +188,7 @@ By extending a stylesheet, which in turn has a part that extends a stylesheet, w
   background: gold;
 }
 ```
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 :::tip Catch breaking changes
 Let's imagine a case, where the `Avatar` component has undergone refactoring which changed the part name `frame` to `box`. If we were using native CSS, and were aware of this change, we could try and manually locate all instances of `frame` and replace them with `box`. But if we were to miss an instance, CSS would provide no indication of the problem.

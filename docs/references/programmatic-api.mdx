@@ -19,7 +19,7 @@ The `Stylable` class provided from `@stylable/core` requires configuration to in
 
 Example:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 
 ```js title="Initialize Stylable instance"
 import fs from 'node:fs';
@@ -29,19 +29,19 @@ import { Stylable } from '@stylable/core';
 Stylable({ fs, projectRoot: __dirname });
 ```
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ### Configuration
 
-| Option             | Type                                                                                              | Default Value                                                     | Description                                                          |
-| ------------------ | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `fs`               | [`MinimalFS`](#minimalfs)                                                                         | `required`                                                        | Filesystem instance to use                                           |
-| `projectRoot`      | `string`                                                                                          | `required`                                                        | The project root directory path                                      |
-| `mode`             | `string`                                                                                          | `"production"`                                                    | Development or production mode                                       |
-| `resolveNamespace` | [`ResolveNamespace`](#resolvenamespace)                                                           | default resolver depends on running context                       | Function to determine namespacing                                    |
-| `resolveModule`    | [`ModuleResolver`](#moduleresolver)                                                               | [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve) | Module resolver to be used for all import paths and `url()` requests |
-| `resolveOptions`   | <CodeBlock className="inline-code">{<br/> alias?: any;<br/> symlinks?: boolean;<br/>}</CodeBlock> | <CodeBlock className="inline-code">{}</CodeBlock>                 | Options that are passed to the **default** module resolver           |
-| `requrieModule`    | [`RequireModule`](#requiremodule)                                                                 | none                                                              | Require module that receives a path, and attempts to return a module |
+| Option             | Type                                                                                            | Default Value                                                     | Description                                                          |
+| ------------------ | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `fs`               | [`MinimalFS`](#minimalfs)                                                                       | `required`                                                        | Filesystem instance to use                                           |
+| `projectRoot`      | `string`                                                                                        | `required`                                                        | The project root directory path                                      |
+| `mode`             | `string`                                                                                        | `"production"`                                                    | Development or production mode                                       |
+| `resolveNamespace` | [`ResolveNamespace`](#resolvenamespace)                                                         | default resolver depends on running context                       | Function to determine namespacing                                    |
+| `resolveModule`    | [`ModuleResolver`](#moduleresolver)                                                             | [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve) | Module resolver to be used for all import paths and `url()` requests |
+| `resolveOptions`   | <CodeBlock className="inline-code"><br/> alias?: any;<br/> symlinks?: boolean;<br/></CodeBlock> | <CodeBlock className="inline-code">{'{}'}</CodeBlock>             | Options that are passed to the **default** module resolver           |
+| `requrieModule`    | [`RequireModule`](#requiremodule)                                                               | none                                                              | Require module that receives a path, and attempts to return a module |
 
 ### `MinimalFS`
 
@@ -74,7 +74,7 @@ const resolveNamespace: ResolveNamespace = (namespace: string, origin: string): 
 }
 ```
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 
 ```css title="comp.st.css"
 .root {}
@@ -83,7 +83,7 @@ const resolveNamespace: ResolveNamespace = (namespace: string, origin: string): 
 .comp1169059893__root {}
 ```
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ### `ModuleResolver`
 
@@ -116,7 +116,7 @@ const stylable = new Stylable({
 
 Defines a function to require imported JavaScript modules from a path, used when a JavaScript [Mixins](./mixins#javascript-mixins) or [Formatters](./formatters) is used within a Stylable stylesheet.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 
 <Tabs groupId="runtimeEnv">
   <TabItem value="nodejs" label="NodeJS" default>
@@ -167,4 +167,4 @@ const stylable = new Stylable({
   </TabItem>
 </Tabs>
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}

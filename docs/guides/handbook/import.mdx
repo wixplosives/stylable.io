@@ -7,13 +7,13 @@ import CodeBlock from '@theme/CodeBlock';
 
 In the [Runtime chapter](./runtime.md), we saw how a Stylable stylesheet's API can be imported into a JavaScript module, and how that API can be used. In this chapter, we'll see how our game example can be divided into linked stylesheet modules to provide a better development experience.
 
-<!-- - here we'll focus on importing symbols across stylesheets, and how to import stuff from javascript to Stylable stylesheets -->
+{/* - here we'll focus on importing symbols across stylesheets, and how to import stuff from javascript to Stylable stylesheets */}
 
 Up to this point, we've talked mostly about a single stylesheet for our project (`game.st.css`). Now we'll explore how to organize our code across multiple stylesheets.
 
 **Current status:**
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="game.st.css"
 .board { /* ... */ }
 
@@ -23,13 +23,13 @@ Up to this point, we've talked mostly about a single stylesheet for our project 
   background: blue;
 }
 ```
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ## Stylesheet root
 
 Let's refactor the `player` class from out of our `game.st.css` to be in its own stylesheet.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="player.st.css"
 .root {
   -st-states: registered,
@@ -38,7 +38,7 @@ Let's refactor the `player` class from out of our `game.st.css` to be in its own
 }
 ```
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 We created a new `player.st.css` file above, and in it, created a new `.root` class. Then we moved the contents of the `.player` class rules to our new `root` class.
 
@@ -46,7 +46,7 @@ We created a new `player.st.css` file above, and in it, created a new `.root` cl
 In Stylable, each component stylesheet is represented by a `root` class that is automatically created, even if not explicitly defined by the user. This root class is expected to be applied to the [root element of the component](../../references/root.md#examples).
 :::
 
-<!-- TODO: might be nice to have an example component jsx here too -->
+{/* TODO: might be nice to have an example component jsx here too */}
 
 We can see that when we moved the `player` class, we also included its styling declarations. This might cause additional work in the future when trying to customize this class from the outside.
 
@@ -60,7 +60,7 @@ Keep in mind that, as we saw earlier in the [Namespacing chapter](./namespace.md
 
 Below, we import the `player.st.css` stylesheet and customize it by using the `@st-import` at-rule, and providing it with a **local name** for the default export (beginning with a capital letter) and a **request** to the target stylesheet. Then we move any customizations out of `player.st.css` into `game.st.css`.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="game.st.css - moved player customization"
 @st-import Player from "./player.st.css";
 
@@ -88,7 +88,7 @@ Player {
     </CodeBlock>
 </details>
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ### Stylesheet root selector
 
@@ -98,7 +98,7 @@ It's important to note that a default import of a Stylable stylesheet represents
 
 By importing the default export of a stylesheet and then styling it, we are potentially customizing every instance of the component across our project. It is therefore **strongly recommended** to scope any selector that originates from a different namespace (stylesheet) or includes native elements with a local class.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css
 @st-import Player from "./player.st.css";
 
@@ -110,7 +110,7 @@ div {}
 .root Player {}
 .root div {}
 ```
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 :::
 
@@ -118,7 +118,7 @@ div {}
 
 For the next step, we would like to add `avatar` and `username` parts to `player.st.css`. These will be applied to the inner elements of the component, and are assumed to be nested under the `root` class.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="player.st.css - added avatar and username"
 .root {
   -st-states: registered,
@@ -127,11 +127,11 @@ For the next step, we would like to add `avatar` and `username` parts to `player
 .avatar {}
 .username {}
 ```
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 We then proceed to bind these new classes to their matching elements in the component.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```jsx title="player.jsx - bind avatar and username"
 import { st, classes } from "./player.st.css";
 
@@ -144,11 +144,11 @@ const Player = ({ className }) => {
   )
 }
 ```
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 Now that we have these new classes, we can customize them externally through `game.st.css`. We do this by adding two `named imports`, inside square brackets, that link to our classes.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```css title="game.st.css - player customization"
 @st-import Player, [avatar, username] from "./player.st.css";
 
@@ -179,7 +179,7 @@ Player .username {
     </CodeBlock>
 </details>
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ### Validations
 
