@@ -14,12 +14,12 @@
     "prettify": "npx prettier . --write"
   },
   "dependencies": {
-    "@algolia/client-search": "^4.20.0",
-    "@docusaurus/core": "^3.0.0",
-    "@docusaurus/preset-classic": "^3.0.0",
-    "@docusaurus/mdx-loader": "^3.0.0",
-    "@easyops-cn/docusaurus-search-local": "^0.37.4",
-    "@stylable/webpack-plugin": "^5.16.0",
+    "@algolia/client-search": "^4.21.1",
+    "@docusaurus/core": "^3.0.1",
+    "@docusaurus/preset-classic": "^3.0.1",
+    "@docusaurus/mdx-loader": "^3.0.1",
+    "@easyops-cn/docusaurus-search-local": "^0.38.1",
+    "@stylable/webpack-plugin": "^5.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -37,10 +37,10 @@
   },
   "devDependencies": {
     "@tsconfig/docusaurus": "^2.0.2",
-    "@types/react": "^18.2.38",
+    "@types/react": "^18.2.45",
     "copyfiles": "^2.4.1",
     "gh-pages": "^6.1.0",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.3"
   },
   "license": "UNLICENSED"
 }
