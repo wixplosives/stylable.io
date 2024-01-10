@@ -45,7 +45,7 @@ Any definitions within the `:global(...)` pseudo-class are not treated as symbol
 
 ## Force native
 
-In case a class definition overrides a native `pseudo` with either [-st-states](./pseudo-classes.md#define-a-custom-pseudo-class) or a [custom pseudo-element](./pseudo-elements.md#override-a-custom-pseudo-element) then the `:global()` selector can be used to force the native:
+In case a class definition overrides a native `pseudo` with either [-st-states](./pseudo-classes.md#syntax) or a [custom pseudo-element](./pseudo-elements.md#syntax) then the `:global()` selector can be used to force the native:
 
 **customInput with override `:selected`**
 
