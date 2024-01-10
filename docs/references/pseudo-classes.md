@@ -277,7 +277,7 @@ Additionally a single parameter can be defined after the selector string and ref
 <!-- prettier-ignore-start -->
 ```css
 .x {
-  -st-states: loading('[size="$0"]', enum(small, medium, large));
+  -st-states: size('[size="$0"]', enum(small, medium, large));
 }
 
 .x:size(small) {}
