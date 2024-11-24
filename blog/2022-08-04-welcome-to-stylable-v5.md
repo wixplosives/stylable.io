@@ -61,3 +61,5 @@ Want to be a part of the discussion? See our ongoing development on [GitHub](htt
 We hope you'll join us on this journey, and we're looking forward to hearing your feedback.
 
 \- _The Stylable team_
+
+<!-- truncate -->

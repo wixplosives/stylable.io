@@ -130,6 +130,7 @@ module.exports = {
                 blog: {
                     showReadingTime: true,
                     editUrl: 'https://github.com/wixplosives/stylable.io/edit/master',
+                    onInlineAuthors: 'ignore'
                 },
                 googleAnalytics: {
                     trackingID: 'UA-109043375-1',
