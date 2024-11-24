@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkstylable_io=self.webpackChunkstylable_io||[]).push([[7472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Welcome to Stylable v5","permalink":"/blog/welcome-to-stylable-v5","unlisted":false,"date":"2022-08-04T00:00:00.000Z"}]}')}}]);
