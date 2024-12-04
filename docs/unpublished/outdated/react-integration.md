@@ -10,19 +10,11 @@ Before you begin, read the [Runtime reference](../references/runtime.md) to unde
 To manualy integrate **Stylable** to a React component, you **must** first mark the root element of the component:
 
 ```jsx
-import { style, classes } from "style.st.css";
+import { style, classes } from 'style.st.css';
 
 class Comp extends React.Component {
   render() {
-    return (
-      <div
-        className={style(
-          classes.root,
-          { stateA: true, stateB: false },
-          this.props.className
-        )}
-      ></div>
-    );
+    return <div className={style(classes.root, { stateA: true, stateB: false }, this.props.className)}></div>;
   }
 }
 ```
@@ -43,7 +35,7 @@ To enable external styling, we recommend passing the `className` prop. To make t
 All nodes, other than `root`, can be marked directly with the class mapping and the [$cssStates](../references/runtime#custom-state-mapping) function:
 
 ```jsx
-import { style, classes, cssStates } from "style.st.css";
+import { style, classes, cssStates } from 'style.st.css';
 
 class Comp extends React.Component {
   render() {

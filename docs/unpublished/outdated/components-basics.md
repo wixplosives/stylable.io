@@ -145,11 +145,7 @@ class Button {
   render() {
     return (
       <button
-        className={style(
-          classes.root,
-          { on: this.state.on },
-          this.props.className
-        )}
+        className={style(classes.root, { on: this.state.on }, this.props.className)}
         onClick={() => this.setState({ on: !this.state.on })}
       >
         <span className={classes.icon} />

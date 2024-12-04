@@ -255,11 +255,11 @@ module.exports = function complexMixin([color, bgColor]) {
   return {
     color: color,
     background: bgColor,
-    "&:hover": {
-      color: "gold",
+    '&:hover': {
+      color: 'gold',
     },
-    ".otherClass": {
-      color: "purple",
+    '.otherClass': {
+      color: 'purple',
     },
   };
 };
@@ -317,7 +317,7 @@ Example:
 ```css
 .x {
   /* use quotations to include comma */
-  -st-mixin: mix(300, "xx,x"); /* ["300", "xx,x"] */
+  -st-mixin: mix(300, 'xx,x'); /* ["300", "xx,x"] */
 }
 ```
 

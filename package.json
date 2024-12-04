@@ -11,7 +11,7 @@
     "serve": "docusaurus serve",
     "test": "npm run build",
     "clear": "docusaurus clear",
-    "prettify": "npx prettier . --write"
+    "prettify": "prettier . --write"
   },
   "dependencies": {
     "@docusaurus/core": "^3.6.3",
@@ -39,6 +39,7 @@
     "@types/react": "^18.3.12",
     "copyfiles": "^2.4.1",
     "gh-pages": "^6.2.0",
+    "prettier": "^3.4.2",
     "typescript": "~5.7.2"
   },
   "license": "UNLICENSED"

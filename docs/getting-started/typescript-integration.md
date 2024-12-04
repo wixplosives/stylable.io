@@ -40,8 +40,8 @@ You'll then need to configure TypeScript to use that directory. To do this, modi
 ```jsonc title="tsconfig.json"
 {
   "compilerOptions": {
-    "rootDirs": ["./src", "./st-types"]
-  }
+    "rootDirs": ["./src", "./st-types"],
+  },
 }
 ```
 

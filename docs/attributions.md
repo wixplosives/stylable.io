@@ -19,7 +19,6 @@ Icons made by Eucalyp
 
 - https://www.flaticon.com/free-icon/checklist_2753153
 
-
 Icons made by wanicon
 
 - https://www.flaticon.com/free-icon/prototype_2421271

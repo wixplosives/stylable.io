@@ -114,11 +114,7 @@ In this example, we use our existing flavors from above to customize our compone
   }
 
   UserForm {
-    -st-mixin: userForm-flavor(
-      background black,
-      text white,
-      borderColor #f4f4f4
-    );
+    -st-mixin: userForm-flavor(background black, text white, borderColor #f4f4f4);
   }
 }
 ```
