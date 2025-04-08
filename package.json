@@ -42,8 +42,5 @@
     "prettier": "^3.5.3",
     "typescript": "~5.8.3"
   },
-  "license": "UNLICENSED",
-  "overrides": {
-    "webpack": "5.98.0"
-  }
+  "license": "UNLICENSED"
 }
